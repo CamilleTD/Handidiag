@@ -1,0 +1,8 @@
+Captures d'ecran generees automatiquement dans Chrome (mode sans interface) pendant les tests de l'affichage.
+Elles servent de preuves pour le rapport (docs/06 et docs/08). Attention : le serveur de test n'a pas les polices
+Windows ; sur votre PC, les titres s'affichent en Georgia/Palatino et le texte en Segoe UI. Refaites vos propres
+captures sur vos appareils (iPhone, Android, Windows) pour le rapport final.
+Contenu : ordinateur 1280 px, tablette 768 px, telephone 375 px, texte a 50 % et 300 %, profil malvoyance
+(contraste eleve + Atkinson Hyperlegible), police OpenDyslexic.
+
+16-18 : question sur le pôle handicap (téléphone, ordinateur) et version anglaise (nouvelle édition étudiants).

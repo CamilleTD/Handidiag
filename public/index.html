@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="fr" data-theme="auto" data-font="system">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#0a6a66">
+  <title>HandiDiag</title>
+  <meta name="description" content="HandiDiag : comprendre la démarche RQTH et savoir vers qui se tourner. Anonyme, sans compte.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main" data-i18n="ui.skip">Aller au contenu principal</a>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="#/info" aria-label="HandiDiag">
+        <svg class="brand-mark" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true" focusable="false">
+          <circle cx="16" cy="16" r="15" class="bm-disc"/>
+          <path d="M8 22c3-1 4-5 8-5s5-4 8-9" class="bm-path"/>
+          <circle cx="24" cy="8" r="2.4" class="bm-dot"/>
+        </svg>
+        <span>HandiDiag</span>
+      </a>
+      <nav id="nav" aria-label="Navigation principale" data-i18n-attr="aria-label:ui.nav_label">
+        <ul>
+          <li><a href="#/info" data-nav="info" data-i18n="ui.nav_home">Accueil</a></li>
+          <li><a href="#/quiz" data-nav="quiz" data-i18n="ui.nav_quiz">Questionnaire</a></li>
+          <li><a href="#/kit" data-nav="kit" data-i18n="ui.nav_kit">Kit</a></li>
+        </ul>
+      </nav>
+      <div class="header-tools">
+      <button id="lang-quick" class="btn btn-quiet btn-small" type="button" lang="en">English</button>
+      <a id="settings-btn" class="btn btn-quiet btn-gear" href="#/settings" data-nav="settings">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false" class="ico"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+        <span data-i18n="ui.settings_btn">Réglages</span>
+      </a>
+      </div>
+    </div>
+
+  </header>
+
+  <div id="live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  <div id="ruler" aria-hidden="true" hidden></div>
+
+  <main id="main" class="wrap" tabindex="-1">
+    <p id="boot" data-i18n="ui.loading">Chargement…</p>
+    <noscript><p class="notice" data-i18n="ui.noscript">HandiDiag a besoin de JavaScript : vos réponses sont traitées uniquement dans votre navigateur.</p></noscript>
+  </main>
+
+  <main id="settings" class="wrap settings-page" hidden tabindex="-1" aria-labelledby="settings-title">
+    <div class="narrow">
+        <div class="settings-head">
+          <h1 id="settings-title" data-i18n="ui.settings_title">Réglages d'affichage</h1>
+          <button id="settings-x" class="btn btn-small btn-quiet" type="button" data-i18n="ui.back">Retour</button>
+        </div>
+
+        <div class="set-group">
+          <h2 data-i18n="ui.profiles_title">Profils rapides</h2>
+          <p class="hint" data-i18n="ui.profiles_hint">Un clic règle plusieurs options à la fois.</p>
+          <div class="profiles">
+            <button type="button" class="profile-btn" data-profile="dys" aria-describedby="pd-dys">
+              <strong data-i18n="ui.profile_dys">Dyslexie</strong>
+              <span id="pd-dys" data-i18n="ui.profile_dys_desc"></span>
+            </button>
+            <button type="button" class="profile-btn" data-profile="adhd" aria-describedby="pd-adhd">
+              <strong data-i18n="ui.profile_adhd">TDAH / concentration</strong>
+              <span id="pd-adhd" data-i18n="ui.profile_adhd_desc"></span>
+            </button>
+            <button type="button" class="profile-btn" data-profile="lowvision" aria-describedby="pd-low">
+              <strong data-i18n="ui.profile_lowvision">Malvoyance</strong>
+              <span id="pd-low" data-i18n="ui.profile_lowvision_desc"></span>
+            </button>
+          </div>
+          <button type="button" id="profile-reset" class="linklike" data-i18n="ui.profile_reset">Revenir aux réglages d'origine</button>
+        </div>
+
+        <div class="set-group">
+          <h2 data-i18n="ui.display_title">Lecture et affichage</h2>
+          <div class="settings-grid">
+            <div class="field">
+              <label for="set-lang" data-i18n="ui.lang">Langue</label>
+              <select id="set-lang">
+                <option value="fr" lang="fr">Français</option>
+                <option value="en" lang="en">English</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="set-font" data-i18n="ui.font">Police de caractères</label>
+              <select id="set-font" aria-describedby="font-note">
+                <option value="system" data-i18n="ui.font_system">Police du système</option>
+                <option value="atkinson" data-i18n="ui.font_atkinson">Atkinson Hyperlegible</option>
+                <option value="dyslexic" data-i18n="ui.font_dyslexic">OpenDyslexic</option>
+                <option value="lexend" data-i18n="ui.font_lexend">Lexend</option>
+              </select>
+              <p id="font-note" class="hint" data-i18n="ui.font_note"></p>
+            </div>
+            <div class="field">
+              <label for="set-theme" data-i18n="ui.theme">Thème</label>
+              <select id="set-theme">
+                <option value="auto" data-i18n="ui.theme_auto">Automatique</option>
+                <option value="light" data-i18n="ui.theme_light">Clair</option>
+                <option value="dark" data-i18n="ui.theme_dark">Sombre</option>
+                <option value="contrast" data-i18n="ui.theme_contrast">Contraste élevé</option>
+              </select>
+            </div>
+            <div class="field field-wide">
+              <label for="set-size"><span data-i18n="ui.text_size">Taille du texte (50 % à 300 %)</span> : <output id="size-out" for="set-size">100 %</output></label>
+              <div class="size-row">
+                <button id="size-down" class="btn btn-small" type="button" aria-label="A− : réduire le texte" data-i18n-attr="aria-label:ui.smaller">A−</button>
+                <input type="range" id="set-size" min="50" max="300" step="10" value="100">
+                <button id="size-up" class="btn btn-small" type="button" aria-label="A+ : agrandir le texte" data-i18n-attr="aria-label:ui.larger">A+</button>
+                <button id="size-reset" class="btn btn-small btn-quiet" type="button" aria-label="100 % : taille normale" data-i18n-attr="aria-label:ui.reset">100 %</button>
+              </div>
+            </div>
+          </div>
+          <div class="checks">
+            <label class="check"><input type="checkbox" id="set-falc"><span data-i18n="ui.falc">Textes simplifiés (inspirés du FALC)</span></label>
+            <label class="check"><input type="checkbox" id="set-dys"><span data-i18n="ui.dys">Espacement renforcé</span></label>
+            <label class="check"><input type="checkbox" id="set-ruler"><span data-i18n="ui.ruler">Repère de lecture</span></label>
+            <label class="check"><input type="checkbox" id="set-remember" aria-describedby="remember-hint"><span data-i18n="ui.remember">Mémoriser ces réglages</span></label>
+          </div>
+          <p id="remember-hint" class="hint" data-i18n="ui.remember_hint"></p>
+        </div>
+
+        <div class="set-group" id="voice-group">
+          <h2 data-i18n="ui.voice_title">Lecture à voix haute</h2>
+          <div class="settings-grid">
+            <div class="field">
+              <label for="set-voice" data-i18n="ui.voice">Voix</label>
+              <select id="set-voice"></select>
+            </div>
+            <div class="field">
+              <label for="set-rate"><span data-i18n="ui.rate">Vitesse de lecture</span> : <output id="rate-out" for="set-rate">1,0×</output></label>
+              <input type="range" id="set-rate" min="0.6" max="1.4" step="0.05" value="0.95">
+            </div>
+          </div>
+          <p class="hint" data-i18n="ui.voice_note"></p>
+        </div>
+
+        <button id="settings-close" class="btn btn-primary" type="button" data-i18n="ui.back">Retour</button>
+      </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-center">
+      <p class="footer-brand" data-i18n="ui.footer_brand">© Équipe HandiDiag</p>
+      <p><a href="#/admin" data-i18n="ui.admin_link">Espace administrateur</a></p>
+    </div>
+  </footer>
+
+  <script src="js/engine.js"></script>
+  <script src="js/voice.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr" data-theme="auto" data-font="system">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Tableau de bord – HandiDiag</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Aller au contenu principal</a>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">HandiDiag</a>
+      <span>Espace administrateur</span>
+    </div>
+  </header>
+
+  <main id="main" class="wrap" tabindex="-1">
+    <h1>Tableau de bord</h1>
+    <p class="lead">Données agrégées et anonymes uniquement. Aucune réponse individuelle n'est stockée.</p>
+
+    <section class="panel" aria-labelledby="login-title">
+      <h2 id="login-title">Connexion</h2>
+      <div class="field">
+        <label for="token">Jeton administrateur</label>
+        <input id="token" type="password" autocomplete="off" class="text-input" aria-describedby="token-hint">
+        <p id="token-hint" class="hint">Le jeton est défini par la variable d'environnement ADMIN_TOKEN. Il n'est pas enregistré dans le navigateur.</p>
+      </div>
+      <div class="actions">
+        <button id="load" type="button" class="btn btn-primary">Afficher les statistiques</button>
+        <button id="csv" type="button" class="btn" disabled>Exporter en CSV</button>
+      </div>
+      <p id="msg" class="error" role="alert" hidden></p>
+    </section>
+
+    <div id="out" aria-live="polite"></div>
+  </main>
+
+  <footer class="site-footer"><div class="wrap">
+    <p>Les valeurs inférieures au seuil k sont masquées pour empêcher toute identification (voir docs/07_analyse_rgpd_ethique.md).</p>
+  </div></footer>
+  <script src="js/admin.js"></script>
+</body>
+</html>

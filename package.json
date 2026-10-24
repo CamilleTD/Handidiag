@@ -1,0 +1,21 @@
+{
+  "name": "handidiag",
+  "version": "1.0.0",
+  "description": "Application web accessible et confidentielle d'orientation vers la demarche RQTH (projet ING3 Efrei).",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test tests/*.test.js",
+    "weight": "node tools/measure-weight.js",
+    "seed": "node tools/seed-demo.js",
+    "e2e": "node tests-e2e/run.js"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.14.0",
+    "axe-core": "^4.14.0"
+  }
+}

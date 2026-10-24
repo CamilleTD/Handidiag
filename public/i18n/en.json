@@ -1,0 +1,1158 @@
+{
+ "meta": {
+  "name": "English",
+  "speech": "en-GB"
+ },
+ "ui": {
+  "skip": "Skip to main content",
+  "nav_label": "Main navigation",
+  "nav_home": "Home",
+  "nav_quiz": "Questionnaire",
+  "nav_kit": "Kit",
+  "settings_btn": "Settings",
+  "settings_title": "Display settings",
+  "lang": "Language",
+  "falc": "Simplified texts (inspired by Easy-to-Read)",
+  "text_size": "Text size (50% to 300%)",
+  "smaller": "A− : decrease text size",
+  "reset": "100 % : normal size",
+  "larger": "A+ : increase text size",
+  "theme": "Theme",
+  "theme_auto": "Automatic",
+  "theme_light": "Light",
+  "theme_dark": "Dark",
+  "dys": "Extra spacing (reading comfort)",
+  "close": "Close",
+  "loading": "Loading…",
+  "load_error": "The application could not be loaded. Check your connection and reload the page.",
+  "noscript": "HandiDiag needs JavaScript: your answers are processed only in your browser.",
+  "new_tab": "(opens in a new tab)",
+  "page_title_suffix": "HandiDiag",
+  "profiles_title": "Quick profiles",
+  "profiles_hint": "One click sets several options at once. You can then fine-tune everything.",
+  "profile_dys": "Dyslexia",
+  "profile_dys_desc": "OpenDyslexic font, extra spacing, slightly larger text.",
+  "profile_adhd": "ADHD / focus",
+  "profile_adhd_desc": "Lexend font, simplified texts, extra spacing and reading guide.",
+  "profile_lowvision": "Low vision",
+  "profile_lowvision_desc": "Atkinson Hyperlegible font, text at 150%, high contrast.",
+  "profile_reset": "Back to default settings",
+  "profile_applied": "Profile applied: {name}",
+  "profile_reset_done": "Default settings restored.",
+  "display_title": "Reading and display",
+  "font": "Typeface",
+  "font_system": "System font (default)",
+  "font_atkinson": "Atkinson Hyperlegible (low vision)",
+  "font_dyslexic": "OpenDyslexic (dyslexia)",
+  "font_lexend": "Lexend (fluent reading, ADHD)",
+  "font_note": "No typeface works for everyone: keep the one that feels most comfortable.",
+  "theme_contrast": "High contrast",
+  "ruler": "Reading guide: a bright band follows the mouse or the selection",
+  "remember": "Remember these settings on this device",
+  "remember_hint": "Only display settings are saved, never your answers.",
+  "voice_title": "Read aloud",
+  "voice": "Voice",
+  "voice_auto": "Automatic (best available voice)",
+  "voice_online": "online",
+  "rate": "Reading speed",
+  "voice_unavailable": "Read aloud is not available in this browser.",
+  "voice_note": "The most natural voices depend on your device: on Edge, look for a “Natural” voice; on Chrome, “Google UK English”; on iPhone and Mac, an “enhanced” or “premium” voice. A voice marked “online” sends the text it reads to a browser service. When reading your result, the automatic voice stays local: pick a voice from the list to use an online one.",
+  "lang_switch": "Français",
+  "back": "Back",
+  "footer_brand": "© HandiDiag team",
+  "admin_link": "Admin area",
+  "meta_description": "HandiDiag: understand the RQTH process before entering the working world and know who to turn to. Anonymous, no account.",
+  "read_page": "Read this page aloud"
+ },
+ "pages": {
+  "info": "Understanding the RQTH process",
+  "quiz": "Orientation questionnaire",
+  "result": "Your orientation",
+  "kit": "Resource kit",
+  "settings": "Display settings",
+  "more": "Additional questions",
+  "admin": "Admin area"
+ },
+ "info": {
+  "title": "Your RQTH orientation, before entering the working world",
+  "lead": "HandiDiag is for students of the school preparing to work: it helps you see whether official recognition (RQTH) could make sense for your career plan, and who to talk to.",
+  "what_title": "What is the RQTH?",
+  "what": "The RQTH (recognition of the status of disabled worker, in France) is an administrative decision. It can give access to measures for finding or keeping a job, such as workplace or schedule adjustments and financial support. It concerns people whose ability to get or keep a job is reduced by a lasting impairment of physical, sensory, mental or psychological functions. The application is personal and voluntary.",
+  "what_falc": "The RQTH is a decision made by the French administration. It can help you find a job or keep it. For example: adapted hours, an adapted workstation, money for equipment. The application is personal. Nobody can make it for you.",
+  "does_title": "What HandiDiag does",
+  "does": [
+   "It explains the process in plain words.",
+   "It first asks whether the school's disability office follows you, then asks about twelve questions with no medical detail (about 6 minutes).",
+   "It tells you whether it may be useful to talk to someone, and who.",
+   "It gives you a kit to move forward: official links, checklist, steps."
+  ],
+  "does_falc": [
+   "It explains the process in simple words.",
+   "It first asks if the disability office follows you. Then it asks about 12 questions. None is medical.",
+   "It says if it may help to talk to someone, and who.",
+   "It gives official links and a to-do list."
+  ],
+  "not_title": "What HandiDiag does not do",
+  "not": [
+   "It makes no medical diagnosis.",
+   "It never says whether you will be granted recognition: only the MDPH decides.",
+   "It does not replace a doctor, the MDPH or an adviser.",
+   "It sends your answers to nobody."
+  ],
+  "not_falc": [
+   "It does not make a diagnosis.",
+   "It does not say if you will get the RQTH. The MDPH decides.",
+   "It does not replace a doctor or an adviser.",
+   "It sends your answers to nobody."
+  ],
+  "privacy_title": "Privacy",
+  "privacy": [
+   "No account, no email address requested.",
+   "Your answers stay in your browser. They disappear when you reload or close the page.",
+   "Only anonymous counters (for example: number of completed questionnaires) may be sent. You can refuse below.",
+   "No cookie, no tracker, no third-party service."
+  ],
+  "privacy_falc": [
+   "No account. No email.",
+   "Your answers stay on your device. They are erased when you close the page.",
+   "We only count how many people finished. We do not know who. You can say no below.",
+   "No cookie. No ads."
+  ],
+  "stats_label": "I agree to contribute to anonymous statistics (aggregated counters, not linked to my detailed answers).",
+  "start": "Start the questionnaire",
+  "start_hint": "About 12 questions, 6 minutes. Any question can be skipped with « I prefer not to answer ».",
+  "kit_link": "Go straight to the resource kit",
+  "path_title": "Your path in 4 steps",
+  "path": [
+   {
+    "title": "Find out",
+    "text": "Understand what the RQTH is."
+   },
+   {
+    "title": "Take stock",
+    "text": "Answer about twelve questions, no medical detail."
+   },
+   {
+    "title": "Talk",
+    "text": "Know who to talk to."
+   },
+   {
+    "title": "Act",
+    "text": "Prepare the process with the kit."
+   }
+  ],
+  "eco": [
+   "Light: under 60 KB transferred on the first visit, no images or video.",
+   "No third-party service, no tracker, no font downloaded unless you ask for it.",
+   "Calculations run in your browser: no database, very little server load.",
+   "A dark theme is available: it uses less energy on OLED screens."
+  ],
+  "eco_title": "An eco-designed site (Green IT)"
+ },
+ "quiz": {
+  "progress": "Question {n} of {total}",
+  "single_hint": "One answer only.",
+  "multi_hint": "You can choose several answers.",
+  "next": "Confirm",
+  "back": "Previous question",
+  "skip": "I prefer not to answer",
+  "finish": "Confirm and see my orientation",
+  "required": "Choose an answer, or « I prefer not to answer ».",
+  "read_aloud": "Read the question aloud",
+  "stop_reading": "Stop reading",
+  "cancel": "Leave and erase my answers",
+  "required_optional": "Choose an answer, or « I prefer not to answer ».",
+  "read_intro": "Here are the possible answers.",
+  "more_title": "The essential questions are done",
+  "more_text": "Thank you! You can see your orientation now, or answer {n} additional questions (about {m} min) to get more precise leads, adapted to what you indicated.",
+  "more_text_falc": "Thank you! You can see your orientation now. Or answer {n} more questions (about {m} min). You will get more precise ideas.",
+  "more_continue": "Answer the additional questions",
+  "more_skip": "See my orientation now",
+  "more_later": "You can also come back to it from your result.",
+  "deep_tag": "additional",
+  "pole_panel_title": "To join the disability office",
+  "pole_panel_subjects": "Topics covered",
+  "pole_subjects": [
+   "Disability",
+   "Extra exam time",
+   "Social support",
+   "Exceptional aid",
+   "Accommodations"
+  ],
+  "pole_panel_write": "Write to one of these two people:",
+  "pole_panel_then": "Then confirm: the questionnaire continues to see whether an RQTH could make sense for your career plan.",
+  "email_label": "E-mail"
+ },
+ "questions": {
+  "profile": {
+   "text": "What is your current situation?",
+   "help": "This lets us suggest the right contacts.",
+   "options": {
+    "student": "I am a student",
+    "employee": "I am an employee in the private sector",
+    "jobseeker": "I am looking for a job",
+    "public_agent": "I am a public-sector employee"
+   }
+  },
+  "duration": {
+   "text": "Do you have health difficulties that have lasted a long time or are likely to last?",
+   "text_falc": "Do you have a health problem that lasts a long time?",
+   "help": "You do not need a diagnosis to answer.",
+   "options": {
+    "none": "No, none",
+    "unsure": "I don't know",
+    "short": "Yes, for less than 6 months",
+    "long": "Yes, for 6 months or more"
+   }
+  },
+  "areas": {
+   "text": "In which areas do you feel difficulty in your daily life?",
+   "text_falc": "Where do you feel difficulty in daily life?",
+   "help": "Choose what fits best. You do not have to give details.",
+   "options": {
+    "energy": "Tiredness or pain",
+    "attention": "Concentration, memory, reading or writing",
+    "senses": "Sight or hearing",
+    "mobility": "Getting around or using your hands",
+    "psych": "Long-lasting stress, anxiety or difficult emotions",
+    "other": "Something else",
+    "prefer_not": "I prefer not to answer"
+   }
+  },
+  "frequency": {
+   "text": "How often do these difficulties make your studies, internship or work-study harder?",
+   "text_falc": "Do these difficulties often make your studies or internship hard?",
+   "options": {
+    "never": "Never",
+    "sometimes": "Sometimes",
+    "often": "Often",
+    "always": "Almost always"
+   }
+  },
+  "needs": {
+   "text": "Which adjustments would make work or study easier for you?",
+   "text_falc": "What would help you work or study?",
+   "options": {
+    "schedule": "Adapted hours",
+    "workstation": "Adapted workstation or equipment",
+    "extra_time": "More time (exams, tasks)",
+    "remote": "Remote work or remote classes",
+    "breaks": "More frequent breaks",
+    "docs": "Documents in an adapted format",
+    "none": "No particular need"
+   }
+  },
+  "pathway": {
+   "text": "Which part of your path is affected?",
+   "options": {
+    "studies": "My studies",
+    "internship": "An internship or work-study",
+    "job": "My future first job",
+    "jobsearch": "My search for an internship, work-study or job",
+    "none": "None for now"
+   }
+  },
+  "support": {
+   "text": "Do you already have support or official recognition?",
+   "options": {
+    "has_rqth": "I already have an RQTH or another official recognition",
+    "has_adjust": "I have adjustments, without official recognition",
+    "none": "No, nothing for now",
+    "unsure": "I don't know"
+   }
+  },
+  "awareness": {
+   "text": "What do you know about the RQTH?",
+   "options": {
+    "unknown": "I don't know it",
+    "partial": "I have heard of it, but it is unclear",
+    "good": "I roughly know what it is"
+   }
+  },
+  "barriers": {
+   "text": "What holds you back, or could hold you back, from taking this step?",
+   "text_falc": "What stops you from taking this step?",
+   "options": {
+    "stigma": "Fear of other people's judgement",
+    "employer": "Fear that my school or my future employer would find out",
+    "complexity": "The paperwork seems complicated",
+    "who": "I don't know who to talk to",
+    "time": "I lack time",
+    "none": "Nothing in particular"
+   }
+  },
+  "urgency": {
+   "text": "Do you have a deadline coming up (internship, work-study, first job, exams)?",
+   "options": {
+    "none": "No",
+    "months": "Yes, in the coming months",
+    "soon": "Yes, within the next 3 months",
+    "urgent": "Yes, it is very close"
+   }
+  },
+  "ctx_student": {
+   "text": "On the way to the working world, what is most affected?",
+   "text_falc": "What is difficult for you, before work?",
+   "help": "You can choose several answers.",
+   "options": {
+    "exams": "Exams (written, oral, duration)",
+    "work": "Internship or work-study in a company",
+    "recruit": "Looking for an internship, work-study or job (tests, interviews)",
+    "attendance": "Attending classes and getting around",
+    "projects": "Group work and projects",
+    "none": "Nothing in particular"
+   }
+  },
+  "ctx_employee": {
+   "text": "How is your work organised?",
+   "text_falc": "How do you work?",
+   "options": {
+    "fixed": "Fixed hours, on site",
+    "shifts": "Shift work, nights or rotating teams",
+    "hybrid": "Partial or full remote work",
+    "travel": "Frequent travel"
+   }
+  },
+  "ctx_jobseeker": {
+   "text": "How long have you been looking for a job?",
+   "text_falc": "Since when are you looking for a job?",
+   "options": {
+    "under3": "Less than 3 months",
+    "mid": "3 to 12 months",
+    "long": "More than a year",
+    "not_yet": "I am not looking yet"
+   }
+  },
+  "ctx_public": {
+   "text": "What is your status in the public sector?",
+   "text_falc": "What is your status?",
+   "options": {
+    "permanent": "Permanent civil servant",
+    "contract": "Contract employee",
+    "trainee": "Trainee, apprentice or in training",
+    "unsure": "I don't know"
+   }
+  },
+  "followup": {
+   "text": "Has a health professional followed, or is following, these difficulties?",
+   "text_falc": "Does a doctor follow you for this?",
+   "help": "This question only helps tailor the advice. You do not have to give details.",
+   "options": {
+    "regular": "Yes, I have regular follow-up",
+    "past": "Yes, in the past",
+    "none": "No, no follow-up",
+    "prefer_not": "I prefer not to answer"
+   }
+  },
+  "for_whom": {
+   "text": "Who are you looking into this for?",
+   "text_falc": "Who are you looking for information for?",
+   "options": {
+    "self": "For myself, out of curiosity or prevention",
+    "relative": "For a relative",
+    "colleague": "For a fellow student or someone I support",
+    "pro": "As part of a role (class rep, tutoring, student association, HR internship…)"
+   }
+  },
+  "worry": {
+   "text": "Could an upcoming change affect your health or your study and work conditions?",
+   "options": {
+    "workload": "A heavier study or work load",
+    "change": "A change (internship, work-study, first job, moving)",
+    "health_event": "A recent or upcoming health event",
+    "none": "No, nothing in particular"
+   }
+  },
+  "energy_when": {
+   "text": "When do tiredness or pain affect you most?",
+   "text_falc": "When are you most tired?",
+   "options": {
+    "morning": "In the morning",
+    "afternoon": "In the afternoon",
+    "evening": "In the evening",
+    "after_effort": "After effort or a long day",
+    "unpredictable": "Unpredictably"
+   }
+  },
+  "energy_effects": {
+   "text": "What becomes harder?",
+   "options": {
+    "sitting": "Sitting for a long time",
+    "standing": "Standing",
+    "carrying": "Carrying or moving loads",
+    "typing": "Writing or typing",
+    "concentrating": "Staying focused",
+    "commuting": "Commuting"
+   }
+  },
+  "energy_rest": {
+   "text": "Do you need breaks or rest during the day?",
+   "options": {
+    "rarely": "Rarely",
+    "sometimes": "Sometimes",
+    "often": "Often",
+    "planned": "Yes, on a regular, planned basis"
+   }
+  },
+  "attn_tasks": {
+   "text": "Which tasks take you more time or effort?",
+   "options": {
+    "reading": "Reading",
+    "writing": "Writing",
+    "calculating": "Calculating, working with numbers",
+    "remembering": "Remembering instructions or information",
+    "organizing": "Organising, planning",
+    "listening": "Following a class or meeting orally"
+   }
+  },
+  "attn_tools": {
+   "text": "Which aids do you already use?",
+   "options": {
+    "extra_time": "Extra time",
+    "text_to_speech": "Text-to-speech or reading software",
+    "notes": "Written notes or instructions",
+    "planning": "Planning or reminder tools",
+    "none": "None for now"
+   }
+  },
+  "senses_which": {
+   "text": "What is affected?",
+   "options": {
+    "vision": "Vision",
+    "hearing": "Hearing",
+    "both": "Both"
+   }
+  },
+  "senses_needs": {
+   "text": "Which adjustments would help you?",
+   "options": {
+    "zoom": "Magnification or a screen reader",
+    "captions": "Captions or a hearing loop",
+    "lighting": "Lighting, contrast, seating position",
+    "docs": "Large-print or adapted-format documents",
+    "none": "None for now"
+   }
+  },
+  "mob_aspects": {
+   "text": "What is hardest in your movements and gestures?",
+   "options": {
+    "walking": "Walking long distances",
+    "stairs": "Stairs",
+    "hands": "Fine movements or handling objects",
+    "transport": "Public transport",
+    "standing": "Standing",
+    "parking": "Parking or getting into buildings"
+   }
+  },
+  "mob_access": {
+   "text": "Which access adjustments would be useful?",
+   "options": {
+    "elevator": "A lift or accessible rooms",
+    "parking": "A suitable parking space",
+    "equipment": "Ergonomic equipment",
+    "remote": "Remote work or remote classes",
+    "none": "None for now"
+   }
+  },
+  "psych_situations": {
+   "text": "Which situations are the most difficult?",
+   "options": {
+    "groups": "Group or oral situations",
+    "deadlines": "Deadline pressure",
+    "changes": "Unexpected changes",
+    "overload": "Periods of overload",
+    "noise": "Noise or commotion"
+   }
+  },
+  "psych_support": {
+   "text": "Do you have support (people close to you, professionals)?",
+   "options": {
+    "yes": "Yes",
+    "partial": "Partly",
+    "no": "No",
+    "prefer_not": "I prefer not to answer"
+   }
+  },
+  "stability": {
+   "text": "Do these difficulties vary from day to day?",
+   "text_falc": "Is it the same every day?",
+   "options": {
+    "stable": "No, they are fairly stable",
+    "varies": "Yes, they vary",
+    "flares": "Yes, in flare-ups or episodes"
+   }
+  },
+  "life_impact": {
+   "text": "Beyond studies or work, what is affected?",
+   "options": {
+    "transport": "Getting around",
+    "household": "Household tasks",
+    "social": "Social life",
+    "leisure": "Leisure",
+    "sleep": "Sleep",
+    "none": "Nothing else"
+   }
+  },
+  "st_year": {
+   "text": "Where are you in your studies?",
+   "options": {
+    "early": "At the beginning",
+    "mid": "In the middle",
+    "final": "In my final year",
+    "graduating": "I am finishing soon"
+   }
+  },
+  "st_exam_detail": {
+   "text": "Which exam adjustments would help you?",
+   "options": {
+    "extra_time": "Extra time",
+    "room": "A separate or quiet room",
+    "computer": "A computer to write on",
+    "breaks": "Breaks",
+    "docs": "Papers in an adapted format",
+    "oral": "An alternative to oral exams"
+   }
+  },
+  "st_work_detail": {
+   "text": "In an internship or work-study, what raises questions?",
+   "options": {
+    "schedule": "Working hours",
+    "commute": "Commuting",
+    "workstation": "The workstation",
+    "disclosure": "Whether to tell the company",
+    "none": "Nothing in particular"
+   }
+  },
+  "st_contact": {
+   "text": "Have you already contacted the disability office or administration about this?",
+   "options": {
+    "yes": "Yes",
+    "no": "No",
+    "unsure": "I don't know who to contact"
+   }
+  },
+  "emp_manager": {
+   "text": "Are your manager or HR aware of your difficulties?",
+   "options": {
+    "yes": "Yes",
+    "partly": "Partly",
+    "no": "No",
+    "prefer_not": "I prefer not to answer"
+   }
+  },
+  "emp_workstation": {
+   "text": "What causes the most difficulty in your work?",
+   "options": {
+    "seat": "The chair or desk",
+    "screen": "The screen or lighting",
+    "noise": "Noise",
+    "schedule": "Working hours",
+    "travel": "Travel",
+    "pace": "Pace or workload",
+    "none": "Nothing in particular"
+   }
+  },
+  "emp_occ": {
+   "text": "Have you seen the occupational physician recently?",
+   "options": {
+    "recent": "Yes, recently",
+    "long_ago": "Yes, a long time ago",
+    "never": "No, never",
+    "unsure": "I don't know"
+   }
+  },
+  "emp_leave": {
+   "text": "Have you had sick leave linked to these difficulties this year?",
+   "options": {
+    "none": "No",
+    "once": "Once",
+    "several": "Several times",
+    "prefer_not": "I prefer not to answer"
+   }
+  },
+  "js_obstacles": {
+   "text": "What makes your job search harder?",
+   "options": {
+    "interviews": "Interviews",
+    "tests": "Tests or online interviews",
+    "transport": "Commuting",
+    "long_days": "Long working days",
+    "tools": "Digital tools",
+    "none": "Nothing in particular"
+   }
+  },
+  "js_training": {
+   "text": "Are you considering training or a career change?",
+   "options": {
+    "yes": "Yes",
+    "maybe": "Maybe",
+    "no": "No"
+   }
+  },
+  "js_support": {
+   "text": "Are you supported by France Travail, Cap emploi or another organisation?",
+   "options": {
+    "yes": "Yes",
+    "no": "No",
+    "unsure": "I don't know"
+   }
+  },
+  "pub_prevention": {
+   "text": "Have you seen your administration's prevention physician?",
+   "options": {
+    "yes": "Yes",
+    "no": "No",
+    "unsure": "I don't know"
+   }
+  },
+  "pub_referent": {
+   "text": "Do you know who the disability officer in your administration is?",
+   "options": {
+    "yes": "Yes",
+    "no": "No"
+   }
+  },
+  "pub_mobility": {
+   "text": "Is a change of post or department planned?",
+   "options": {
+    "yes": "Yes",
+    "maybe": "Maybe",
+    "no": "No"
+   }
+  },
+  "goals": {
+   "text": "What do you expect from taking this step?",
+   "text_falc": "What do you hope for?",
+   "options": {
+    "keep_job": "Succeed in my internship, work-study or entry into employment",
+    "adapt": "Adapt my internship, work-study, job or study conditions",
+    "secure": "Secure my adjustments over time",
+    "funding": "Access financial support",
+    "training": "Continue my training or prepare what comes next",
+    "info_only": "Only get information"
+   }
+  },
+  "pref_contact": {
+   "text": "How do you prefer to be supported?",
+   "options": {
+    "in_person": "In person",
+    "phone": "By phone",
+    "video": "By video call",
+    "written": "In writing (email, documents)"
+   }
+  },
+  "time_available": {
+   "text": "How much time can you give to the process?",
+   "options": {
+    "little": "Very little",
+    "some": "An hour or two a week",
+    "plenty": "As much as needed"
+   }
+  },
+  "helper": {
+   "text": "Can someone help you with the process?",
+   "options": {
+    "yes": "Yes",
+    "no": "No",
+    "would_like": "No, but I would like that"
+   }
+  },
+  "sup_goal": {
+   "text": "What would you like to do?",
+   "options": {
+    "understand": "Understand the process",
+    "orient": "Point the person in the right direction",
+    "set_up": "Put adjustments in place",
+    "raise": "Raise awareness around me or in my team",
+    "talk": "Talk about it with the person"
+   }
+  },
+  "sup_worry": {
+   "text": "What worries you about supporting someone?",
+   "options": {
+    "confidentiality": "Respecting confidentiality",
+    "words": "Knowing how to talk about it",
+    "legal": "Legal aspects",
+    "time": "Lack of time",
+    "none": "Nothing in particular"
+   }
+  },
+  "prev_interest": {
+   "text": "What would you like to do with this information?",
+   "options": {
+    "be_ready": "Be ready if my situation changes",
+    "share": "Talk about it with people around me",
+    "later": "Come back to it later",
+    "nothing": "Nothing in particular"
+   }
+  },
+  "pole": {
+   "text": "Are you followed by the school's disability office (pôle handicap)?",
+   "help": "This question is optional. Your answer stays in your browser.",
+   "options": {
+    "yes": "Yes, I am followed by the disability office",
+    "no": "No, not for now"
+   },
+   "text_falc": "Are you followed by the school's disability office (pôle handicap)?"
+  },
+  "pole_join": {
+   "text": "Would you like to join the disability office?",
+   "help": "The office can talk with you about: disability, extra exam time, social support, exceptional aid and accommodations. Asking commits you to nothing.",
+   "options": {
+    "yes": "Yes, I would like to join the disability office",
+    "no": "No, not for now"
+   }
+  },
+  "st_next": {
+   "text": "What is planned for you after school?",
+   "options": {
+    "internship": "An internship",
+    "alternance": "A work-study contract",
+    "first_job": "A first job",
+    "studies": "Further studies",
+    "unsure": "I don't know yet"
+   }
+  },
+  "recruit": {
+   "text": "In your search for an internship or a job, what worries you?",
+   "text_falc": "To find an internship or a job, what worries you?",
+   "help": "You can choose several answers.",
+   "options": {
+    "tests": "Online tests, often timed",
+    "interview": "Interviews (speaking, stress, length)",
+    "cv": "What to put on my CV, or not",
+    "open_space": "Working conditions (noise, open space, hours)",
+    "commute": "Commuting and remote work",
+    "none": "Nothing in particular"
+   }
+  }
+ },
+ "levels": {
+  "explore": {
+   "title": "For now, you can look into this at your own pace",
+   "body": "Based on your answers, nothing points to an urgent need. That does not mean your situation does not matter: read the information below, and talk to someone you trust if you have doubts.",
+   "body_falc": "From your answers, there is no emergency. You can read the information. If you have doubts, talk to someone you trust."
+  },
+  "talk": {
+   "title": "It may be useful to talk to a contact person",
+   "body": "Your answers suggest your health may affect your studies or work. It may be useful to talk to one of the contacts below. They can help you see whether applying for recognition, such as the RQTH, makes sense for you.",
+   "body_falc": "Your health may affect your studies or work. It may help to talk to someone in the list below. They can help you see if the RQTH could help you."
+  },
+  "talk_soon": {
+   "title": "A quick conversation with a contact person is recommended",
+   "body": "Your answers show significant or repeated effects on your daily life. It may be useful to talk fairly soon to one of the contacts below. Only the MDPH can decide on recognition, but these people can help you prepare your application.",
+   "body_falc": "Your health has big effects on your daily life. It may help to talk fairly soon to someone in the list below. Only the MDPH decides on the RQTH. These people can help you prepare the application."
+  },
+  "already": {
+   "title": "You say you already have recognition",
+   "body": "You have already covered part of the way. The resources below can help you make use of your recognition (adjustments, support) or plan its renewal.",
+   "body_falc": "You already have recognition. The links below help you use it and renew it."
+  }
+ },
+ "result": {
+  "title": "Your orientation",
+  "notdecision": "This result is a guidance aid. It is not a diagnosis and it is not a decision.",
+  "why_title": "What was taken into account",
+  "why_intro": "HandiDiag uses no artificial intelligence: it applies simple rules, listed here.",
+  "points": "{n} point",
+  "points_plural": "{n} points",
+  "score_line": "Total: {score} (thresholds: 3 for “it may be useful to talk”, 6 for “quick conversation recommended”).",
+  "attention_title": "Points to keep in mind",
+  "contacts_title": "Who to turn to",
+  "contacts_intro": "Here are starting points suited to your situation. You can contact just one of them.",
+  "confidential_tip": "To stay in control of what you share, you can start with a professional bound by medical confidentiality, marked below.",
+  "secret_badge": "Bound by medical confidentiality",
+  "next_title": "What now?",
+  "to_kit": "Open the resource kit",
+  "print": "Print",
+  "download": "Summary as text (.txt)",
+  "restart": "Erase my answers and start again",
+  "summary_note": "The PDF and the summary are made on your device and do not contain your detailed answers.",
+  "read_aloud": "Listen to this result",
+  "read_hint": "Result",
+  "pdf": "Download as PDF",
+  "todo_title": "Leads to move forward",
+  "todo_note": "These are only leads for reflection, based on what you ticked. They are not medical advice, decisions or obligations: a professional can refine them with you.",
+  "todo_note_falc": "These are only ideas, based on your answers. They are not a doctor's advice. They are not obligations. A professional can help you.",
+  "refine_title": "Refine my leads",
+  "refine_text": "Answer {n} additional questions to get more precise leads, adapted to what you ticked.",
+  "refine_btn": "Answer the additional questions"
+ },
+ "rules": {
+  "R_already_rqth": "You said you already have an RQTH or recognition.",
+  "R_no_signal": "You reported neither lasting difficulty nor any need for adjustments.",
+  "R_duration_long": "Your difficulties have lasted 6 months or more.",
+  "R_duration_short": "Your difficulties have lasted less than 6 months.",
+  "R_duration_unsure": "You don't know since when, or whether they will last.",
+  "R_freq_often": "These difficulties often make your studies or work harder.",
+  "R_freq_always": "These difficulties almost always make your studies or work harder.",
+  "R_areas_declared": "You indicated at least one affected area of daily life.",
+  "R_needs_some": "You indicated at least one adjustment need.",
+  "R_needs_many": "You indicated three or more adjustment needs.",
+  "R_pathway_impact": "Your path (studies, internship, job or job search) is affected.",
+  "R_support_adjust": "You have adjustments without official recognition.",
+  "R_pole_member": "You are followed by the disability office.",
+  "R_pole_join": "You would like to join the disability office.",
+  "R_work_world": "An internship, a job or a job search is concerned.",
+  "R_next_alternance": "You plan a work-study contract.",
+  "R_next_work": "You plan an internship or a first job.",
+  "R_recruit_tests": "Recruitment tests or interviews worry you.",
+  "R_recruit_cv": "The content of your CV worries you.",
+  "R_recruit_conditions": "Working conditions or commuting worry you."
+ },
+ "flags": {
+  "urgent": "You have a deadline coming up. Processing times for an application can be long: if you want to act, it is better to ask for advice now.",
+  "needs_info": "You know little about the RQTH. The resource kit explains the process step by step.",
+  "stigma": "Fear of other people's judgement is common. The process is personal and voluntary. A trusted contact can explain what is shared, with whom, and what stays confidential.",
+  "employer": "Applying for the RQTH is a personal step: you do not have to tell your employer or school in order to find out more or to apply.",
+  "complexity": "The file can seem heavy. The kit offers a checklist and simple steps, and the MDPH or an adviser can help you fill it in.",
+  "who": "You don't know who to turn to: the list below offers starting points suited to your situation.",
+  "time": "Lack of time is a common obstacle. A first conversation can happen in a single appointment or call.",
+  "informal_adjust": "You have adjustments with no official framework. Recognition can help secure them over time: a contact person can tell you whether it suits your case.",
+  "no_support": "You are not yet supported. A first contact with one of the contacts below is a good starting point.",
+  "already_rqth": "Remember to check the end date of your recognition and plan its renewal with the MDPH.",
+  "see_doctor": "A doctor fills in the medical certificate for the application. If you have no follow-up, a general practitioner, the student health service or the occupational physician can be a first contact.",
+  "student_exam": "For exams: your institution's disability office can explain which adjustments exist and how far ahead to ask. Plan before the exam period.",
+  "student_work": "For an internship or work-study: the host company may have a disability officer. You choose what you share, and when.",
+  "shift_work": "Your hours are irregular: the occupational physician can recommend adjustments to hours or pace.",
+  "long_search": "Your job search has lasted a long time: France Travail and Cap emploi offer specialised support.",
+  "public_status": "Rules may differ depending on your status. The disability officer or prevention physician can tell you what applies.",
+  "for_relative": "The process is personal: only the person concerned can apply. You can help, without deciding for them.",
+  "for_support": "You are looking into this to support someone: respect their confidentiality and their choice to share, or not.",
+  "psych_support_none": "You have no identified support: a health professional, the student health service or the occupational physician can be a first contact. If you are in distress, do not stay alone: in France, 3114 is available 24/7.",
+  "life_sleep": "If your sleep is disturbed, this is something to raise with a doctor.",
+  "emp_unaware": "Your manager is not aware: you do not have to tell them in order to find out more. The occupational physician is bound by medical confidentiality.",
+  "emp_leave": "Sick leave linked to these difficulties: talking to the occupational physician may allow adjustments to be considered to reduce it.",
+  "sup_confidentiality": "Do not share anything about a person's health without their agreement.",
+  "goal_info_only": "You only want to get information: the resource kit is enough to start; nothing obliges you to go further."
+ },
+ "contacts": {
+  "school_officer": {
+   "name": "Disability office or disability officer at your institution",
+   "role": "Listening, study and exam adjustments, help finding your way through the process."
+  },
+  "student_health": {
+   "name": "Student health service (preventive medicine)",
+   "role": "Health professionals who can advise and guide you."
+  },
+  "registrar": {
+   "name": "Student administration office",
+   "role": "To put exam and course adjustments in place once the request is made."
+  },
+  "occ_physician": {
+   "name": "Occupational physician (workplace health service)",
+   "role": "Can advise you on health at work and workstation adjustments."
+  },
+  "hr_officer": {
+   "name": "Disability officer or HR department",
+   "role": "To set up adjustments and learn about your organisation's disability policy."
+  },
+  "prevention_physician": {
+   "name": "Prevention physician",
+   "role": "Advises public-sector staff on health at work and possible adjustments."
+  },
+  "cap_emploi": {
+   "name": "Cap emploi",
+   "role": "Organisation supporting people with disabilities towards employment. Your France Travail adviser or Agefiph can put you in touch."
+  },
+  "france_travail": {
+   "name": "France Travail (adviser or disability officer)",
+   "role": "Job-search support and referral to specialised support."
+  },
+  "agefiph": {
+   "name": "Agefiph",
+   "role": "Information and funding for the employment of people with disabilities in the private sector."
+  },
+  "fiphfp": {
+   "name": "FIPHFP",
+   "role": "Information and funding for the employment of people with disabilities in the public sector."
+  },
+  "mdph": {
+   "name": "MDPH (departmental disability office)",
+   "role": "Receives and processes the application. The decision is made by the CDAPH commission."
+  },
+  "pole_social": {
+   "name": "Charlie DUPIC, social and disability officer",
+   "role": "School disability office. Topics: disability, extra exam time, social support, exceptional aid, accommodations."
+  },
+  "pole_rse": {
+   "name": "Stéphanie LIBESKIND, CSR manager",
+   "role": "School disability office. Topics: disability, extra exam time, social support, exceptional aid, accommodations."
+  }
+ },
+ "links": {
+  "rqth_mph": {
+   "label": "Mon Parcours Handicap: the RQTH",
+   "desc": "Official page on recognition and procedures (in French)."
+  },
+  "mdph_portal": {
+   "label": "Mon Parcours Handicap (national portal)",
+   "desc": "Find your MDPH and make an application (in French)."
+  },
+  "service_public_rqth": {
+   "label": "Service-public.fr: the RQTH",
+   "desc": "Definition, procedures, forms (in French)."
+  },
+  "agefiph": {
+   "label": "Agefiph",
+   "desc": "Funding and information for the private sector."
+  },
+  "fiphfp": {
+   "label": "FIPHFP",
+   "desc": "Funding and information for the public sector."
+  },
+  "france_travail": {
+   "label": "France Travail",
+   "desc": "Support for jobseekers."
+  }
+ },
+ "kit": {
+  "title": "Resource kit",
+  "intro": "Everything you need to move forward, with official sources. Always check forms and the list of documents on the official websites: they can change.",
+  "links_title": "Official links",
+  "checklist_title": "Process checklist",
+  "checklist_intro": "Tick items as you go. Nothing is saved: if you reload the page, the list is emptied.",
+  "checklist": [
+   "Read the official page about the RQTH",
+   "Find the MDPH for my département",
+   "Note my difficulties and their effects on my studies or work",
+   "Book an appointment with a doctor for the medical certificate",
+   "Fill in the application form, including the “life project” section",
+   "Gather the requested documents (official list): ID, proof of address, useful medical documents",
+   "Submit the file (online or by post) and keep a copy",
+   "Note the submission date and watch for the reply letter"
+  ],
+  "guide_title": "Step-by-step guide",
+  "guide": [
+   {
+    "title": "Find out more",
+    "text": "Read the official page and the summary on this page. You do not have to decide anything at this stage."
+   },
+   {
+    "title": "Talk to someone you trust",
+    "text": "A disability officer, an occupational or prevention physician, an adviser: your orientation list suggests starting points."
+   },
+   {
+    "title": "See a doctor",
+    "text": "A doctor fills in a medical certificate describing the effects of your health situation. You can bring it with your file."
+   },
+   {
+    "title": "Prepare the file",
+    "text": "Fill in the MDPH application form and gather the requested documents. Do not hesitate to ask the MDPH or an adviser for help."
+   },
+   {
+    "title": "Submit the application",
+    "text": "The application goes to the MDPH of your département, online or by post. Keep a copy of everything you send."
+   },
+   {
+    "title": "Wait for the decision",
+    "text": "The CDAPH commission decides. Waiting times vary by area (département). Once you receive the decision, you choose who you tell."
+   }
+  ],
+  "vigilance_title": "Things to watch",
+  "vigilance": [
+   "HandiDiag does not replace a doctor, the MDPH or an adviser.",
+   "Always check forms and the list of documents on the official websites.",
+   "Keep the original of your decision notice.",
+   "Do not share medical information through insecure channels."
+  ],
+  "print": "Print",
+  "pdf": "Download as PDF"
+ },
+ "pdf": {
+  "footer": "HandiDiag – no diagnosis, no decision – page {n}/{total}",
+  "result_title": "HandiDiag – Your orientation",
+  "kit_title": "HandiDiag – Resource kit",
+  "links": "Official links",
+  "guide": "Steps",
+  "checklist": "Process checklist",
+  "todo": "Leads to move forward (indicative)"
+ },
+ "todo": {
+  "posture": "Workstations and postures: a conversation with the occupational physician, the prevention physician or the disability office can help look at a suitable chair, sit-stand alternation or adapted equipment.",
+  "conc_energy": "Tiredness affects concentration: planned breaks or an adapted pace can be raised with your contact person.",
+  "commute": "Commuting is tiring: partial remote work, staggered hours or transport support are leads to raise.",
+  "breaks": "You need breaks: you can ask for them to be planned (in class, in exams or during the working day).",
+  "schedule_time": "Your difficulties depend on the time of day: adapted hours can be discussed.",
+  "reading_writing": "Reading, writing or calculating take longer: extra time, adapted-format documents, text-to-speech or an adapted typeface are often-mentioned adjustments.",
+  "organisation": "Memory and organisation: planning tools, written instructions and regular check-ins can be discussed.",
+  "listening": "Following meetings or classes orally is hard: written materials, minutes and, with consent, recording can help.",
+  "try_tools": "While waiting for a conversation, free tools (text-to-speech, reminders, lists) can be tried.",
+  "vision": "Vision: magnification, contrast, screen readers and adapted documents can be requested.",
+  "hearing": "Hearing: captioning, hearing loops and written materials can be discussed.",
+  "lighting": "Lighting and seating: worth mentioning to the disability officer or the occupational physician.",
+  "access": "Access to premises: lifts, parking spaces or accessible rooms can be requested.",
+  "equipment": "Gestures and handling: ergonomic equipment or dictation software can be raised.",
+  "oral_groups": "Group or oral situations: advance preparation, an alternative format or a small group can be discussed.",
+  "pace": "Pressure and overload: spreading out deadlines or prioritising with a manager can be discussed.",
+  "environment": "Noise or the unexpected: a quiet space or changes announced in advance can help.",
+  "diary": "Your difficulties vary: keeping a simple diary (difficult days, what helps) makes it easier to talk to a professional and to put a file together.",
+  "life_wide": "Beyond work or studies, daily life is affected: you can mention it to a professional, other forms of support may exist.",
+  "exam_request": "Exam adjustments: ask early, well before the exam period, through the disability office (extra time, separate room, computer, breaks…).",
+  "disclosure": "Whether to tell the company is your choice: a conversation with the disability office or a doctor can help you decide what to share, and when.",
+  "work_adapt": "Internship or work-study: hours, commuting or workstation can be adjusted; ask the disability office and the company's disability officer.",
+  "contact_school": "Contact the disability office or administration: a first appointment does not commit you to any official process.",
+  "transition": "At the end of your studies, planning the move into work (adjustments, contacts) can avoid a break in rights; recognition obtained during studies helps.",
+  "manager_ok": "Your manager is aware: a short written note on the agreed adjustments, even a simple one, helps make them last.",
+  "workstation_study": "Workstation (chair, screen, noise): you can ask the occupational physician for a workstation assessment.",
+  "org_work": "Work organisation (hours, travel, pace): worth raising with the occupational physician and HR.",
+  "occ_visit": "You can ask for a visit with the workplace prevention and health service, on your own initiative.",
+  "interview": "Interviews and tests: adjustments (format, duration, video call) can be requested when applying; Cap emploi or your adviser can help.",
+  "js_org": "Commuting and long days: favour remote work or adapted hours in your search, and tell employers if you wish.",
+  "training": "Training: training and support schemes exist; Cap emploi, France Travail and Agefiph can inform you.",
+  "js_contact": "Contact your France Travail adviser to be directed to specialised support (Cap emploi).",
+  "prevention_doc": "Make an appointment with the prevention physician: they are bound by medical confidentiality.",
+  "referent": "Ask who the disability officer in your administration is (HR department, intranet).",
+  "posting": "A change of post or department is planned: it is a good time to ask for adjustments suited to the new post.",
+  "keep_job": "An early conversation with a contact person helps see which adjustments are possible before difficulties get worse.",
+  "funding": "Financial support: Agefiph (private sector) and FIPHFP (public sector) present the available aid; the MDPH processes applications.",
+  "secure": "Securing things over time: official recognition can formalise adjustments; a professional will tell you whether it suits your case.",
+  "written": "You prefer writing: you can ask for an appointment by email and for a written summary.",
+  "remote_contact": "You can ask for a remote appointment (phone or video call).",
+  "small_steps": "Little time available: move forward in small steps, for example one checklist step a week.",
+  "helper": "Getting help: a social worker, the disability office or an association can help put the file together.",
+  "how_to_talk": "To talk about it with the person: listen without judging, offer without imposing, respect their pace and confidentiality.",
+  "sup_resources": "You can share the resource kit's official links and point the person to a trusted contact.",
+  "sup_setup": "Putting adjustments in place goes through the disability officer or the occupational physician; the person chooses what they share.",
+  "sup_aware": "Raising awareness: Agefiph (private sector) and FIPHFP (public sector) offer resources and training.",
+  "sup_legal": "Legal questions: the disability officer, HR, Cap emploi or the MDPH can answer.",
+  "prev_ready": "Finding out in advance is a good idea: the resource kit will be useful if your situation changes.",
+  "prev_share": "You can share the HandiDiag link with someone who might need it.",
+  "watch": "A change ahead: spot signals early (lasting tiredness, difficulties settling in) and talk to a contact person before it weighs on you.",
+  "pole_member_rqth": "You are followed by the disability office: at your next meeting you can ask whether an RQTH fits your career plan and get help preparing the file.",
+  "pole_join_yes": "You would like to join the disability office: a simple e-mail to Charlie Dupic or Stéphanie Libeskind is enough for a first conversation (details below).",
+  "rqth_work_value": "In the working world, an RQTH can give access to workstation or schedule adjustments, financial aid (Agefiph) and specialised support. It commits you to nothing: you choose who to tell, and when.",
+  "alternance_rqth": "Work-study: depending on the case, an RQTH can open aid for you and for the company. Ask the disability office and Agefiph before signing.",
+  "rqth_delay": "Processing an RQTH file can take several months: if an internship, work-study or contract is coming up, it is better to start early.",
+  "recruit_adapt": "Online tests or interviews: you can ask for an adjustment (extra time, adapted format, breaks). You choose what you explain, and when."
+ },
+ "admin": {
+  "lv_explore": "To learn more",
+  "lv_talk": "A useful conversation with a contact",
+  "lv_talk_soon": "Quick conversation advised",
+  "lv_already": "Already recognised",
+  "pr_student": "Student",
+  "pr_employee": "Private-sector employee",
+  "pr_jobseeker": "Job seeker",
+  "pr_public_agent": "Public servant",
+  "d_rqth_mph": "RQTH page (Mon Parcours Handicap)",
+  "d_mdph_portal": "Mon Parcours Handicap portal",
+  "d_service_public_rqth": "RQTH page (Service-public.fr)",
+  "d_print": "Page printed",
+  "d_pdf_download": "PDF downloaded",
+  "d_summary_download": "Text summary downloaded",
+  "under_k": "fewer than {n}",
+  "err_many": "Too many attempts. Please wait a few minutes before trying again.",
+  "err_off": "The admin area is disabled on this server (DISABLE_STATS=1).",
+  "err_wrong": "Incorrect username or password.",
+  "err_conn": "Unable to log in.",
+  "err_fill": "Enter the username and the password.",
+  "err_expired": "Session expired: please log in again.",
+  "err_stats_off": "Statistics are disabled on this server.",
+  "err_server": "Server error ({n}).",
+  "unavailable": "Admin area unavailable (statistics disabled on this server?).",
+  "login_btn": "Log in",
+  "login_title": "Log in",
+  "login_user": "Username",
+  "login_pass": "Password",
+  "title": "Admin area",
+  "lead_login": "For the project team only. The figures shown are aggregated and anonymous.",
+  "hint_login": "Credentials are set when the server starts (see the README). In demo mode they are shown in the server console.",
+  "chips_label": "Privacy guarantees",
+  "chip1": "No names",
+  "chip2": "No e-mails",
+  "chip3": "No raw medical data",
+  "chip4": "Minimum display threshold",
+  "none_yet": "none yet",
+  "ago_s": "{n} s ago",
+  "ago_min": "{n} min ago",
+  "ago_h": "{n} h ago",
+  "on_date": "on {d}",
+  "base_of": " · basis of this chart: {u}",
+  "base_hidden": "Basis of this chart: {u}, but fewer than {n} (too few to show percentages)",
+  "u_completed": "completed journeys",
+  "u_started": "started journeys",
+  "u_views": "views",
+  "daily_title": "Activity over the last 30 days",
+  "daily_a": " journeys started and ",
+  "daily_b": " completed, counted over the period (days with fewer than {k} are hidden and not counted)",
+  "lg_s": "Started",
+  "lg_c": "Completed",
+  "lg_m": "Fewer than {k} (hidden)",
+  "tbl_sum": "See day-by-day figures (table)",
+  "tbl_cap": "Journeys per day",
+  "tbl_day": "Day",
+  "tbl_none": "No activity recorded.",
+  "pw_title": "Change password",
+  "demo_title": "Demo tools",
+  "demo_text": "To present the dashboard without waiting for real users, you can add FAKE journeys (spread over 10 days), then reset everything before real use.",
+  "demo_add": "Add 120 fake journeys",
+  "demo_added": "Fake journeys added.",
+  "demo_reset": "Reset all counters",
+  "demo_confirm": "Reset ALL counters to zero? This cannot be undone.",
+  "demo_done": "Counters reset.",
+  "verify_title": "How to check that it works (2 minutes)",
+  "v1": "Open the site in another tab (`http://localhost:3000`) and start the questionnaire without finishing it: here, “Started journeys” goes up by 1.",
+  "v2": "Finish it up to the result: “Completed journeys” goes up by 1, and the orientation level obtained gains 1 in the charts.",
+  "v3": "Click an official link in the kit or “Download as PDF”: “Pages and documents viewed” gains 1.",
+  "v4": "Come back here: click “Refresh” (or wait 15 seconds, updates are automatic). “Last event received” shows “a few seconds ago”.",
+  "v5": "Only seeing “fewer than {k}”? That is normal: the privacy threshold hides small numbers. To test locally, restart the server with `$env:MIN_COUNT=\"1\"; node server.js` (PowerShell), or add fake data with `node tools/seed-demo.js`.",
+  "gl_title": "Understanding these figures",
+  "gl1t": "Started journey",
+  "gl1d": "Someone clicked “Start the questionnaire”.",
+  "gl2t": "Completed journey",
+  "gl2d": "They reached the result screen.",
+  "gl3t": "Completion rate",
+  "gl3d": "Completed journeys ÷ started journeys. A low rate can mean a questionnaire that is too long, or people giving up.",
+  "gl4t": "Orientation type",
+  "gl4d": "The level proposed at the end: learn more, useful conversation, quick conversation advised, or already recognised. It is never a diagnosis.",
+  "gl5t": "n = …",
+  "gl5d": "The number of cases counted in the chart. The smaller n is, the less representative the chart.",
+  "gl6t": "“fewer than {k}”",
+  "gl6d": "Hidden value: too few people to publish without risk of recognising someone.",
+  "dash_title": "Dashboard",
+  "dash_lead": "What the tool does, without ever knowing who uses it.",
+  "refresh": "Refresh",
+  "export": "Export (CSV)",
+  "logout": "Log out",
+  "demo_notice": "These figures contain FAKE demo data. Reset the counters (“Demo tools” at the bottom of the page) before real use.",
+  "default_pw": "You are using the demo password. Change it (“Change password” at the bottom of the page) before going online.",
+  "last_event": "Last event received: ",
+  "auto": "Automatic refresh (15 s)",
+  "masked": "Some values are hidden (“fewer than {k}”): the privacy threshold protects small numbers. See “How to check that it works” to test.",
+  "k1": "Started journeys",
+  "k1c": "People who clicked “Start”",
+  "k2": "Completed journeys",
+  "k2c": "Reached the result",
+  "k3": "Completion rate",
+  "k3n": "Not enough data (fewer than {k} started journeys)",
+  "k3c": "completed ÷ started",
+  "k4": "Additional questions",
+  "k4n": "Chosen after the essential questions",
+  "k4c": "{r} % of started journeys chose to go further",
+  "c1": "Orientation types proposed",
+  "c1e": "Breakdown of the results shown. “Quick conversation advised” flags important or repeated effects reported; it is not a diagnosis.",
+  "c2": "People's profiles",
+  "c2e": "Who the tool serves: useful to adapt the content. This edition is for the school's students.",
+  "c3": "Languages used",
+  "c3e": "Interface language when the journey started.",
+  "c4": "Pages and documents viewed",
+  "c4e": "Official links opened and files generated (print, PDF, summary). Shows which resources really help.",
+  "pw_mismatch": "The confirmation does not match the new password.",
+  "pw_ok": "Password changed. Other sessions have been closed.",
+  "pw_wrong_current_password": "The current password is incorrect.",
+  "pw_too_short": "The new password is too short (10 characters minimum).",
+  "pw_too_weak": "This password is too weak or already known.",
+  "pw_too_many_attempts": "Too many attempts, try again later.",
+  "pw_fail": "Unable to change it.",
+  "net": "Network error.",
+  "pw_cur": "Current password",
+  "pw_new": "New password",
+  "pw_rule": "10 characters minimum.",
+  "pw_conf": "Confirm the new password",
+  "pw_save": "Save password",
+  "prod": "Unavailable in production.",
+  "refused": "Action refused ({n}).",
+  "export_fail": "Export failed ({n})."
+ }
+}

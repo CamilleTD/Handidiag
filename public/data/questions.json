@@ -1,0 +1,1595 @@
+{
+ "version": "2.0",
+ "comment": "Questionnaire parametrable et ADAPTATIF. phase 'core' (par defaut) : questions essentielles, 8 a 12 par parcours selon les reponses (showIf). phase 'deep' : questions complementaires FACULTATIVES, proposees apres les essentielles, choisies d'apres le profil et les domaines coches. Les textes sont dans public/i18n/<langue>.json (cles questions.<id>). Aucune question medicale precise ; les questions complementaires n'ajoutent aucun point (elles personnalisent seulement les pistes). | Edition etudiants Efrei : la question « profile » est masquee (valeur fixe student) ; les autres profils restent dormants dans les donnees. Questions pole / pole_join en tete.",
+ "questions": [
+  {
+   "id": "profile",
+   "type": "single",
+   "required": false,
+   "options": [
+    {
+     "id": "student"
+    },
+    {
+     "id": "employee"
+    },
+    {
+     "id": "jobseeker"
+    },
+    {
+     "id": "public_agent"
+    }
+   ],
+   "hidden": true,
+   "auto": "student"
+  },
+  {
+   "id": "pole",
+   "type": "single",
+   "options": [
+    {
+     "id": "yes"
+    },
+    {
+     "id": "no"
+    }
+   ]
+  },
+  {
+   "id": "pole_join",
+   "type": "single",
+   "options": [
+    {
+     "id": "yes"
+    },
+    {
+     "id": "no"
+    }
+   ],
+   "showIf": {
+    "q": "pole",
+    "in": [
+     "no"
+    ]
+   }
+  },
+  {
+   "id": "duration",
+   "type": "single",
+   "options": [
+    {
+     "id": "none"
+    },
+    {
+     "id": "unsure"
+    },
+    {
+     "id": "short"
+    },
+    {
+     "id": "long"
+    }
+   ],
+   "required": false
+  },
+  {
+   "id": "areas",
+   "type": "multiple",
+   "options": [
+    {
+     "id": "energy"
+    },
+    {
+     "id": "attention"
+    },
+    {
+     "id": "senses"
+    },
+    {
+     "id": "mobility"
+    },
+    {
+     "id": "psych"
+    },
+    {
+     "id": "other"
+    },
+    {
+     "id": "prefer_not",
+     "exclusive": true
+    }
+   ],
+   "showIf": {
+    "not": {
+     "q": "duration",
+     "in": [
+      "none"
+     ]
+    }
+   },
+   "required": false
+  },
+  {
+   "id": "for_whom",
+   "type": "single",
+   "showIf": {
+    "q": "duration",
+    "in": [
+     "none"
+    ]
+   },
+   "options": [
+    {
+     "id": "self"
+    },
+    {
+     "id": "relative"
+    },
+    {
+     "id": "colleague"
+    },
+    {
+     "id": "pro"
+    }
+   ],
+   "required": false
+  },
+  {
+   "id": "frequency",
+   "type": "single",
+   "options": [
+    {
+     "id": "never"
+    },
+    {
+     "id": "sometimes"
+    },
+    {
+     "id": "often"
+    },
+    {
+     "id": "always"
+    }
+   ],
+   "showIf": {
+    "not": {
+     "q": "duration",
+     "in": [
+      "none"
+     ]
+    }
+   },
+   "required": false
+  },
+  {
+   "id": "worry",
+   "type": "multiple",
+   "showIf": {
+    "q": "duration",
+    "in": [
+     "none"
+    ]
+   },
+   "options": [
+    {
+     "id": "workload"
+    },
+    {
+     "id": "change"
+    },
+    {
+     "id": "health_event"
+    },
+    {
+     "id": "none",
+     "exclusive": true
+    }
+   ],
+   "required": false
+  },
+  {
+   "id": "needs",
+   "type": "multiple",
+   "options": [
+    {
+     "id": "schedule"
+    },
+    {
+     "id": "workstation"
+    },
+    {
+     "id": "extra_time"
+    },
+    {
+     "id": "remote"
+    },
+    {
+     "id": "breaks"
+    },
+    {
+     "id": "docs"
+    },
+    {
+     "id": "none",
+     "exclusive": true
+    }
+   ],
+   "showIf": {
+    "not": {
+     "q": "duration",
+     "in": [
+      "none"
+     ]
+    }
+   },
+   "required": false
+  },
+  {
+   "id": "pathway",
+   "type": "multiple",
+   "options": [
+    {
+     "id": "studies"
+    },
+    {
+     "id": "internship"
+    },
+    {
+     "id": "job"
+    },
+    {
+     "id": "jobsearch"
+    },
+    {
+     "id": "none",
+     "exclusive": true
+    }
+   ],
+   "required": false
+  },
+  {
+   "id": "ctx_student",
+   "type": "multiple",
+   "showIf": {
+    "q": "profile",
+    "in": [
+     "student"
+    ]
+   },
+   "options": [
+    {
+     "id": "exams"
+    },
+    {
+     "id": "work"
+    },
+    {
+     "id": "recruit"
+    },
+    {
+     "id": "attendance"
+    },
+    {
+     "id": "projects"
+    },
+    {
+     "id": "none",
+     "exclusive": true
+    }
+   ],
+   "required": false
+  },
+  {
+   "id": "ctx_employee",
+   "type": "single",
+   "showIf": {
+    "q": "profile",
+    "in": [
+     "employee"
+    ]
+   },
+   "options": [
+    {
+     "id": "fixed"
+    },
+    {
+     "id": "shifts"
+    },
+    {
+     "id": "hybrid"
+    },
+    {
+     "id": "travel"
+    }
+   ],
+   "required": false
+  },
+  {
+   "id": "ctx_jobseeker",
+   "type": "single",
+   "showIf": {
+    "q": "profile",
+    "in": [
+     "jobseeker"
+    ]
+   },
+   "options": [
+    {
+     "id": "under3"
+    },
+    {
+     "id": "mid"
+    },
+    {
+     "id": "long"
+    },
+    {
+     "id": "not_yet"
+    }
+   ],
+   "required": false
+  },
+  {
+   "id": "ctx_public",
+   "type": "single",
+   "showIf": {
+    "q": "profile",
+    "in": [
+     "public_agent"
+    ]
+   },
+   "options": [
+    {
+     "id": "permanent"
+    },
+    {
+     "id": "contract"
+    },
+    {
+     "id": "trainee"
+    },
+    {
+     "id": "unsure"
+    }
+   ],
+   "required": false
+  },
+  {
+   "id": "support",
+   "type": "single",
+   "options": [
+    {
+     "id": "has_rqth"
+    },
+    {
+     "id": "has_adjust"
+    },
+    {
+     "id": "none"
+    },
+    {
+     "id": "unsure"
+    }
+   ],
+   "required": false
+  },
+  {
+   "id": "awareness",
+   "type": "single",
+   "options": [
+    {
+     "id": "unknown"
+    },
+    {
+     "id": "partial"
+    },
+    {
+     "id": "good"
+    }
+   ],
+   "required": false
+  },
+  {
+   "id": "barriers",
+   "type": "multiple",
+   "options": [
+    {
+     "id": "stigma"
+    },
+    {
+     "id": "employer"
+    },
+    {
+     "id": "complexity"
+    },
+    {
+     "id": "who"
+    },
+    {
+     "id": "time"
+    },
+    {
+     "id": "none",
+     "exclusive": true
+    }
+   ],
+   "required": false
+  },
+  {
+   "id": "urgency",
+   "type": "single",
+   "options": [
+    {
+     "id": "none"
+    },
+    {
+     "id": "months"
+    },
+    {
+     "id": "soon"
+    },
+    {
+     "id": "urgent"
+    }
+   ],
+   "required": false
+  },
+  {
+   "id": "energy_when",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "morning"
+    },
+    {
+     "id": "afternoon"
+    },
+    {
+     "id": "evening"
+    },
+    {
+     "id": "after_effort"
+    },
+    {
+     "id": "unpredictable"
+    }
+   ],
+   "showIf": {
+    "q": "areas",
+    "hasAny": [
+     "energy"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "energy_effects",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "sitting"
+    },
+    {
+     "id": "standing"
+    },
+    {
+     "id": "carrying"
+    },
+    {
+     "id": "typing"
+    },
+    {
+     "id": "concentrating"
+    },
+    {
+     "id": "commuting"
+    }
+   ],
+   "showIf": {
+    "q": "areas",
+    "hasAny": [
+     "energy"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "energy_rest",
+   "type": "single",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "rarely"
+    },
+    {
+     "id": "sometimes"
+    },
+    {
+     "id": "often"
+    },
+    {
+     "id": "planned"
+    }
+   ],
+   "showIf": {
+    "q": "areas",
+    "hasAny": [
+     "energy"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "attn_tasks",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "reading"
+    },
+    {
+     "id": "writing"
+    },
+    {
+     "id": "calculating"
+    },
+    {
+     "id": "remembering"
+    },
+    {
+     "id": "organizing"
+    },
+    {
+     "id": "listening"
+    }
+   ],
+   "showIf": {
+    "q": "areas",
+    "hasAny": [
+     "attention"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "attn_tools",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "extra_time"
+    },
+    {
+     "id": "text_to_speech"
+    },
+    {
+     "id": "notes"
+    },
+    {
+     "id": "planning"
+    },
+    {
+     "id": "none",
+     "exclusive": true
+    }
+   ],
+   "showIf": {
+    "q": "areas",
+    "hasAny": [
+     "attention"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "senses_which",
+   "type": "single",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "vision"
+    },
+    {
+     "id": "hearing"
+    },
+    {
+     "id": "both"
+    }
+   ],
+   "showIf": {
+    "q": "areas",
+    "hasAny": [
+     "senses"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "senses_needs",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "zoom"
+    },
+    {
+     "id": "captions"
+    },
+    {
+     "id": "lighting"
+    },
+    {
+     "id": "docs"
+    },
+    {
+     "id": "none",
+     "exclusive": true
+    }
+   ],
+   "showIf": {
+    "q": "areas",
+    "hasAny": [
+     "senses"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "mob_aspects",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "walking"
+    },
+    {
+     "id": "stairs"
+    },
+    {
+     "id": "hands"
+    },
+    {
+     "id": "transport"
+    },
+    {
+     "id": "standing"
+    },
+    {
+     "id": "parking"
+    }
+   ],
+   "showIf": {
+    "q": "areas",
+    "hasAny": [
+     "mobility"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "mob_access",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "elevator"
+    },
+    {
+     "id": "parking"
+    },
+    {
+     "id": "equipment"
+    },
+    {
+     "id": "remote"
+    },
+    {
+     "id": "none",
+     "exclusive": true
+    }
+   ],
+   "showIf": {
+    "q": "areas",
+    "hasAny": [
+     "mobility"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "psych_situations",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "groups"
+    },
+    {
+     "id": "deadlines"
+    },
+    {
+     "id": "changes"
+    },
+    {
+     "id": "overload"
+    },
+    {
+     "id": "noise"
+    }
+   ],
+   "showIf": {
+    "q": "areas",
+    "hasAny": [
+     "psych"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "psych_support",
+   "type": "single",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "yes"
+    },
+    {
+     "id": "partial"
+    },
+    {
+     "id": "no"
+    },
+    {
+     "id": "prefer_not"
+    }
+   ],
+   "showIf": {
+    "q": "areas",
+    "hasAny": [
+     "psych"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "stability",
+   "type": "single",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "stable"
+    },
+    {
+     "id": "varies"
+    },
+    {
+     "id": "flares"
+    }
+   ],
+   "showIf": {
+    "not": {
+     "q": "duration",
+     "in": [
+      "none"
+     ]
+    }
+   },
+   "required": false
+  },
+  {
+   "id": "life_impact",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "transport"
+    },
+    {
+     "id": "household"
+    },
+    {
+     "id": "social"
+    },
+    {
+     "id": "leisure"
+    },
+    {
+     "id": "sleep"
+    },
+    {
+     "id": "none",
+     "exclusive": true
+    }
+   ],
+   "showIf": {
+    "all": [
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     },
+     {
+      "q": "frequency",
+      "in": [
+       "often",
+       "always"
+      ]
+     }
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "followup",
+   "type": "single",
+   "options": [
+    {
+     "id": "regular"
+    },
+    {
+     "id": "past"
+    },
+    {
+     "id": "none"
+    },
+    {
+     "id": "prefer_not"
+    }
+   ],
+   "showIf": {
+    "not": {
+     "q": "duration",
+     "in": [
+      "none"
+     ]
+    }
+   },
+   "required": false,
+   "phase": "deep"
+  },
+  {
+   "id": "st_year",
+   "type": "single",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "early"
+    },
+    {
+     "id": "mid"
+    },
+    {
+     "id": "final"
+    },
+    {
+     "id": "graduating"
+    }
+   ],
+   "showIf": {
+    "q": "profile",
+    "in": [
+     "student"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "st_exam_detail",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "extra_time"
+    },
+    {
+     "id": "room"
+    },
+    {
+     "id": "computer"
+    },
+    {
+     "id": "breaks"
+    },
+    {
+     "id": "docs"
+    },
+    {
+     "id": "oral"
+    }
+   ],
+   "showIf": {
+    "q": "ctx_student",
+    "hasAny": [
+     "exams"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "st_work_detail",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "schedule"
+    },
+    {
+     "id": "commute"
+    },
+    {
+     "id": "workstation"
+    },
+    {
+     "id": "disclosure"
+    },
+    {
+     "id": "none",
+     "exclusive": true
+    }
+   ],
+   "showIf": {
+    "q": "ctx_student",
+    "hasAny": [
+     "work"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "st_contact",
+   "type": "single",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "yes"
+    },
+    {
+     "id": "no"
+    },
+    {
+     "id": "unsure"
+    }
+   ],
+   "showIf": {
+    "all": [
+     {
+      "q": "profile",
+      "in": [
+       "student"
+      ]
+     },
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     },
+     {
+      "not": {
+       "q": "pole",
+       "in": [
+        "yes"
+       ]
+      }
+     }
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "emp_manager",
+   "type": "single",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "yes"
+    },
+    {
+     "id": "partly"
+    },
+    {
+     "id": "no"
+    },
+    {
+     "id": "prefer_not"
+    }
+   ],
+   "showIf": {
+    "all": [
+     {
+      "q": "profile",
+      "in": [
+       "employee"
+      ]
+     },
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     }
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "emp_workstation",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "seat"
+    },
+    {
+     "id": "screen"
+    },
+    {
+     "id": "noise"
+    },
+    {
+     "id": "schedule"
+    },
+    {
+     "id": "travel"
+    },
+    {
+     "id": "pace"
+    },
+    {
+     "id": "none",
+     "exclusive": true
+    }
+   ],
+   "showIf": {
+    "all": [
+     {
+      "q": "profile",
+      "in": [
+       "employee"
+      ]
+     },
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     }
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "emp_occ",
+   "type": "single",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "recent"
+    },
+    {
+     "id": "long_ago"
+    },
+    {
+     "id": "never"
+    },
+    {
+     "id": "unsure"
+    }
+   ],
+   "showIf": {
+    "all": [
+     {
+      "q": "profile",
+      "in": [
+       "employee"
+      ]
+     },
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     }
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "emp_leave",
+   "type": "single",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "none"
+    },
+    {
+     "id": "once"
+    },
+    {
+     "id": "several"
+    },
+    {
+     "id": "prefer_not"
+    }
+   ],
+   "showIf": {
+    "all": [
+     {
+      "q": "profile",
+      "in": [
+       "employee"
+      ]
+     },
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     }
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "js_obstacles",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "interviews"
+    },
+    {
+     "id": "tests"
+    },
+    {
+     "id": "transport"
+    },
+    {
+     "id": "long_days"
+    },
+    {
+     "id": "tools"
+    },
+    {
+     "id": "none",
+     "exclusive": true
+    }
+   ],
+   "showIf": {
+    "all": [
+     {
+      "q": "profile",
+      "in": [
+       "jobseeker"
+      ]
+     },
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     }
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "js_training",
+   "type": "single",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "yes"
+    },
+    {
+     "id": "maybe"
+    },
+    {
+     "id": "no"
+    }
+   ],
+   "showIf": {
+    "q": "profile",
+    "in": [
+     "jobseeker"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "js_support",
+   "type": "single",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "yes"
+    },
+    {
+     "id": "no"
+    },
+    {
+     "id": "unsure"
+    }
+   ],
+   "showIf": {
+    "q": "profile",
+    "in": [
+     "jobseeker"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "pub_prevention",
+   "type": "single",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "yes"
+    },
+    {
+     "id": "no"
+    },
+    {
+     "id": "unsure"
+    }
+   ],
+   "showIf": {
+    "all": [
+     {
+      "q": "profile",
+      "in": [
+       "public_agent"
+      ]
+     },
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     }
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "pub_referent",
+   "type": "single",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "yes"
+    },
+    {
+     "id": "no"
+    }
+   ],
+   "showIf": {
+    "q": "profile",
+    "in": [
+     "public_agent"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "pub_mobility",
+   "type": "single",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "yes"
+    },
+    {
+     "id": "maybe"
+    },
+    {
+     "id": "no"
+    }
+   ],
+   "showIf": {
+    "q": "profile",
+    "in": [
+     "public_agent"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "goals",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "keep_job"
+    },
+    {
+     "id": "adapt"
+    },
+    {
+     "id": "secure"
+    },
+    {
+     "id": "funding"
+    },
+    {
+     "id": "training"
+    },
+    {
+     "id": "info_only"
+    }
+   ],
+   "showIf": {
+    "not": {
+     "q": "duration",
+     "in": [
+      "none"
+     ]
+    }
+   },
+   "required": false
+  },
+  {
+   "id": "pref_contact",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "in_person"
+    },
+    {
+     "id": "phone"
+    },
+    {
+     "id": "video"
+    },
+    {
+     "id": "written"
+    }
+   ],
+   "required": false
+  },
+  {
+   "id": "time_available",
+   "type": "single",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "little"
+    },
+    {
+     "id": "some"
+    },
+    {
+     "id": "plenty"
+    }
+   ],
+   "showIf": {
+    "not": {
+     "q": "duration",
+     "in": [
+      "none"
+     ]
+    }
+   },
+   "required": false
+  },
+  {
+   "id": "helper",
+   "type": "single",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "yes"
+    },
+    {
+     "id": "no"
+    },
+    {
+     "id": "would_like"
+    }
+   ],
+   "showIf": {
+    "not": {
+     "q": "duration",
+     "in": [
+      "none"
+     ]
+    }
+   },
+   "required": false
+  },
+  {
+   "id": "sup_goal",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "understand"
+    },
+    {
+     "id": "orient"
+    },
+    {
+     "id": "set_up"
+    },
+    {
+     "id": "raise"
+    },
+    {
+     "id": "talk"
+    }
+   ],
+   "showIf": {
+    "q": "for_whom",
+    "in": [
+     "relative",
+     "colleague",
+     "pro"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "sup_worry",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "confidentiality"
+    },
+    {
+     "id": "words"
+    },
+    {
+     "id": "legal"
+    },
+    {
+     "id": "time"
+    },
+    {
+     "id": "none",
+     "exclusive": true
+    }
+   ],
+   "showIf": {
+    "q": "for_whom",
+    "in": [
+     "relative",
+     "colleague",
+     "pro"
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "prev_interest",
+   "type": "multiple",
+   "phase": "deep",
+   "options": [
+    {
+     "id": "be_ready"
+    },
+    {
+     "id": "share"
+    },
+    {
+     "id": "later"
+    },
+    {
+     "id": "nothing"
+    }
+   ],
+   "showIf": {
+    "all": [
+     {
+      "q": "duration",
+      "in": [
+       "none"
+      ]
+     },
+     {
+      "q": "for_whom",
+      "in": [
+       "self"
+      ]
+     }
+    ]
+   },
+   "required": false
+  },
+  {
+   "id": "st_next",
+   "phase": "deep",
+   "type": "single",
+   "required": false,
+   "options": [
+    {
+     "id": "internship"
+    },
+    {
+     "id": "alternance"
+    },
+    {
+     "id": "first_job"
+    },
+    {
+     "id": "studies"
+    },
+    {
+     "id": "unsure"
+    }
+   ],
+   "showIf": {
+    "q": "profile",
+    "in": [
+     "student"
+    ]
+   }
+  },
+  {
+   "id": "recruit",
+   "phase": "deep",
+   "type": "multiple",
+   "required": false,
+   "options": [
+    {
+     "id": "tests"
+    },
+    {
+     "id": "interview"
+    },
+    {
+     "id": "cv"
+    },
+    {
+     "id": "open_space"
+    },
+    {
+     "id": "commute"
+    },
+    {
+     "id": "none",
+     "exclusive": true
+    }
+   ],
+   "showIf": {
+    "all": [
+     {
+      "q": "profile",
+      "in": [
+       "student"
+      ]
+     },
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     }
+    ]
+   }
+  }
+ ]
+}

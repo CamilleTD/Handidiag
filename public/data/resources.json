@@ -1,0 +1,111 @@
+{
+ "version": "1.0",
+ "verified_on": "2026-10-14",
+ "comment": "Liens officiels uniquement. A re-verifier avant chaque mise en production (voir docs/06_audit_accessibilite.md et README).",
+ "official_links": [
+  {
+   "id": "rqth_mph",
+   "url": "https://www.monparcourshandicap.gouv.fr/aides/la-reconnaissance-de-la-qualite-de-travailleur-handicape-rqth"
+  },
+  {
+   "id": "mdph_portal",
+   "url": "https://www.monparcourshandicap.gouv.fr/"
+  },
+  {
+   "id": "service_public_rqth",
+   "url": "https://www.service-public.fr/particuliers/vosdroits/R19993"
+  },
+  {
+   "id": "agefiph",
+   "url": "https://www.agefiph.fr/"
+  },
+  {
+   "id": "fiphfp",
+   "url": "https://www.fiphfp.fr/"
+  },
+  {
+   "id": "france_travail",
+   "url": "https://www.francetravail.fr/"
+  }
+ ],
+ "contacts": {
+  "student": [
+   "pole_social",
+   "pole_rse",
+   "student_health",
+   "registrar",
+   "agefiph",
+   "mdph"
+  ],
+  "employee": [
+   "occ_physician",
+   "hr_officer",
+   "agefiph",
+   "mdph"
+  ],
+  "jobseeker": [
+   "france_travail",
+   "cap_emploi",
+   "agefiph",
+   "mdph"
+  ],
+  "public_agent": [
+   "prevention_physician",
+   "hr_officer",
+   "fiphfp",
+   "mdph"
+  ]
+ },
+ "contact_defs": {
+  "school_officer": {
+   "link": null
+  },
+  "student_health": {
+   "link": null
+  },
+  "registrar": {
+   "link": null
+  },
+  "occ_physician": {
+   "link": null
+  },
+  "hr_officer": {
+   "link": null
+  },
+  "prevention_physician": {
+   "link": null
+  },
+  "cap_emploi": {
+   "link": null
+  },
+  "france_travail": {
+   "link": "france_travail"
+  },
+  "agefiph": {
+   "link": "agefiph"
+  },
+  "fiphfp": {
+   "link": "fiphfp"
+  },
+  "mdph": {
+   "link": "mdph_portal"
+  },
+  "pole_social": {
+   "link": null,
+   "email": "charlie.dupic@efrei.fr"
+  },
+  "pole_rse": {
+   "link": null,
+   "email": "stephanie.libeskind@efrei.fr"
+  }
+ },
+ "confidential_first": [
+  "student_health",
+  "occ_physician",
+  "prevention_physician"
+ ],
+ "pole_contacts": [
+  "pole_social",
+  "pole_rse"
+ ]
+}

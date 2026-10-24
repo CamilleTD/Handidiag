@@ -1,0 +1,12 @@
+{
+ "users": [
+  {
+   "username": "admin",
+   "salt": "cbadb4cea32a605f79c1889e8d83364d",
+   "hash": "52001e931710bbe3d51f7a088ab3799d991e383e75f54c76e9d4c7bca28e431c85b996006d8a9ded4f05a71b27b1f5af8e80e39f91a72f673900e6567b3ca3d6",
+   "isDefault": true,
+   "createdAt": 1792435318846,
+   "updatedAt": 1792435318846
+  }
+ ]
+}

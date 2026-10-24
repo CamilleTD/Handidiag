@@ -1,0 +1,1386 @@
+{
+ "version": "2.0",
+ "comment": "Moteur de regles explicable. Chaque regle = une condition lisible + des points + des drapeaux. Le niveau final est une simple somme comparee a des seuils. Aucune IA, aucune decision automatique : le resultat est une aide a l'orientation.",
+ "levels": [
+  {
+   "id": "explore",
+   "min": 0
+  },
+  {
+   "id": "talk",
+   "min": 3
+  },
+  {
+   "id": "talk_soon",
+   "min": 6
+  }
+ ],
+ "rules": [
+  {
+   "id": "R_already_rqth",
+   "points": 0,
+   "override": "already",
+   "flags": [
+    "already_rqth"
+   ],
+   "when": {
+    "q": "support",
+    "in": [
+     "has_rqth"
+    ]
+   }
+  },
+  {
+   "id": "R_no_signal",
+   "points": 0,
+   "override": "explore",
+   "when": {
+    "all": [
+     {
+      "q": "duration",
+      "in": [
+       "none"
+      ]
+     },
+     {
+      "not": {
+       "q": "frequency",
+       "in": [
+        "often",
+        "always"
+       ]
+      }
+     },
+     {
+      "not": {
+       "q": "needs",
+       "hasAny": [
+        "schedule",
+        "workstation",
+        "extra_time",
+        "remote",
+        "breaks",
+        "docs"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "R_duration_long",
+   "points": 2,
+   "when": {
+    "q": "duration",
+    "in": [
+     "long"
+    ]
+   }
+  },
+  {
+   "id": "R_duration_short",
+   "points": 1,
+   "when": {
+    "q": "duration",
+    "in": [
+     "short"
+    ]
+   }
+  },
+  {
+   "id": "R_duration_unsure",
+   "points": 1,
+   "when": {
+    "q": "duration",
+    "in": [
+     "unsure"
+    ]
+   }
+  },
+  {
+   "id": "R_freq_often",
+   "points": 1,
+   "when": {
+    "q": "frequency",
+    "in": [
+     "often"
+    ]
+   }
+  },
+  {
+   "id": "R_freq_always",
+   "points": 2,
+   "when": {
+    "q": "frequency",
+    "in": [
+     "always"
+    ]
+   }
+  },
+  {
+   "id": "R_areas_declared",
+   "points": 1,
+   "when": {
+    "q": "areas",
+    "hasAny": [
+     "energy",
+     "attention",
+     "senses",
+     "mobility",
+     "psych",
+     "other"
+    ]
+   }
+  },
+  {
+   "id": "R_needs_some",
+   "points": 1,
+   "when": {
+    "q": "needs",
+    "countAtLeast": 1,
+    "among": [
+     "schedule",
+     "workstation",
+     "extra_time",
+     "remote",
+     "breaks",
+     "docs"
+    ]
+   }
+  },
+  {
+   "id": "R_needs_many",
+   "points": 1,
+   "when": {
+    "q": "needs",
+    "countAtLeast": 3,
+    "among": [
+     "schedule",
+     "workstation",
+     "extra_time",
+     "remote",
+     "breaks",
+     "docs"
+    ]
+   }
+  },
+  {
+   "id": "R_pathway_impact",
+   "points": 1,
+   "when": {
+    "q": "pathway",
+    "hasAny": [
+     "studies",
+     "internship",
+     "job",
+     "jobsearch"
+    ]
+   }
+  },
+  {
+   "id": "R_support_adjust",
+   "points": 1,
+   "flags": [
+    "informal_adjust"
+   ],
+   "when": {
+    "q": "support",
+    "in": [
+     "has_adjust"
+    ]
+   }
+  },
+  {
+   "id": "R_no_support",
+   "points": 0,
+   "flags": [
+    "no_support"
+   ],
+   "when": {
+    "all": [
+     {
+      "q": "support",
+      "in": [
+       "none"
+      ]
+     },
+     {
+      "q": "duration",
+      "in": [
+       "unsure",
+       "short",
+       "long"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "R_urgent",
+   "points": 0,
+   "flags": [
+    "urgent"
+   ],
+   "when": {
+    "q": "urgency",
+    "in": [
+     "soon",
+     "urgent"
+    ]
+   }
+  },
+  {
+   "id": "R_aware_low",
+   "points": 0,
+   "flags": [
+    "needs_info"
+   ],
+   "when": {
+    "q": "awareness",
+    "in": [
+     "unknown",
+     "partial"
+    ]
+   }
+  },
+  {
+   "id": "R_barrier_stigma",
+   "points": 0,
+   "flags": [
+    "stigma"
+   ],
+   "when": {
+    "q": "barriers",
+    "hasAny": [
+     "stigma"
+    ]
+   }
+  },
+  {
+   "id": "R_barrier_employer",
+   "points": 0,
+   "flags": [
+    "employer"
+   ],
+   "when": {
+    "q": "barriers",
+    "hasAny": [
+     "employer"
+    ]
+   }
+  },
+  {
+   "id": "R_barrier_complexity",
+   "points": 0,
+   "flags": [
+    "complexity"
+   ],
+   "when": {
+    "q": "barriers",
+    "hasAny": [
+     "complexity"
+    ]
+   }
+  },
+  {
+   "id": "R_barrier_who",
+   "points": 0,
+   "flags": [
+    "who"
+   ],
+   "when": {
+    "q": "barriers",
+    "hasAny": [
+     "who"
+    ]
+   }
+  },
+  {
+   "id": "R_barrier_time",
+   "points": 0,
+   "flags": [
+    "time"
+   ],
+   "when": {
+    "q": "barriers",
+    "hasAny": [
+     "time"
+    ]
+   }
+  },
+  {
+   "id": "R_student_exam",
+   "points": 0,
+   "flags": [
+    "student_exam"
+   ],
+   "when": {
+    "q": "ctx_student",
+    "hasAny": [
+     "exams"
+    ]
+   }
+  },
+  {
+   "id": "R_student_work",
+   "points": 0,
+   "flags": [
+    "student_work"
+   ],
+   "when": {
+    "q": "ctx_student",
+    "hasAny": [
+     "work"
+    ]
+   }
+  },
+  {
+   "id": "R_shift_work",
+   "points": 0,
+   "flags": [
+    "shift_work"
+   ],
+   "when": {
+    "q": "ctx_employee",
+    "in": [
+     "shifts"
+    ]
+   }
+  },
+  {
+   "id": "R_long_search",
+   "points": 0,
+   "flags": [
+    "long_search"
+   ],
+   "when": {
+    "q": "ctx_jobseeker",
+    "in": [
+     "long"
+    ]
+   }
+  },
+  {
+   "id": "R_public_status",
+   "points": 0,
+   "flags": [
+    "public_status"
+   ],
+   "when": {
+    "q": "ctx_public",
+    "in": [
+     "contract",
+     "trainee"
+    ]
+   }
+  },
+  {
+   "id": "R_see_doctor",
+   "points": 0,
+   "flags": [
+    "see_doctor"
+   ],
+   "when": {
+    "all": [
+     {
+      "q": "followup",
+      "in": [
+       "none"
+      ]
+     },
+     {
+      "q": "duration",
+      "in": [
+       "unsure",
+       "short",
+       "long"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "R_for_relative",
+   "points": 0,
+   "flags": [
+    "for_relative"
+   ],
+   "when": {
+    "q": "for_whom",
+    "in": [
+     "relative"
+    ]
+   }
+  },
+  {
+   "id": "R_for_support",
+   "points": 0,
+   "flags": [
+    "for_support"
+   ],
+   "when": {
+    "q": "for_whom",
+    "in": [
+     "colleague",
+     "pro"
+    ]
+   }
+  },
+  {
+   "id": "R_worry_watch",
+   "points": 0,
+   "todo": [
+    "watch"
+   ],
+   "when": {
+    "q": "worry",
+    "hasAny": [
+     "workload",
+     "change",
+     "health_event"
+    ]
+   }
+  },
+  {
+   "id": "R_energy_posture",
+   "points": 0,
+   "todo": [
+    "posture"
+   ],
+   "when": {
+    "q": "energy_effects",
+    "hasAny": [
+     "sitting",
+     "standing",
+     "carrying",
+     "typing"
+    ]
+   }
+  },
+  {
+   "id": "R_energy_conc",
+   "points": 0,
+   "todo": [
+    "conc_energy"
+   ],
+   "when": {
+    "q": "energy_effects",
+    "hasAny": [
+     "concentrating"
+    ]
+   }
+  },
+  {
+   "id": "R_energy_commute",
+   "points": 0,
+   "todo": [
+    "commute"
+   ],
+   "when": {
+    "any": [
+     {
+      "q": "energy_effects",
+      "hasAny": [
+       "commuting"
+      ]
+     },
+     {
+      "q": "mob_aspects",
+      "hasAny": [
+       "transport"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "R_energy_rest",
+   "points": 0,
+   "todo": [
+    "breaks"
+   ],
+   "when": {
+    "q": "energy_rest",
+    "in": [
+     "often",
+     "planned"
+    ]
+   }
+  },
+  {
+   "id": "R_energy_when",
+   "points": 0,
+   "todo": [
+    "schedule_time"
+   ],
+   "when": {
+    "q": "energy_when",
+    "hasAny": [
+     "morning",
+     "evening",
+     "unpredictable"
+    ]
+   }
+  },
+  {
+   "id": "R_attn_rw",
+   "points": 0,
+   "todo": [
+    "reading_writing"
+   ],
+   "when": {
+    "q": "attn_tasks",
+    "hasAny": [
+     "reading",
+     "writing",
+     "calculating"
+    ]
+   }
+  },
+  {
+   "id": "R_attn_org",
+   "points": 0,
+   "todo": [
+    "organisation"
+   ],
+   "when": {
+    "q": "attn_tasks",
+    "hasAny": [
+     "remembering",
+     "organizing"
+    ]
+   }
+  },
+  {
+   "id": "R_attn_listen",
+   "points": 0,
+   "todo": [
+    "listening"
+   ],
+   "when": {
+    "q": "attn_tasks",
+    "hasAny": [
+     "listening"
+    ]
+   }
+  },
+  {
+   "id": "R_attn_tools_none",
+   "points": 0,
+   "todo": [
+    "try_tools"
+   ],
+   "when": {
+    "q": "attn_tools",
+    "hasAny": [
+     "none"
+    ]
+   }
+  },
+  {
+   "id": "R_vision",
+   "points": 0,
+   "todo": [
+    "vision"
+   ],
+   "when": {
+    "q": "senses_which",
+    "in": [
+     "vision",
+     "both"
+    ]
+   }
+  },
+  {
+   "id": "R_hearing",
+   "points": 0,
+   "todo": [
+    "hearing"
+   ],
+   "when": {
+    "q": "senses_which",
+    "in": [
+     "hearing",
+     "both"
+    ]
+   }
+  },
+  {
+   "id": "R_lighting",
+   "points": 0,
+   "todo": [
+    "lighting"
+   ],
+   "when": {
+    "q": "senses_needs",
+    "hasAny": [
+     "lighting"
+    ]
+   }
+  },
+  {
+   "id": "R_access",
+   "points": 0,
+   "todo": [
+    "access"
+   ],
+   "when": {
+    "any": [
+     {
+      "q": "mob_aspects",
+      "hasAny": [
+       "walking",
+       "stairs",
+       "parking"
+      ]
+     },
+     {
+      "q": "mob_access",
+      "hasAny": [
+       "elevator",
+       "parking"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "R_equipment",
+   "points": 0,
+   "todo": [
+    "equipment"
+   ],
+   "when": {
+    "any": [
+     {
+      "q": "mob_aspects",
+      "hasAny": [
+       "hands"
+      ]
+     },
+     {
+      "q": "mob_access",
+      "hasAny": [
+       "equipment"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "R_psych_groups",
+   "points": 0,
+   "todo": [
+    "oral_groups"
+   ],
+   "when": {
+    "q": "psych_situations",
+    "hasAny": [
+     "groups"
+    ]
+   }
+  },
+  {
+   "id": "R_psych_pace",
+   "points": 0,
+   "todo": [
+    "pace"
+   ],
+   "when": {
+    "q": "psych_situations",
+    "hasAny": [
+     "deadlines",
+     "overload"
+    ]
+   }
+  },
+  {
+   "id": "R_psych_env",
+   "points": 0,
+   "todo": [
+    "environment"
+   ],
+   "when": {
+    "q": "psych_situations",
+    "hasAny": [
+     "noise",
+     "changes"
+    ]
+   }
+  },
+  {
+   "id": "R_psych_nosupport",
+   "points": 0,
+   "flags": [
+    "psych_support_none"
+   ],
+   "when": {
+    "q": "psych_support",
+    "in": [
+     "no"
+    ]
+   }
+  },
+  {
+   "id": "R_stability",
+   "points": 0,
+   "todo": [
+    "diary"
+   ],
+   "when": {
+    "q": "stability",
+    "in": [
+     "varies",
+     "flares"
+    ]
+   }
+  },
+  {
+   "id": "R_life_wide",
+   "points": 0,
+   "todo": [
+    "life_wide"
+   ],
+   "when": {
+    "q": "life_impact",
+    "hasAny": [
+     "transport",
+     "household",
+     "social",
+     "leisure"
+    ]
+   }
+  },
+  {
+   "id": "R_life_sleep",
+   "points": 0,
+   "flags": [
+    "life_sleep"
+   ],
+   "when": {
+    "q": "life_impact",
+    "hasAny": [
+     "sleep"
+    ]
+   }
+  },
+  {
+   "id": "R_st_exam_req",
+   "points": 0,
+   "todo": [
+    "exam_request"
+   ],
+   "when": {
+    "q": "st_exam_detail",
+    "hasAny": [
+     "extra_time",
+     "room",
+     "computer",
+     "breaks",
+     "docs",
+     "oral"
+    ]
+   }
+  },
+  {
+   "id": "R_st_disclosure",
+   "points": 0,
+   "todo": [
+    "disclosure"
+   ],
+   "when": {
+    "q": "st_work_detail",
+    "hasAny": [
+     "disclosure"
+    ]
+   }
+  },
+  {
+   "id": "R_st_work_adapt",
+   "points": 0,
+   "todo": [
+    "work_adapt"
+   ],
+   "when": {
+    "q": "st_work_detail",
+    "hasAny": [
+     "schedule",
+     "commute",
+     "workstation"
+    ]
+   }
+  },
+  {
+   "id": "R_st_contact",
+   "points": 0,
+   "todo": [
+    "contact_school"
+   ],
+   "when": {
+    "q": "st_contact",
+    "in": [
+     "no",
+     "unsure"
+    ]
+   }
+  },
+  {
+   "id": "R_st_year",
+   "points": 0,
+   "todo": [
+    "transition"
+   ],
+   "when": {
+    "q": "st_year",
+    "in": [
+     "final",
+     "graduating"
+    ]
+   }
+  },
+  {
+   "id": "R_emp_unaware",
+   "points": 0,
+   "flags": [
+    "emp_unaware"
+   ],
+   "when": {
+    "q": "emp_manager",
+    "in": [
+     "no"
+    ]
+   }
+  },
+  {
+   "id": "R_emp_manager_ok",
+   "points": 0,
+   "todo": [
+    "manager_ok"
+   ],
+   "when": {
+    "q": "emp_manager",
+    "in": [
+     "yes",
+     "partly"
+    ]
+   }
+  },
+  {
+   "id": "R_emp_ws",
+   "points": 0,
+   "todo": [
+    "workstation_study"
+   ],
+   "when": {
+    "q": "emp_workstation",
+    "hasAny": [
+     "seat",
+     "screen",
+     "noise"
+    ]
+   }
+  },
+  {
+   "id": "R_emp_org",
+   "points": 0,
+   "todo": [
+    "org_work"
+   ],
+   "when": {
+    "q": "emp_workstation",
+    "hasAny": [
+     "schedule",
+     "travel",
+     "pace"
+    ]
+   }
+  },
+  {
+   "id": "R_emp_occ",
+   "points": 0,
+   "todo": [
+    "occ_visit"
+   ],
+   "when": {
+    "q": "emp_occ",
+    "in": [
+     "long_ago",
+     "never"
+    ]
+   }
+  },
+  {
+   "id": "R_emp_leave",
+   "points": 0,
+   "flags": [
+    "emp_leave"
+   ],
+   "when": {
+    "q": "emp_leave",
+    "in": [
+     "once",
+     "several"
+    ]
+   }
+  },
+  {
+   "id": "R_js_interview",
+   "points": 0,
+   "todo": [
+    "interview"
+   ],
+   "when": {
+    "q": "js_obstacles",
+    "hasAny": [
+     "interviews",
+     "tests",
+     "tools"
+    ]
+   }
+  },
+  {
+   "id": "R_js_org",
+   "points": 0,
+   "todo": [
+    "js_org"
+   ],
+   "when": {
+    "q": "js_obstacles",
+    "hasAny": [
+     "transport",
+     "long_days"
+    ]
+   }
+  },
+  {
+   "id": "R_js_training",
+   "points": 0,
+   "todo": [
+    "training"
+   ],
+   "when": {
+    "q": "js_training",
+    "in": [
+     "yes",
+     "maybe"
+    ]
+   }
+  },
+  {
+   "id": "R_js_contact",
+   "points": 0,
+   "todo": [
+    "js_contact"
+   ],
+   "when": {
+    "q": "js_support",
+    "in": [
+     "no",
+     "unsure"
+    ]
+   }
+  },
+  {
+   "id": "R_pub_prev",
+   "points": 0,
+   "todo": [
+    "prevention_doc"
+   ],
+   "when": {
+    "q": "pub_prevention",
+    "in": [
+     "no",
+     "unsure"
+    ]
+   }
+  },
+  {
+   "id": "R_pub_ref",
+   "points": 0,
+   "todo": [
+    "referent"
+   ],
+   "when": {
+    "q": "pub_referent",
+    "in": [
+     "no"
+    ]
+   }
+  },
+  {
+   "id": "R_pub_posting",
+   "points": 0,
+   "todo": [
+    "posting"
+   ],
+   "when": {
+    "q": "pub_mobility",
+    "in": [
+     "yes",
+     "maybe"
+    ]
+   }
+  },
+  {
+   "id": "R_goal_keep",
+   "points": 0,
+   "todo": [
+    "keep_job"
+   ],
+   "when": {
+    "q": "goals",
+    "hasAny": [
+     "keep_job",
+     "adapt"
+    ]
+   }
+  },
+  {
+   "id": "R_goal_funding",
+   "points": 0,
+   "todo": [
+    "funding"
+   ],
+   "when": {
+    "q": "goals",
+    "hasAny": [
+     "funding"
+    ]
+   }
+  },
+  {
+   "id": "R_goal_training",
+   "points": 0,
+   "todo": [
+    "training"
+   ],
+   "when": {
+    "q": "goals",
+    "hasAny": [
+     "training"
+    ]
+   }
+  },
+  {
+   "id": "R_goal_secure",
+   "points": 0,
+   "todo": [
+    "secure"
+   ],
+   "when": {
+    "q": "goals",
+    "hasAny": [
+     "secure"
+    ]
+   }
+  },
+  {
+   "id": "R_goal_info",
+   "points": 0,
+   "flags": [
+    "goal_info_only"
+   ],
+   "when": {
+    "q": "goals",
+    "hasAny": [
+     "info_only"
+    ]
+   }
+  },
+  {
+   "id": "R_pref_written",
+   "points": 0,
+   "todo": [
+    "written"
+   ],
+   "when": {
+    "q": "pref_contact",
+    "hasAny": [
+     "written"
+    ]
+   }
+  },
+  {
+   "id": "R_pref_remote",
+   "points": 0,
+   "todo": [
+    "remote_contact"
+   ],
+   "when": {
+    "q": "pref_contact",
+    "hasAny": [
+     "phone",
+     "video"
+    ]
+   }
+  },
+  {
+   "id": "R_time_little",
+   "points": 0,
+   "todo": [
+    "small_steps"
+   ],
+   "when": {
+    "q": "time_available",
+    "in": [
+     "little"
+    ]
+   }
+  },
+  {
+   "id": "R_helper",
+   "points": 0,
+   "todo": [
+    "helper"
+   ],
+   "when": {
+    "q": "helper",
+    "in": [
+     "no",
+     "would_like"
+    ]
+   }
+  },
+  {
+   "id": "R_sup_talk",
+   "points": 0,
+   "todo": [
+    "how_to_talk"
+   ],
+   "when": {
+    "q": "sup_goal",
+    "hasAny": [
+     "talk",
+     "understand"
+    ]
+   }
+  },
+  {
+   "id": "R_sup_orient",
+   "points": 0,
+   "todo": [
+    "sup_resources"
+   ],
+   "when": {
+    "q": "sup_goal",
+    "hasAny": [
+     "orient",
+     "understand"
+    ]
+   }
+  },
+  {
+   "id": "R_sup_setup",
+   "points": 0,
+   "todo": [
+    "sup_setup"
+   ],
+   "when": {
+    "q": "sup_goal",
+    "hasAny": [
+     "set_up"
+    ]
+   }
+  },
+  {
+   "id": "R_sup_aware",
+   "points": 0,
+   "todo": [
+    "sup_aware"
+   ],
+   "when": {
+    "q": "sup_goal",
+    "hasAny": [
+     "raise"
+    ]
+   }
+  },
+  {
+   "id": "R_sup_conf",
+   "points": 0,
+   "flags": [
+    "sup_confidentiality"
+   ],
+   "when": {
+    "q": "sup_worry",
+    "hasAny": [
+     "confidentiality"
+    ]
+   }
+  },
+  {
+   "id": "R_sup_words",
+   "points": 0,
+   "todo": [
+    "how_to_talk"
+   ],
+   "when": {
+    "q": "sup_worry",
+    "hasAny": [
+     "words"
+    ]
+   }
+  },
+  {
+   "id": "R_sup_legal",
+   "points": 0,
+   "todo": [
+    "sup_legal"
+   ],
+   "when": {
+    "q": "sup_worry",
+    "hasAny": [
+     "legal"
+    ]
+   }
+  },
+  {
+   "id": "R_prev_ready",
+   "points": 0,
+   "todo": [
+    "prev_ready"
+   ],
+   "when": {
+    "q": "prev_interest",
+    "hasAny": [
+     "be_ready",
+     "later"
+    ]
+   }
+  },
+  {
+   "id": "R_prev_share",
+   "points": 0,
+   "todo": [
+    "prev_share"
+   ],
+   "when": {
+    "q": "prev_interest",
+    "hasAny": [
+     "share"
+    ]
+   }
+  },
+  {
+   "id": "R_pole_member",
+   "when": {
+    "q": "pole",
+    "in": [
+     "yes"
+    ]
+   },
+   "points": 0,
+   "todo": [
+    "pole_member_rqth"
+   ]
+  },
+  {
+   "id": "R_pole_join",
+   "when": {
+    "q": "pole_join",
+    "in": [
+     "yes"
+    ]
+   },
+   "points": 0,
+   "todo": [
+    "pole_join_yes"
+   ]
+  },
+  {
+   "id": "R_work_world",
+   "when": {
+    "q": "pathway",
+    "hasAny": [
+     "internship",
+     "job",
+     "jobsearch"
+    ]
+   },
+   "points": 0,
+   "todo": [
+    "rqth_work_value"
+   ]
+  },
+  {
+   "id": "R_next_alternance",
+   "when": {
+    "q": "st_next",
+    "in": [
+     "alternance"
+    ]
+   },
+   "points": 0,
+   "todo": [
+    "alternance_rqth",
+    "rqth_delay"
+   ]
+  },
+  {
+   "id": "R_next_work",
+   "when": {
+    "q": "st_next",
+    "in": [
+     "internship",
+     "first_job"
+    ]
+   },
+   "points": 0,
+   "todo": [
+    "rqth_work_value",
+    "rqth_delay"
+   ]
+  },
+  {
+   "id": "R_recruit_tests",
+   "when": {
+    "any": [
+     {
+      "q": "recruit",
+      "hasAny": [
+       "tests",
+       "interview"
+      ]
+     },
+     {
+      "q": "ctx_student",
+      "hasAny": [
+       "recruit"
+      ]
+     }
+    ]
+   },
+   "points": 0,
+   "todo": [
+    "recruit_adapt"
+   ]
+  },
+  {
+   "id": "R_recruit_cv",
+   "when": {
+    "q": "recruit",
+    "hasAny": [
+     "cv"
+    ]
+   },
+   "points": 0,
+   "todo": [
+    "disclosure"
+   ]
+  },
+  {
+   "id": "R_recruit_conditions",
+   "when": {
+    "q": "recruit",
+    "hasAny": [
+     "open_space",
+     "commute"
+    ]
+   },
+   "points": 0,
+   "todo": [
+    "work_adapt"
+   ]
+  }
+ ]
+}
