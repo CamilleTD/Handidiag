@@ -1,0 +1,14 @@
+# Dépendances et environnements
+node_modules/
+.venv/
+# Caches et fichiers générés
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.angular/
+dist/
+# Configuration locale et données d'exécution
+.env
+var/
+*.log

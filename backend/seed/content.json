@@ -1,0 +1,7070 @@
+{
+ "questions": [
+  {
+   "key": "profile",
+   "kind": "single",
+   "phase": "core",
+   "step": null,
+   "required": false,
+   "hidden": true,
+   "auto_answer": "student",
+   "show_if": null,
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Quelle est votre situation actuelle ?",
+    "en": "What is your current situation?"
+   },
+   "text_falc": null,
+   "help": {
+    "fr": "Cela nous permet de vous proposer les bons interlocuteurs.",
+    "en": "This lets us suggest the right contacts."
+   },
+   "options": [
+    {
+     "key": "student",
+     "exclusive": false,
+     "label": {
+      "fr": "Je suis étudiant(e)",
+      "en": "I am a student"
+     }
+    },
+    {
+     "key": "employee",
+     "exclusive": false,
+     "label": {
+      "fr": "Je suis salarié(e) du secteur privé",
+      "en": "I am an employee in the private sector"
+     }
+    },
+    {
+     "key": "jobseeker",
+     "exclusive": false,
+     "label": {
+      "fr": "Je cherche un emploi",
+      "en": "I am looking for a job"
+     }
+    },
+    {
+     "key": "public_agent",
+     "exclusive": false,
+     "label": {
+      "fr": "Je suis agent(e) de la fonction publique",
+      "en": "I am a public-sector employee"
+     }
+    }
+   ]
+  },
+  {
+   "key": "pole",
+   "kind": "single",
+   "phase": "core",
+   "step": "pole",
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": null,
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Êtes-vous suivi(e) par le pôle handicap de l'école ?",
+    "en": "Are you followed by the school's disability office (pôle handicap)?"
+   },
+   "text_falc": {
+    "fr": "Êtes-vous suivi(e) par le pôle handicap de l'école ?",
+    "en": "Are you followed by the school's disability office (pôle handicap)?"
+   },
+   "help": {
+    "fr": "Cette question est facultative. Votre réponse reste dans votre navigateur.",
+    "en": "This question is optional. Your answer stays in your browser."
+   },
+   "options": [
+    {
+     "key": "yes",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui, je suis suivi(e) par le pôle handicap",
+      "en": "Yes, I am followed by the disability office"
+     }
+    },
+    {
+     "key": "no",
+     "exclusive": false,
+     "label": {
+      "fr": "Non, pas pour l'instant",
+      "en": "No, not for now"
+     }
+    }
+   ]
+  },
+  {
+   "key": "pole_check",
+   "kind": "single",
+   "phase": "core",
+   "step": "pole",
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "pole",
+    "in": [
+     "no"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Souhaitez-vous voir si le pôle handicap pourrait vous être utile ?",
+    "en": "Would you like to see whether the disability office could be useful to you?"
+   },
+   "text_falc": null,
+   "help": {
+    "fr": "Quelques questions courtes (environ 1 minute). Ce n'est pas un test médical et ce n'est pas obligatoire.",
+    "en": "A few short questions (about 1 minute). This is not a medical test and it is not compulsory."
+   },
+   "options": [
+    {
+     "key": "yes",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui, voyons cela",
+      "en": "Yes, let's see"
+     }
+    },
+    {
+     "key": "no",
+     "exclusive": false,
+     "label": {
+      "fr": "Non, pas pour l'instant",
+      "en": "No, not for now"
+     }
+    }
+   ]
+  },
+  {
+   "key": "pole_fit",
+   "kind": "multiple",
+   "phase": "core",
+   "step": "pole",
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "pole_check",
+    "in": [
+     "yes"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Dans vos études, vous arrive-t-il de rencontrer l'une de ces situations ?",
+    "en": "In your studies, do you ever face any of these situations?"
+   },
+   "text_falc": {
+    "fr": "Dans vos études, est-ce que cela vous arrive ?",
+    "en": "In your studies, does this happen to you?"
+   },
+   "help": {
+    "fr": "Cochez tout ce qui vous parle. Ce n'est pas un test médical : vos réponses servent seulement à voir si le pôle handicap peut vous aider.",
+    "en": "Tick anything that applies. This is not a medical test: your answers only help see whether the disability office can support you."
+   },
+   "options": [
+    {
+     "key": "exam_time",
+     "exclusive": false,
+     "label": {
+      "fr": "Je manque de temps pour finir les examens ou les devoirs sur table",
+      "en": "I run out of time to finish exams or written tests"
+     }
+    },
+    {
+     "key": "write_read",
+     "exclusive": false,
+     "label": {
+      "fr": "Lire ou écrire longtemps (à la main ou au clavier) me demande beaucoup d'efforts",
+      "en": "Reading or writing for a long time (by hand or on a keyboard) takes a lot of effort"
+     }
+    },
+    {
+     "key": "focus",
+     "exclusive": false,
+     "label": {
+      "fr": "J'ai du mal à me concentrer ou à rester attentif(ve) longtemps",
+      "en": "I find it hard to concentrate or stay focused for long"
+     }
+    },
+    {
+     "key": "noise_stress",
+     "exclusive": false,
+     "label": {
+      "fr": "Le bruit, la foule ou le stress des examens et des oraux me perturbent beaucoup",
+      "en": "Noise, crowds or the stress of exams and oral tests disturb me a lot"
+     }
+    },
+    {
+     "key": "fatigue_health",
+     "exclusive": false,
+     "label": {
+      "fr": "Une maladie, une douleur ou une grande fatigue m'oblige à faire des pauses ou à m'absenter",
+      "en": "An illness, pain or great fatigue means I need breaks or have to be absent"
+     }
+    },
+    {
+     "key": "senses_mobility",
+     "exclusive": false,
+     "label": {
+      "fr": "Voir, entendre ou me déplacer dans les locaux est difficile",
+      "en": "Seeing, hearing or getting around the buildings is difficult"
+     }
+    },
+    {
+     "key": "instructions",
+     "exclusive": false,
+     "label": {
+      "fr": "J'ai besoin qu'on me reformule les consignes pour bien les comprendre",
+      "en": "I need instructions to be rephrased to understand them well"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": true,
+     "label": {
+      "fr": "Aucune de ces situations",
+      "en": "None of these situations"
+     }
+    }
+   ]
+  },
+  {
+   "key": "pole_next",
+   "kind": "single",
+   "phase": "core",
+   "step": "pole",
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "pole",
+    "in": [
+     "no"
+    ]
+   },
+   "stop_if": {
+    "q": "pole_next",
+    "in": [
+     "end"
+    ]
+   },
+   "tracks": [],
+   "text": {
+    "fr": "Et maintenant ?",
+    "en": "And now?"
+   },
+   "text_falc": null,
+   "help": {
+    "fr": "Vous pourrez aussi répondre aux questions sur la RQTH plus tard, depuis votre résultat.",
+    "en": "You can also answer the RQTH questions later, from your result."
+   },
+   "options": [
+    {
+     "key": "rqth",
+     "exclusive": false,
+     "label": {
+      "fr": "Continuer : voir si une RQTH peut avoir du sens pour mon projet professionnel",
+      "en": "Continue: see whether an RQTH could make sense for my career plans"
+     }
+    },
+    {
+     "key": "end",
+     "exclusive": false,
+     "label": {
+      "fr": "Terminer ici et voir mes contacts",
+      "en": "Stop here and see my contacts"
+     }
+    }
+   ]
+  },
+  {
+   "key": "duration",
+   "kind": "single",
+   "phase": "core",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": null,
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Avez-vous des difficultés de santé qui durent depuis longtemps ou qui risquent de durer ?",
+    "en": "Do you have health difficulties that have lasted a long time or are likely to last?"
+   },
+   "text_falc": {
+    "fr": "Avez-vous un problème de santé qui dure longtemps ?",
+    "en": "Do you have a health problem that lasts a long time?"
+   },
+   "help": {
+    "fr": "Il n'est pas nécessaire d'avoir un diagnostic pour répondre.",
+    "en": "You do not need a diagnosis to answer."
+   },
+   "options": [
+    {
+     "key": "none",
+     "exclusive": false,
+     "label": {
+      "fr": "Non, aucune",
+      "en": "No, none"
+     }
+    },
+    {
+     "key": "unsure",
+     "exclusive": false,
+     "label": {
+      "fr": "Je ne sais pas",
+      "en": "I don't know"
+     }
+    },
+    {
+     "key": "short",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui, depuis moins de 6 mois",
+      "en": "Yes, for less than 6 months"
+     }
+    },
+    {
+     "key": "long",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui, depuis 6 mois ou plus",
+      "en": "Yes, for 6 months or more"
+     }
+    }
+   ]
+  },
+  {
+   "key": "areas",
+   "kind": "multiple",
+   "phase": "core",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "not": {
+     "q": "duration",
+     "in": [
+      "none"
+     ]
+    }
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Dans quels domaines ressentez-vous une gêne dans votre vie quotidienne ?",
+    "en": "In which areas do you feel difficulty in your daily life?"
+   },
+   "text_falc": {
+    "fr": "Où ressentez-vous une gêne dans la vie de tous les jours ?",
+    "en": "Where do you feel difficulty in daily life?"
+   },
+   "help": {
+    "fr": "Choisissez ce qui correspond le mieux. Vous n'avez pas à détailler.",
+    "en": "Choose what fits best. You do not have to give details."
+   },
+   "options": [
+    {
+     "key": "energy",
+     "exclusive": false,
+     "label": {
+      "fr": "Fatigue ou douleurs",
+      "en": "Tiredness or pain"
+     }
+    },
+    {
+     "key": "attention",
+     "exclusive": false,
+     "label": {
+      "fr": "Concentration, mémoire, lecture ou écriture",
+      "en": "Concentration, memory, reading or writing"
+     }
+    },
+    {
+     "key": "senses",
+     "exclusive": false,
+     "label": {
+      "fr": "Vue ou audition",
+      "en": "Sight or hearing"
+     }
+    },
+    {
+     "key": "mobility",
+     "exclusive": false,
+     "label": {
+      "fr": "Déplacements ou gestes",
+      "en": "Getting around or using your hands"
+     }
+    },
+    {
+     "key": "psych",
+     "exclusive": false,
+     "label": {
+      "fr": "Stress, anxiété ou émotions difficiles, depuis longtemps",
+      "en": "Long-lasting stress, anxiety or difficult emotions"
+     }
+    },
+    {
+     "key": "other",
+     "exclusive": false,
+     "label": {
+      "fr": "Autre chose",
+      "en": "Something else"
+     }
+    },
+    {
+     "key": "prefer_not",
+     "exclusive": true,
+     "label": {
+      "fr": "Je préfère ne pas répondre",
+      "en": "I prefer not to answer"
+     }
+    }
+   ]
+  },
+  {
+   "key": "for_whom",
+   "kind": "single",
+   "phase": "core",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "duration",
+    "in": [
+     "none"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Pour qui vous renseignez-vous ?",
+    "en": "Who are you looking into this for?"
+   },
+   "text_falc": {
+    "fr": "Pour qui cherchez-vous des informations ?",
+    "en": "Who are you looking for information for?"
+   },
+   "help": null,
+   "options": [
+    {
+     "key": "self",
+     "exclusive": false,
+     "label": {
+      "fr": "Pour moi, par curiosité ou par prévention",
+      "en": "For myself, out of curiosity or prevention"
+     }
+    },
+    {
+     "key": "relative",
+     "exclusive": false,
+     "label": {
+      "fr": "Pour un proche",
+      "en": "For a relative"
+     }
+    },
+    {
+     "key": "colleague",
+     "exclusive": false,
+     "label": {
+      "fr": "Pour un(e) camarade ou une personne que j'accompagne",
+      "en": "For a fellow student or someone I support"
+     }
+    },
+    {
+     "key": "pro",
+     "exclusive": false,
+     "label": {
+      "fr": "Dans le cadre d'un rôle (délégué(e) de promo, tutorat, vie associative, stage RH…)",
+      "en": "As part of a role (class rep, tutoring, student association, HR internship…)"
+     }
+    }
+   ]
+  },
+  {
+   "key": "frequency",
+   "kind": "single",
+   "phase": "core",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "not": {
+     "q": "duration",
+     "in": [
+      "none"
+     ]
+    }
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "À quelle fréquence ces difficultés compliquent-elles vos études, votre stage ou votre alternance ?",
+    "en": "How often do these difficulties make your studies, internship or work-study harder?"
+   },
+   "text_falc": {
+    "fr": "Ces difficultés compliquent-elles souvent vos études ou votre stage ?",
+    "en": "Do these difficulties often make your studies or internship hard?"
+   },
+   "help": null,
+   "options": [
+    {
+     "key": "never",
+     "exclusive": false,
+     "label": {
+      "fr": "Jamais",
+      "en": "Never"
+     }
+    },
+    {
+     "key": "sometimes",
+     "exclusive": false,
+     "label": {
+      "fr": "Parfois",
+      "en": "Sometimes"
+     }
+    },
+    {
+     "key": "often",
+     "exclusive": false,
+     "label": {
+      "fr": "Souvent",
+      "en": "Often"
+     }
+    },
+    {
+     "key": "always",
+     "exclusive": false,
+     "label": {
+      "fr": "Presque toujours",
+      "en": "Almost always"
+     }
+    }
+   ]
+  },
+  {
+   "key": "worry",
+   "kind": "multiple",
+   "phase": "core",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "duration",
+    "in": [
+     "none"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Un changement à venir pourrait-il peser sur votre santé ou vos conditions d'études et de travail ?",
+    "en": "Could an upcoming change affect your health or your study and work conditions?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "workload",
+     "exclusive": false,
+     "label": {
+      "fr": "Une charge d'études ou de travail en hausse",
+      "en": "A heavier study or work load"
+     }
+    },
+    {
+     "key": "change",
+     "exclusive": false,
+     "label": {
+      "fr": "Un changement (stage, alternance, premier poste, déménagement)",
+      "en": "A change (internship, work-study, first job, moving)"
+     }
+    },
+    {
+     "key": "health_event",
+     "exclusive": false,
+     "label": {
+      "fr": "Un événement de santé récent ou à venir",
+      "en": "A recent or upcoming health event"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": true,
+     "label": {
+      "fr": "Non, rien de particulier",
+      "en": "No, nothing in particular"
+     }
+    }
+   ]
+  },
+  {
+   "key": "needs",
+   "kind": "multiple",
+   "phase": "core",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "not": {
+     "q": "duration",
+     "in": [
+      "none"
+     ]
+    }
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "De quels aménagements auriez-vous besoin pour travailler ou étudier plus facilement ?",
+    "en": "Which adjustments would make work or study easier for you?"
+   },
+   "text_falc": {
+    "fr": "Qu'est-ce qui vous aiderait pour travailler ou étudier ?",
+    "en": "What would help you work or study?"
+   },
+   "help": null,
+   "options": [
+    {
+     "key": "schedule",
+     "exclusive": false,
+     "label": {
+      "fr": "Des horaires adaptés",
+      "en": "Adapted hours"
+     }
+    },
+    {
+     "key": "workstation",
+     "exclusive": false,
+     "label": {
+      "fr": "Un poste ou du matériel adapté",
+      "en": "Adapted workstation or equipment"
+     }
+    },
+    {
+     "key": "extra_time",
+     "exclusive": false,
+     "label": {
+      "fr": "Plus de temps (examens, tâches)",
+      "en": "More time (exams, tasks)"
+     }
+    },
+    {
+     "key": "remote",
+     "exclusive": false,
+     "label": {
+      "fr": "Du télétravail ou des cours à distance",
+      "en": "Remote work or remote classes"
+     }
+    },
+    {
+     "key": "breaks",
+     "exclusive": false,
+     "label": {
+      "fr": "Des pauses plus fréquentes",
+      "en": "More frequent breaks"
+     }
+    },
+    {
+     "key": "docs",
+     "exclusive": false,
+     "label": {
+      "fr": "Des documents dans un format adapté",
+      "en": "Documents in an adapted format"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": true,
+     "label": {
+      "fr": "Aucun besoin particulier",
+      "en": "No particular need"
+     }
+    }
+   ]
+  },
+  {
+   "key": "pathway",
+   "kind": "multiple",
+   "phase": "core",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": null,
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Quelle partie de votre parcours est concernée ?",
+    "en": "Which part of your path is affected?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "studies",
+     "exclusive": false,
+     "label": {
+      "fr": "Mes études",
+      "en": "My studies"
+     }
+    },
+    {
+     "key": "internship",
+     "exclusive": false,
+     "label": {
+      "fr": "Un stage ou une alternance",
+      "en": "An internship or work-study"
+     }
+    },
+    {
+     "key": "job",
+     "exclusive": false,
+     "label": {
+      "fr": "Mon futur premier emploi",
+      "en": "My future first job"
+     }
+    },
+    {
+     "key": "jobsearch",
+     "exclusive": false,
+     "label": {
+      "fr": "Ma recherche de stage, d'alternance ou d'emploi",
+      "en": "My search for an internship, work-study or job"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": true,
+     "label": {
+      "fr": "Aucune pour l'instant",
+      "en": "None for now"
+     }
+    }
+   ]
+  },
+  {
+   "key": "ctx_student",
+   "kind": "multiple",
+   "phase": "core",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "profile",
+    "in": [
+     "student"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Sur le chemin du monde du travail, qu'est-ce qui est le plus concerné ?",
+    "en": "On the way to the working world, what is most affected?"
+   },
+   "text_falc": {
+    "fr": "Qu'est-ce qui est difficile pour vous, avant le travail ?",
+    "en": "What is difficult for you, before work?"
+   },
+   "help": {
+    "fr": "Plusieurs réponses possibles.",
+    "en": "You can choose several answers."
+   },
+   "options": [
+    {
+     "key": "exams",
+     "exclusive": false,
+     "label": {
+      "fr": "Les examens (écrits, oraux, durée)",
+      "en": "Exams (written, oral, duration)"
+     }
+    },
+    {
+     "key": "work",
+     "exclusive": false,
+     "label": {
+      "fr": "Le stage ou l'alternance en entreprise",
+      "en": "Internship or work-study in a company"
+     }
+    },
+    {
+     "key": "recruit",
+     "exclusive": false,
+     "label": {
+      "fr": "La recherche de stage, d'alternance ou d'emploi (tests, entretiens)",
+      "en": "Looking for an internship, work-study or job (tests, interviews)"
+     }
+    },
+    {
+     "key": "attendance",
+     "exclusive": false,
+     "label": {
+      "fr": "La présence en cours et les déplacements",
+      "en": "Attending classes and getting around"
+     }
+    },
+    {
+     "key": "projects",
+     "exclusive": false,
+     "label": {
+      "fr": "Le travail de groupe et les projets",
+      "en": "Group work and projects"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": true,
+     "label": {
+      "fr": "Rien de particulier",
+      "en": "Nothing in particular"
+     }
+    }
+   ]
+  },
+  {
+   "key": "ctx_employee",
+   "kind": "single",
+   "phase": "core",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "profile",
+    "in": [
+     "employee"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Comment est organisé votre travail ?",
+    "en": "How is your work organised?"
+   },
+   "text_falc": {
+    "fr": "Comment travaillez-vous ?",
+    "en": "How do you work?"
+   },
+   "help": null,
+   "options": [
+    {
+     "key": "fixed",
+     "exclusive": false,
+     "label": {
+      "fr": "Horaires fixes, sur site",
+      "en": "Fixed hours, on site"
+     }
+    },
+    {
+     "key": "shifts",
+     "exclusive": false,
+     "label": {
+      "fr": "Horaires décalés, de nuit ou en équipes",
+      "en": "Shift work, nights or rotating teams"
+     }
+    },
+    {
+     "key": "hybrid",
+     "exclusive": false,
+     "label": {
+      "fr": "Télétravail partiel ou total",
+      "en": "Partial or full remote work"
+     }
+    },
+    {
+     "key": "travel",
+     "exclusive": false,
+     "label": {
+      "fr": "Déplacements fréquents",
+      "en": "Frequent travel"
+     }
+    }
+   ]
+  },
+  {
+   "key": "ctx_jobseeker",
+   "kind": "single",
+   "phase": "core",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "profile",
+    "in": [
+     "jobseeker"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Depuis combien de temps cherchez-vous un emploi ?",
+    "en": "How long have you been looking for a job?"
+   },
+   "text_falc": {
+    "fr": "Depuis quand cherchez-vous un travail ?",
+    "en": "Since when are you looking for a job?"
+   },
+   "help": null,
+   "options": [
+    {
+     "key": "under3",
+     "exclusive": false,
+     "label": {
+      "fr": "Moins de 3 mois",
+      "en": "Less than 3 months"
+     }
+    },
+    {
+     "key": "mid",
+     "exclusive": false,
+     "label": {
+      "fr": "De 3 à 12 mois",
+      "en": "3 to 12 months"
+     }
+    },
+    {
+     "key": "long",
+     "exclusive": false,
+     "label": {
+      "fr": "Plus d'un an",
+      "en": "More than a year"
+     }
+    },
+    {
+     "key": "not_yet",
+     "exclusive": false,
+     "label": {
+      "fr": "Je ne cherche pas encore",
+      "en": "I am not looking yet"
+     }
+    }
+   ]
+  },
+  {
+   "key": "ctx_public",
+   "kind": "single",
+   "phase": "core",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "profile",
+    "in": [
+     "public_agent"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Quel est votre statut dans la fonction publique ?",
+    "en": "What is your status in the public sector?"
+   },
+   "text_falc": {
+    "fr": "Quel est votre statut ?",
+    "en": "What is your status?"
+   },
+   "help": null,
+   "options": [
+    {
+     "key": "permanent",
+     "exclusive": false,
+     "label": {
+      "fr": "Titulaire",
+      "en": "Permanent civil servant"
+     }
+    },
+    {
+     "key": "contract",
+     "exclusive": false,
+     "label": {
+      "fr": "Contractuel(le)",
+      "en": "Contract employee"
+     }
+    },
+    {
+     "key": "trainee",
+     "exclusive": false,
+     "label": {
+      "fr": "Stagiaire, apprenti(e) ou en formation",
+      "en": "Trainee, apprentice or in training"
+     }
+    },
+    {
+     "key": "unsure",
+     "exclusive": false,
+     "label": {
+      "fr": "Je ne sais pas",
+      "en": "I don't know"
+     }
+    }
+   ]
+  },
+  {
+   "key": "support",
+   "kind": "single",
+   "phase": "core",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": null,
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Avez-vous déjà un accompagnement ou une reconnaissance ?",
+    "en": "Do you already have support or official recognition?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "has_rqth",
+     "exclusive": false,
+     "label": {
+      "fr": "J'ai déjà une RQTH ou une autre reconnaissance officielle",
+      "en": "I already have an RQTH or another official recognition"
+     }
+    },
+    {
+     "key": "has_adjust",
+     "exclusive": false,
+     "label": {
+      "fr": "J'ai des aménagements, sans reconnaissance officielle",
+      "en": "I have adjustments, without official recognition"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": false,
+     "label": {
+      "fr": "Non, rien pour l'instant",
+      "en": "No, nothing for now"
+     }
+    },
+    {
+     "key": "unsure",
+     "exclusive": false,
+     "label": {
+      "fr": "Je ne sais pas",
+      "en": "I don't know"
+     }
+    }
+   ]
+  },
+  {
+   "key": "barriers",
+   "kind": "multiple",
+   "phase": "core",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": null,
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Qu'est-ce qui vous freine, ou pourrait vous freiner, pour faire cette démarche ?",
+    "en": "What holds you back, or could hold you back, from taking this step?"
+   },
+   "text_falc": {
+    "fr": "Qu'est-ce qui vous empêche de faire cette démarche ?",
+    "en": "What stops you from taking this step?"
+   },
+   "help": null,
+   "options": [
+    {
+     "key": "stigma",
+     "exclusive": false,
+     "label": {
+      "fr": "La peur du regard des autres",
+      "en": "Fear of other people's judgement"
+     }
+    },
+    {
+     "key": "employer",
+     "exclusive": false,
+     "label": {
+      "fr": "La crainte que mon école ou mon futur employeur soit au courant",
+      "en": "Fear that my school or my future employer would find out"
+     }
+    },
+    {
+     "key": "complexity",
+     "exclusive": false,
+     "label": {
+      "fr": "Les papiers me semblent compliqués",
+      "en": "The paperwork seems complicated"
+     }
+    },
+    {
+     "key": "who",
+     "exclusive": false,
+     "label": {
+      "fr": "Je ne sais pas à qui m'adresser",
+      "en": "I don't know who to talk to"
+     }
+    },
+    {
+     "key": "time",
+     "exclusive": false,
+     "label": {
+      "fr": "Je manque de temps",
+      "en": "I lack time"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": true,
+     "label": {
+      "fr": "Rien de particulier",
+      "en": "Nothing in particular"
+     }
+    }
+   ]
+  },
+  {
+   "key": "urgency",
+   "kind": "single",
+   "phase": "core",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": null,
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Avez-vous une échéance proche (stage, alternance, premier emploi, examens) ?",
+    "en": "Do you have a deadline coming up (internship, work-study, first job, exams)?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "none",
+     "exclusive": false,
+     "label": {
+      "fr": "Non",
+      "en": "No"
+     }
+    },
+    {
+     "key": "months",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui, dans les mois à venir",
+      "en": "Yes, in the coming months"
+     }
+    },
+    {
+     "key": "soon",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui, dans les 3 prochains mois",
+      "en": "Yes, within the next 3 months"
+     }
+    },
+    {
+     "key": "urgent",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui, c'est très proche",
+      "en": "Yes, it is very close"
+     }
+    }
+   ]
+  },
+  {
+   "key": "awareness",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": null,
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Que savez-vous de la RQTH ?",
+    "en": "What do you know about the RQTH?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "unknown",
+     "exclusive": false,
+     "label": {
+      "fr": "Je ne connais pas",
+      "en": "I don't know it"
+     }
+    },
+    {
+     "key": "partial",
+     "exclusive": false,
+     "label": {
+      "fr": "J'en ai entendu parler, mais ce n'est pas clair",
+      "en": "I have heard of it, but it is unclear"
+     }
+    },
+    {
+     "key": "good",
+     "exclusive": false,
+     "label": {
+      "fr": "Je sais à peu près de quoi il s'agit",
+      "en": "I roughly know what it is"
+     }
+    }
+   ]
+  },
+  {
+   "key": "pole_proof",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "all": [
+     {
+      "q": "pole",
+      "in": [
+       "no"
+      ]
+     },
+     {
+      "q": "pole_fit",
+      "hasAny": [
+       "exam_time",
+       "write_read",
+       "focus",
+       "noise_stress",
+       "fatigue_health",
+       "senses_mobility",
+       "instructions"
+      ]
+     }
+    ]
+   },
+   "stop_if": null,
+   "tracks": [
+    "pole"
+   ],
+   "text": {
+    "fr": "Avez-vous un document qui décrit votre situation (certificat médical, bilan, compte rendu) ?",
+    "en": "Do you have a document describing your situation (medical certificate, assessment, report)?"
+   },
+   "text_falc": null,
+   "help": {
+    "fr": "Le pôle vous expliquera lors du premier entretien quels justificatifs sont nécessaires. Vous n'avez rien à préparer à l'avance.",
+    "en": "The office will explain at the first meeting which documents are needed. You do not have to prepare anything in advance."
+   },
+   "options": [
+    {
+     "key": "yes",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui, j'en ai un ou plusieurs",
+      "en": "Yes, I have one or several"
+     }
+    },
+    {
+     "key": "no",
+     "exclusive": false,
+     "label": {
+      "fr": "Non, pas pour l'instant",
+      "en": "No, not for now"
+     }
+    },
+    {
+     "key": "unsure",
+     "exclusive": false,
+     "label": {
+      "fr": "Je ne sais pas quels documents sont utiles",
+      "en": "I do not know which documents are useful"
+     }
+    }
+   ]
+  },
+  {
+   "key": "pole_fear",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "pole",
+    "in": [
+     "no"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [
+    "pole"
+   ],
+   "text": {
+    "fr": "Qu'est-ce qui pourrait vous freiner pour contacter le pôle handicap ?",
+    "en": "What might hold you back from contacting the disability office?"
+   },
+   "text_falc": null,
+   "help": {
+    "fr": "Beaucoup d'étudiants se posent ces questions. Vos réponses restent dans votre navigateur.",
+    "en": "Many students wonder about this. Your answers stay in your browser."
+   },
+   "options": [
+    {
+     "key": "stigma",
+     "exclusive": false,
+     "label": {
+      "fr": "La peur d'être étiqueté(e) ou de passer pour quelqu'un de « différent »",
+      "en": "Fear of being labelled or seen as “different”"
+     }
+    },
+    {
+     "key": "privacy",
+     "exclusive": false,
+     "label": {
+      "fr": "Je ne sais pas qui sera au courant",
+      "en": "I do not know who would find out"
+     }
+    },
+    {
+     "key": "unknown",
+     "exclusive": false,
+     "label": {
+      "fr": "Je ne sais pas ce que fait le pôle",
+      "en": "I do not know what the office does"
+     }
+    },
+    {
+     "key": "time",
+     "exclusive": false,
+     "label": {
+      "fr": "Je n'ai pas le temps",
+      "en": "I do not have the time"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": true,
+     "label": {
+      "fr": "Rien de particulier",
+      "en": "Nothing in particular"
+     }
+    }
+   ]
+  },
+  {
+   "key": "energy_when",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "areas",
+    "hasAny": [
+     "energy"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Quand la fatigue ou les douleurs se font-elles le plus sentir ?",
+    "en": "When do tiredness or pain affect you most?"
+   },
+   "text_falc": {
+    "fr": "Quand êtes-vous le plus fatigué(e) ?",
+    "en": "When are you most tired?"
+   },
+   "help": null,
+   "options": [
+    {
+     "key": "morning",
+     "exclusive": false,
+     "label": {
+      "fr": "Le matin",
+      "en": "In the morning"
+     }
+    },
+    {
+     "key": "afternoon",
+     "exclusive": false,
+     "label": {
+      "fr": "L'après-midi",
+      "en": "In the afternoon"
+     }
+    },
+    {
+     "key": "evening",
+     "exclusive": false,
+     "label": {
+      "fr": "Le soir",
+      "en": "In the evening"
+     }
+    },
+    {
+     "key": "after_effort",
+     "exclusive": false,
+     "label": {
+      "fr": "Après un effort ou une longue journée",
+      "en": "After effort or a long day"
+     }
+    },
+    {
+     "key": "unpredictable",
+     "exclusive": false,
+     "label": {
+      "fr": "De façon imprévisible",
+      "en": "Unpredictably"
+     }
+    }
+   ]
+  },
+  {
+   "key": "energy_effects",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "areas",
+    "hasAny": [
+     "energy"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Qu'est-ce qui devient plus difficile ?",
+    "en": "What becomes harder?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "sitting",
+     "exclusive": false,
+     "label": {
+      "fr": "Rester assis(e) longtemps",
+      "en": "Sitting for a long time"
+     }
+    },
+    {
+     "key": "standing",
+     "exclusive": false,
+     "label": {
+      "fr": "Rester debout",
+      "en": "Standing"
+     }
+    },
+    {
+     "key": "carrying",
+     "exclusive": false,
+     "label": {
+      "fr": "Porter ou déplacer des charges",
+      "en": "Carrying or moving loads"
+     }
+    },
+    {
+     "key": "typing",
+     "exclusive": false,
+     "label": {
+      "fr": "Écrire ou taper au clavier",
+      "en": "Writing or typing"
+     }
+    },
+    {
+     "key": "concentrating",
+     "exclusive": false,
+     "label": {
+      "fr": "Rester concentré(e)",
+      "en": "Staying focused"
+     }
+    },
+    {
+     "key": "commuting",
+     "exclusive": false,
+     "label": {
+      "fr": "Les trajets",
+      "en": "Commuting"
+     }
+    }
+   ]
+  },
+  {
+   "key": "energy_rest",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "areas",
+    "hasAny": [
+     "energy"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Avez-vous besoin de pauses ou de repos pendant la journée ?",
+    "en": "Do you need breaks or rest during the day?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "rarely",
+     "exclusive": false,
+     "label": {
+      "fr": "Rarement",
+      "en": "Rarely"
+     }
+    },
+    {
+     "key": "sometimes",
+     "exclusive": false,
+     "label": {
+      "fr": "Parfois",
+      "en": "Sometimes"
+     }
+    },
+    {
+     "key": "often",
+     "exclusive": false,
+     "label": {
+      "fr": "Souvent",
+      "en": "Often"
+     }
+    },
+    {
+     "key": "planned",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui, de façon régulière et prévue",
+      "en": "Yes, on a regular, planned basis"
+     }
+    }
+   ]
+  },
+  {
+   "key": "attn_tasks",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "areas",
+    "hasAny": [
+     "attention"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Quelles tâches vous demandent plus de temps ou d'efforts ?",
+    "en": "Which tasks take you more time or effort?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "reading",
+     "exclusive": false,
+     "label": {
+      "fr": "Lire",
+      "en": "Reading"
+     }
+    },
+    {
+     "key": "writing",
+     "exclusive": false,
+     "label": {
+      "fr": "Écrire, rédiger",
+      "en": "Writing"
+     }
+    },
+    {
+     "key": "calculating",
+     "exclusive": false,
+     "label": {
+      "fr": "Calculer, manipuler des chiffres",
+      "en": "Calculating, working with numbers"
+     }
+    },
+    {
+     "key": "remembering",
+     "exclusive": false,
+     "label": {
+      "fr": "Retenir des consignes ou des informations",
+      "en": "Remembering instructions or information"
+     }
+    },
+    {
+     "key": "organizing",
+     "exclusive": false,
+     "label": {
+      "fr": "M'organiser, planifier",
+      "en": "Organising, planning"
+     }
+    },
+    {
+     "key": "listening",
+     "exclusive": false,
+     "label": {
+      "fr": "Suivre un cours ou une réunion à l'oral",
+      "en": "Following a class or meeting orally"
+     }
+    }
+   ]
+  },
+  {
+   "key": "attn_tools",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "areas",
+    "hasAny": [
+     "attention"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Quelles aides utilisez-vous déjà ?",
+    "en": "Which aids do you already use?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "extra_time",
+     "exclusive": false,
+     "label": {
+      "fr": "Du temps supplémentaire",
+      "en": "Extra time"
+     }
+    },
+    {
+     "key": "text_to_speech",
+     "exclusive": false,
+     "label": {
+      "fr": "Une synthèse vocale ou un logiciel de lecture",
+      "en": "Text-to-speech or reading software"
+     }
+    },
+    {
+     "key": "notes",
+     "exclusive": false,
+     "label": {
+      "fr": "Des notes ou consignes écrites",
+      "en": "Written notes or instructions"
+     }
+    },
+    {
+     "key": "planning",
+     "exclusive": false,
+     "label": {
+      "fr": "Des outils de planification ou de rappel",
+      "en": "Planning or reminder tools"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": true,
+     "label": {
+      "fr": "Aucune pour l'instant",
+      "en": "None for now"
+     }
+    }
+   ]
+  },
+  {
+   "key": "senses_which",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "areas",
+    "hasAny": [
+     "senses"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Qu'est-ce qui est concerné ?",
+    "en": "What is affected?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "vision",
+     "exclusive": false,
+     "label": {
+      "fr": "La vue",
+      "en": "Vision"
+     }
+    },
+    {
+     "key": "hearing",
+     "exclusive": false,
+     "label": {
+      "fr": "L'audition",
+      "en": "Hearing"
+     }
+    },
+    {
+     "key": "both",
+     "exclusive": false,
+     "label": {
+      "fr": "Les deux",
+      "en": "Both"
+     }
+    }
+   ]
+  },
+  {
+   "key": "senses_needs",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "areas",
+    "hasAny": [
+     "senses"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Quelles adaptations vous aideraient ?",
+    "en": "Which adjustments would help you?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "zoom",
+     "exclusive": false,
+     "label": {
+      "fr": "Agrandissement ou lecteur d'écran",
+      "en": "Magnification or a screen reader"
+     }
+    },
+    {
+     "key": "captions",
+     "exclusive": false,
+     "label": {
+      "fr": "Sous-titres ou boucle magnétique",
+      "en": "Captions or a hearing loop"
+     }
+    },
+    {
+     "key": "lighting",
+     "exclusive": false,
+     "label": {
+      "fr": "Éclairage, contraste, placement",
+      "en": "Lighting, contrast, seating position"
+     }
+    },
+    {
+     "key": "docs",
+     "exclusive": false,
+     "label": {
+      "fr": "Documents en grands caractères ou dans un format adapté",
+      "en": "Large-print or adapted-format documents"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": true,
+     "label": {
+      "fr": "Aucune pour l'instant",
+      "en": "None for now"
+     }
+    }
+   ]
+  },
+  {
+   "key": "mob_aspects",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "areas",
+    "hasAny": [
+     "mobility"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Qu'est-ce qui est le plus difficile dans vos déplacements et gestes ?",
+    "en": "What is hardest in your movements and gestures?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "walking",
+     "exclusive": false,
+     "label": {
+      "fr": "Marcher sur de longues distances",
+      "en": "Walking long distances"
+     }
+    },
+    {
+     "key": "stairs",
+     "exclusive": false,
+     "label": {
+      "fr": "Les escaliers",
+      "en": "Stairs"
+     }
+    },
+    {
+     "key": "hands",
+     "exclusive": false,
+     "label": {
+      "fr": "Les gestes fins ou la manipulation",
+      "en": "Fine movements or handling objects"
+     }
+    },
+    {
+     "key": "transport",
+     "exclusive": false,
+     "label": {
+      "fr": "Les transports",
+      "en": "Public transport"
+     }
+    },
+    {
+     "key": "standing",
+     "exclusive": false,
+     "label": {
+      "fr": "Rester debout",
+      "en": "Standing"
+     }
+    },
+    {
+     "key": "parking",
+     "exclusive": false,
+     "label": {
+      "fr": "Me garer ou accéder aux bâtiments",
+      "en": "Parking or getting into buildings"
+     }
+    }
+   ]
+  },
+  {
+   "key": "mob_access",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "areas",
+    "hasAny": [
+     "mobility"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Quels aménagements d'accès seraient utiles ?",
+    "en": "Which access adjustments would be useful?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "elevator",
+     "exclusive": false,
+     "label": {
+      "fr": "Un ascenseur ou des salles accessibles",
+      "en": "A lift or accessible rooms"
+     }
+    },
+    {
+     "key": "parking",
+     "exclusive": false,
+     "label": {
+      "fr": "Une place de stationnement adaptée",
+      "en": "A suitable parking space"
+     }
+    },
+    {
+     "key": "equipment",
+     "exclusive": false,
+     "label": {
+      "fr": "Du matériel ergonomique",
+      "en": "Ergonomic equipment"
+     }
+    },
+    {
+     "key": "remote",
+     "exclusive": false,
+     "label": {
+      "fr": "Du télétravail ou des cours à distance",
+      "en": "Remote work or remote classes"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": true,
+     "label": {
+      "fr": "Aucun pour l'instant",
+      "en": "None for now"
+     }
+    }
+   ]
+  },
+  {
+   "key": "psych_situations",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "areas",
+    "hasAny": [
+     "psych"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Quelles situations sont les plus éprouvantes ?",
+    "en": "Which situations are the most difficult?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "groups",
+     "exclusive": false,
+     "label": {
+      "fr": "Les situations de groupe ou d'oral",
+      "en": "Group or oral situations"
+     }
+    },
+    {
+     "key": "deadlines",
+     "exclusive": false,
+     "label": {
+      "fr": "La pression des délais",
+      "en": "Deadline pressure"
+     }
+    },
+    {
+     "key": "changes",
+     "exclusive": false,
+     "label": {
+      "fr": "Les changements imprévus",
+      "en": "Unexpected changes"
+     }
+    },
+    {
+     "key": "overload",
+     "exclusive": false,
+     "label": {
+      "fr": "Les périodes de surcharge",
+      "en": "Periods of overload"
+     }
+    },
+    {
+     "key": "noise",
+     "exclusive": false,
+     "label": {
+      "fr": "Le bruit ou l'agitation",
+      "en": "Noise or commotion"
+     }
+    }
+   ]
+  },
+  {
+   "key": "psych_support",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "areas",
+    "hasAny": [
+     "psych"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Avez-vous un soutien (proches, professionnels) ?",
+    "en": "Do you have support (people close to you, professionals)?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "yes",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui",
+      "en": "Yes"
+     }
+    },
+    {
+     "key": "partial",
+     "exclusive": false,
+     "label": {
+      "fr": "En partie",
+      "en": "Partly"
+     }
+    },
+    {
+     "key": "no",
+     "exclusive": false,
+     "label": {
+      "fr": "Non",
+      "en": "No"
+     }
+    },
+    {
+     "key": "prefer_not",
+     "exclusive": false,
+     "label": {
+      "fr": "Je préfère ne pas répondre",
+      "en": "I prefer not to answer"
+     }
+    }
+   ]
+  },
+  {
+   "key": "stability",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "not": {
+     "q": "duration",
+     "in": [
+      "none"
+     ]
+    }
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Ces difficultés varient-elles d'un jour à l'autre ?",
+    "en": "Do these difficulties vary from day to day?"
+   },
+   "text_falc": {
+    "fr": "Est-ce que c'est pareil tous les jours ?",
+    "en": "Is it the same every day?"
+   },
+   "help": null,
+   "options": [
+    {
+     "key": "stable",
+     "exclusive": false,
+     "label": {
+      "fr": "Non, elles sont assez stables",
+      "en": "No, they are fairly stable"
+     }
+    },
+    {
+     "key": "varies",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui, elles varient",
+      "en": "Yes, they vary"
+     }
+    },
+    {
+     "key": "flares",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui, par crises ou poussées",
+      "en": "Yes, in flare-ups or episodes"
+     }
+    }
+   ]
+  },
+  {
+   "key": "life_impact",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "all": [
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     },
+     {
+      "q": "frequency",
+      "in": [
+       "often",
+       "always"
+      ]
+     }
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Au-delà des études ou du travail, qu'est-ce qui est touché ?",
+    "en": "Beyond studies or work, what is affected?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "transport",
+     "exclusive": false,
+     "label": {
+      "fr": "Les déplacements",
+      "en": "Getting around"
+     }
+    },
+    {
+     "key": "household",
+     "exclusive": false,
+     "label": {
+      "fr": "Les tâches de la maison",
+      "en": "Household tasks"
+     }
+    },
+    {
+     "key": "social",
+     "exclusive": false,
+     "label": {
+      "fr": "La vie sociale",
+      "en": "Social life"
+     }
+    },
+    {
+     "key": "leisure",
+     "exclusive": false,
+     "label": {
+      "fr": "Les loisirs",
+      "en": "Leisure"
+     }
+    },
+    {
+     "key": "sleep",
+     "exclusive": false,
+     "label": {
+      "fr": "Le sommeil",
+      "en": "Sleep"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": true,
+     "label": {
+      "fr": "Rien d'autre",
+      "en": "Nothing else"
+     }
+    }
+   ]
+  },
+  {
+   "key": "followup",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "not": {
+     "q": "duration",
+     "in": [
+      "none"
+     ]
+    }
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Un professionnel de santé suit-il ou a-t-il suivi ces difficultés ?",
+    "en": "Has a health professional followed, or is following, these difficulties?"
+   },
+   "text_falc": {
+    "fr": "Un médecin vous suit-il pour cela ?",
+    "en": "Does a doctor follow you for this?"
+   },
+   "help": {
+    "fr": "Cette question sert seulement à adapter les conseils. Vous n'avez pas à détailler.",
+    "en": "This question only helps tailor the advice. You do not have to give details."
+   },
+   "options": [
+    {
+     "key": "regular",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui, j'ai un suivi régulier",
+      "en": "Yes, I have regular follow-up"
+     }
+    },
+    {
+     "key": "past",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui, par le passé",
+      "en": "Yes, in the past"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": false,
+     "label": {
+      "fr": "Non, pas de suivi",
+      "en": "No, no follow-up"
+     }
+    },
+    {
+     "key": "prefer_not",
+     "exclusive": false,
+     "label": {
+      "fr": "Je préfère ne pas répondre",
+      "en": "I prefer not to answer"
+     }
+    }
+   ]
+  },
+  {
+   "key": "st_year",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "profile",
+    "in": [
+     "student"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Où en êtes-vous dans votre cursus ?",
+    "en": "Where are you in your studies?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "early",
+     "exclusive": false,
+     "label": {
+      "fr": "Au début",
+      "en": "At the beginning"
+     }
+    },
+    {
+     "key": "mid",
+     "exclusive": false,
+     "label": {
+      "fr": "Au milieu",
+      "en": "In the middle"
+     }
+    },
+    {
+     "key": "final",
+     "exclusive": false,
+     "label": {
+      "fr": "En dernière année",
+      "en": "In my final year"
+     }
+    },
+    {
+     "key": "graduating",
+     "exclusive": false,
+     "label": {
+      "fr": "Je termine bientôt",
+      "en": "I am finishing soon"
+     }
+    }
+   ]
+  },
+  {
+   "key": "st_exam_detail",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "any": [
+     {
+      "q": "ctx_student",
+      "hasAny": [
+       "exams"
+      ]
+     },
+     {
+      "q": "pole_fit",
+      "hasAny": [
+       "exam_time",
+       "write_read",
+       "focus",
+       "noise_stress",
+       "fatigue_health",
+       "senses_mobility",
+       "instructions"
+      ]
+     }
+    ]
+   },
+   "stop_if": null,
+   "tracks": [
+    "pole"
+   ],
+   "text": {
+    "fr": "Quels aménagements d'examens vous aideraient ?",
+    "en": "Which exam adjustments would help you?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "extra_time",
+     "exclusive": false,
+     "label": {
+      "fr": "Du temps supplémentaire",
+      "en": "Extra time"
+     }
+    },
+    {
+     "key": "room",
+     "exclusive": false,
+     "label": {
+      "fr": "Une salle séparée ou calme",
+      "en": "A separate or quiet room"
+     }
+    },
+    {
+     "key": "computer",
+     "exclusive": false,
+     "label": {
+      "fr": "Un ordinateur pour écrire",
+      "en": "A computer to write on"
+     }
+    },
+    {
+     "key": "breaks",
+     "exclusive": false,
+     "label": {
+      "fr": "Des pauses",
+      "en": "Breaks"
+     }
+    },
+    {
+     "key": "docs",
+     "exclusive": false,
+     "label": {
+      "fr": "Des sujets dans un format adapté",
+      "en": "Papers in an adapted format"
+     }
+    },
+    {
+     "key": "oral",
+     "exclusive": false,
+     "label": {
+      "fr": "Une alternative à l'oral",
+      "en": "An alternative to oral exams"
+     }
+    },
+    {
+     "key": "software",
+     "exclusive": false,
+     "label": {
+      "fr": "Un logiciel adapté (dictée vocale, correcteur, lecture à voix haute)",
+      "en": "Adapted software (voice dictation, spell checker, text-to-speech)"
+     }
+    },
+    {
+     "key": "rephrase",
+     "exclusive": false,
+     "label": {
+      "fr": "Une reformulation des consignes",
+      "en": "Instructions rephrased"
+     }
+    },
+    {
+     "key": "placement",
+     "exclusive": false,
+     "label": {
+      "fr": "Une place précise dans la salle (près de la porte, à l'écart…)",
+      "en": "A specific seat in the room (near the door, apart…)"
+     }
+    }
+   ]
+  },
+  {
+   "key": "st_work_detail",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "ctx_student",
+    "hasAny": [
+     "work"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "En stage ou en alternance, qu'est-ce qui pose question ?",
+    "en": "In an internship or work-study, what raises questions?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "schedule",
+     "exclusive": false,
+     "label": {
+      "fr": "Les horaires",
+      "en": "Working hours"
+     }
+    },
+    {
+     "key": "commute",
+     "exclusive": false,
+     "label": {
+      "fr": "Les trajets",
+      "en": "Commuting"
+     }
+    },
+    {
+     "key": "workstation",
+     "exclusive": false,
+     "label": {
+      "fr": "Le poste de travail",
+      "en": "The workstation"
+     }
+    },
+    {
+     "key": "disclosure",
+     "exclusive": false,
+     "label": {
+      "fr": "Faut-il en parler à l'entreprise ?",
+      "en": "Whether to tell the company"
+     }
+    },
+    {
+     "key": "tools",
+     "exclusive": false,
+     "label": {
+      "fr": "Du matériel ou un logiciel adapté",
+      "en": "Adapted equipment or software"
+     }
+    },
+    {
+     "key": "remote",
+     "exclusive": false,
+     "label": {
+      "fr": "Du télétravail ou des jours à distance",
+      "en": "Remote work or days working remotely"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": true,
+     "label": {
+      "fr": "Rien de particulier",
+      "en": "Nothing in particular"
+     }
+    }
+   ]
+  },
+  {
+   "key": "st_contact",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "all": [
+     {
+      "q": "profile",
+      "in": [
+       "student"
+      ]
+     },
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     },
+     {
+      "not": {
+       "q": "pole",
+       "in": [
+        "yes"
+       ]
+      }
+     }
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Avez-vous déjà contacté le pôle handicap ou la scolarité à ce sujet ?",
+    "en": "Have you already contacted the disability office or administration about this?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "yes",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui",
+      "en": "Yes"
+     }
+    },
+    {
+     "key": "no",
+     "exclusive": false,
+     "label": {
+      "fr": "Non",
+      "en": "No"
+     }
+    },
+    {
+     "key": "unsure",
+     "exclusive": false,
+     "label": {
+      "fr": "Je ne sais pas à qui m'adresser",
+      "en": "I don't know who to contact"
+     }
+    }
+   ]
+  },
+  {
+   "key": "emp_manager",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "all": [
+     {
+      "q": "profile",
+      "in": [
+       "employee"
+      ]
+     },
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     }
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Votre manager ou les ressources humaines sont-ils au courant de vos difficultés ?",
+    "en": "Are your manager or HR aware of your difficulties?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "yes",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui",
+      "en": "Yes"
+     }
+    },
+    {
+     "key": "partly",
+     "exclusive": false,
+     "label": {
+      "fr": "En partie",
+      "en": "Partly"
+     }
+    },
+    {
+     "key": "no",
+     "exclusive": false,
+     "label": {
+      "fr": "Non",
+      "en": "No"
+     }
+    },
+    {
+     "key": "prefer_not",
+     "exclusive": false,
+     "label": {
+      "fr": "Je préfère ne pas répondre",
+      "en": "I prefer not to answer"
+     }
+    }
+   ]
+  },
+  {
+   "key": "emp_workstation",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "all": [
+     {
+      "q": "profile",
+      "in": [
+       "employee"
+      ]
+     },
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     }
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Qu'est-ce qui pose le plus de difficulté dans votre travail ?",
+    "en": "What causes the most difficulty in your work?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "seat",
+     "exclusive": false,
+     "label": {
+      "fr": "Le siège ou le bureau",
+      "en": "The chair or desk"
+     }
+    },
+    {
+     "key": "screen",
+     "exclusive": false,
+     "label": {
+      "fr": "L'écran ou l'éclairage",
+      "en": "The screen or lighting"
+     }
+    },
+    {
+     "key": "noise",
+     "exclusive": false,
+     "label": {
+      "fr": "Le bruit",
+      "en": "Noise"
+     }
+    },
+    {
+     "key": "schedule",
+     "exclusive": false,
+     "label": {
+      "fr": "Les horaires",
+      "en": "Working hours"
+     }
+    },
+    {
+     "key": "travel",
+     "exclusive": false,
+     "label": {
+      "fr": "Les déplacements",
+      "en": "Travel"
+     }
+    },
+    {
+     "key": "pace",
+     "exclusive": false,
+     "label": {
+      "fr": "Le rythme ou la charge",
+      "en": "Pace or workload"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": true,
+     "label": {
+      "fr": "Rien de particulier",
+      "en": "Nothing in particular"
+     }
+    }
+   ]
+  },
+  {
+   "key": "emp_occ",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "all": [
+     {
+      "q": "profile",
+      "in": [
+       "employee"
+      ]
+     },
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     }
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Avez-vous vu le médecin du travail récemment ?",
+    "en": "Have you seen the occupational physician recently?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "recent",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui, récemment",
+      "en": "Yes, recently"
+     }
+    },
+    {
+     "key": "long_ago",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui, il y a longtemps",
+      "en": "Yes, a long time ago"
+     }
+    },
+    {
+     "key": "never",
+     "exclusive": false,
+     "label": {
+      "fr": "Non, jamais",
+      "en": "No, never"
+     }
+    },
+    {
+     "key": "unsure",
+     "exclusive": false,
+     "label": {
+      "fr": "Je ne sais pas",
+      "en": "I don't know"
+     }
+    }
+   ]
+  },
+  {
+   "key": "emp_leave",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "all": [
+     {
+      "q": "profile",
+      "in": [
+       "employee"
+      ]
+     },
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     }
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Avez-vous eu des arrêts de travail liés à ces difficultés au cours de l'année ?",
+    "en": "Have you had sick leave linked to these difficulties this year?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "none",
+     "exclusive": false,
+     "label": {
+      "fr": "Non",
+      "en": "No"
+     }
+    },
+    {
+     "key": "once",
+     "exclusive": false,
+     "label": {
+      "fr": "Une fois",
+      "en": "Once"
+     }
+    },
+    {
+     "key": "several",
+     "exclusive": false,
+     "label": {
+      "fr": "Plusieurs fois",
+      "en": "Several times"
+     }
+    },
+    {
+     "key": "prefer_not",
+     "exclusive": false,
+     "label": {
+      "fr": "Je préfère ne pas répondre",
+      "en": "I prefer not to answer"
+     }
+    }
+   ]
+  },
+  {
+   "key": "js_obstacles",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "all": [
+     {
+      "q": "profile",
+      "in": [
+       "jobseeker"
+      ]
+     },
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     }
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Qu'est-ce qui complique votre recherche d'emploi ?",
+    "en": "What makes your job search harder?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "interviews",
+     "exclusive": false,
+     "label": {
+      "fr": "Les entretiens",
+      "en": "Interviews"
+     }
+    },
+    {
+     "key": "tests",
+     "exclusive": false,
+     "label": {
+      "fr": "Les tests ou entretiens en ligne",
+      "en": "Tests or online interviews"
+     }
+    },
+    {
+     "key": "transport",
+     "exclusive": false,
+     "label": {
+      "fr": "Les trajets",
+      "en": "Commuting"
+     }
+    },
+    {
+     "key": "long_days",
+     "exclusive": false,
+     "label": {
+      "fr": "Les journées longues",
+      "en": "Long working days"
+     }
+    },
+    {
+     "key": "tools",
+     "exclusive": false,
+     "label": {
+      "fr": "Les outils numériques",
+      "en": "Digital tools"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": true,
+     "label": {
+      "fr": "Rien de particulier",
+      "en": "Nothing in particular"
+     }
+    }
+   ]
+  },
+  {
+   "key": "js_training",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "profile",
+    "in": [
+     "jobseeker"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Envisagez-vous une formation ou une reconversion ?",
+    "en": "Are you considering training or a career change?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "yes",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui",
+      "en": "Yes"
+     }
+    },
+    {
+     "key": "maybe",
+     "exclusive": false,
+     "label": {
+      "fr": "Peut-être",
+      "en": "Maybe"
+     }
+    },
+    {
+     "key": "no",
+     "exclusive": false,
+     "label": {
+      "fr": "Non",
+      "en": "No"
+     }
+    }
+   ]
+  },
+  {
+   "key": "js_support",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "profile",
+    "in": [
+     "jobseeker"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Êtes-vous accompagné(e) par France Travail, Cap emploi ou une autre structure ?",
+    "en": "Are you supported by France Travail, Cap emploi or another organisation?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "yes",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui",
+      "en": "Yes"
+     }
+    },
+    {
+     "key": "no",
+     "exclusive": false,
+     "label": {
+      "fr": "Non",
+      "en": "No"
+     }
+    },
+    {
+     "key": "unsure",
+     "exclusive": false,
+     "label": {
+      "fr": "Je ne sais pas",
+      "en": "I don't know"
+     }
+    }
+   ]
+  },
+  {
+   "key": "pub_prevention",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "all": [
+     {
+      "q": "profile",
+      "in": [
+       "public_agent"
+      ]
+     },
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     }
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Avez-vous vu le médecin de prévention de votre administration ?",
+    "en": "Have you seen your administration's prevention physician?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "yes",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui",
+      "en": "Yes"
+     }
+    },
+    {
+     "key": "no",
+     "exclusive": false,
+     "label": {
+      "fr": "Non",
+      "en": "No"
+     }
+    },
+    {
+     "key": "unsure",
+     "exclusive": false,
+     "label": {
+      "fr": "Je ne sais pas",
+      "en": "I don't know"
+     }
+    }
+   ]
+  },
+  {
+   "key": "pub_referent",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "profile",
+    "in": [
+     "public_agent"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Savez-vous qui est le référent handicap de votre administration ?",
+    "en": "Do you know who the disability officer in your administration is?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "yes",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui",
+      "en": "Yes"
+     }
+    },
+    {
+     "key": "no",
+     "exclusive": false,
+     "label": {
+      "fr": "Non",
+      "en": "No"
+     }
+    }
+   ]
+  },
+  {
+   "key": "pub_mobility",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "profile",
+    "in": [
+     "public_agent"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Un changement de poste ou de service est-il envisagé ?",
+    "en": "Is a change of post or department planned?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "yes",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui",
+      "en": "Yes"
+     }
+    },
+    {
+     "key": "maybe",
+     "exclusive": false,
+     "label": {
+      "fr": "Peut-être",
+      "en": "Maybe"
+     }
+    },
+    {
+     "key": "no",
+     "exclusive": false,
+     "label": {
+      "fr": "Non",
+      "en": "No"
+     }
+    }
+   ]
+  },
+  {
+   "key": "goals",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "not": {
+     "q": "duration",
+     "in": [
+      "none"
+     ]
+    }
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Qu'attendez-vous d'une démarche ?",
+    "en": "What do you expect from taking this step?"
+   },
+   "text_falc": {
+    "fr": "Qu'est-ce que vous espérez ?",
+    "en": "What do you hope for?"
+   },
+   "help": null,
+   "options": [
+    {
+     "key": "keep_job",
+     "exclusive": false,
+     "label": {
+      "fr": "Réussir mon stage, mon alternance ou mon entrée dans l'emploi",
+      "en": "Succeed in my internship, work-study or entry into employment"
+     }
+    },
+    {
+     "key": "adapt",
+     "exclusive": false,
+     "label": {
+      "fr": "Adapter mes conditions de stage, d'alternance, de poste ou d'études",
+      "en": "Adapt my internship, work-study, job or study conditions"
+     }
+    },
+    {
+     "key": "secure",
+     "exclusive": false,
+     "label": {
+      "fr": "Sécuriser mes aménagements dans la durée",
+      "en": "Secure my adjustments over time"
+     }
+    },
+    {
+     "key": "funding",
+     "exclusive": false,
+     "label": {
+      "fr": "Accéder à des aides financières",
+      "en": "Access financial support"
+     }
+    },
+    {
+     "key": "training",
+     "exclusive": false,
+     "label": {
+      "fr": "Poursuivre ma formation ou préparer la suite",
+      "en": "Continue my training or prepare what comes next"
+     }
+    },
+    {
+     "key": "info_only",
+     "exclusive": false,
+     "label": {
+      "fr": "Seulement m'informer",
+      "en": "Only get information"
+     }
+    }
+   ]
+  },
+  {
+   "key": "pref_contact",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": null,
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Comment préférez-vous être accompagné(e) ?",
+    "en": "How do you prefer to be supported?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "in_person",
+     "exclusive": false,
+     "label": {
+      "fr": "En personne",
+      "en": "In person"
+     }
+    },
+    {
+     "key": "phone",
+     "exclusive": false,
+     "label": {
+      "fr": "Par téléphone",
+      "en": "By phone"
+     }
+    },
+    {
+     "key": "video",
+     "exclusive": false,
+     "label": {
+      "fr": "En visioconférence",
+      "en": "By video call"
+     }
+    },
+    {
+     "key": "written",
+     "exclusive": false,
+     "label": {
+      "fr": "Par écrit (e-mail, documents)",
+      "en": "In writing (email, documents)"
+     }
+    }
+   ]
+  },
+  {
+   "key": "time_available",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "not": {
+     "q": "duration",
+     "in": [
+      "none"
+     ]
+    }
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Combien de temps pouvez-vous consacrer à la démarche ?",
+    "en": "How much time can you give to the process?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "little",
+     "exclusive": false,
+     "label": {
+      "fr": "Très peu",
+      "en": "Very little"
+     }
+    },
+    {
+     "key": "some",
+     "exclusive": false,
+     "label": {
+      "fr": "Une heure ou deux par semaine",
+      "en": "An hour or two a week"
+     }
+    },
+    {
+     "key": "plenty",
+     "exclusive": false,
+     "label": {
+      "fr": "Autant que nécessaire",
+      "en": "As much as needed"
+     }
+    }
+   ]
+  },
+  {
+   "key": "helper",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "not": {
+     "q": "duration",
+     "in": [
+      "none"
+     ]
+    }
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Quelqu'un peut-il vous aider dans la démarche ?",
+    "en": "Can someone help you with the process?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "yes",
+     "exclusive": false,
+     "label": {
+      "fr": "Oui",
+      "en": "Yes"
+     }
+    },
+    {
+     "key": "no",
+     "exclusive": false,
+     "label": {
+      "fr": "Non",
+      "en": "No"
+     }
+    },
+    {
+     "key": "would_like",
+     "exclusive": false,
+     "label": {
+      "fr": "Non, mais j'aimerais",
+      "en": "No, but I would like that"
+     }
+    }
+   ]
+  },
+  {
+   "key": "sup_goal",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "for_whom",
+    "in": [
+     "relative",
+     "colleague",
+     "pro"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Que souhaitez-vous faire ?",
+    "en": "What would you like to do?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "understand",
+     "exclusive": false,
+     "label": {
+      "fr": "Comprendre la démarche",
+      "en": "Understand the process"
+     }
+    },
+    {
+     "key": "orient",
+     "exclusive": false,
+     "label": {
+      "fr": "Orienter la personne",
+      "en": "Point the person in the right direction"
+     }
+    },
+    {
+     "key": "set_up",
+     "exclusive": false,
+     "label": {
+      "fr": "Mettre en place des aménagements",
+      "en": "Put adjustments in place"
+     }
+    },
+    {
+     "key": "raise",
+     "exclusive": false,
+     "label": {
+      "fr": "Sensibiliser mon entourage ou mon équipe",
+      "en": "Raise awareness around me or in my team"
+     }
+    },
+    {
+     "key": "talk",
+     "exclusive": false,
+     "label": {
+      "fr": "En parler avec la personne",
+      "en": "Talk about it with the person"
+     }
+    }
+   ]
+  },
+  {
+   "key": "sup_worry",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "for_whom",
+    "in": [
+     "relative",
+     "colleague",
+     "pro"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Qu'est-ce qui vous inquiète dans l'accompagnement ?",
+    "en": "What worries you about supporting someone?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "confidentiality",
+     "exclusive": false,
+     "label": {
+      "fr": "Respecter la confidentialité",
+      "en": "Respecting confidentiality"
+     }
+    },
+    {
+     "key": "words",
+     "exclusive": false,
+     "label": {
+      "fr": "Savoir comment en parler",
+      "en": "Knowing how to talk about it"
+     }
+    },
+    {
+     "key": "legal",
+     "exclusive": false,
+     "label": {
+      "fr": "Les aspects juridiques",
+      "en": "Legal aspects"
+     }
+    },
+    {
+     "key": "time",
+     "exclusive": false,
+     "label": {
+      "fr": "Le manque de temps",
+      "en": "Lack of time"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": true,
+     "label": {
+      "fr": "Rien de particulier",
+      "en": "Nothing in particular"
+     }
+    }
+   ]
+  },
+  {
+   "key": "prev_interest",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "all": [
+     {
+      "q": "duration",
+      "in": [
+       "none"
+      ]
+     },
+     {
+      "q": "for_whom",
+      "in": [
+       "self"
+      ]
+     }
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Qu'aimeriez-vous faire avec ces informations ?",
+    "en": "What would you like to do with this information?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "be_ready",
+     "exclusive": false,
+     "label": {
+      "fr": "Être prêt(e) si ma situation change",
+      "en": "Be ready if my situation changes"
+     }
+    },
+    {
+     "key": "share",
+     "exclusive": false,
+     "label": {
+      "fr": "En parler autour de moi",
+      "en": "Talk about it with people around me"
+     }
+    },
+    {
+     "key": "later",
+     "exclusive": false,
+     "label": {
+      "fr": "Y revenir plus tard",
+      "en": "Come back to it later"
+     }
+    },
+    {
+     "key": "nothing",
+     "exclusive": false,
+     "label": {
+      "fr": "Rien de particulier",
+      "en": "Nothing in particular"
+     }
+    }
+   ]
+  },
+  {
+   "key": "st_next",
+   "kind": "single",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "q": "profile",
+    "in": [
+     "student"
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Après l'école, qu'est-ce qui est prévu pour vous ?",
+    "en": "What is planned for you after school?"
+   },
+   "text_falc": null,
+   "help": null,
+   "options": [
+    {
+     "key": "internship",
+     "exclusive": false,
+     "label": {
+      "fr": "Un stage",
+      "en": "An internship"
+     }
+    },
+    {
+     "key": "alternance",
+     "exclusive": false,
+     "label": {
+      "fr": "Une alternance",
+      "en": "A work-study contract"
+     }
+    },
+    {
+     "key": "first_job",
+     "exclusive": false,
+     "label": {
+      "fr": "Un premier emploi",
+      "en": "A first job"
+     }
+    },
+    {
+     "key": "studies",
+     "exclusive": false,
+     "label": {
+      "fr": "Une poursuite d'études",
+      "en": "Further studies"
+     }
+    },
+    {
+     "key": "unsure",
+     "exclusive": false,
+     "label": {
+      "fr": "Je ne sais pas encore",
+      "en": "I don't know yet"
+     }
+    }
+   ]
+  },
+  {
+   "key": "recruit",
+   "kind": "multiple",
+   "phase": "deep",
+   "step": null,
+   "required": false,
+   "hidden": false,
+   "auto_answer": null,
+   "show_if": {
+    "all": [
+     {
+      "q": "profile",
+      "in": [
+       "student"
+      ]
+     },
+     {
+      "not": {
+       "q": "duration",
+       "in": [
+        "none"
+       ]
+      }
+     }
+    ]
+   },
+   "stop_if": null,
+   "tracks": [],
+   "text": {
+    "fr": "Dans votre recherche de stage ou d'emploi, qu'est-ce qui vous inquiète ?",
+    "en": "In your search for an internship or a job, what worries you?"
+   },
+   "text_falc": {
+    "fr": "Pour trouver un stage ou un emploi, qu'est-ce qui vous inquiète ?",
+    "en": "To find an internship or a job, what worries you?"
+   },
+   "help": {
+    "fr": "Plusieurs réponses possibles.",
+    "en": "You can choose several answers."
+   },
+   "options": [
+    {
+     "key": "tests",
+     "exclusive": false,
+     "label": {
+      "fr": "Les tests en ligne, souvent chronométrés",
+      "en": "Online tests, often timed"
+     }
+    },
+    {
+     "key": "interview",
+     "exclusive": false,
+     "label": {
+      "fr": "Les entretiens (oral, stress, durée)",
+      "en": "Interviews (speaking, stress, length)"
+     }
+    },
+    {
+     "key": "cv",
+     "exclusive": false,
+     "label": {
+      "fr": "Ce qu'il faut mettre ou non sur mon CV",
+      "en": "What to put on my CV, or not"
+     }
+    },
+    {
+     "key": "open_space",
+     "exclusive": false,
+     "label": {
+      "fr": "Les conditions de travail (bruit, open-space, horaires)",
+      "en": "Working conditions (noise, open space, hours)"
+     }
+    },
+    {
+     "key": "commute",
+     "exclusive": false,
+     "label": {
+      "fr": "Les trajets et le télétravail",
+      "en": "Commuting and remote work"
+     }
+    },
+    {
+     "key": "none",
+     "exclusive": true,
+     "label": {
+      "fr": "Rien de particulier",
+      "en": "Nothing in particular"
+     }
+    }
+   ]
+  }
+ ],
+ "levels": [
+  {
+   "key": "explore",
+   "min_score": 0,
+   "icon": "book",
+   "title": {
+    "fr": "Pour l'instant, vous pouvez vous informer à votre rythme",
+    "en": "For now, you can look into this at your own pace"
+   },
+   "body": {
+    "fr": "D'après vos réponses, rien n'indique un besoin pressant. Cela ne veut pas dire que votre situation est sans importance : consultez les informations ci-dessous, et parlez-en à un interlocuteur de confiance si vous avez un doute.",
+    "en": "Based on your answers, nothing points to an urgent need. That does not mean your situation does not matter: read the information below, and talk to someone you trust if you have doubts."
+   },
+   "body_falc": {
+    "fr": "D'après vos réponses, il n'y a pas d'urgence. Vous pouvez lire les informations. Si vous avez un doute, parlez-en à quelqu'un de confiance.",
+    "en": "From your answers, there is no emergency. You can read the information. If you have doubts, talk to someone you trust."
+   }
+  },
+  {
+   "key": "talk",
+   "min_score": 3,
+   "icon": "chat",
+   "title": {
+    "fr": "Il peut être utile d'en parler à un interlocuteur",
+    "en": "It may be useful to talk to a contact person"
+   },
+   "body": {
+    "fr": "Vos réponses montrent que votre santé peut avoir des effets sur vos études ou votre travail. Il peut être utile d'en parler à l'un des interlocuteurs ci-dessous. Il pourra vous aider à voir si une démarche de reconnaissance, comme la RQTH, a du sens pour vous.",
+    "en": "Your answers suggest your health may affect your studies or work. It may be useful to talk to one of the contacts below. They can help you see whether applying for recognition, such as the RQTH, makes sense for you."
+   },
+   "body_falc": {
+    "fr": "Votre santé peut avoir des effets sur vos études ou votre travail. Il peut être utile d'en parler à quelqu'un de la liste ci-dessous. Cette personne vous aidera à voir si la RQTH peut vous aider.",
+    "en": "Your health may affect your studies or work. It may help to talk to someone in the list below. They can help you see if the RQTH could help you."
+   }
+  },
+  {
+   "key": "talk_soon",
+   "min_score": 6,
+   "icon": "clock",
+   "title": {
+    "fr": "Un échange rapide avec un interlocuteur est conseillé",
+    "en": "A quick conversation with a contact person is recommended"
+   },
+   "body": {
+    "fr": "Vos réponses montrent des effets importants ou répétés sur votre quotidien. Il peut être utile d'en parler assez vite à l'un des interlocuteurs ci-dessous. Seule la MDPH peut décider d'une reconnaissance, mais ces personnes peuvent vous aider à préparer votre démarche.",
+    "en": "Your answers show significant or repeated effects on your daily life. It may be useful to talk fairly soon to one of the contacts below. Only the MDPH can decide on recognition, but these people can help you prepare your application."
+   },
+   "body_falc": {
+    "fr": "Votre santé a des effets importants sur votre quotidien. Il peut être utile d'en parler assez vite à quelqu'un de la liste ci-dessous. Seule la MDPH décide de la RQTH. Ces personnes peuvent vous aider à préparer la demande.",
+    "en": "Your health has big effects on your daily life. It may help to talk fairly soon to someone in the list below. Only the MDPH decides on the RQTH. These people can help you prepare the application."
+   }
+  },
+  {
+   "key": "already",
+   "min_score": null,
+   "icon": "badge",
+   "title": {
+    "fr": "Vous indiquez avoir déjà une reconnaissance",
+    "en": "You say you already have recognition"
+   },
+   "body": {
+    "fr": "Vous avez déjà fait une partie du chemin. Les ressources ci-dessous peuvent vous aider à faire valoir votre reconnaissance (aménagements, aides) ou à anticiper son renouvellement.",
+    "en": "You have already covered part of the way. The resources below can help you make use of your recognition (adjustments, support) or plan its renewal."
+   },
+   "body_falc": {
+    "fr": "Vous avez déjà une reconnaissance. Les liens ci-dessous vous aident à l'utiliser et à la renouveler.",
+    "en": "You already have recognition. The links below help you use it and renew it."
+   }
+  }
+ ],
+ "flags": [
+  {
+   "key": "urgent",
+   "text": {
+    "fr": "Vous avez une échéance proche. Les délais de traitement d'un dossier peuvent être longs : si vous souhaitez agir, mieux vaut demander conseil dès maintenant.",
+    "en": "You have a deadline coming up. Processing times for an application can be long: if you want to act, it is better to ask for advice now."
+   }
+  },
+  {
+   "key": "psych_support_none",
+   "text": {
+    "fr": "Vous n'avez pas de soutien identifié : un professionnel de santé, le service de santé étudiante ou le médecin du travail peut être un premier contact. En cas de détresse, ne restez pas seul(e) : en France, le 3114 est joignable 24 h/24.",
+    "en": "You have no identified support: a health professional, the student health service or the occupational physician can be a first contact. If you are in distress, do not stay alone: in France, 3114 is available 24/7."
+   }
+  },
+  {
+   "key": "already_rqth",
+   "text": {
+    "fr": "Pensez à vérifier la date de fin de validité de votre reconnaissance et à anticiper son renouvellement auprès de la MDPH.",
+    "en": "Remember to check the end date of your recognition and plan its renewal with the MDPH."
+   }
+  },
+  {
+   "key": "see_doctor",
+   "text": {
+    "fr": "Un médecin remplit le certificat médical de la demande. Si vous n'avez pas de suivi, un médecin généraliste, le service de santé étudiante ou le médecin du travail peut être un premier contact.",
+    "en": "A doctor fills in the medical certificate for the application. If you have no follow-up, a general practitioner, the student health service or the occupational physician can be a first contact."
+   }
+  },
+  {
+   "key": "no_support",
+   "text": {
+    "fr": "Vous n'êtes pas encore accompagné(e). Un premier contact avec l'un des interlocuteurs ci-dessous est un bon point de départ.",
+    "en": "You are not yet supported. A first contact with one of the contacts below is a good starting point."
+   }
+  },
+  {
+   "key": "informal_adjust",
+   "text": {
+    "fr": "Vous avez des aménagements sans cadre officiel. Une reconnaissance peut permettre de les sécuriser dans la durée : un interlocuteur peut vous dire si c'est adapté à votre cas.",
+    "en": "You have adjustments with no official framework. Recognition can help secure them over time: a contact person can tell you whether it suits your case."
+   }
+  },
+  {
+   "key": "student_exam",
+   "text": {
+    "fr": "Pour les examens : la mission handicap de l'école peut vous expliquer quels aménagements existent et dans quels délais les demander. Anticipez avant la période d'examens.",
+    "en": "For exams: your institution's disability office can explain which adjustments exist and how far ahead to ask. Plan before the exam period."
+   }
+  },
+  {
+   "key": "student_work",
+   "text": {
+    "fr": "Pour un stage ou une alternance : l'entreprise d'accueil peut avoir un référent handicap. Vous choisissez ce que vous partagez, et à quel moment.",
+    "en": "For an internship or work-study: the host company may have a disability officer. You choose what you share, and when."
+   }
+  },
+  {
+   "key": "shift_work",
+   "text": {
+    "fr": "Vos horaires sont décalés : le médecin du travail peut recommander des adaptations d'horaires ou de rythme.",
+    "en": "Your hours are irregular: the occupational physician can recommend adjustments to hours or pace."
+   }
+  },
+  {
+   "key": "long_search",
+   "text": {
+    "fr": "Votre recherche dure depuis longtemps : France Travail et Cap emploi proposent des accompagnements spécialisés.",
+    "en": "Your job search has lasted a long time: France Travail and Cap emploi offer specialised support."
+   }
+  },
+  {
+   "key": "public_status",
+   "text": {
+    "fr": "Les règles peuvent différer selon votre statut. Le référent handicap ou le médecin de prévention pourra vous préciser ce qui s'applique.",
+    "en": "Rules may differ depending on your status. The disability officer or prevention physician can tell you what applies."
+   }
+  },
+  {
+   "key": "emp_unaware",
+   "text": {
+    "fr": "Votre manager n'est pas informé : vous n'y êtes pas obligé(e) pour vous renseigner. Le médecin du travail est tenu au secret médical.",
+    "en": "Your manager is not aware: you do not have to tell them in order to find out more. The occupational physician is bound by medical confidentiality."
+   }
+  },
+  {
+   "key": "emp_leave",
+   "text": {
+    "fr": "Des arrêts de travail liés à ces difficultés : un échange avec le médecin du travail peut permettre d'envisager des aménagements pour en limiter le nombre.",
+    "en": "Sick leave linked to these difficulties: talking to the occupational physician may allow adjustments to be considered to reduce it."
+   }
+  },
+  {
+   "key": "life_sleep",
+   "text": {
+    "fr": "Si votre sommeil est perturbé, c'est un point à évoquer avec un médecin.",
+    "en": "If your sleep is disturbed, this is something to raise with a doctor."
+   }
+  },
+  {
+   "key": "for_relative",
+   "text": {
+    "fr": "La démarche reste personnelle : seule la personne concernée peut la demander. Vous pouvez l'aider, sans décider à sa place.",
+    "en": "The process is personal: only the person concerned can apply. You can help, without deciding for them."
+   }
+  },
+  {
+   "key": "for_support",
+   "text": {
+    "fr": "Vous vous renseignez pour accompagner quelqu'un : respectez sa confidentialité et son choix de partager, ou non.",
+    "en": "You are looking into this to support someone: respect their confidentiality and their choice to share, or not."
+   }
+  },
+  {
+   "key": "sup_confidentiality",
+   "text": {
+    "fr": "Ne partagez rien sur la santé d'une personne sans son accord.",
+    "en": "Do not share anything about a person's health without their agreement."
+   }
+  },
+  {
+   "key": "goal_info_only",
+   "text": {
+    "fr": "Vous souhaitez seulement vous informer : le kit documentaire suffit pour commencer ; rien ne vous oblige à aller plus loin.",
+    "en": "You only want to get information: the resource kit is enough to start; nothing obliges you to go further."
+   }
+  },
+  {
+   "key": "needs_info",
+   "text": {
+    "fr": "Vous connaissez peu la RQTH. Le kit documentaire explique la démarche étape par étape.",
+    "en": "You know little about the RQTH. The resource kit explains the process step by step."
+   }
+  },
+  {
+   "key": "employer",
+   "text": {
+    "fr": "La demande de RQTH est une démarche personnelle : vous n'avez pas à en informer votre employeur ou votre école pour vous renseigner ou la demander.",
+    "en": "Applying for the RQTH is a personal step: you do not have to tell your employer or school in order to find out more or to apply."
+   }
+  },
+  {
+   "key": "stigma",
+   "text": {
+    "fr": "La peur du regard des autres est fréquente. La démarche est personnelle et volontaire. Un interlocuteur de confiance peut vous expliquer ce qui est partagé, avec qui, et ce qui reste confidentiel.",
+    "en": "Fear of other people's judgement is common. The process is personal and voluntary. A trusted contact can explain what is shared, with whom, and what stays confidential."
+   }
+  },
+  {
+   "key": "complexity",
+   "text": {
+    "fr": "Le dossier peut sembler lourd. Le kit propose une checklist et des étapes simples, et la MDPH ou un conseiller peut vous aider à le remplir.",
+    "en": "The file can seem heavy. The kit offers a checklist and simple steps, and the MDPH or an adviser can help you fill it in."
+   }
+  },
+  {
+   "key": "who",
+   "text": {
+    "fr": "Vous ne savez pas à qui vous adresser : la liste ci-dessous propose des points de départ adaptés à votre situation.",
+    "en": "You don't know who to turn to: the list below offers starting points suited to your situation."
+   }
+  },
+  {
+   "key": "time",
+   "text": {
+    "fr": "Le manque de temps est un frein courant. Un premier échange peut se faire en un seul rendez-vous ou appel.",
+    "en": "Lack of time is a common obstacle. A first conversation can happen in a single appointment or call."
+   }
+  }
+ ],
+ "suggestions": [
+  {
+   "key": "posture",
+   "text": {
+    "fr": "Postes et positions de travail : un échange avec le médecin du travail, le médecin de prévention ou la mission handicap peut permettre d'étudier un siège adapté, l'alternance assis-debout ou du matériel adapté.",
+    "en": "Workstations and postures: a conversation with the occupational physician, the prevention physician or the disability office can help look at a suitable chair, sit-stand alternation or adapted equipment."
+   }
+  },
+  {
+   "key": "conc_energy",
+   "text": {
+    "fr": "La fatigue pèse sur la concentration : des pauses planifiées ou un rythme adapté peuvent être évoqués avec votre interlocuteur.",
+    "en": "Tiredness affects concentration: planned breaks or an adapted pace can be raised with your contact person."
+   }
+  },
+  {
+   "key": "commute",
+   "text": {
+    "fr": "Les trajets sont éprouvants : télétravail partiel, horaires décalés ou aides au transport sont des pistes à évoquer.",
+    "en": "Commuting is tiring: partial remote work, staggered hours or transport support are leads to raise."
+   }
+  },
+  {
+   "key": "breaks",
+   "text": {
+    "fr": "Vous avez besoin de pauses : vous pouvez demander qu'elles soient prévues (en cours, en examen ou dans la journée de travail).",
+    "en": "You need breaks: you can ask for them to be planned (in class, in exams or during the working day)."
+   }
+  },
+  {
+   "key": "schedule_time",
+   "text": {
+    "fr": "Vos difficultés dépendent du moment de la journée : des horaires adaptés peuvent être discutés.",
+    "en": "Your difficulties depend on the time of day: adapted hours can be discussed."
+   }
+  },
+  {
+   "key": "reading_writing",
+   "text": {
+    "fr": "Lecture, écriture ou calcul plus longs : temps supplémentaire, documents en format adapté, synthèse vocale ou police adaptée sont des aménagements souvent évoqués.",
+    "en": "Reading, writing or calculating take longer: extra time, adapted-format documents, text-to-speech or an adapted typeface are often-mentioned adjustments."
+   }
+  },
+  {
+   "key": "organisation",
+   "text": {
+    "fr": "Mémoire et organisation : outils de planification, consignes écrites et points d'étape réguliers peuvent être discutés.",
+    "en": "Memory and organisation: planning tools, written instructions and regular check-ins can be discussed."
+   }
+  },
+  {
+   "key": "listening",
+   "text": {
+    "fr": "Suivre des réunions ou des cours à l'oral est difficile : supports écrits, comptes rendus et, avec accord, enregistrement peuvent aider.",
+    "en": "Following meetings or classes orally is hard: written materials, minutes and, with consent, recording can help."
+   }
+  },
+  {
+   "key": "try_tools",
+   "text": {
+    "fr": "En attendant un échange, des outils gratuits (synthèse vocale, rappels, listes) peuvent être essayés.",
+    "en": "While waiting for a conversation, free tools (text-to-speech, reminders, lists) can be tried."
+   }
+  },
+  {
+   "key": "vision",
+   "text": {
+    "fr": "Vision : agrandissement, contrastes, lecteur d'écran et documents adaptés peuvent être demandés.",
+    "en": "Vision: magnification, contrast, screen readers and adapted documents can be requested."
+   }
+  },
+  {
+   "key": "hearing",
+   "text": {
+    "fr": "Audition : sous-titrage, boucle magnétique et supports écrits peuvent être discutés.",
+    "en": "Hearing: captioning, hearing loops and written materials can be discussed."
+   }
+  },
+  {
+   "key": "lighting",
+   "text": {
+    "fr": "Éclairage et placement : à signaler au référent handicap ou au médecin du travail.",
+    "en": "Lighting and seating: worth mentioning to the disability officer or the occupational physician."
+   }
+  },
+  {
+   "key": "access",
+   "text": {
+    "fr": "Accès aux locaux : ascenseur, places de stationnement ou salles accessibles peuvent être demandés.",
+    "en": "Access to premises: lifts, parking spaces or accessible rooms can be requested."
+   }
+  },
+  {
+   "key": "equipment",
+   "text": {
+    "fr": "Gestes et manipulation : matériel ergonomique ou logiciel de dictée peuvent être évoqués.",
+    "en": "Gestures and handling: ergonomic equipment or dictation software can be raised."
+   }
+  },
+  {
+   "key": "oral_groups",
+   "text": {
+    "fr": "Situations de groupe ou d'oral : préparation en amont, format alternatif ou petit groupe peuvent être discutés.",
+    "en": "Group or oral situations: advance preparation, an alternative format or a small group can be discussed."
+   }
+  },
+  {
+   "key": "pace",
+   "text": {
+    "fr": "Pression et surcharge : étalement des échéances ou priorisation avec le responsable peuvent être discutés.",
+    "en": "Pressure and overload: spreading out deadlines or prioritising with a manager can be discussed."
+   }
+  },
+  {
+   "key": "environment",
+   "text": {
+    "fr": "Bruit ou imprévus : un espace calme ou des changements annoncés à l'avance peuvent aider.",
+    "en": "Noise or the unexpected: a quiet space or changes announced in advance can help."
+   }
+  },
+  {
+   "key": "diary",
+   "text": {
+    "fr": "Vos difficultés varient : tenir un journal simple (jours difficiles, ce qui aide) facilite l'échange avec un professionnel et la constitution d'un dossier.",
+    "en": "Your difficulties vary: keeping a simple diary (difficult days, what helps) makes it easier to talk to a professional and to put a file together."
+   }
+  },
+  {
+   "key": "life_wide",
+   "text": {
+    "fr": "Au-delà du travail ou des études, la vie quotidienne est touchée : vous pouvez le mentionner à un professionnel, d'autres aides peuvent exister.",
+    "en": "Beyond work or studies, daily life is affected: you can mention it to a professional, other forms of support may exist."
+   }
+  },
+  {
+   "key": "exam_request",
+   "text": {
+    "fr": "Aménagements d'examens : faites la demande tôt, bien avant la période d'examens, auprès de la mission handicap (temps majoré, salle séparée, ordinateur, pauses…).",
+    "en": "Exam adjustments: ask early, well before the exam period, through the disability office (extra time, separate room, computer, breaks…)."
+   }
+  },
+  {
+   "key": "disclosure",
+   "text": {
+    "fr": "Parler ou non à l'entreprise est votre choix : un échange avec la mission handicap ou un médecin peut vous aider à décider quoi partager, et quand.",
+    "en": "Whether to tell the company is your choice: a conversation with the disability office or a doctor can help you decide what to share, and when."
+   }
+  },
+  {
+   "key": "work_adapt",
+   "text": {
+    "fr": "Stage ou alternance : horaires, trajets ou poste peuvent être aménagés ; renseignez-vous auprès de la mission handicap et du référent handicap de l'entreprise.",
+    "en": "Internship or work-study: hours, commuting or workstation can be adjusted; ask the disability office and the company's disability officer."
+   }
+  },
+  {
+   "key": "contact_school",
+   "text": {
+    "fr": "Contactez la mission handicap ou la scolarité : un premier rendez-vous n'engage à aucune démarche officielle.",
+    "en": "Contact the disability office or administration: a first appointment does not commit you to any official process."
+   }
+  },
+  {
+   "key": "transition",
+   "text": {
+    "fr": "En fin de cursus, anticiper la transition vers l'emploi (aménagements, interlocuteurs) peut éviter une rupture de droits ; une reconnaissance obtenue pendant les études y contribue.",
+    "en": "At the end of your studies, planning the move into work (adjustments, contacts) can avoid a break in rights; recognition obtained during studies helps."
+   }
+  },
+  {
+   "key": "manager_ok",
+   "text": {
+    "fr": "Votre manager est au courant : un point écrit, même simple, sur les adaptations convenues aide à les pérenniser.",
+    "en": "Your manager is aware: a short written note on the agreed adjustments, even a simple one, helps make them last."
+   }
+  },
+  {
+   "key": "workstation_study",
+   "text": {
+    "fr": "Poste de travail (siège, écran, bruit) : vous pouvez demander une étude de poste au médecin du travail.",
+    "en": "Workstation (chair, screen, noise): you can ask the occupational physician for a workstation assessment."
+   }
+  },
+  {
+   "key": "org_work",
+   "text": {
+    "fr": "Organisation du travail (horaires, déplacements, rythme) : à évoquer avec le médecin du travail et les ressources humaines.",
+    "en": "Work organisation (hours, travel, pace): worth raising with the occupational physician and HR."
+   }
+  },
+  {
+   "key": "occ_visit",
+   "text": {
+    "fr": "Vous pouvez demander une visite auprès du service de prévention et de santé au travail, à votre initiative.",
+    "en": "You can ask for a visit with the workplace prevention and health service, on your own initiative."
+   }
+  },
+  {
+   "key": "interview",
+   "text": {
+    "fr": "Entretiens et tests : des adaptations (format, durée, visioconférence) peuvent être demandées lors d'une candidature ; Cap emploi ou votre conseiller peut vous y aider.",
+    "en": "Interviews and tests: adjustments (format, duration, video call) can be requested when applying; Cap emploi or your adviser can help."
+   }
+  },
+  {
+   "key": "js_org",
+   "text": {
+    "fr": "Trajets et journées longues : privilégier le télétravail ou des horaires adaptés dans vos recherches, et le préciser aux employeurs si vous le souhaitez.",
+    "en": "Commuting and long days: favour remote work or adapted hours in your search, and tell employers if you wish."
+   }
+  },
+  {
+   "key": "training",
+   "text": {
+    "fr": "Formation : des aides à la formation et à l'accompagnement existent ; Cap emploi, France Travail et l'Agefiph peuvent vous renseigner.",
+    "en": "Training: training and support schemes exist; Cap emploi, France Travail and Agefiph can inform you."
+   }
+  },
+  {
+   "key": "js_contact",
+   "text": {
+    "fr": "Prenez contact avec votre conseiller France Travail pour être orienté(e) vers un accompagnement spécialisé (Cap emploi).",
+    "en": "Contact your France Travail adviser to be directed to specialised support (Cap emploi)."
+   }
+  },
+  {
+   "key": "prevention_doc",
+   "text": {
+    "fr": "Prenez rendez-vous avec le médecin de prévention : c'est un interlocuteur tenu au secret médical.",
+    "en": "Make an appointment with the prevention physician: they are bound by medical confidentiality."
+   }
+  },
+  {
+   "key": "referent",
+   "text": {
+    "fr": "Demandez qui est le référent handicap de votre administration (service RH, intranet).",
+    "en": "Ask who the disability officer in your administration is (HR department, intranet)."
+   }
+  },
+  {
+   "key": "posting",
+   "text": {
+    "fr": "Un changement de poste ou de service est envisagé : c'est le bon moment pour demander des aménagements adaptés au futur poste.",
+    "en": "A change of post or department is planned: it is a good time to ask for adjustments suited to the new post."
+   }
+  },
+  {
+   "key": "keep_job",
+   "text": {
+    "fr": "Un échange précoce avec un interlocuteur permet de voir quels aménagements sont envisageables avant que les difficultés ne s'aggravent.",
+    "en": "An early conversation with a contact person helps see which adjustments are possible before difficulties get worse."
+   }
+  },
+  {
+   "key": "funding",
+   "text": {
+    "fr": "Aides financières : l'Agefiph (secteur privé) et le FIPHFP (fonction publique) présentent les aides existantes ; la MDPH instruit les demandes.",
+    "en": "Financial support: Agefiph (private sector) and FIPHFP (public sector) present the available aid; the MDPH processes applications."
+   }
+  },
+  {
+   "key": "secure",
+   "text": {
+    "fr": "Sécuriser dans la durée : une reconnaissance officielle peut formaliser des aménagements ; un professionnel vous dira si cela convient à votre cas.",
+    "en": "Securing things over time: official recognition can formalise adjustments; a professional will tell you whether it suits your case."
+   }
+  },
+  {
+   "key": "written",
+   "text": {
+    "fr": "Vous préférez l'écrit : vous pouvez demander un rendez-vous par e-mail et un compte rendu écrit.",
+    "en": "You prefer writing: you can ask for an appointment by email and for a written summary."
+   }
+  },
+  {
+   "key": "remote_contact",
+   "text": {
+    "fr": "Vous pouvez demander un rendez-vous à distance (téléphone ou visioconférence).",
+    "en": "You can ask for a remote appointment (phone or video call)."
+   }
+  },
+  {
+   "key": "small_steps",
+   "text": {
+    "fr": "Peu de temps disponible : avancer par petites étapes, par exemple une étape de la checklist par semaine.",
+    "en": "Little time available: move forward in small steps, for example one checklist step a week."
+   }
+  },
+  {
+   "key": "helper",
+   "text": {
+    "fr": "Se faire aider : une assistante sociale, la mission handicap ou une association peut aider à constituer le dossier.",
+    "en": "Getting help: a social worker, the disability office or an association can help put the file together."
+   }
+  },
+  {
+   "key": "how_to_talk",
+   "text": {
+    "fr": "Pour en parler avec la personne : écouter sans juger, proposer sans imposer, respecter son rythme et sa confidentialité.",
+    "en": "To talk about it with the person: listen without judging, offer without imposing, respect their pace and confidentiality."
+   }
+  },
+  {
+   "key": "sup_resources",
+   "text": {
+    "fr": "Vous pouvez partager les liens officiels du kit documentaire et orienter la personne vers un interlocuteur de confiance.",
+    "en": "You can share the resource kit's official links and point the person to a trusted contact."
+   }
+  },
+  {
+   "key": "sup_setup",
+   "text": {
+    "fr": "Mettre en place des aménagements passe par le référent handicap ou le médecin du travail ; la personne choisit ce qu'elle partage.",
+    "en": "Putting adjustments in place goes through the disability officer or the occupational physician; the person chooses what they share."
+   }
+  },
+  {
+   "key": "sup_aware",
+   "text": {
+    "fr": "Sensibiliser : l'Agefiph (secteur privé) et le FIPHFP (fonction publique) proposent des ressources et des formations.",
+    "en": "Raising awareness: Agefiph (private sector) and FIPHFP (public sector) offer resources and training."
+   }
+  },
+  {
+   "key": "sup_legal",
+   "text": {
+    "fr": "Questions juridiques : le référent handicap, les ressources humaines, Cap emploi ou la MDPH peuvent répondre.",
+    "en": "Legal questions: the disability officer, HR, Cap emploi or the MDPH can answer."
+   }
+  },
+  {
+   "key": "prev_ready",
+   "text": {
+    "fr": "S'informer à l'avance est une bonne idée : le kit documentaire vous sera utile si votre situation change.",
+    "en": "Finding out in advance is a good idea: the resource kit will be useful if your situation changes."
+   }
+  },
+  {
+   "key": "prev_share",
+   "text": {
+    "fr": "Vous pouvez partager le lien d'HandiDiag avec une personne qui pourrait en avoir besoin.",
+    "en": "You can share the HandiDiag link with someone who might need it."
+   }
+  },
+  {
+   "key": "watch",
+   "text": {
+    "fr": "Un changement à venir : repérez tôt les signaux (fatigue qui dure, difficultés qui s'installent) et parlez-en à un interlocuteur avant que cela pèse.",
+    "en": "A change ahead: spot signals early (lasting tiredness, difficulties settling in) and talk to a contact person before it weighs on you."
+   }
+  },
+  {
+   "key": "pole_member_rqth",
+   "text": {
+    "fr": "Vous êtes suivi(e) par le pôle handicap : lors d'un prochain échange, vous pouvez demander si une RQTH est adaptée à votre projet professionnel et être aidé(e) pour préparer le dossier.",
+    "en": "You are followed by the disability office: at your next meeting you can ask whether an RQTH fits your career plan and get help preparing the file."
+   }
+  },
+  {
+   "key": "rqth_work_value",
+   "text": {
+    "fr": "Dans le monde du travail, une RQTH peut donner accès à des aménagements de poste ou d'horaires, à des aides (Agefiph) et à un accompagnement spécialisé. Elle ne vous oblige à rien : vous choisissez à qui en parler, et quand.",
+    "en": "In the working world, an RQTH can give access to workstation or schedule adjustments, financial aid (Agefiph) and specialised support. It commits you to nothing: you choose who to tell, and when."
+   }
+  },
+  {
+   "key": "alternance_rqth",
+   "text": {
+    "fr": "Alternance : une RQTH peut ouvrir, selon les cas, des aides pour vous et pour l'entreprise. Renseignez-vous auprès du pôle handicap et de l'Agefiph avant de signer.",
+    "en": "Work-study: depending on the case, an RQTH can open aid for you and for the company. Ask the disability office and Agefiph before signing."
+   }
+  },
+  {
+   "key": "rqth_delay",
+   "text": {
+    "fr": "Le traitement d'un dossier RQTH peut prendre plusieurs mois : si un stage, une alternance ou un contrat approche, mieux vaut s'y prendre tôt.",
+    "en": "Processing an RQTH file can take several months: if an internship, work-study or contract is coming up, it is better to start early."
+   }
+  },
+  {
+   "key": "recruit_adapt",
+   "text": {
+    "fr": "Tests en ligne ou entretiens : il est possible de demander un aménagement (temps majoré, format adapté, pauses). Vous choisissez ce que vous précisez, et à quel moment.",
+    "en": "Online tests or interviews: you can ask for an adjustment (extra time, adapted format, breaks). You choose what you explain, and when."
+   }
+  },
+  {
+   "key": "pole_suggest",
+   "text": {
+    "fr": "Prenez contact avec le pôle handicap pour un premier entretien confidentiel : c'est lui qui voit avec vous quels aménagements sont possibles à l'école.",
+    "en": "Contact the disability office for a first confidential meeting: it is the office that looks with you at which accommodations are possible at school."
+   }
+  },
+  {
+   "key": "pole_maybe",
+   "text": {
+    "fr": "Un premier échange avec le pôle handicap n'engage à rien et permet de voir si des aménagements ont du sens pour vous.",
+    "en": "A first conversation with the disability office commits you to nothing and lets you see whether accommodations make sense for you."
+   }
+  },
+  {
+   "key": "pole_time",
+   "text": {
+    "fr": "Du temps supplémentaire pour les épreuves (souvent appelé tiers-temps) fait partie des aménagements les plus fréquents à l'école. Le pôle peut vous expliquer comment il est décidé.",
+    "en": "Extra time for exams (often called “tiers-temps”) is among the most common accommodations at school. The office can explain how it is decided."
+   }
+  },
+  {
+   "key": "pole_write",
+   "text": {
+    "fr": "Un ordinateur, un logiciel adapté ou des documents dans un format adapté peuvent aider quand lire ou écrire est très fatigant : le pôle peut en discuter avec vous.",
+    "en": "A computer, adapted software or documents in an adapted format can help when reading or writing is very tiring: the office can discuss it with you."
+   }
+  },
+  {
+   "key": "pole_focus",
+   "text": {
+    "fr": "Quand la concentration est difficile, des pauses, une salle plus calme ou des consignes reformulées existent parfois : le pôle peut voir avec vous ce qui est possible.",
+    "en": "When concentrating is hard, breaks, a quieter room or rephrased instructions are sometimes available: the office can look with you at what is possible."
+   }
+  },
+  {
+   "key": "pole_noise",
+   "text": {
+    "fr": "Une salle particulière ou un placement adapté fait partie des aménagements les plus fréquents à l'école : parlez-en au pôle si le bruit ou le stress vous pèsent.",
+    "en": "A separate room or an adapted seat is among the most common accommodations at school: talk to the office if noise or stress weighs on you."
+   }
+  },
+  {
+   "key": "pole_health",
+   "text": {
+    "fr": "Si la santé ou la fatigue vous oblige à faire des pauses ou à vous absenter, le pôle peut étudier avec vous des pauses, un rythme adapté et un suivi pendant toute la scolarité.",
+    "en": "If health or fatigue means you need breaks or to be absent, the office can look with you at breaks, an adapted pace and follow-up throughout your studies."
+   }
+  },
+  {
+   "key": "pole_sens",
+   "text": {
+    "fr": "Si voir, entendre ou vous déplacer est difficile, le pôle peut voir avec vous du matériel, des documents adaptés ou un placement adapté.",
+    "en": "If seeing, hearing or getting around is difficult, the office can look with you at equipment, adapted documents or an adapted seat."
+   }
+  },
+  {
+   "key": "pole_instr",
+   "text": {
+    "fr": "Une aide pour reformuler les consignes fait partie des aménagements possibles : le pôle peut vous dire comment la demander.",
+    "en": "Help rephrasing instructions is one of the possible accommodations: the office can tell you how to ask for it."
+   }
+  },
+  {
+   "key": "pole_proof_yes",
+   "text": {
+    "fr": "Gardez vos documents : le pôle vous dira lesquels sont utiles pour mettre en place les aménagements. Vous choisissez ce que vous partagez.",
+    "en": "Keep your documents: the office will tell you which ones are useful to set up accommodations. You choose what you share."
+   }
+  },
+  {
+   "key": "pole_proof_info",
+   "text": {
+    "fr": "Vous n'avez rien à préparer avant le premier entretien : le pôle vous explique les règles et les justificatifs nécessaires.",
+    "en": "You have nothing to prepare before the first meeting: the office explains the rules and the documents needed."
+   }
+  },
+  {
+   "key": "pole_confidential",
+   "text": {
+    "fr": "Le pôle handicap est confidentiel : seules les informations utiles à la mise en place de vos aménagements sont communiquées. Le premier entretien sert d'abord à vous mettre en confiance et à respecter votre vie privée.",
+    "en": "The disability office is confidential: only the information useful for setting up your accommodations is shared. The first meeting is first about building trust and respecting your privacy."
+   }
+  },
+  {
+   "key": "pole_what",
+   "text": {
+    "fr": "Le pôle vous écoute, identifie vos besoins, met en place les aménagements, échange avec les équipes pédagogiques si besoin, vous suit pendant toute la scolarité et aide à l'insertion professionnelle.",
+    "en": "The office listens to you, identifies your needs, sets up accommodations, talks with the teaching teams if needed, follows you throughout your studies and helps with entering the working world."
+   }
+  },
+  {
+   "key": "career_center",
+   "text": {
+    "fr": "Pour vos stages, votre alternance ou votre recherche d'emploi, Jordan SACCASYN, référent handicap au Career Center, peut vous aider sur les aménagements dans le monde du travail.",
+    "en": "For internships, work-study or your job search, Jordan SACCASYN, disability contact at the Career Center, can help with accommodations in the working world."
+   }
+  }
+ ],
+ "rules": [
+  {
+   "key": "R_already_rqth",
+   "condition": {
+    "q": "support",
+    "in": [
+     "has_rqth"
+    ]
+   },
+   "points": 0,
+   "override_level": "already",
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Vous avez indiqué avoir déjà une RQTH ou une reconnaissance.",
+    "en": "You said you already have an RQTH or recognition."
+   },
+   "flags": [
+    "already_rqth"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_no_signal",
+   "condition": {
+    "all": [
+     {
+      "q": "duration",
+      "in": [
+       "none"
+      ]
+     },
+     {
+      "not": {
+       "q": "frequency",
+       "in": [
+        "often",
+        "always"
+       ]
+      }
+     },
+     {
+      "not": {
+       "q": "needs",
+       "hasAny": [
+        "schedule",
+        "workstation",
+        "extra_time",
+        "remote",
+        "breaks",
+        "docs"
+       ]
+      }
+     }
+    ]
+   },
+   "points": 0,
+   "override_level": "explore",
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Vous n'avez indiqué ni difficulté durable, ni besoin d'aménagement.",
+    "en": "You reported neither lasting difficulty nor any need for adjustments."
+   },
+   "flags": [],
+   "suggestions": []
+  },
+  {
+   "key": "R_duration_long",
+   "condition": {
+    "q": "duration",
+    "in": [
+     "long"
+    ]
+   },
+   "points": 2,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Vos difficultés durent depuis 6 mois ou plus.",
+    "en": "Your difficulties have lasted 6 months or more."
+   },
+   "flags": [],
+   "suggestions": []
+  },
+  {
+   "key": "R_duration_short",
+   "condition": {
+    "q": "duration",
+    "in": [
+     "short"
+    ]
+   },
+   "points": 1,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Vos difficultés durent depuis moins de 6 mois.",
+    "en": "Your difficulties have lasted less than 6 months."
+   },
+   "flags": [],
+   "suggestions": []
+  },
+  {
+   "key": "R_duration_unsure",
+   "condition": {
+    "q": "duration",
+    "in": [
+     "unsure"
+    ]
+   },
+   "points": 1,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Vous ne savez pas depuis quand ni si elles vont durer.",
+    "en": "You don't know since when, or whether they will last."
+   },
+   "flags": [],
+   "suggestions": []
+  },
+  {
+   "key": "R_freq_often",
+   "condition": {
+    "q": "frequency",
+    "in": [
+     "often"
+    ]
+   },
+   "points": 1,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Ces difficultés compliquent souvent vos études ou votre travail.",
+    "en": "These difficulties often make your studies or work harder."
+   },
+   "flags": [],
+   "suggestions": []
+  },
+  {
+   "key": "R_freq_always",
+   "condition": {
+    "q": "frequency",
+    "in": [
+     "always"
+    ]
+   },
+   "points": 2,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Ces difficultés compliquent presque toujours vos études ou votre travail.",
+    "en": "These difficulties almost always make your studies or work harder."
+   },
+   "flags": [],
+   "suggestions": []
+  },
+  {
+   "key": "R_areas_declared",
+   "condition": {
+    "q": "areas",
+    "hasAny": [
+     "energy",
+     "attention",
+     "senses",
+     "mobility",
+     "psych",
+     "other"
+    ]
+   },
+   "points": 1,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Vous avez indiqué au moins un domaine du quotidien concerné.",
+    "en": "You indicated at least one affected area of daily life."
+   },
+   "flags": [],
+   "suggestions": []
+  },
+  {
+   "key": "R_needs_some",
+   "condition": {
+    "q": "needs",
+    "countAtLeast": 1,
+    "among": [
+     "schedule",
+     "workstation",
+     "extra_time",
+     "remote",
+     "breaks",
+     "docs"
+    ]
+   },
+   "points": 1,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Vous avez indiqué au moins un besoin d'aménagement.",
+    "en": "You indicated at least one adjustment need."
+   },
+   "flags": [],
+   "suggestions": []
+  },
+  {
+   "key": "R_needs_many",
+   "condition": {
+    "q": "needs",
+    "countAtLeast": 3,
+    "among": [
+     "schedule",
+     "workstation",
+     "extra_time",
+     "remote",
+     "breaks",
+     "docs"
+    ]
+   },
+   "points": 1,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Vous avez indiqué trois besoins d'aménagement ou plus.",
+    "en": "You indicated three or more adjustment needs."
+   },
+   "flags": [],
+   "suggestions": []
+  },
+  {
+   "key": "R_pathway_impact",
+   "condition": {
+    "q": "pathway",
+    "hasAny": [
+     "studies",
+     "internship",
+     "job",
+     "jobsearch"
+    ]
+   },
+   "points": 1,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Votre parcours (études, stage, emploi ou recherche d'emploi) est concerné.",
+    "en": "Your path (studies, internship, job or job search) is affected."
+   },
+   "flags": [],
+   "suggestions": []
+  },
+  {
+   "key": "R_support_adjust",
+   "condition": {
+    "q": "support",
+    "in": [
+     "has_adjust"
+    ]
+   },
+   "points": 1,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Vous avez des aménagements sans reconnaissance officielle.",
+    "en": "You have adjustments without official recognition."
+   },
+   "flags": [
+    "informal_adjust"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_no_support",
+   "condition": {
+    "all": [
+     {
+      "q": "support",
+      "in": [
+       "none"
+      ]
+     },
+     {
+      "q": "duration",
+      "in": [
+       "unsure",
+       "short",
+       "long"
+      ]
+     }
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "no_support"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_urgent",
+   "condition": {
+    "q": "urgency",
+    "in": [
+     "soon",
+     "urgent"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "urgent"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_aware_low",
+   "condition": {
+    "q": "awareness",
+    "in": [
+     "unknown",
+     "partial"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "needs_info"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_barrier_stigma",
+   "condition": {
+    "q": "barriers",
+    "hasAny": [
+     "stigma"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "stigma"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_barrier_employer",
+   "condition": {
+    "q": "barriers",
+    "hasAny": [
+     "employer"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "employer"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_barrier_complexity",
+   "condition": {
+    "q": "barriers",
+    "hasAny": [
+     "complexity"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "complexity"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_barrier_who",
+   "condition": {
+    "q": "barriers",
+    "hasAny": [
+     "who"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "who"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_barrier_time",
+   "condition": {
+    "q": "barriers",
+    "hasAny": [
+     "time"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "time"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_student_exam",
+   "condition": {
+    "q": "ctx_student",
+    "hasAny": [
+     "exams"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "student_exam"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_student_work",
+   "condition": {
+    "q": "ctx_student",
+    "hasAny": [
+     "work"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "student_work"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_shift_work",
+   "condition": {
+    "q": "ctx_employee",
+    "in": [
+     "shifts"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "shift_work"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_long_search",
+   "condition": {
+    "q": "ctx_jobseeker",
+    "in": [
+     "long"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "long_search"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_public_status",
+   "condition": {
+    "q": "ctx_public",
+    "in": [
+     "contract",
+     "trainee"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "public_status"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_see_doctor",
+   "condition": {
+    "all": [
+     {
+      "q": "followup",
+      "in": [
+       "none"
+      ]
+     },
+     {
+      "q": "duration",
+      "in": [
+       "unsure",
+       "short",
+       "long"
+      ]
+     }
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "see_doctor"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_for_relative",
+   "condition": {
+    "q": "for_whom",
+    "in": [
+     "relative"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "for_relative"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_for_support",
+   "condition": {
+    "q": "for_whom",
+    "in": [
+     "colleague",
+     "pro"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "for_support"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_worry_watch",
+   "condition": {
+    "q": "worry",
+    "hasAny": [
+     "workload",
+     "change",
+     "health_event"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "watch"
+   ]
+  },
+  {
+   "key": "R_energy_posture",
+   "condition": {
+    "q": "energy_effects",
+    "hasAny": [
+     "sitting",
+     "standing",
+     "carrying",
+     "typing"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "posture"
+   ]
+  },
+  {
+   "key": "R_energy_conc",
+   "condition": {
+    "q": "energy_effects",
+    "hasAny": [
+     "concentrating"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "conc_energy"
+   ]
+  },
+  {
+   "key": "R_energy_commute",
+   "condition": {
+    "any": [
+     {
+      "q": "energy_effects",
+      "hasAny": [
+       "commuting"
+      ]
+     },
+     {
+      "q": "mob_aspects",
+      "hasAny": [
+       "transport"
+      ]
+     }
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "commute"
+   ]
+  },
+  {
+   "key": "R_energy_rest",
+   "condition": {
+    "q": "energy_rest",
+    "in": [
+     "often",
+     "planned"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "breaks"
+   ]
+  },
+  {
+   "key": "R_energy_when",
+   "condition": {
+    "q": "energy_when",
+    "hasAny": [
+     "morning",
+     "evening",
+     "unpredictable"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "schedule_time"
+   ]
+  },
+  {
+   "key": "R_attn_rw",
+   "condition": {
+    "q": "attn_tasks",
+    "hasAny": [
+     "reading",
+     "writing",
+     "calculating"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "reading_writing"
+   ]
+  },
+  {
+   "key": "R_attn_org",
+   "condition": {
+    "q": "attn_tasks",
+    "hasAny": [
+     "remembering",
+     "organizing"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "organisation"
+   ]
+  },
+  {
+   "key": "R_attn_listen",
+   "condition": {
+    "q": "attn_tasks",
+    "hasAny": [
+     "listening"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "listening"
+   ]
+  },
+  {
+   "key": "R_attn_tools_none",
+   "condition": {
+    "q": "attn_tools",
+    "hasAny": [
+     "none"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "try_tools"
+   ]
+  },
+  {
+   "key": "R_vision",
+   "condition": {
+    "q": "senses_which",
+    "in": [
+     "vision",
+     "both"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "vision"
+   ]
+  },
+  {
+   "key": "R_hearing",
+   "condition": {
+    "q": "senses_which",
+    "in": [
+     "hearing",
+     "both"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "hearing"
+   ]
+  },
+  {
+   "key": "R_lighting",
+   "condition": {
+    "q": "senses_needs",
+    "hasAny": [
+     "lighting"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "lighting"
+   ]
+  },
+  {
+   "key": "R_access",
+   "condition": {
+    "any": [
+     {
+      "q": "mob_aspects",
+      "hasAny": [
+       "walking",
+       "stairs",
+       "parking"
+      ]
+     },
+     {
+      "q": "mob_access",
+      "hasAny": [
+       "elevator",
+       "parking"
+      ]
+     }
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "access"
+   ]
+  },
+  {
+   "key": "R_equipment",
+   "condition": {
+    "any": [
+     {
+      "q": "mob_aspects",
+      "hasAny": [
+       "hands"
+      ]
+     },
+     {
+      "q": "mob_access",
+      "hasAny": [
+       "equipment"
+      ]
+     }
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "equipment"
+   ]
+  },
+  {
+   "key": "R_psych_groups",
+   "condition": {
+    "q": "psych_situations",
+    "hasAny": [
+     "groups"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "oral_groups"
+   ]
+  },
+  {
+   "key": "R_psych_pace",
+   "condition": {
+    "q": "psych_situations",
+    "hasAny": [
+     "deadlines",
+     "overload"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "pace"
+   ]
+  },
+  {
+   "key": "R_psych_env",
+   "condition": {
+    "q": "psych_situations",
+    "hasAny": [
+     "noise",
+     "changes"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "environment"
+   ]
+  },
+  {
+   "key": "R_psych_nosupport",
+   "condition": {
+    "q": "psych_support",
+    "in": [
+     "no"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "psych_support_none"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_stability",
+   "condition": {
+    "q": "stability",
+    "in": [
+     "varies",
+     "flares"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "diary"
+   ]
+  },
+  {
+   "key": "R_life_wide",
+   "condition": {
+    "q": "life_impact",
+    "hasAny": [
+     "transport",
+     "household",
+     "social",
+     "leisure"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "life_wide"
+   ]
+  },
+  {
+   "key": "R_life_sleep",
+   "condition": {
+    "q": "life_impact",
+    "hasAny": [
+     "sleep"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "life_sleep"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_st_exam_req",
+   "condition": {
+    "q": "st_exam_detail",
+    "hasAny": [
+     "extra_time",
+     "room",
+     "computer",
+     "breaks",
+     "docs",
+     "oral",
+     "software",
+     "rephrase",
+     "placement"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "exam_request"
+   ]
+  },
+  {
+   "key": "R_st_disclosure",
+   "condition": {
+    "q": "st_work_detail",
+    "hasAny": [
+     "disclosure"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "disclosure"
+   ]
+  },
+  {
+   "key": "R_st_work_adapt",
+   "condition": {
+    "q": "st_work_detail",
+    "hasAny": [
+     "schedule",
+     "commute",
+     "workstation",
+     "tools",
+     "remote"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "work_adapt"
+   ]
+  },
+  {
+   "key": "R_st_contact",
+   "condition": {
+    "q": "st_contact",
+    "in": [
+     "no",
+     "unsure"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "contact_school"
+   ]
+  },
+  {
+   "key": "R_st_year",
+   "condition": {
+    "q": "st_year",
+    "in": [
+     "final",
+     "graduating"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "transition"
+   ]
+  },
+  {
+   "key": "R_emp_unaware",
+   "condition": {
+    "q": "emp_manager",
+    "in": [
+     "no"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "emp_unaware"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_emp_manager_ok",
+   "condition": {
+    "q": "emp_manager",
+    "in": [
+     "yes",
+     "partly"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "manager_ok"
+   ]
+  },
+  {
+   "key": "R_emp_ws",
+   "condition": {
+    "q": "emp_workstation",
+    "hasAny": [
+     "seat",
+     "screen",
+     "noise"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "workstation_study"
+   ]
+  },
+  {
+   "key": "R_emp_org",
+   "condition": {
+    "q": "emp_workstation",
+    "hasAny": [
+     "schedule",
+     "travel",
+     "pace"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "org_work"
+   ]
+  },
+  {
+   "key": "R_emp_occ",
+   "condition": {
+    "q": "emp_occ",
+    "in": [
+     "long_ago",
+     "never"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "occ_visit"
+   ]
+  },
+  {
+   "key": "R_emp_leave",
+   "condition": {
+    "q": "emp_leave",
+    "in": [
+     "once",
+     "several"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "emp_leave"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_js_interview",
+   "condition": {
+    "q": "js_obstacles",
+    "hasAny": [
+     "interviews",
+     "tests",
+     "tools"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "interview"
+   ]
+  },
+  {
+   "key": "R_js_org",
+   "condition": {
+    "q": "js_obstacles",
+    "hasAny": [
+     "transport",
+     "long_days"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "js_org"
+   ]
+  },
+  {
+   "key": "R_js_training",
+   "condition": {
+    "q": "js_training",
+    "in": [
+     "yes",
+     "maybe"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "training"
+   ]
+  },
+  {
+   "key": "R_js_contact",
+   "condition": {
+    "q": "js_support",
+    "in": [
+     "no",
+     "unsure"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "js_contact"
+   ]
+  },
+  {
+   "key": "R_pub_prev",
+   "condition": {
+    "q": "pub_prevention",
+    "in": [
+     "no",
+     "unsure"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "prevention_doc"
+   ]
+  },
+  {
+   "key": "R_pub_ref",
+   "condition": {
+    "q": "pub_referent",
+    "in": [
+     "no"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "referent"
+   ]
+  },
+  {
+   "key": "R_pub_posting",
+   "condition": {
+    "q": "pub_mobility",
+    "in": [
+     "yes",
+     "maybe"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "posting"
+   ]
+  },
+  {
+   "key": "R_goal_keep",
+   "condition": {
+    "q": "goals",
+    "hasAny": [
+     "keep_job",
+     "adapt"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "keep_job"
+   ]
+  },
+  {
+   "key": "R_goal_funding",
+   "condition": {
+    "q": "goals",
+    "hasAny": [
+     "funding"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "funding"
+   ]
+  },
+  {
+   "key": "R_goal_training",
+   "condition": {
+    "q": "goals",
+    "hasAny": [
+     "training"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "training"
+   ]
+  },
+  {
+   "key": "R_goal_secure",
+   "condition": {
+    "q": "goals",
+    "hasAny": [
+     "secure"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "secure"
+   ]
+  },
+  {
+   "key": "R_goal_info",
+   "condition": {
+    "q": "goals",
+    "hasAny": [
+     "info_only"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "goal_info_only"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_pref_written",
+   "condition": {
+    "q": "pref_contact",
+    "hasAny": [
+     "written"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "written"
+   ]
+  },
+  {
+   "key": "R_pref_remote",
+   "condition": {
+    "q": "pref_contact",
+    "hasAny": [
+     "phone",
+     "video"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "remote_contact"
+   ]
+  },
+  {
+   "key": "R_time_little",
+   "condition": {
+    "q": "time_available",
+    "in": [
+     "little"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "small_steps"
+   ]
+  },
+  {
+   "key": "R_helper",
+   "condition": {
+    "q": "helper",
+    "in": [
+     "no",
+     "would_like"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "helper"
+   ]
+  },
+  {
+   "key": "R_sup_talk",
+   "condition": {
+    "q": "sup_goal",
+    "hasAny": [
+     "talk",
+     "understand"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "how_to_talk"
+   ]
+  },
+  {
+   "key": "R_sup_orient",
+   "condition": {
+    "q": "sup_goal",
+    "hasAny": [
+     "orient",
+     "understand"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "sup_resources"
+   ]
+  },
+  {
+   "key": "R_sup_setup",
+   "condition": {
+    "q": "sup_goal",
+    "hasAny": [
+     "set_up"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "sup_setup"
+   ]
+  },
+  {
+   "key": "R_sup_aware",
+   "condition": {
+    "q": "sup_goal",
+    "hasAny": [
+     "raise"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "sup_aware"
+   ]
+  },
+  {
+   "key": "R_sup_conf",
+   "condition": {
+    "q": "sup_worry",
+    "hasAny": [
+     "confidentiality"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [
+    "sup_confidentiality"
+   ],
+   "suggestions": []
+  },
+  {
+   "key": "R_sup_words",
+   "condition": {
+    "q": "sup_worry",
+    "hasAny": [
+     "words"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "how_to_talk"
+   ]
+  },
+  {
+   "key": "R_sup_legal",
+   "condition": {
+    "q": "sup_worry",
+    "hasAny": [
+     "legal"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "sup_legal"
+   ]
+  },
+  {
+   "key": "R_prev_ready",
+   "condition": {
+    "q": "prev_interest",
+    "hasAny": [
+     "be_ready",
+     "later"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "prev_ready"
+   ]
+  },
+  {
+   "key": "R_prev_share",
+   "condition": {
+    "q": "prev_interest",
+    "hasAny": [
+     "share"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "prev_share"
+   ]
+  },
+  {
+   "key": "R_pole_member",
+   "condition": {
+    "q": "pole",
+    "in": [
+     "yes"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Vous êtes suivi(e) par le pôle handicap.",
+    "en": "You are followed by the disability office."
+   },
+   "flags": [],
+   "suggestions": [
+    "pole_member_rqth"
+   ]
+  },
+  {
+   "key": "R_work_world",
+   "condition": {
+    "q": "pathway",
+    "hasAny": [
+     "internship",
+     "job",
+     "jobsearch"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Un stage, un emploi ou une recherche d'emploi est concerné.",
+    "en": "An internship, a job or a job search is concerned."
+   },
+   "flags": [],
+   "suggestions": [
+    "rqth_work_value"
+   ]
+  },
+  {
+   "key": "R_next_alternance",
+   "condition": {
+    "q": "st_next",
+    "in": [
+     "alternance"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Vous prévoyez une alternance.",
+    "en": "You plan a work-study contract."
+   },
+   "flags": [],
+   "suggestions": [
+    "alternance_rqth",
+    "rqth_delay"
+   ]
+  },
+  {
+   "key": "R_next_work",
+   "condition": {
+    "q": "st_next",
+    "in": [
+     "internship",
+     "first_job"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Vous prévoyez un stage ou un premier emploi.",
+    "en": "You plan an internship or a first job."
+   },
+   "flags": [],
+   "suggestions": [
+    "rqth_work_value",
+    "rqth_delay"
+   ]
+  },
+  {
+   "key": "R_recruit_tests",
+   "condition": {
+    "any": [
+     {
+      "q": "recruit",
+      "hasAny": [
+       "tests",
+       "interview"
+      ]
+     },
+     {
+      "q": "ctx_student",
+      "hasAny": [
+       "recruit"
+      ]
+     }
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Les tests ou entretiens de recrutement vous préoccupent.",
+    "en": "Recruitment tests or interviews worry you."
+   },
+   "flags": [],
+   "suggestions": [
+    "recruit_adapt"
+   ]
+  },
+  {
+   "key": "R_recruit_cv",
+   "condition": {
+    "q": "recruit",
+    "hasAny": [
+     "cv"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Le contenu de votre CV vous préoccupe.",
+    "en": "The content of your CV worries you."
+   },
+   "flags": [],
+   "suggestions": [
+    "disclosure"
+   ]
+  },
+  {
+   "key": "R_recruit_conditions",
+   "condition": {
+    "q": "recruit",
+    "hasAny": [
+     "open_space",
+     "commute"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": {
+    "fr": "Les conditions de travail ou les trajets vous préoccupent.",
+    "en": "Working conditions or commuting worry you."
+   },
+   "flags": [],
+   "suggestions": [
+    "work_adapt"
+   ]
+  },
+  {
+   "key": "P_fit_many",
+   "condition": {
+    "all": [
+     {
+      "q": "pole",
+      "in": [
+       "no"
+      ]
+     },
+     {
+      "q": "pole_check",
+      "in": [
+       "yes"
+      ]
+     },
+     {
+      "q": "pole_fit",
+      "countAtLeast": 2,
+      "among": [
+       "exam_time",
+       "write_read",
+       "focus",
+       "noise_stress",
+       "fatigue_health",
+       "senses_mobility",
+       "instructions"
+      ]
+     }
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": "suggest",
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "pole_suggest"
+   ]
+  },
+  {
+   "key": "P_fit_one",
+   "condition": {
+    "all": [
+     {
+      "q": "pole",
+      "in": [
+       "no"
+      ]
+     },
+     {
+      "q": "pole_check",
+      "in": [
+       "yes"
+      ]
+     },
+     {
+      "q": "pole_fit",
+      "countAtLeast": 1,
+      "among": [
+       "exam_time",
+       "write_read",
+       "focus",
+       "noise_stress",
+       "fatigue_health",
+       "senses_mobility",
+       "instructions"
+      ]
+     },
+     {
+      "not": {
+       "q": "pole_fit",
+       "countAtLeast": 2,
+       "among": [
+        "exam_time",
+        "write_read",
+        "focus",
+        "noise_stress",
+        "fatigue_health",
+        "senses_mobility",
+        "instructions"
+       ]
+      }
+     }
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": "maybe",
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "pole_maybe"
+   ]
+  },
+  {
+   "key": "P_health_maybe",
+   "condition": {
+    "all": [
+     {
+      "q": "pole",
+      "in": [
+       "no"
+      ]
+     },
+     {
+      "q": "duration",
+      "in": [
+       "unsure",
+       "short",
+       "long"
+      ]
+     },
+     {
+      "not": {
+       "q": "pole_fit",
+       "hasAny": [
+        "exam_time",
+        "write_read",
+        "focus",
+        "noise_stress",
+        "fatigue_health",
+        "senses_mobility",
+        "instructions"
+       ]
+      }
+     },
+     {
+      "q": "pole_check",
+      "in": [
+       "yes"
+      ]
+     }
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": "maybe",
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "pole_maybe"
+   ]
+  },
+  {
+   "key": "P_time",
+   "condition": {
+    "q": "pole_fit",
+    "hasAny": [
+     "exam_time"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "pole_time"
+   ]
+  },
+  {
+   "key": "P_write",
+   "condition": {
+    "q": "pole_fit",
+    "hasAny": [
+     "write_read"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "pole_write"
+   ]
+  },
+  {
+   "key": "P_focus",
+   "condition": {
+    "q": "pole_fit",
+    "hasAny": [
+     "focus"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "pole_focus"
+   ]
+  },
+  {
+   "key": "P_noise",
+   "condition": {
+    "q": "pole_fit",
+    "hasAny": [
+     "noise_stress"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "pole_noise"
+   ]
+  },
+  {
+   "key": "P_health",
+   "condition": {
+    "q": "pole_fit",
+    "hasAny": [
+     "fatigue_health"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "pole_health"
+   ]
+  },
+  {
+   "key": "P_sens",
+   "condition": {
+    "q": "pole_fit",
+    "hasAny": [
+     "senses_mobility"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "pole_sens"
+   ]
+  },
+  {
+   "key": "P_instr",
+   "condition": {
+    "q": "pole_fit",
+    "hasAny": [
+     "instructions"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "pole_instr"
+   ]
+  },
+  {
+   "key": "P_proof_yes",
+   "condition": {
+    "q": "pole_proof",
+    "in": [
+     "yes"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "pole_proof_yes"
+   ]
+  },
+  {
+   "key": "P_proof_info",
+   "condition": {
+    "q": "pole_proof",
+    "in": [
+     "no",
+     "unsure"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "pole_proof_info"
+   ]
+  },
+  {
+   "key": "P_fear_private",
+   "condition": {
+    "q": "pole_fear",
+    "hasAny": [
+     "stigma",
+     "privacy"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "pole_confidential"
+   ]
+  },
+  {
+   "key": "P_fear_unknown",
+   "condition": {
+    "q": "pole_fear",
+    "hasAny": [
+     "unknown"
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "pole_what"
+   ]
+  },
+  {
+   "key": "R_career_center",
+   "condition": {
+    "any": [
+     {
+      "q": "pathway",
+      "hasAny": [
+       "internship",
+       "job",
+       "jobsearch"
+      ]
+     },
+     {
+      "q": "st_next",
+      "in": [
+       "internship",
+       "alternance",
+       "first_job"
+      ]
+     },
+     {
+      "q": "ctx_student",
+      "hasAny": [
+       "work",
+       "recruit"
+      ]
+     }
+    ]
+   },
+   "points": 0,
+   "override_level": null,
+   "pole_outcome": null,
+   "explanation": null,
+   "flags": [],
+   "suggestions": [
+    "career_center"
+   ]
+  }
+ ],
+ "pole_outcomes": [
+  {
+   "key": "followed",
+   "title": {
+    "fr": "Vous êtes déjà suivi(e) par le pôle handicap",
+    "en": "You are already followed by the disability office"
+   },
+   "body": {
+    "fr": "C'est un bon point de départ. Pour la RQTH et pour le monde du travail, le pôle peut vous aider à préparer la démarche ; pour les stages, l'alternance et la recherche d'emploi, le référent handicap du Career Center peut prendre le relais.",
+    "en": "That is a good starting point. For the RQTH and for the working world, the office can help you prepare the process; for internships, work-study and job search, the disability contact at the Career Center can take over."
+   }
+  },
+  {
+   "key": "suggest",
+   "title": {
+    "fr": "Le pôle handicap peut vous aider dans vos études",
+    "en": "The disability office can help you with your studies"
+   },
+   "body": {
+    "fr": "Vous décrivez plusieurs situations pour lesquelles le pôle accompagne des étudiants : par exemple du temps supplémentaire, une salle plus calme, des pauses ou du matériel adapté. Seul le pôle, après un entretien confidentiel, peut dire quels aménagements sont possibles dans votre cas. Ce n'est pas une décision de HandiDiag.",
+    "en": "You describe several situations for which the office supports students: for example extra time, a quieter room, breaks or adapted equipment. Only the office, after a confidential meeting, can say which accommodations are possible in your case. This is not a decision by HandiDiag."
+   }
+  },
+  {
+   "key": "maybe",
+   "title": {
+    "fr": "Cela vaut la peine d'en parler au pôle handicap",
+    "en": "It is worth talking to the disability office"
+   },
+   "body": {
+    "fr": "Vos réponses laissent penser que certains aménagements pourraient vous aider. Un premier échange avec le pôle est confidentiel et n'engage à rien : il permet de voir ensemble si une démarche a du sens.",
+    "en": "Your answers suggest that some accommodations might help you. A first conversation with the office is confidential and commits you to nothing: it lets you see together whether a process makes sense."
+   }
+  },
+  {
+   "key": "none",
+   "title": {
+    "fr": "Pour l'instant, rien n'indique un besoin d'aménagement à l'école",
+    "en": "For now, nothing points to a need for accommodations at school"
+   },
+   "body": {
+    "fr": "Cela peut changer : le pôle handicap reste ouvert si une situation apparaît (blessure, maladie, fatigue durable, nouvelle difficulté…). Vous pouvez aussi simplement vous renseigner.",
+    "en": "That may change: the disability office remains open if a situation appears (injury, illness, lasting fatigue, a new difficulty…). You can also simply find out more."
+   }
+  },
+  {
+   "key": "declined",
+   "title": {
+    "fr": "Le pôle handicap reste à votre disposition",
+    "en": "The disability office remains at your disposal"
+   },
+   "body": {
+    "fr": "Vous pouvez le contacter à tout moment si vous le souhaitez : un e-mail suffit, c'est confidentiel et cela n'engage à rien.",
+    "en": "You can contact them at any time if you wish: an e-mail is enough, it is confidential and commits you to nothing."
+   }
+  }
+ ],
+ "contacts": [
+  {
+   "key": "school_officer",
+   "icon": "user",
+   "name": {
+    "fr": "Mission handicap ou référent handicap de votre établissement",
+    "en": "Disability office or disability officer at your institution"
+   },
+   "role": {
+    "fr": "Écoute, aménagements d'études et d'examens, aide pour s'orienter dans la démarche.",
+    "en": "Listening, study and exam adjustments, help finding your way through the process."
+   },
+   "email": null,
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": false,
+   "pole_group": null
+  },
+  {
+   "key": "student_health",
+   "icon": "shield",
+   "name": {
+    "fr": "Service de santé étudiante (médecine préventive)",
+    "en": "Student health service (preventive medicine)"
+   },
+   "role": {
+    "fr": "Professionnels de santé qui peuvent vous conseiller et vous orienter.",
+    "en": "Health professionals who can advise and guide you."
+   },
+   "email": null,
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": true,
+   "pole_group": null
+  },
+  {
+   "key": "registrar",
+   "icon": "doc",
+   "name": {
+    "fr": "Scolarité",
+    "en": "Student administration office"
+   },
+   "role": {
+    "fr": "Pour mettre en place les aménagements d'examens et de scolarité une fois la demande formulée.",
+    "en": "To put exam and course adjustments in place once the request is made."
+   },
+   "email": null,
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": false,
+   "pole_group": null
+  },
+  {
+   "key": "occ_physician",
+   "icon": "shield",
+   "name": {
+    "fr": "Médecin du travail (service de prévention et de santé au travail)",
+    "en": "Occupational physician (workplace health service)"
+   },
+   "role": {
+    "fr": "Peut vous conseiller sur votre santé au travail et les aménagements de poste.",
+    "en": "Can advise you on health at work and workstation adjustments."
+   },
+   "email": null,
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": true,
+   "pole_group": null
+  },
+  {
+   "key": "hr_officer",
+   "icon": "user",
+   "name": {
+    "fr": "Référent handicap ou service RH",
+    "en": "Disability officer or HR department"
+   },
+   "role": {
+    "fr": "Pour mettre en place des aménagements et connaître la politique handicap de votre organisation.",
+    "en": "To set up adjustments and learn about your organisation's disability policy."
+   },
+   "email": null,
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": false,
+   "pole_group": null
+  },
+  {
+   "key": "prevention_physician",
+   "icon": "shield",
+   "name": {
+    "fr": "Médecin de prévention",
+    "en": "Prevention physician"
+   },
+   "role": {
+    "fr": "Conseille les agents sur leur santé au travail et les aménagements possibles.",
+    "en": "Advises public-sector staff on health at work and possible adjustments."
+   },
+   "email": null,
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": true,
+   "pole_group": null
+  },
+  {
+   "key": "cap_emploi",
+   "icon": "compass",
+   "name": {
+    "fr": "Cap emploi",
+    "en": "Cap emploi"
+   },
+   "role": {
+    "fr": "Organisme d'accompagnement vers l'emploi des personnes en situation de handicap. Votre conseiller France Travail ou l'Agefiph peut vous mettre en relation.",
+    "en": "Organisation supporting people with disabilities towards employment. Your France Travail adviser or Agefiph can put you in touch."
+   },
+   "email": null,
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": false,
+   "pole_group": null
+  },
+  {
+   "key": "france_travail",
+   "icon": "building",
+   "name": {
+    "fr": "France Travail (conseiller ou référent handicap)",
+    "en": "France Travail (adviser or disability officer)"
+   },
+   "role": {
+    "fr": "Accompagnement dans la recherche d'emploi et orientation vers un accompagnement spécialisé.",
+    "en": "Job-search support and referral to specialised support."
+   },
+   "email": null,
+   "link_url": "https://www.francetravail.fr/",
+   "link_label": {
+    "fr": "France Travail",
+    "en": "France Travail"
+   },
+   "is_confidential": false,
+   "pole_group": null
+  },
+  {
+   "key": "agefiph",
+   "icon": "building",
+   "name": {
+    "fr": "Agefiph",
+    "en": "Agefiph"
+   },
+   "role": {
+    "fr": "Informations et aides pour l'emploi des personnes handicapées dans le secteur privé.",
+    "en": "Information and funding for the employment of people with disabilities in the private sector."
+   },
+   "email": null,
+   "link_url": "https://www.agefiph.fr/",
+   "link_label": {
+    "fr": "Agefiph",
+    "en": "Agefiph"
+   },
+   "is_confidential": false,
+   "pole_group": null
+  },
+  {
+   "key": "fiphfp",
+   "icon": "building",
+   "name": {
+    "fr": "FIPHFP",
+    "en": "FIPHFP"
+   },
+   "role": {
+    "fr": "Informations et aides pour l'emploi des personnes en situation de handicap dans la fonction publique.",
+    "en": "Information and funding for the employment of people with disabilities in the public sector."
+   },
+   "email": null,
+   "link_url": "https://www.fiphfp.fr/",
+   "link_label": {
+    "fr": "FIPHFP",
+    "en": "FIPHFP"
+   },
+   "is_confidential": false,
+   "pole_group": null
+  },
+  {
+   "key": "mdph",
+   "icon": "building",
+   "name": {
+    "fr": "MDPH (Maison départementale des personnes handicapées)",
+    "en": "MDPH (departmental disability office)"
+   },
+   "role": {
+    "fr": "Reçoit et instruit la demande. La décision est prise par la commission des droits et de l'autonomie (CDAPH).",
+    "en": "Receives and processes the application. The decision is made by the CDAPH commission."
+   },
+   "email": null,
+   "link_url": "https://www.monparcourshandicap.gouv.fr/",
+   "link_label": {
+    "fr": "Mon Parcours Handicap (portail national)",
+    "en": "Mon Parcours Handicap (national portal)"
+   },
+   "is_confidential": false,
+   "pole_group": null
+  },
+  {
+   "key": "pole_social",
+   "icon": "user",
+   "name": {
+    "fr": "Charlie DUPIC, référente social et handicap",
+    "en": "Charlie DUPIC, social and disability officer"
+   },
+   "role": {
+    "fr": "Pôle handicap de l'école, pour vos études : handicap, tiers-temps, social, aides exceptionnelles, aménagements.",
+    "en": "School disability office, for your studies: disability, extra exam time, social support, exceptional aid, accommodations."
+   },
+   "email": "charlie.dupic@efrei.fr",
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": false,
+   "pole_group": "school"
+  },
+  {
+   "key": "pole_rse",
+   "icon": "user",
+   "name": {
+    "fr": "Stéphanie LIBESKIND, responsable RSE",
+    "en": "Stéphanie LIBESKIND, CSR manager"
+   },
+   "role": {
+    "fr": "Pôle handicap de l'école, pour vos études : handicap, tiers-temps, social, aides exceptionnelles, aménagements.",
+    "en": "School disability office, for your studies: disability, extra exam time, social support, exceptional aid, accommodations."
+   },
+   "email": "stephanie.libeskind@efrei.fr",
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": false,
+   "pole_group": "school"
+  },
+  {
+   "key": "pole_career",
+   "icon": "user",
+   "name": {
+    "fr": "Jordan SACCASYN, référent handicap au Career Center",
+    "en": "Jordan SACCASYN, disability contact at the Career Center"
+   },
+   "role": {
+    "fr": "Pour le monde du travail : recherche de stage, d'alternance ou d'emploi, et aménagements en entreprise.",
+    "en": "For the working world: finding an internship, work-study or a job, and accommodations at the company."
+   },
+   "email": "jordan.saccasyn@efrei.fr",
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": false,
+   "pole_group": "work"
+  }
+ ],
+ "profile_contacts": {
+  "student": [
+   "pole_social",
+   "pole_rse",
+   "pole_career",
+   "student_health",
+   "registrar",
+   "agefiph",
+   "mdph"
+  ],
+  "employee": [
+   "occ_physician",
+   "hr_officer",
+   "agefiph",
+   "mdph"
+  ],
+  "jobseeker": [
+   "france_travail",
+   "cap_emploi",
+   "agefiph",
+   "mdph"
+  ],
+  "public_agent": [
+   "prevention_physician",
+   "hr_officer",
+   "fiphfp",
+   "mdph"
+  ]
+ }
+}
