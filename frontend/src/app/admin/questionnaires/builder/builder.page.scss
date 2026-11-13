@@ -1,0 +1,24 @@
+// Bandeau « lecture seule » : un autre administrateur modifie ce questionnaire
+.lock-banner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  margin: 0 0 1rem;
+  border-radius: 12px;
+  background: var(--sun-soft);
+  color: var(--sun-ink);
+  p {
+    margin: 0;
+  }
+}
+
+// Le fieldset ne sert qu'à tout désactiver en lecture seule : aucun rendu propre
+fieldset.bare {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}

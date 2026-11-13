@@ -48,6 +48,18 @@ export interface ContactRow extends Contact {
 
 /* ------------------------------------------------------------------ questionnaires */
 
+/** Verrou de modification d'un questionnaire (null : personne ne le modifie). */
+export interface LockInfo {
+  by: string;
+  until: string;
+  mine: boolean;
+}
+export interface RepublishResult {
+  published: string[];
+  unchanged: string[];
+  locked: { key: string; by: string }[];
+}
+
 export interface QuestionnaireRow {
   id: number;
   key: string;
@@ -59,6 +71,7 @@ export interface QuestionnaireRow {
   questions: number;
   rules: number;
   outcomes: number;
+  lock: LockInfo | null;
 }
 export interface ItemRow {
   id: number;
@@ -141,6 +154,17 @@ export type Payload<T> = Omit<T, 'id' | 'position' | 'used_in'>;
 
 const API = '/api';
 
+/** Erreur renvoyée par l'API : message traduit, plus le code et les paramètres du serveur. */
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    readonly code: string | null = null,
+    readonly params: Record<string, string | number> = {},
+  ) {
+    super(message);
+  }
+}
+
 /** Appels de l'administration. Les erreurs sont converties en message lisible et traduit. */
 @Injectable({ providedIn: 'root' })
 export class AdminApi {
@@ -152,7 +176,13 @@ export class AdminApi {
     try {
       return await firstValueFrom(request);
     } catch (error) {
-      throw new Error(this.errorMessage(error));
+      const detail = error instanceof HttpErrorResponse ? error.error?.detail : null;
+      const coded = detail && typeof detail === 'object' && 'code' in detail;
+      throw new ApiError(
+        this.errorMessage(error),
+        coded ? detail.code : null,
+        coded ? (detail.params ?? {}) : {},
+      );
     }
   }
 
@@ -275,6 +305,31 @@ export class AdminApi {
 
   deleteQuestionnaire(id: number): Promise<unknown> {
     return this.call(this.http.delete(`${API}/admin/questionnaires/${id}`));
+  }
+
+  /** Prend ou renouvelle le verrou de modification ; `force` prend la main sur un autre. */
+  lock(id: number, force = false): Promise<LockInfo> {
+    return this.call(this.http.post<LockInfo>(`${API}/admin/questionnaires/${id}/lock`, { force }));
+  }
+
+  unlock(id: number): Promise<unknown> {
+    return this.call(this.http.delete(`${API}/admin/questionnaires/${id}/lock`));
+  }
+
+  /** Rend le verrou pendant la fermeture de l'onglet (la requête survit à la page). */
+  unlockOnExit(id: number): void {
+    void fetch(`${API}/admin/questionnaires/${id}/lock`, {
+      method: 'DELETE',
+      keepalive: true,
+      credentials: 'same-origin',
+    }).catch(() => undefined);
+  }
+
+  /** Republie d'un coup les questionnaires publiés modifiés (tous si `keys` est absent). */
+  republish(keys?: string[]): Promise<RepublishResult> {
+    return this.call(
+      this.http.post<RepublishResult>(`${API}/admin/questionnaires/republish`, { keys }),
+    );
   }
 
   versions(id: number): Promise<VersionRow[]> {

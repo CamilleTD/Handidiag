@@ -402,6 +402,25 @@
   "condition_no_option": "{path} : cochez au moins une réponse.",
   "condition_unknown_option": "{path} : réponse « {option} » inconnue pour « {question} ».",
   "condition_count": "{path} : le nombre minimal doit être un entier ≥ 1.",
-  "condition_answered": "{path} : choisissez « répondue » ou « non répondue »."
+  "condition_answered": "{path} : choisissez « répondue » ou « non répondue ».",
+  "questionnaire_locked": "{user} est en train de modifier ce questionnaire.",
+  "republish_blocked": "« {questionnaire} » ne peut pas être publié en l'état : ouvrez-le pour le corriger. Aucun questionnaire n'a été republié."
+ },
+ "lock": {
+  "read_only": "{user} est en train de modifier ce questionnaire : vous êtes en lecture seule.",
+  "read_only_hint": "Ses modifications s'affichent au fur et à mesure. La main vous revient dès que cette personne quitte le questionnaire.",
+  "take_over": "Prendre la main",
+  "taken_over": "{user} a pris la main : vous êtes en lecture seule.",
+  "now_editing": "Le questionnaire est libre : vous pouvez de nouveau le modifier.",
+  "editing_by": "En cours de modification par {user}"
+ },
+ "republish": {
+  "title": "Republication",
+  "hint": "Questionnaires publiés concernés : {list}.",
+  "draft_warning": "Le brouillon de chaque questionnaire est publié tel quel, y compris ses autres modifications en cours.",
+  "button": "Republier les questionnaires concernés",
+  "published": "Republiés : {list}.",
+  "locked": "Non republiés car en cours de modification : {list}.",
+  "nothing": "Aucun questionnaire publié à mettre à jour."
  }
 }

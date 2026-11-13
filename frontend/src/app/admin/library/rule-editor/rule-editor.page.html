@@ -64,6 +64,9 @@
     @if (message()) {
       <p class="status" [class.is-error]="failed()" role="status">{{ message() }}</p>
     }
+    @if (republish().length) {
+      <app-republish-panel [keys]="republish()" />
+    }
     <div class="form-actions">
       <button type="submit" class="btn btn-primary" [disabled]="saving()">
         {{ t('common.save') }}

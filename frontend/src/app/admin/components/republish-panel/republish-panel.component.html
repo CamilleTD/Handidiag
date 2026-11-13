@@ -1,0 +1,10 @@
+<section class="republish" [attr.aria-label]="t('republish.title')">
+  <p>{{ t('republish.hint', { list: keys().join(', ') }) }}</p>
+  <p class="hint">{{ t('republish.draft_warning') }}</p>
+  <button type="button" class="btn btn-primary btn-small" [disabled]="busy()" (click)="run()">
+    {{ t('republish.button') }}
+  </button>
+  @if (message()) {
+    <p class="status" [class.is-error]="failed()" role="status">{{ message() }}</p>
+  }
+</section>

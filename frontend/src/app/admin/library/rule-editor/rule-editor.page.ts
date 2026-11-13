@@ -18,6 +18,7 @@ import {
   Payload,
   TextItemRow,
 } from '../../admin-api.service';
+import { RepublishPanelComponent } from '../../components/republish-panel/republish-panel.component';
 import { adminT, adminText } from '../../admin-i18n';
 import { emptyLeaf } from '../../conditions';
 import { ConditionFieldComponent } from '../../components/condition-field/condition-field.component';
@@ -34,6 +35,7 @@ type Draft = Payload<LibraryRule>;
     LocalizedFieldComponent,
     ConditionFieldComponent,
     PickListComponent,
+    RepublishPanelComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './rule-editor.page.html',
@@ -49,6 +51,8 @@ export class RuleEditorPage {
   protected readonly isNew = computed(() => this.id() === 'new');
   protected readonly draft = signal<Draft | null>(null);
   protected readonly usedIn = signal<string[]>([]);
+  /** Questionnaires à republier après un enregistrement (élément partagé). */
+  protected readonly republish = signal<string[]>([]);
   protected readonly questions = signal<BankQuestion[]>([]);
   private readonly flags = signal<TextItemRow[]>([]);
   private readonly suggestions = signal<TextItemRow[]>([]);
@@ -127,6 +131,8 @@ export class RuleEditorPage {
         : await this.api.update<LibraryRule>('rules', Number(this.id()), draft);
       this.failed.set(false);
       this.message.set(this.t(saved.used_in.length ? 'rules.saved_used' : 'common.saved'));
+      this.usedIn.set(saved.used_in);
+      this.republish.set(saved.used_in);
       if (this.isNew())
         void this.router.navigate(['/admin/library/rules', saved.id], { replaceUrl: true });
     } catch (error) {

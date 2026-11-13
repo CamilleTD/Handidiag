@@ -12,6 +12,7 @@ import { Router, RouterLink } from '@angular/router';
 import type { LocalizedText, QuestionOption } from '../../../core/models';
 import { IconComponent } from '../../../shared/icon/icon.component';
 import { AdminApi, BankQuestion, Payload } from '../../admin-api.service';
+import { RepublishPanelComponent } from '../../components/republish-panel/republish-panel.component';
 import { adminT } from '../../admin-i18n';
 import { LocalizedFieldComponent } from '../../components/localized-field/localized-field.component';
 
@@ -22,7 +23,7 @@ interface OptionDraft extends QuestionOption {
 }
 
 @Component({
-  imports: [RouterLink, IconComponent, LocalizedFieldComponent],
+  imports: [RouterLink, IconComponent, LocalizedFieldComponent, RepublishPanelComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './question-editor.page.html',
   styleUrl: './question-editor.page.scss',
@@ -37,6 +38,8 @@ export class QuestionEditorPage {
   protected readonly draft = signal<Draft | null>(null);
   protected readonly options = signal<OptionDraft[]>([]);
   protected readonly usedIn = signal<string[]>([]);
+  /** Questionnaires à republier après un enregistrement (élément partagé). */
+  protected readonly republish = signal<string[]>([]);
   protected readonly message = signal('');
   protected readonly failed = signal(false);
   protected readonly saving = signal(false);
@@ -123,6 +126,8 @@ export class QuestionEditorPage {
         : await this.api.update<BankQuestion>('questions', Number(this.id()), body);
       this.failed.set(false);
       this.message.set(this.t(saved.used_in.length ? 'questions.saved_used' : 'common.saved'));
+      this.usedIn.set(saved.used_in);
+      this.republish.set(saved.used_in);
       if (this.isNew())
         void this.router.navigate(['/admin/library/questions', saved.id], { replaceUrl: true });
       else this.options.update((list) => list.map((o) => ({ ...o, saved: true })));

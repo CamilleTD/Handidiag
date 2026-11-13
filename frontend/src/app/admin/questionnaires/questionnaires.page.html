@@ -41,6 +41,9 @@
   </form>
 }
 
+@if (pending().length) {
+  <app-republish-panel [keys]="pending()" (done)="republished($event)" />
+}
 @if (message()) {
   <p class="status" [class.is-error]="failed()" role="status">{{ message() }}</p>
 }
@@ -66,6 +69,9 @@
           }
           @if (q.has_changes && q.published) {
             <span class="tag is-sun">{{ t('builder.unpublished_changes') }}</span>
+          }
+          @if (q.lock && !q.lock.mine) {
+            <span class="tag is-sun">{{ t('lock.editing_by', { user: q.lock.by }) }}</span>
           }
           <span class="tag is-quiet">{{
             t('questionnaires.stats', { q: q.questions, r: q.rules, o: q.outcomes })

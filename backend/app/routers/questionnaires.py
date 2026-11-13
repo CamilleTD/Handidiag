@@ -3,13 +3,15 @@
 from typing import Any
 
 from fastapi import APIRouter, Depends, status
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from tortoise.transactions import in_transaction
 
-from app.auth import current_admin
+from app.auth import current_admin, current_session
 from app.conditions import questions_in
-from app.errors import conflict, invalid, not_found
+from app.errors import Problem, conflict, invalid, not_found
+from app.locks import acquire, editable, held_by_other, lock_info, release
 from app.models import (
+    AdminSession,
     AdminUser,
     Contact,
     Outcome,
@@ -34,15 +36,17 @@ from app.services import (
     catalog_of,
     check_condition,
     check_publishable,
+    comparable,
     draft_snapshot,
     get_questionnaire,
+    published_version,
     questionnaire_detail,
 )
 
 router = APIRouter(
     prefix="/admin/questionnaires",
     tags=["questionnaires"],
-    dependencies=[Depends(current_admin)],
+    dependencies=[Depends(current_admin), Depends(editable)],
 )
 
 
@@ -75,7 +79,7 @@ async def unfeature_others(questionnaire_id: int) -> None:
 
 
 @router.get("")
-async def list_questionnaires():
+async def list_questionnaires(session: AdminSession = Depends(current_session)):
     result = []
     for q in await Questionnaire.all().prefetch_related(
         "sections__items", "rule_usages", "outcomes"
@@ -94,6 +98,7 @@ async def list_questionnaires():
                 "questions": sum(len(s.items) for s in q.sections),
                 "rules": len(q.rule_usages),
                 "outcomes": len(q.outcomes),
+                "lock": lock_info(q, session),
             }
         )
     return result
@@ -131,6 +136,48 @@ async def reorder_questionnaires(body: ReorderIn):
     await reorder(list(await Questionnaire.all()), body.ids)
 
 
+class RepublishIn(BaseModel):
+    # Questionnaires à republier ; absent : tous les questionnaires publiés
+    keys: list[str] | None = Field(default=None)
+
+
+@router.post("/republish")
+async def republish(body: RepublishIn, session: AdminSession = Depends(current_session)):
+    """Republie d'un coup les questionnaires publiés dont le brouillon a changé, typiquement
+    après la modification d'une question ou d'une règle partagée de la bibliothèque.
+
+    Tout ou rien : si l'un d'eux ne peut pas être publié, aucun ne l'est. Un questionnaire
+    en cours de modification par quelqu'un d'autre est laissé de côté (signalé dans « locked »).
+    """
+    targets = Questionnaire.filter(published_number__isnull=False)
+    if body.keys is not None:
+        targets = targets.filter(key__in=body.keys)
+    ready, result = [], {"published": [], "unchanged": [], "locked": []}
+    for row in await targets:
+        q = await get_questionnaire(row.id)
+        snapshot = await draft_snapshot(q)
+        current = await published_version(q)
+        if current and comparable(current.snapshot) == comparable(snapshot):
+            result["unchanged"].append(q.key)
+        elif held_by_other(q, session):
+            result["locked"].append({"key": q.key, "by": q.locked_by})
+        else:
+            try:
+                check_publishable(snapshot)
+            except Problem as problem:
+                raise invalid(
+                    "republish_blocked",
+                    f"« {q.key} » ne peut pas être publié : {problem.detail['message']}",
+                    questionnaire=q.key,
+                ) from problem
+            ready.append((q, snapshot))
+    async with in_transaction():
+        for q, snapshot in ready:
+            await publish_snapshot(q, snapshot, session.user.username)
+            result["published"].append(q.key)
+    return result
+
+
 @router.get("/{qid}")
 async def get_detail(qid: int):
     return await detail(qid)
@@ -158,6 +205,31 @@ async def delete_questionnaire(qid: int):
         await q.delete()
 
 
+# =========================================================================== verrou
+
+
+class LockIn(BaseModel):
+    # Prendre la main sur un autre administrateur
+    force: bool = False
+
+
+@router.post("/{qid}/lock")
+async def lock(qid: int, body: LockIn, session: AdminSession = Depends(current_session)):
+    """Prend ou renouvelle le verrou de modification (appelé régulièrement par le constructeur)."""
+    q = await Questionnaire.get_or_none(id=qid)
+    if q is None:
+        raise not_found("Questionnaire introuvable")
+    await acquire(q, session, force=body.force)
+    return lock_info(q, session)
+
+
+@router.delete("/{qid}/lock", status_code=status.HTTP_204_NO_CONTENT)
+async def unlock(qid: int, session: AdminSession = Depends(current_session)):
+    q = await Questionnaire.get_or_none(id=qid)
+    if q is not None:
+        await release(q, session)
+
+
 # =========================================================================== publication
 
 
@@ -167,21 +239,25 @@ async def preview(qid: int):
     return await draft_snapshot(await get_questionnaire(qid))
 
 
+async def publish_snapshot(q: Questionnaire, snapshot: dict, username: str) -> None:
+    last = await QuestionnaireVersion.filter(questionnaire=q).order_by("-number").first()
+    version = await QuestionnaireVersion.create(
+        questionnaire=q,
+        number=last.number + 1 if last else 1,
+        snapshot=snapshot,
+        published_by=username,
+    )
+    q.published_number = version.number
+    await q.save(update_fields=["published_number", "updated_at"])
+
+
 @router.post("/{qid}/publish")
 async def publish(qid: int, admin: AdminUser = Depends(current_admin)):
     q = await get_questionnaire(qid)
     snapshot = await draft_snapshot(q)
     check_publishable(snapshot)
-    last = await QuestionnaireVersion.filter(questionnaire=q).order_by("-number").first()
     async with in_transaction():
-        version = await QuestionnaireVersion.create(
-            questionnaire=q,
-            number=last.number + 1 if last else 1,
-            snapshot=snapshot,
-            published_by=admin.username,
-        )
-        q.published_number = version.number
-        await q.save(update_fields=["published_number", "updated_at"])
+        await publish_snapshot(q, snapshot, admin.username)
     return await detail(qid)
 
 

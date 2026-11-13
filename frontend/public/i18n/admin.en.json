@@ -402,6 +402,25 @@
   "condition_no_option": "{path}: tick at least one answer.",
   "condition_unknown_option": "{path}: unknown answer \"{option}\" for \"{question}\".",
   "condition_count": "{path}: the minimum must be a whole number ≥ 1.",
-  "condition_answered": "{path}: choose \"answered\" or \"not answered\"."
+  "condition_answered": "{path}: choose \"answered\" or \"not answered\".",
+  "questionnaire_locked": "{user} is editing this questionnaire.",
+  "republish_blocked": "“{questionnaire}” cannot be published as is: open it to fix it. No questionnaire was republished."
+ },
+ "lock": {
+  "read_only": "{user} is editing this questionnaire: you are in read-only mode.",
+  "read_only_hint": "Their changes appear as they are made. You get control back as soon as they leave the questionnaire.",
+  "take_over": "Take over",
+  "taken_over": "{user} took over: you are in read-only mode.",
+  "now_editing": "The questionnaire is free: you can edit it again.",
+  "editing_by": "Being edited by {user}"
+ },
+ "republish": {
+  "title": "Republishing",
+  "hint": "Published questionnaires concerned: {list}.",
+  "draft_warning": "Each questionnaire’s draft is published as is, including its other pending changes.",
+  "button": "Republish the questionnaires concerned",
+  "published": "Republished: {list}.",
+  "locked": "Not republished because they are being edited: {list}.",
+  "nothing": "No published questionnaire needs updating."
  }
 }

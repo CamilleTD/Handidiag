@@ -7,7 +7,7 @@ from datetime import UTC, datetime, timedelta
 
 from argon2 import PasswordHasher
 from argon2.exceptions import InvalidHashError, VerifyMismatchError
-from fastapi import Cookie, Request, Response
+from fastapi import Cookie, Depends, Request, Response
 
 from app.config import get_settings
 from app.errors import Problem
@@ -68,7 +68,7 @@ async def close_session(response: Response, token: str | None) -> None:
     response.delete_cookie(COOKIE, path="/api")
 
 
-async def current_admin(hd_session: str | None = Cookie(default=None)) -> AdminUser:
+async def current_session(hd_session: str | None = Cookie(default=None)) -> AdminSession:
     if hd_session:
         session = await AdminSession.get_or_none(token_hash=_digest(hd_session)).prefetch_related(
             "user"
@@ -77,8 +77,12 @@ async def current_admin(hd_session: str | None = Cookie(default=None)) -> AdminU
             # Session glissante : chaque action la prolonge
             session.expires_at = datetime.now(UTC) + timedelta(hours=get_settings().session_hours)
             await session.save(update_fields=["expires_at"])
-            return session.user
+            return session
     raise Problem(401, "session_expired", "Session expirée, reconnectez-vous.")
+
+
+async def current_admin(session: AdminSession = Depends(current_session)) -> AdminUser:
+    return session.user
 
 
 class LoginThrottle:

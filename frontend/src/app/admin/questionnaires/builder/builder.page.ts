@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  HostListener,
   effect,
   inject,
   input,
@@ -61,8 +62,15 @@ export class BuilderPage {
         await this.store.load(id);
         this.syncSettings();
         await this.loadVersions();
+        if (this.store.detail()) await this.store.startEditing(id);
       });
     });
+  }
+
+  /** Onglet fermé ou rechargé : rendre le verrou tout de suite plutôt qu'à son expiration. */
+  @HostListener('window:pagehide')
+  protected onPageHide(): void {
+    this.store.releaseOnExit();
   }
 
   private syncSettings(): void {

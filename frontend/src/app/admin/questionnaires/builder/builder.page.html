@@ -34,7 +34,7 @@
       <button
         type="button"
         class="btn btn-primary btn-small"
-        [disabled]="!d.has_changes || store.busy()"
+        [disabled]="!d.has_changes || store.busy() || store.readOnly()"
         (click)="confirmPublish.set(true)"
       >
         {{ t('builder.publish') }}
@@ -43,6 +43,17 @@
   </div>
   @if (store.message()) {
     <p class="status" [class.is-error]="store.failed()" role="status">{{ store.message() }}</p>
+  }
+  @if (store.lockedBy(); as user) {
+    <div class="lock-banner" role="alert">
+      <p>
+        <strong>{{ t('lock.read_only', { user: user }) }}</strong>
+        {{ t('lock.read_only_hint') }}
+      </p>
+      <button type="button" class="btn btn-small" (click)="store.takeOver()">
+        {{ t('lock.take_over') }}
+      </button>
+    </div>
   }
 
   <div class="tabs" role="tablist" [attr.aria-label]="t('builder.tabs')">
@@ -63,96 +74,99 @@
     }
   </div>
   <div role="tabpanel" [id]="'panel-' + tab()" [attr.aria-labelledby]="'tab-' + tab()">
-    @switch (tab()) {
-      @case ('content') {
-        <app-content-tab />
-      }
-      @case ('outcomes') {
-        <app-outcomes-tab />
-      }
-      @case ('rules') {
-        <app-rules-tab />
-      }
-      @case ('settings') {
-        <form class="form-section" (submit)="$event.preventDefault(); saveSettings()" novalidate>
-          <div class="form-grid">
-            <app-localized-field
-              [label]="t('questionnaires.name')"
-              [required]="true"
-              [value]="settings().title"
-              (valueChange)="settings.set({ ...settings(), title: $event })"
-            />
-            <app-localized-field
-              [label]="t('questionnaires.description')"
-              [multiline]="true"
-              [value]="settings().description"
-              (valueChange)="settings.set({ ...settings(), description: $event })"
-            />
-            <label class="check">
-              <input
-                type="checkbox"
-                [checked]="settings().featured"
-                (change)="settings.set({ ...settings(), featured: $any($event.target).checked })"
+    <!-- En lecture seule, un fieldset désactivé neutralise tous les champs et boutons -->
+    <fieldset class="bare" [disabled]="store.readOnly()">
+      @switch (tab()) {
+        @case ('content') {
+          <app-content-tab />
+        }
+        @case ('outcomes') {
+          <app-outcomes-tab />
+        }
+        @case ('rules') {
+          <app-rules-tab />
+        }
+        @case ('settings') {
+          <form class="form-section" (submit)="$event.preventDefault(); saveSettings()" novalidate>
+            <div class="form-grid">
+              <app-localized-field
+                [label]="t('questionnaires.name')"
+                [required]="true"
+                [value]="settings().title"
+                (valueChange)="settings.set({ ...settings(), title: $event })"
               />
-              <span>{{ t('questionnaires.featured_label') }}</span>
-            </label>
-          </div>
-          <p class="hint">{{ t('builder.settings_hint') }}</p>
-          <div class="actions">
-            <button type="submit" class="btn btn-primary" [disabled]="store.busy()">
-              {{ t('common.save') }}
-            </button>
-          </div>
-        </form>
+              <app-localized-field
+                [label]="t('questionnaires.description')"
+                [multiline]="true"
+                [value]="settings().description"
+                (valueChange)="settings.set({ ...settings(), description: $event })"
+              />
+              <label class="check">
+                <input
+                  type="checkbox"
+                  [checked]="settings().featured"
+                  (change)="settings.set({ ...settings(), featured: $any($event.target).checked })"
+                />
+                <span>{{ t('questionnaires.featured_label') }}</span>
+              </label>
+            </div>
+            <p class="hint">{{ t('builder.settings_hint') }}</p>
+            <div class="actions">
+              <button type="submit" class="btn btn-primary" [disabled]="store.busy()">
+                {{ t('common.save') }}
+              </button>
+            </div>
+          </form>
 
-        <section class="form-section" aria-labelledby="s-versions">
-          <h2 id="s-versions">{{ t('builder.versions') }}</h2>
-          <ul class="item-list">
-            @for (v of versions(); track v.number) {
-              <li class="item">
-                <div>
-                  <p class="item-title">{{ t('builder.version_n', { n: v.number }) }}</p>
-                  <p class="hint">{{ date(v.published_at) }} · {{ v.published_by }}</p>
-                </div>
-                <div class="item-actions">
-                  @if (d.published?.number === v.number) {
-                    <span class="tag">{{ t('builder.online') }}</span>
-                  } @else {
-                    <button type="button" class="btn btn-small" (click)="restore(v.number)">
-                      {{ t('builder.restore') }}
-                    </button>
-                  }
-                </div>
-              </li>
-            } @empty {
-              <li class="hint">{{ t('builder.no_versions') }}</li>
+          <section class="form-section" aria-labelledby="s-versions">
+            <h2 id="s-versions">{{ t('builder.versions') }}</h2>
+            <ul class="item-list">
+              @for (v of versions(); track v.number) {
+                <li class="item">
+                  <div>
+                    <p class="item-title">{{ t('builder.version_n', { n: v.number }) }}</p>
+                    <p class="hint">{{ date(v.published_at) }} · {{ v.published_by }}</p>
+                  </div>
+                  <div class="item-actions">
+                    @if (d.published?.number === v.number) {
+                      <span class="tag">{{ t('builder.online') }}</span>
+                    } @else {
+                      <button type="button" class="btn btn-small" (click)="restore(v.number)">
+                        {{ t('builder.restore') }}
+                      </button>
+                    }
+                  </div>
+                </li>
+              } @empty {
+                <li class="hint">{{ t('builder.no_versions') }}</li>
+              }
+            </ul>
+            @if (d.published) {
+              <button type="button" class="btn btn-quiet" (click)="unpublish()">
+                {{ t('builder.unpublish') }}
+              </button>
             }
-          </ul>
-          @if (d.published) {
-            <button type="button" class="btn btn-quiet" (click)="unpublish()">
-              {{ t('builder.unpublish') }}
-            </button>
-          }
-        </section>
+          </section>
 
-        <section class="form-section" aria-labelledby="s-danger">
-          <h2 id="s-danger">{{ t('builder.delete_title') }}</h2>
-          <p class="hint">{{ t('builder.delete_hint') }}</p>
-          @if (confirmDelete()) {
-            <button type="button" class="btn" (click)="remove()">
-              {{ t('common.confirm_delete') }}
-            </button>
-            <button type="button" class="btn btn-quiet" (click)="confirmDelete.set(false)">
-              {{ t('common.keep') }}
-            </button>
-          } @else {
-            <button type="button" class="btn btn-quiet" (click)="confirmDelete.set(true)">
-              <app-icon name="trash" /> {{ t('builder.delete') }}…
-            </button>
-          }
-        </section>
+          <section class="form-section" aria-labelledby="s-danger">
+            <h2 id="s-danger">{{ t('builder.delete_title') }}</h2>
+            <p class="hint">{{ t('builder.delete_hint') }}</p>
+            @if (confirmDelete()) {
+              <button type="button" class="btn" (click)="remove()">
+                {{ t('common.confirm_delete') }}
+              </button>
+              <button type="button" class="btn btn-quiet" (click)="confirmDelete.set(false)">
+                {{ t('common.keep') }}
+              </button>
+            } @else {
+              <button type="button" class="btn btn-quiet" (click)="confirmDelete.set(true)">
+                <app-icon name="trash" /> {{ t('builder.delete') }}…
+              </button>
+            }
+          </section>
+        }
       }
-    }
+    </fieldset>
   </div>
 } @else if (store.message()) {
   <p class="status is-error" role="alert">{{ store.message() }}</p>

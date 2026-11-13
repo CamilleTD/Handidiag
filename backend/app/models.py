@@ -216,6 +216,10 @@ class Questionnaire(TimestampedModel):
     featured = fields.BooleanField(default=False)
     # Numéro de la version servie au public (null : non publié)
     published_number = fields.IntField(null=True)
+    # Verrou de modification : une seule session modifie le brouillon à la fois (voir app/locks.py)
+    lock_session = fields.CharField(max_length=64, null=True)
+    locked_by = fields.CharField(max_length=80, null=True)
+    locked_until = fields.DatetimeField(null=True)
 
     sections: fields.ReverseRelation["Section"]
     outcomes: fields.ReverseRelation["Outcome"]

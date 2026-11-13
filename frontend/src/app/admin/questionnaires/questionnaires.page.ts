@@ -1,14 +1,18 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import type { LocalizedText } from '../../core/models';
 import { IconComponent } from '../../shared/icon/icon.component';
-import { AdminApi, QuestionnaireRow } from '../admin-api.service';
+import { AdminApi, QuestionnaireRow, RepublishResult } from '../admin-api.service';
+import {
+  RepublishPanelComponent,
+  summary,
+} from '../components/republish-panel/republish-panel.component';
 import { adminT, adminText } from '../admin-i18n';
 import { LocalizedFieldComponent } from '../components/localized-field/localized-field.component';
 
 /** Banque de questionnaires : liste, ordre sur l'accueil, création. */
 @Component({
-  imports: [RouterLink, IconComponent, LocalizedFieldComponent],
+  imports: [RouterLink, IconComponent, LocalizedFieldComponent, RepublishPanelComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './questionnaires.page.html',
   styleUrl: './questionnaires.page.scss',
@@ -25,9 +29,22 @@ export class QuestionnairesPage {
   protected readonly message = signal('');
   protected readonly failed = signal(false);
   protected readonly busy = signal(false);
+  /** Questionnaires publiés dont le brouillon a changé (souvent via la bibliothèque). */
+  protected readonly pending = computed(() =>
+    this.rows()
+      .filter((q) => q.published && q.has_changes)
+      .map((q) => q.key),
+  );
 
   constructor() {
     void this.load();
+  }
+
+  /** Le panneau disparaît une fois tout republié : le compte rendu passe dans la page. */
+  protected async republished(result: RepublishResult): Promise<void> {
+    await this.load();
+    this.failed.set(result.locked.length > 0);
+    this.message.set(summary(result, this.t));
   }
 
   private async load(): Promise<void> {
