@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Response, status
 
 from app import stats
 from app.config import get_settings
-from app.models import Level, Question
+from app.models import ContentPage, Level, Question
 from app.schemas import EventIn
 from app.services import PROFILE_QUESTION, public_content
 
@@ -14,6 +14,14 @@ async def content(response: Response):
     """Questionnaire, règles et restitution, en une seule requête."""
     response.headers["Cache-Control"] = "no-cache"
     return await public_content()
+
+
+@router.get("/pages/{slug}")
+async def page(slug: str):
+    item = await ContentPage.get_or_none(slug=slug, is_published=True)
+    if item is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Page introuvable")
+    return {"slug": item.slug, "title": item.title, "intro": item.intro, "blocks": item.blocks}
 
 
 @router.post("/events", status_code=status.HTTP_204_NO_CONTENT)
@@ -38,6 +46,6 @@ async def event(body: EventIn):
         await stats.increment("profile", body.profile)
         await stats.increment("level", body.level)
     elif body.t == "doc":
-        if body.doc not in stats.DOCUMENTS:
+        if body.doc not in await stats.document_keys():
             raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, "Document inconnu")
         await stats.increment("doc", body.doc)

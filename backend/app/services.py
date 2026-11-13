@@ -5,7 +5,17 @@ from typing import Any
 from fastapi import HTTPException, status
 
 from app.conditions import Catalog, ConditionError, references, validate_condition
-from app.models import Contact, Flag, Level, PoleOutcome, Question, Rule, Suggestion
+from app.models import (
+    Contact,
+    ContentPage,
+    Flag,
+    Level,
+    PoleOutcome,
+    Question,
+    Resource,
+    Rule,
+    Suggestion,
+)
 
 PROFILE_QUESTION = "profile"
 
@@ -163,6 +173,20 @@ async def public_content() -> dict[str, Any]:
         "contacts": [
             {k: v for k, v in contact_out(c).items() if k not in ("id", "position", "profiles")}
             for c in contacts
+        ],
+        "resources": [
+            {
+                "section": r.section,
+                "key": r.key,
+                "url": r.url,
+                "title": r.title,
+                "description": r.description,
+                "reference": r.reference,
+            }
+            for r in await Resource.filter(is_published=True)
+        ],
+        "pages": [
+            {"slug": p.slug, "title": p.title} for p in await ContentPage.filter(is_published=True)
         ],
         "profile_contacts": {
             profile: [key for _, key in sorted(items)]

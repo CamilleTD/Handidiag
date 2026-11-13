@@ -41,7 +41,7 @@ export class ResourcesPage {
 
   protected readonly readParts = (): ReadPart[] => {
     const t = (key: string) => this.i18n.t(key);
-    const links = this.content.links();
+    const text = this.i18n.text.bind(this.i18n);
     return [
       { text: t('resources.title'), pause: 500 },
       { text: t('resources.lead'), pause: 600 },
@@ -57,14 +57,14 @@ export class ResourcesPage {
       { text: t('resources.national_title'), pause: 450 },
       { text: t('resources.national_intro'), pause: 600 },
       { text: t('resources.assoc_title'), pause: 400 },
-      ...links.associations.map((a) => ({
-        text: `${t(`resources.assoc.${a.id}.name`)}. ${t(`resources.assoc.${a.id}.text`)}`,
+      ...this.content.resources('association').map((a) => ({
+        text: `${text(a.title)}. ${text(a.description)}`,
         pause: 450,
       })),
       { text: t('resources.law_title'), pause: 450 },
       { text: t('resources.law_intro'), pause: 600 },
-      ...links.laws.map((l) => ({
-        text: `${t(`resources.law_items.${l.id}.title`)}. ${t(`resources.law_items.${l.id}.text`)}`,
+      ...this.content.resources('law').map((l) => ({
+        text: `${text(l.title)}. ${text(l.description)}`,
         pause: 500,
       })),
     ];

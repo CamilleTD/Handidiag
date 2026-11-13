@@ -4,21 +4,17 @@ from datetime import date, timedelta
 
 from tortoise.expressions import F
 
-from app.models import StatCounter
+from app.models import Resource, ResourceSection, StatCounter
 
-# Documents dont l'ouverture peut être comptée (liens officiels du kit + exports)
-DOCUMENTS = [
-    "rqth_mph",
-    "mdph_portal",
-    "service_public_rqth",
-    "agefiph",
-    "fiphfp",
-    "france_travail",
-    "print",
-    "pdf_download",
-    "summary_download",
-]
+# Exports comptés en plus des liens officiels du kit
+EXPORTS = ["print", "pdf_download", "summary_download"]
 LANGS = ["fr", "en"]
+
+
+async def document_keys() -> list[str]:
+    """Documents dont l'ouverture peut être comptée : liens officiels du kit et exports."""
+    official = await Resource.filter(section=ResourceSection.OFFICIAL).values_list("key", flat=True)
+    return [*official, *EXPORTS]
 
 
 async def increment(metric: str, key: str = "", day: date | None = None, by: int = 1) -> None:
@@ -44,6 +40,7 @@ def mask_dimension(values: dict[str, int], keys: list[str], k: int) -> dict[str,
 
 
 async def dashboard(k: int, levels: list[str], profiles: list[str]) -> dict:
+    documents = await document_keys()
     counters = await StatCounter.all()
     totals: dict[str, dict[str, int]] = {}
     days: dict[str, dict[str, int]] = {}
@@ -69,7 +66,7 @@ async def dashboard(k: int, levels: list[str], profiles: list[str]) -> dict:
         "by_level": mask_dimension(totals.get("level", {}), levels, k),
         "by_profile": mask_dimension(totals.get("profile", {}), profiles, k),
         "by_lang": mask_dimension(totals.get("lang", {}), LANGS, k),
-        "documents": mask_dimension(totals.get("doc", {}), DOCUMENTS, k),
+        "documents": mask_dimension(totals.get("doc", {}), documents, k),
         "daily": [
             {"date": day, "start": mask(v["start"], k), "complete": mask(v["complete"], k)}
             for day, v in sorted(days.items())

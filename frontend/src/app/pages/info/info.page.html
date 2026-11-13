@@ -1,0 +1,67 @@
+<div class="info-layout">
+  <nav class="info-menu" [attr.aria-label]="i18n.t('info_pages.menu')">
+    <p class="info-menu-title">{{ i18n.t('ui.nav_info') }}</p>
+    <ul>
+      @for (item of pages(); track item.slug) {
+        <li>
+          <a
+            [routerLink]="['/info', item.slug]"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+          >
+            {{ i18n.text(item.title) }}
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <article class="info-article">
+    @if (page(); as p) {
+      <h1>{{ i18n.text(p.title) }}</h1>
+      @if (p.intro) {
+        <p class="lead">{{ i18n.text(p.intro) }}</p>
+      }
+      @for (block of p.blocks; track $index) {
+        @switch (block.type) {
+          @case ('accordion') {
+            <details class="info-accordion">
+              <summary>{{ i18n.text(block.title) }}</summary>
+              <p>{{ i18n.text(block.text) }}</p>
+            </details>
+          }
+          @case ('text') {
+            <section>
+              <h2>{{ i18n.text(block.title) }}</h2>
+              <p>{{ i18n.text(block.text) }}</p>
+            </section>
+          }
+          @default {
+            <section class="panel">
+              <h2>{{ i18n.text(block.title) }}</h2>
+              @if (block.text) {
+                <p>{{ i18n.text(block.text) }}</p>
+              }
+              <p>
+                <a [href]="$any(block).url" target="_blank" rel="noopener noreferrer">
+                  <app-icon [name]="block.type === 'document' ? 'doc' : 'link'" />
+                  {{
+                    i18n.t(
+                      block.type === 'document' ? 'info_pages.open_pdf' : 'info_pages.open_link'
+                    )
+                  }}
+                  <span class="sr-only"> {{ i18n.t('ui.new_tab') }}</span>
+                </a>
+              </p>
+            </section>
+          }
+        }
+      }
+    } @else if (missing()) {
+      <h1>{{ i18n.t('pages.not_found') }}</h1>
+      <p>{{ i18n.t('ui.not_found_text') }}</p>
+    } @else {
+      <p>{{ i18n.t('ui.loading') }}</p>
+    }
+  </article>
+</div>

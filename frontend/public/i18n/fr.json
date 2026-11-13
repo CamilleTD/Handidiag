@@ -65,7 +65,8 @@
   "read_page": "Lire cette page à voix haute",
   "nav_resources": "Ressources",
   "not_found_text": "Cette page n'existe pas ou a été déplacée.",
-  "footer_disclaimer": "HandiDiag oriente et informe : ce n'est ni un diagnostic, ni une décision. Seule la MDPH peut reconnaître une situation de handicap."
+  "footer_disclaimer": "HandiDiag oriente et informe : ce n'est ni un diagnostic, ni une décision. Seule la MDPH peut reconnaître une situation de handicap.",
+  "nav_info": "S'informer"
  },
  "pages": {
   "info": "Comprendre la démarche RQTH",
@@ -76,7 +77,8 @@
   "more": "Questions complémentaires",
   "admin": "Espace administrateur",
   "resources": "Ressources",
-  "not_found": "Page introuvable"
+  "not_found": "Page introuvable",
+  "info_pages": "S'informer"
  },
  "info": {
   "title": "Votre orientation RQTH, avant d'entrer dans le monde du travail",
@@ -231,36 +233,6 @@
   "refine_text": "Répondez à {n} questions complémentaires pour obtenir des pistes plus précises, adaptées à ce que vous avez coché.",
   "refine_btn": "Répondre aux questions complémentaires"
  },
- "links": {
-  "rqth_mph": {
-   "label": "Mon Parcours Handicap : la RQTH",
-   "desc": "Fiche officielle sur la reconnaissance et les démarches."
-  },
-  "mdph_portal": {
-   "label": "Mon Parcours Handicap (portail national)",
-   "desc": "Trouver votre MDPH et faire une demande."
-  },
-  "service_public_rqth": {
-   "label": "Service-public.fr : la RQTH",
-   "desc": "Définition, démarches, formulaires."
-  },
-  "agefiph": {
-   "label": "Agefiph",
-   "desc": "Aides et informations pour le secteur privé."
-  },
-  "fiphfp": {
-   "label": "FIPHFP",
-   "desc": "Aides et informations pour la fonction publique."
-  },
-  "france_travail": {
-   "label": "France Travail",
-   "desc": "Accompagnement des demandeurs d'emploi."
-  },
-  "compensation": {
-   "label": "Mon Parcours Handicap : la compensation",
-   "desc": "Les grands principes de la compensation du handicap dans les études supérieures."
-  }
- },
  "kit": {
   "title": "Kit documentaire",
   "intro": "Tout ce qu'il faut pour avancer, avec des sources officielles. Vérifiez toujours les formulaires et la liste des pièces sur les sites officiels : ils peuvent changer.",
@@ -400,92 +372,12 @@
   "law_intro": "Quelques repères simples, issus des textes nationaux. Ce sont des informations générales, pas un conseil juridique : chaque établissement ou employeur les applique avec ses procédures, et il faut toujours vérifier les textes à jour.",
   "law_ref": "Référence",
   "law_link": "Rechercher un texte sur Légifrance",
-  "law_items": {
-   "def": {
-    "title": "Le handicap selon la loi",
-    "text": "La loi du 11 février 2005 définit le handicap comme toute limitation d'activité ou restriction de participation à la vie en société, due à une altération durable de fonctions physiques, sensorielles, mentales, cognitives ou psychiques, à un polyhandicap ou à un trouble de santé invalidant. Elle crée le droit à la compensation.",
-    "ref": "Loi n° 2005-102 du 11 février 2005 ; Code de l'action sociale et des familles, article L114"
-   },
-   "exams": {
-    "title": "Aménagements d'examens dans le supérieur",
-    "text": "Les textes nationaux prévoient des aménagements des épreuves pour les étudiants en situation de handicap ou ayant un trouble de santé invalidant : temps majoré (jusqu'à un tiers du temps total), pauses, aide humaine ou technique, sujets adaptés, salle adaptée. Un médecin désigné par la CDAPH donne un avis, puis l'établissement décide et notifie sa décision. Les aménagements valent pour toute la formation menant au diplôme. Le pôle handicap vous explique comment faire à l'école.",
-    "ref": "Code de l'éducation, articles L112-4, D112-1 et D613-26 à D613-27-1 ; circulaire du 6 février 2023 (NOR ESRS2234137C)"
-   },
-   "rqth": {
-    "title": "La RQTH",
-    "text": "La qualité de travailleur handicapé concerne toute personne dont les possibilités d'obtenir ou de conserver un emploi sont effectivement réduites. La demande se fait auprès de la MDPH ; la CDAPH décide. La reconnaissance est accordée de 1 à 10 ans, ou sans limitation de durée en cas d'altération définitive.",
-    "ref": "Code du travail, articles L5213-1 et suivants"
-   },
-   "work": {
-    "title": "Aménagements au travail",
-    "text": "L'employeur prend, en fonction des besoins, les mesures appropriées pour permettre à un travailleur handicapé d'accéder à un emploi, de l'exercer et d'y progresser, sauf si elles représentent une charge disproportionnée. Les aménagements du poste ou du temps de travail se décident avec le médecin du travail.",
-    "ref": "Code du travail, article L5213-6"
-   },
-   "quota": {
-    "title": "Obligation d'emploi et aides",
-    "text": "Les entreprises et administrations d'au moins 20 salariés ou agents doivent employer au moins 6 % de travailleurs handicapés. Des aides financières existent : Agefiph pour le secteur privé, FIPHFP pour la fonction publique.",
-    "ref": "Code du travail, article L5212-2"
-   },
-   "freedom": {
-    "title": "Liberté d'en parler ou non",
-    "text": "Le salarié reste libre de parler ou non de sa RQTH à l'embauche comme en cours d'emploi. Le médecin du travail est tenu au secret médical. Écarter un candidat à cause de son handicap ou de son état de santé est une discrimination.",
-    "ref": "Code du travail, articles L1132-1 et L5213-1"
-   },
-   "data": {
-    "title": "Vos données de santé",
-    "text": "Les données de santé et de handicap sont des données sensibles, protégées par le RGPD : leur traitement est en principe interdit, sauf exceptions comme le consentement. HandiDiag ne conserve aucune de vos réponses.",
-    "ref": "Règlement (UE) 2016/679 (RGPD), article 9"
-   }
-  },
-  "assoc": {
-   "apf": {
-    "name": "APF France handicap",
-    "text": "Défense des droits et accompagnement des personnes en situation de handicap, notamment moteur."
-   },
-   "ffdys": {
-    "name": "Fédération française des Dys (FFDys)",
-    "text": "Information et soutien pour les troubles « dys » : lecture, écriture, calcul, langage, coordination."
-   },
-   "tdah": {
-    "name": "HyperSupers TDAH France",
-    "text": "Information et entraide autour du trouble de l'attention avec ou sans hyperactivité."
-   },
-   "autisme": {
-    "name": "Autisme France",
-    "text": "Information, défense des droits et soutien pour les personnes autistes et leurs proches."
-   },
-   "unafam": {
-    "name": "Unafam",
-    "text": "Écoute et information pour les proches de personnes vivant avec des troubles psychiques."
-   },
-   "unapei": {
-    "name": "Unapei",
-    "text": "Défense des droits des personnes avec une déficience intellectuelle et de leurs familles."
-   },
-   "fas": {
-    "name": "France Assos Santé",
-    "text": "Information sur vos droits en santé et orientation vers des associations de malades, notamment pour les maladies chroniques."
-   },
-   "tremplin": {
-    "name": "Tremplin",
-    "text": "Accompagnement de lycéens et d'étudiants en situation de handicap, des études à l'entreprise."
-   },
-   "arpejeh": {
-    "name": "Arpejeh",
-    "text": "Accompagnement des jeunes élèves et étudiants en situation de handicap vers leurs études et leur projet professionnel."
-   },
-   "handinamique": {
-    "name": "100 % Handinamique",
-    "text": "Réussite scolaire des jeunes en situation de handicap."
-   },
-   "ladapt": {
-    "name": "LADAPT",
-    "text": "Insertion sociale et professionnelle des personnes en situation de handicap."
-   },
-   "droitausavoir": {
-    "name": "Droit au savoir",
-    "text": "Information sur les droits à l'éducation et aux études, tous handicaps."
-   }
-  }
+  "assoc_more_url": "https://www.onisep.fr/inclusion-et-handicap/qui-peut-vous-aider/les-associations-de-soutien-aux-personnes-en-situation-de-handicap",
+  "law_link_url": "https://www.legifrance.gouv.fr/"
+ },
+ "info_pages": {
+  "menu": "Pages thématiques",
+  "open_link": "Consulter la ressource",
+  "open_pdf": "Ouvrir le document PDF"
  }
 }

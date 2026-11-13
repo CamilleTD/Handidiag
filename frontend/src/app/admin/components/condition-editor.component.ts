@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-  model,
-  output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
 import type { Condition, Question } from '../../core/models';
 import { LeafOperator, OPERATOR_LABELS, describe, emptyLeaf, leafOperator } from '../conditions';
 

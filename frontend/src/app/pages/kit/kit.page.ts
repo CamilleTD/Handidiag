@@ -40,8 +40,8 @@ export class KitPage {
       { text: t('kit.title'), pause: 500 },
       { text: t('kit.intro'), pause: 600 },
       { text: t('kit.links_title'), pause: 400 },
-      ...this.content.links().official_links.map((l) => ({
-        text: `${t(`links.${l.id}.label`)}. ${t(`links.${l.id}.desc`)}`,
+      ...this.content.resources('official').map((r) => ({
+        text: `${this.i18n.text(r.title)}. ${this.i18n.text(r.description)}`,
         pause: 450,
       })),
       { text: t('kit.guide_title'), pause: 400 },

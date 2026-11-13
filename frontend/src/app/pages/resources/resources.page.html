@@ -64,39 +64,43 @@
     <p>{{ i18n.t('resources.national_intro') }}</p>
     <h3>{{ i18n.t('resources.public_title') }}</h3>
     <ul class="cards kit-links two">
-      @for (link of content.links().resource_links; track link.id) {
+      @for (link of content.resources('public'); track link.key) {
         <li>
           <h3>
-            <a [href]="link.url" target="_blank" rel="noopener noreferrer">
-              {{ i18n.t('links.' + link.id + '.label')
-              }}<span class="sr-only"> {{ i18n.t('ui.new_tab') }}</span>
-            </a>
-            <app-icon name="link" />
+            @if (link.url) {
+              <a [href]="link.url" target="_blank" rel="noopener noreferrer">
+                {{ i18n.text(link.title) }}<span class="sr-only"> {{ i18n.t('ui.new_tab') }}</span>
+              </a>
+              <app-icon name="link" />
+            } @else {
+              {{ i18n.text(link.title) }}
+            }
           </h3>
-          <p>{{ i18n.t('links.' + link.id + '.desc') }}</p>
+          <p>{{ i18n.text(link.description) }}</p>
         </li>
       }
     </ul>
     <h3>{{ i18n.t('resources.assoc_title') }}</h3>
     <p>{{ i18n.t('resources.assoc_intro') }}</p>
     <ul class="cards">
-      @for (assoc of content.links().associations; track assoc.id) {
+      @for (assoc of content.resources('association'); track assoc.key) {
         <li>
           <app-medal name="building" />
-          <h3>{{ i18n.t('resources.assoc.' + assoc.id + '.name') }}</h3>
-          <p>{{ i18n.t('resources.assoc.' + assoc.id + '.text') }}</p>
-          <p>
-            <a [href]="assoc.url" target="_blank" rel="noopener noreferrer">
-              {{ i18n.t('resources.visit') }} :
-              {{ i18n.t('resources.assoc.' + assoc.id + '.name') }}
-              <span class="sr-only"> {{ i18n.t('ui.new_tab') }}</span>
-            </a>
-          </p>
+          <h3>{{ i18n.text(assoc.title) }}</h3>
+          <p>{{ i18n.text(assoc.description) }}</p>
+          @if (assoc.url) {
+            <p>
+              <a [href]="assoc.url" target="_blank" rel="noopener noreferrer">
+                {{ i18n.t('resources.visit') }} : {{ i18n.text(assoc.title) }}
+                <span class="sr-only"> {{ i18n.t('ui.new_tab') }}</span>
+              </a>
+            </p>
+          }
         </li>
       }
     </ul>
     <p>
-      <a [href]="content.links().association_directory" target="_blank" rel="noopener noreferrer">
+      <a [href]="i18n.t('resources.assoc_more_url')" target="_blank" rel="noopener noreferrer">
         {{ i18n.t('resources.assoc_more') }}<span class="sr-only"> {{ i18n.t('ui.new_tab') }}</span>
       </a>
       <app-icon name="link" />
@@ -107,20 +111,18 @@
     <h2 id="r-law">{{ i18n.t('resources.law_title') }}</h2>
     <p class="notice">{{ i18n.t('resources.law_intro') }}</p>
     <ul class="cards">
-      @for (law of content.links().laws; track law.id) {
+      @for (law of content.resources('law'); track law.key) {
         <li>
           <app-medal name="doc" />
-          <h3>{{ i18n.t('resources.law_items.' + law.id + '.title') }}</h3>
-          <p>{{ i18n.t('resources.law_items.' + law.id + '.text') }}</p>
-          <p class="hint">
-            {{ i18n.t('resources.law_ref') }} :
-            {{ i18n.t('resources.law_items.' + law.id + '.ref') }}
-          </p>
+          <h3>{{ i18n.text(law.title) }}</h3>
+          <p>{{ i18n.text(law.description) }}</p>
+          @if (law.reference) {
+            <p class="hint">{{ i18n.t('resources.law_ref') }} : {{ i18n.text(law.reference) }}</p>
+          }
           @if (law.url) {
             <p>
               <a [href]="law.url" target="_blank" rel="noopener noreferrer">
-                {{ i18n.t('resources.law_items.' + law.id + '.title') }}
-                <span class="sr-only"> {{ i18n.t('ui.new_tab') }}</span>
+                {{ i18n.text(law.title) }}<span class="sr-only"> {{ i18n.t('ui.new_tab') }}</span>
               </a>
             </p>
           }
@@ -128,7 +130,7 @@
       }
     </ul>
     <p>
-      <a [href]="content.links().legifrance" target="_blank" rel="noopener noreferrer">
+      <a [href]="i18n.t('resources.law_link_url')" target="_blank" rel="noopener noreferrer">
         {{ i18n.t('resources.law_link') }}<span class="sr-only"> {{ i18n.t('ui.new_tab') }}</span>
       </a>
       <app-icon name="link" />

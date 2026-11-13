@@ -37,6 +37,17 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/resources/resources.page').then((m) => m.ResourcesPage),
   },
   {
+    path: 'info',
+    pathMatch: 'full',
+    title: 'pages.info_pages',
+    loadComponent: () => import('./pages/info/info.page').then((m) => m.InfoPage),
+  },
+  {
+    path: 'info/:slug',
+    title: 'pages.info_pages',
+    loadComponent: () => import('./pages/info/info.page').then((m) => m.InfoPage),
+  },
+  {
     path: 'settings',
     title: 'pages.settings',
     loadComponent: () => import('./pages/settings/settings.page').then((m) => m.SettingsPage),

@@ -91,15 +91,30 @@ export interface Content {
   pole_outcomes: Partial<Record<PoleOutcomeKey, { title: LocalizedText; body: LocalizedText }>>;
   contacts: Contact[];
   profile_contacts: Record<string, string[]>;
+  resources: Resource[];
+  pages: { slug: string; title: LocalizedText }[];
 }
 
-/** Liens statiques du kit et de la page Ressources (public/data/links.json). */
-export interface StaticLinks {
-  verified_on: string;
-  official_links: { id: string; url: string }[];
-  resource_links: { id: string; url: string; group: string }[];
-  associations: { id: string; url: string }[];
-  association_directory: string;
-  laws: { id: string; url?: string }[];
-  legifrance: string;
+export type ResourceSection = 'official' | 'public' | 'association' | 'law';
+
+/** Lien du kit (official) ou de la page Ressources (public, association, law). */
+export interface Resource {
+  section: ResourceSection;
+  key: string;
+  url: string | null;
+  title: LocalizedText;
+  description: LocalizedText;
+  reference: LocalizedText | null;
+}
+
+export type PageBlock =
+  | { type: 'text' | 'accordion'; title: LocalizedText; text: LocalizedText }
+  | { type: 'link' | 'document'; title: LocalizedText; text: LocalizedText | null; url: string };
+
+/** Page « S'informer ». */
+export interface ContentPage {
+  slug: string;
+  title: LocalizedText;
+  intro: LocalizedText | null;
+  blocks: PageBlock[];
 }

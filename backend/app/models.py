@@ -243,6 +243,50 @@ class ProfileContact(Model):
         ordering = ["profile", "position"]
 
 
+# --------------------------------------------------------------------------- contenus éditoriaux
+
+
+class ResourceSection(StrEnum):
+    OFFICIAL = "official"  # liens officiels du kit documentaire (ouvertures comptées)
+    PUBLIC = "public"  # organismes publics (page Ressources)
+    ASSOCIATION = "association"
+    LAW = "law"  # textes de loi
+
+
+class Resource(TimestampedModel):
+    id = fields.IntField(primary_key=True)
+    section = fields.CharEnumField(ResourceSection, max_length=16)
+    key = fields.CharField(max_length=64)
+    position = fields.IntField(default=0)
+    url = fields.CharField(max_length=2048, null=True)
+    title = fields.JSONField()
+    description = fields.JSONField()
+    # Référence juridique (textes de loi)
+    reference = fields.JSONField(null=True)
+    is_published = fields.BooleanField(default=True)
+
+    class Meta:
+        table = "resource"
+        unique_together = (("section", "key"),)
+        ordering = ["section", "position", "id"]
+
+
+class ContentPage(TimestampedModel):
+    """Page « S'informer » : introduction puis blocs (texte, section dépliable, lien, PDF)."""
+
+    id = fields.IntField(primary_key=True)
+    slug = fields.CharField(max_length=80, unique=True)
+    position = fields.IntField(default=0)
+    title = fields.JSONField()
+    intro = fields.JSONField(null=True)
+    blocks = fields.JSONField(default=list)
+    is_published = fields.BooleanField(default=True)
+
+    class Meta:
+        table = "content_page"
+        ordering = ["position", "id"]
+
+
 # --------------------------------------------------------------------------- statistiques
 
 

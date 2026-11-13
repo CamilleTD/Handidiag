@@ -57,6 +57,21 @@ export const ADMIN_ROUTES: Routes = [
         loadComponent: () => import('./pages/restitution.page').then((m) => m.RestitutionPage),
       },
       {
+        path: 'pages',
+        title: 'Pages',
+        loadComponent: () => import('./pages/content-pages.page').then((m) => m.ContentPagesPage),
+      },
+      {
+        path: 'pages/:id',
+        title: 'Modifier une page',
+        loadComponent: () => import('./pages/page-editor.page').then((m) => m.PageEditorPage),
+      },
+      {
+        path: 'resources',
+        title: 'Ressources',
+        loadComponent: () => import('./pages/resources.page').then((m) => m.ResourcesAdminPage),
+      },
+      {
         path: 'account',
         title: 'Mon compte',
         loadComponent: () => import('./pages/account.page').then((m) => m.AccountPage),

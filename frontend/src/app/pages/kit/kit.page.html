@@ -6,21 +6,21 @@
   <section aria-labelledby="k-links">
     <h2 id="k-links">{{ i18n.t('kit.links_title') }}</h2>
     <ul class="cards kit-links two">
-      @for (link of content.links().official_links; track link.id) {
+      @for (link of content.resources('official'); track link.key) {
         <li>
           <h3>
             <a
               [href]="link.url"
               target="_blank"
               rel="noopener noreferrer"
-              (click)="opened(link.id)"
+              (click)="opened(link.key)"
             >
-              {{ i18n.t('links.' + link.id + '.label') }}
+              {{ i18n.text(link.title) }}
               <span class="sr-only"> {{ i18n.t('ui.new_tab') }}</span>
             </a>
             <app-icon name="link" />
           </h3>
-          <p>{{ i18n.t('links.' + link.id + '.desc') }}</p>
+          <p>{{ i18n.text(link.description) }}</p>
         </li>
       }
     </ul>

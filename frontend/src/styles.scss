@@ -1788,3 +1788,73 @@ html[data-theme='contrast'] #ruler {
     padding: 0;
   }
 }
+
+/* ---------- Rubrique « S'informer » ---------- */
+.info-layout {
+  display: grid;
+  gap: 1.5rem;
+  padding-block: 1.5rem 3rem;
+  align-items: start;
+}
+.info-menu {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+.info-menu-title {
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+.info-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.25rem;
+}
+.info-menu a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.info-menu a:hover {
+  background: var(--accent-soft);
+}
+.info-menu a.active {
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
+}
+.info-article {
+  max-width: 46rem;
+  min-width: 0;
+}
+.info-article .panel {
+  margin-block: 1rem;
+}
+.info-accordion {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  padding: 0.75rem 1rem;
+  margin-block: 0.5rem;
+}
+.info-accordion summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+.info-accordion p {
+  margin: 0.75rem 0 0;
+}
+@container page (min-width: 56em) {
+  .info-layout {
+    grid-template-columns: 16rem minmax(0, 1fr);
+  }
+  .info-menu {
+    position: sticky;
+    top: 1rem;
+  }
+}

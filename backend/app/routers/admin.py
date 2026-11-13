@@ -499,6 +499,7 @@ async def add_demo_stats(sessions: int = 120):
     """Ajoute des compteurs fictifs pour une démonstration (hors production)."""
     not_in_production()
     levels, profiles = await stat_keys()
+    documents = await stats.document_keys()
     for _ in range(max(1, min(sessions, 1000))):
         day = date.today() - timedelta(days=random.randrange(14))
         await stats.increment("start", day=day)
@@ -510,7 +511,7 @@ async def add_demo_stats(sessions: int = 120):
         if random.random() < 0.35:
             await stats.increment("deep", day=day)
         if random.random() < 0.5:
-            await stats.increment("doc", random.choice(stats.DOCUMENTS), day=day)
+            await stats.increment("doc", random.choice(documents), day=day)
 
 
 @router.delete("/stats", status_code=status.HTTP_204_NO_CONTENT)

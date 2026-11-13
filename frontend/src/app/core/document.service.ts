@@ -128,11 +128,11 @@ export class DocumentService {
       { type: 'p', text: t('kit.intro') },
       { type: 'h2', text: t('pdf.links') },
     ];
-    for (const link of this.content.links().official_links)
+    for (const link of this.content.resources('official'))
       blocks.push(
-        { type: 'h3', text: t(`links.${link.id}.label`) },
-        { type: 'p', text: t(`links.${link.id}.desc`) },
-        { type: 'url', text: link.url, url: link.url },
+        { type: 'h3', text: this.i18n.text(link.title) },
+        { type: 'p', text: this.i18n.text(link.description) },
+        ...(link.url ? [{ type: 'url', text: link.url, url: link.url } as Block] : []),
       );
     blocks.push({ type: 'h2', text: t('pdf.guide') });
     this.i18n

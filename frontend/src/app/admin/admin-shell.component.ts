@@ -48,6 +48,8 @@ export class AdminShell {
     { path: '/admin/questions', label: 'Questions' },
     { path: '/admin/rules', label: 'Règles' },
     { path: '/admin/restitution', label: 'Restitution' },
+    { path: '/admin/pages', label: 'Pages « S’informer »' },
+    { path: '/admin/resources', label: 'Ressources' },
     { path: '/admin/account', label: 'Mon compte' },
   ];
 

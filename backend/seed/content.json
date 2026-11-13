@@ -7066,5 +7066,921 @@
    "fiphfp",
    "mdph"
   ]
- }
+ },
+ "pages": [
+  {
+   "slug": "handicaps",
+   "title": {
+    "fr": "Comprendre les situations de handicap",
+    "en": ""
+   },
+   "intro": {
+    "fr": "Le handicap peut prendre des formes très diverses, visibles ou non. Les besoins d'une personne dépendent aussi de son environnement. Ces repères ne constituent pas un diagnostic.",
+    "en": ""
+   },
+   "is_published": true,
+   "blocks": [
+    {
+     "type": "text",
+     "title": {
+      "fr": "Des situations et des besoins différents",
+      "en": ""
+     },
+     "text": {
+      "fr": "Une même situation peut avoir des conséquences différentes selon les personnes et le contexte. Il est utile de demander quels aménagements facilitent réellement les études, le travail ou la vie quotidienne.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Handicap moteur",
+      "en": ""
+     },
+     "text": {
+      "fr": "Il concerne la mobilité, les gestes, la posture ou l'endurance. Les besoins possibles comprennent un accès sans obstacle, du matériel adapté ou des horaires aménagés.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Handicap visuel",
+      "en": ""
+     },
+     "text": {
+      "fr": "La vision peut être partiellement ou totalement altérée. Des documents lisibles par lecteur d'écran, un bon contraste ou un agrandissement peuvent aider.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Handicap auditif",
+      "en": ""
+     },
+     "text": {
+      "fr": "Il peut concerner différents degrés de surdité ou de malentendance. Le sous-titrage, la transcription, les supports écrits ou une boucle magnétique peuvent faciliter les échanges.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Handicap psychique",
+      "en": ""
+     },
+     "text": {
+      "fr": "Il peut avoir des effets sur l'énergie, la concentration, les relations ou la gestion du stress. Les besoins varient dans le temps ; un cadre clair et des aménagements adaptés peuvent aider.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Handicap intellectuel",
+      "en": ""
+     },
+     "text": {
+      "fr": "Il peut rendre certaines informations ou démarches plus difficiles à comprendre. Un langage clair, des étapes courtes et des supports faciles à lire et à comprendre peuvent être utiles.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Troubles cognitifs et troubles du neurodéveloppement",
+      "en": ""
+     },
+     "text": {
+      "fr": "Ils peuvent toucher l'attention, la mémoire, l'apprentissage, la lecture, l'organisation ou la communication. Des consignes explicites, davantage de temps ou des outils adaptés peuvent aider.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Maladies chroniques et invalidantes",
+      "en": ""
+     },
+     "text": {
+      "fr": "Certaines maladies entraînent fatigue, douleurs ou limitations fluctuantes, même lorsqu'elles ne sont pas visibles. Les aménagements dépendent des conséquences concrètes sur l'activité.",
+      "en": ""
+     }
+    },
+    {
+     "type": "document",
+     "title": {
+      "fr": "Infographie sur le handicap",
+      "en": ""
+     },
+     "text": {
+      "fr": "Consulter ou télécharger l'infographie au format PDF.",
+      "en": ""
+     },
+     "url": "/docs/infographie-handicap-2025.pdf"
+    },
+    {
+     "type": "link",
+     "title": {
+      "fr": "Comprendre la RQTH",
+      "en": ""
+     },
+     "text": {
+      "fr": "Consulter les informations officielles sur la reconnaissance de la qualité de travailleur handicapé.",
+      "en": ""
+     },
+     "url": "https://www.monparcourshandicap.gouv.fr/aides/la-reconnaissance-de-la-qualite-de-travailleur-handicape-rqth#ressources-facile-a-lire-et-a-comprendre"
+    }
+   ]
+  },
+  {
+   "slug": "rqth",
+   "title": {
+    "fr": "Informations générales",
+    "en": ""
+   },
+   "intro": {
+    "fr": "Cette rubrique présente des repères généraux sur la démarche de reconnaissance et la vie professionnelle. Elle aide à préparer ses questions, sans dire si une personne doit ou peut engager une démarche : la décision relève de la CDAPH.",
+    "en": ""
+   },
+   "is_published": true,
+   "blocks": [
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "À quoi sert la RQTH ?",
+      "en": ""
+     },
+     "text": {
+      "fr": "Elle peut faciliter les aménagements du poste ou des horaires, l'accompagnement vers l'emploi et l'accès à certaines formations. Elle ne donne pas, à elle seule, droit à une aide financière.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Qui peut la demander ?",
+      "en": ""
+     },
+     "text": {
+      "fr": "Elle concerne les personnes dont les possibilités d'obtenir ou de conserver un emploi sont réduites du fait d'une altération d'une fonction physique, sensorielle, mentale ou psychique. La demande est généralement possible à partir de 16 ans ; des situations particulières concernent les jeunes dès 15 ans.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Combien de temps dure-t-elle ?",
+      "en": ""
+     },
+     "text": {
+      "fr": "La CDAPH peut l'attribuer pour 1 à 10 ans, ou sans limite de durée lorsque la situation n'est pas susceptible d'évoluer.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Comment faire la demande ?",
+      "en": ""
+     },
+     "text": {
+      "fr": "Remplissez le dossier de demande à la maison départementale des personnes handicapées (MDPH), avec les justificatifs et le certificat médical requis. Décrivez les conséquences de votre situation dans le travail ou la recherche d'emploi. La MDPH de votre lieu de résidence peut vous accompagner.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Comment renouveler la RQTH ?",
+      "en": ""
+     },
+     "text": {
+      "fr": "Si elle est attribuée pour une durée limitée, le renouvellement n'est pas automatique. Anticipez la demande, idéalement quatre mois avant l'échéance. Vérifiez les démarches et les documents demandés auprès de votre MDPH.",
+      "en": ""
+     }
+    },
+    {
+     "type": "link",
+     "title": {
+      "fr": "Informations officielles et documents FALC",
+      "en": ""
+     },
+     "text": {
+      "fr": "La source officielle détaille les droits, les démarches et propose des ressources faciles à lire et à comprendre.",
+      "en": ""
+     },
+     "url": "https://www.monparcourshandicap.gouv.fr/aides/la-reconnaissance-de-la-qualite-de-travailleur-handicape-rqth#ressources-facile-a-lire-et-a-comprendre"
+    }
+   ]
+  },
+  {
+   "slug": "demarche-reconnaissance",
+   "title": {
+    "fr": "Réfléchir à une démarche de reconnaissance",
+    "en": ""
+   },
+   "intro": {
+    "fr": "Une démarche de reconnaissance est personnelle et volontaire. Cette page donne des repères pour préparer une discussion avec un interlocuteur compétent ; elle ne remplace ni un avis médical ni la décision de la MDPH.",
+    "en": ""
+   },
+   "is_published": true,
+   "blocks": [
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "À quoi peut servir une reconnaissance ?",
+      "en": ""
+     },
+     "text": {
+      "fr": "Selon la situation, elle peut faciliter l'accès à des aménagements, à un accompagnement vers l'emploi, à une formation ou au maintien dans l'emploi. Elle n'est pas obligatoire pour travailler ou se former.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Quels repères regarder ?",
+      "en": ""
+     },
+     "text": {
+      "fr": "Il peut être utile de partir des conséquences concrètes sur les études, le stage, l'alternance, la recherche d'emploi ou le travail : fatigue, horaires, déplacements, outils, concentration, organisation ou environnement. Ces repères aident à expliquer un besoin ; ils ne préjugent pas de la décision.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Qui décide ?",
+      "en": ""
+     },
+     "text": {
+      "fr": "La demande est adressée à la MDPH du lieu de résidence. La CDAPH prend la décision après l'évaluation du dossier. La réponse et le délai peuvent varier selon les départements.",
+      "en": ""
+     }
+    },
+    {
+     "type": "link",
+     "title": {
+      "fr": "Vérifier les règles officielles",
+      "en": ""
+     },
+     "text": {
+      "fr": "Consulter les conditions, la démarche et les informations actualisées sur Service-Public.fr.",
+      "en": ""
+     },
+     "url": "https://www.service-public.fr/particuliers/vosdroits/F1650"
+    }
+   ]
+  },
+  {
+   "slug": "interlocuteurs",
+   "title": {
+    "fr": "À qui s'adresser ?",
+    "en": ""
+   },
+   "intro": {
+    "fr": "Il n'est pas nécessaire de tout expliquer à tout le monde. Choisissez un interlocuteur selon votre question et le niveau de confidentialité souhaité.",
+    "en": ""
+   },
+   "is_published": true,
+   "blocks": [
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Pour les études et l'alternance",
+      "en": ""
+     },
+     "text": {
+      "fr": "Le pôle ou référent handicap de l'établissement peut parler des aménagements d'études, d'examens, de stage ou d'alternance. Il peut aussi orienter vers les services adaptés, sans décider à la place de la personne.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Pour la demande administrative",
+      "en": ""
+     },
+     "text": {
+      "fr": "La MDPH du lieu de résidence est le guichet de la demande. Son accueil peut renseigner sur le dossier, les modalités de dépôt et les documents attendus. Un médecin peut compléter le certificat médical requis.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Pour l'emploi",
+      "en": ""
+     },
+     "text": {
+      "fr": "Selon la situation, le service de santé au travail, le référent handicap, Cap emploi ou un conseiller d'insertion peuvent aider à identifier des solutions et des aménagements. La personne choisit les informations qu'elle souhaite communiquer.",
+      "en": ""
+     }
+    },
+    {
+     "type": "link",
+     "title": {
+      "fr": "Trouver et contacter sa MDPH",
+      "en": ""
+     },
+     "text": {
+      "fr": "La page officielle explique le rôle de la MDPH et les possibilités de dépôt du dossier.",
+      "en": ""
+     },
+     "url": "https://www.monparcourshandicap.gouv.fr/aides/le-depot-du-dossier-et-le-traitement-de-la-demande-par-la-maison-departementale-des-personnes"
+    }
+   ]
+  },
+  {
+   "slug": "preparer-dossier",
+   "title": {
+    "fr": "Préparer un dossier",
+    "en": ""
+   },
+   "intro": {
+    "fr": "Un dossier complet aide la MDPH à comprendre la situation et les besoins. Les pièces demandées peuvent évoluer : vérifiez toujours celles de votre MDPH avant l'envoi.",
+    "en": ""
+   },
+   "is_published": true,
+   "blocks": [
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Pièces généralement demandées",
+      "en": ""
+     },
+     "text": {
+      "fr": "Le dossier comprend notamment le formulaire de demande MDPH, un certificat médical, un justificatif d'identité et un justificatif de domicile. D'autres pièces peuvent être utiles selon la demande et la situation.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Décrire les conséquences concrètes",
+      "en": ""
+     },
+     "text": {
+      "fr": "Décrivez ce qui est difficile dans les études, le stage, l'alternance, la recherche d'emploi ou le travail, ainsi que les aides déjà essayées et les besoins envisagés. Il ne s'agit pas de poser soi-même un diagnostic.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Conserver une copie",
+      "en": ""
+     },
+     "text": {
+      "fr": "Gardez une copie du formulaire, du certificat médical et des documents transmis. En ligne, numérisez les pièces de façon lisible ; par courrier, conservez une preuve d'envoi si cela est pertinent.",
+      "en": ""
+     }
+    },
+    {
+     "type": "link",
+     "title": {
+      "fr": "Liste des pièces et dépôt du dossier",
+      "en": ""
+     },
+     "text": {
+      "fr": "Consulter la liste officielle des documents et les modalités de dépôt auprès de la MDPH.",
+      "en": ""
+     },
+     "url": "https://www.monparcourshandicap.gouv.fr/aides/le-depot-du-dossier-et-le-traitement-de-la-demande-par-la-maison-departementale-des-personnes"
+    }
+   ]
+  },
+  {
+   "slug": "parcours-professionnel",
+   "title": {
+    "fr": "Démarche et parcours professionnel",
+    "en": ""
+   },
+   "intro": {
+    "fr": "Une reconnaissance peut être un outil pour préparer une entrée dans l'emploi, une alternance ou un maintien dans l'emploi. Elle ne décide pas du projet professionnel et ne crée pas d'obligation d'en parler autour de soi.",
+    "en": ""
+   },
+   "is_published": true,
+   "blocks": [
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Confidentialité et choix de la personne",
+      "en": ""
+     },
+     "text": {
+      "fr": "La demande et la décision sont personnelles. La personne choisit si, quand et à qui elle souhaite en parler, notamment à un employeur, à un établissement de formation ou à un futur employeur.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Aménagements et accompagnement",
+      "en": ""
+     },
+     "text": {
+      "fr": "Selon le contexte, des aménagements de poste, d'horaires, d'outils, de formation ou de concours peuvent être envisagés avec les interlocuteurs compétents. Leur mise en place dépend de la situation et du cadre concerné.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Anticiper sans se précipiter",
+      "en": ""
+     },
+     "text": {
+      "fr": "Un dossier peut demander du temps à préparer et à être étudié. En cas de stage, d'alternance ou de contrat à venir, anticiper permet de discuter plus sereinement des besoins éventuels.",
+      "en": ""
+     }
+    },
+    {
+     "type": "link",
+     "title": {
+      "fr": "Comprendre la compensation au travail",
+      "en": ""
+     },
+     "text": {
+      "fr": "La ressource officielle présente les démarches et les solutions possibles dans l'emploi.",
+      "en": ""
+     },
+     "url": "https://www.monparcourshandicap.gouv.fr/emploi/compenser-votre-handicap-dans-lemploi"
+    }
+   ]
+  }
+ ],
+ "resources": [
+  {
+   "section": "official",
+   "key": "rqth_mph",
+   "url": "https://www.monparcourshandicap.gouv.fr/aides/la-reconnaissance-de-la-qualite-de-travailleur-handicape-rqth",
+   "title": {
+    "fr": "Mon Parcours Handicap : la RQTH",
+    "en": "Mon Parcours Handicap: the RQTH"
+   },
+   "description": {
+    "fr": "Fiche officielle sur la reconnaissance et les démarches.",
+    "en": "Official page on recognition and procedures (in French)."
+   },
+   "reference": null
+  },
+  {
+   "section": "official",
+   "key": "mdph_portal",
+   "url": "https://www.monparcourshandicap.gouv.fr/",
+   "title": {
+    "fr": "Mon Parcours Handicap (portail national)",
+    "en": "Mon Parcours Handicap (national portal)"
+   },
+   "description": {
+    "fr": "Trouver votre MDPH et faire une demande.",
+    "en": "Find your MDPH and make an application (in French)."
+   },
+   "reference": null
+  },
+  {
+   "section": "official",
+   "key": "service_public_rqth",
+   "url": "https://www.service-public.fr/particuliers/vosdroits/R19993",
+   "title": {
+    "fr": "Service-public.fr : la RQTH",
+    "en": "Service-public.fr: the RQTH"
+   },
+   "description": {
+    "fr": "Définition, démarches, formulaires.",
+    "en": "Definition, procedures, forms (in French)."
+   },
+   "reference": null
+  },
+  {
+   "section": "official",
+   "key": "agefiph",
+   "url": "https://www.agefiph.fr/",
+   "title": {
+    "fr": "Agefiph",
+    "en": "Agefiph"
+   },
+   "description": {
+    "fr": "Aides et informations pour le secteur privé.",
+    "en": "Funding and information for the private sector."
+   },
+   "reference": null
+  },
+  {
+   "section": "official",
+   "key": "fiphfp",
+   "url": "https://www.fiphfp.fr/",
+   "title": {
+    "fr": "FIPHFP",
+    "en": "FIPHFP"
+   },
+   "description": {
+    "fr": "Aides et informations pour la fonction publique.",
+    "en": "Funding and information for the public sector."
+   },
+   "reference": null
+  },
+  {
+   "section": "official",
+   "key": "france_travail",
+   "url": "https://www.francetravail.fr/",
+   "title": {
+    "fr": "France Travail",
+    "en": "France Travail"
+   },
+   "description": {
+    "fr": "Accompagnement des demandeurs d'emploi.",
+    "en": "Support for jobseekers."
+   },
+   "reference": null
+  },
+  {
+   "section": "public",
+   "key": "rqth_mph",
+   "url": "https://www.monparcourshandicap.gouv.fr/aides/la-reconnaissance-de-la-qualite-de-travailleur-handicape-rqth",
+   "title": {
+    "fr": "Mon Parcours Handicap : la RQTH",
+    "en": "Mon Parcours Handicap: the RQTH"
+   },
+   "description": {
+    "fr": "Fiche officielle sur la reconnaissance et les démarches.",
+    "en": "Official page on recognition and procedures (in French)."
+   },
+   "reference": null
+  },
+  {
+   "section": "public",
+   "key": "mdph_portal",
+   "url": "https://www.monparcourshandicap.gouv.fr/",
+   "title": {
+    "fr": "Mon Parcours Handicap (portail national)",
+    "en": "Mon Parcours Handicap (national portal)"
+   },
+   "description": {
+    "fr": "Trouver votre MDPH et faire une demande.",
+    "en": "Find your MDPH and make an application (in French)."
+   },
+   "reference": null
+  },
+  {
+   "section": "public",
+   "key": "service_public_rqth",
+   "url": "https://www.service-public.fr/particuliers/vosdroits/R19993",
+   "title": {
+    "fr": "Service-public.fr : la RQTH",
+    "en": "Service-public.fr: the RQTH"
+   },
+   "description": {
+    "fr": "Définition, démarches, formulaires.",
+    "en": "Definition, procedures, forms (in French)."
+   },
+   "reference": null
+  },
+  {
+   "section": "public",
+   "key": "agefiph",
+   "url": "https://www.agefiph.fr/",
+   "title": {
+    "fr": "Agefiph",
+    "en": "Agefiph"
+   },
+   "description": {
+    "fr": "Aides et informations pour le secteur privé.",
+    "en": "Funding and information for the private sector."
+   },
+   "reference": null
+  },
+  {
+   "section": "public",
+   "key": "fiphfp",
+   "url": "https://www.fiphfp.fr/",
+   "title": {
+    "fr": "FIPHFP",
+    "en": "FIPHFP"
+   },
+   "description": {
+    "fr": "Aides et informations pour la fonction publique.",
+    "en": "Funding and information for the public sector."
+   },
+   "reference": null
+  },
+  {
+   "section": "public",
+   "key": "france_travail",
+   "url": "https://www.francetravail.fr/",
+   "title": {
+    "fr": "France Travail",
+    "en": "France Travail"
+   },
+   "description": {
+    "fr": "Accompagnement des demandeurs d'emploi.",
+    "en": "Support for jobseekers."
+   },
+   "reference": null
+  },
+  {
+   "section": "public",
+   "key": "compensation",
+   "url": "https://www.monparcourshandicap.gouv.fr/etudes-superieures/quels-sont-les-grands-principes-de-la-compensation-du-handicap",
+   "title": {
+    "fr": "Mon Parcours Handicap : la compensation",
+    "en": "Mon Parcours Handicap: compensation"
+   },
+   "description": {
+    "fr": "Les grands principes de la compensation du handicap dans les études supérieures.",
+    "en": "The main principles of disability compensation in higher education."
+   },
+   "reference": null
+  },
+  {
+   "section": "association",
+   "key": "apf",
+   "url": "https://www.apf-francehandicap.org/",
+   "title": {
+    "fr": "APF France handicap",
+    "en": "APF France handicap"
+   },
+   "description": {
+    "fr": "Défense des droits et accompagnement des personnes en situation de handicap, notamment moteur.",
+    "en": "Rights advocacy and support for people with disabilities, notably motor disabilities."
+   },
+   "reference": null
+  },
+  {
+   "section": "association",
+   "key": "ffdys",
+   "url": "http://www.ffdys.com/",
+   "title": {
+    "fr": "Fédération française des Dys (FFDys)",
+    "en": "Fédération française des Dys (FFDys)"
+   },
+   "description": {
+    "fr": "Information et soutien pour les troubles « dys » : lecture, écriture, calcul, langage, coordination.",
+    "en": "Information and support for “dys” disorders: reading, writing, calculation, language, coordination."
+   },
+   "reference": null
+  },
+  {
+   "section": "association",
+   "key": "tdah",
+   "url": "https://www.tdah-france.fr/",
+   "title": {
+    "fr": "HyperSupers TDAH France",
+    "en": "HyperSupers TDAH France"
+   },
+   "description": {
+    "fr": "Information et entraide autour du trouble de l'attention avec ou sans hyperactivité.",
+    "en": "Information and peer support around attention deficit with or without hyperactivity."
+   },
+   "reference": null
+  },
+  {
+   "section": "association",
+   "key": "autisme",
+   "url": "https://www.autisme-france.fr/",
+   "title": {
+    "fr": "Autisme France",
+    "en": "Autisme France"
+   },
+   "description": {
+    "fr": "Information, défense des droits et soutien pour les personnes autistes et leurs proches.",
+    "en": "Information, rights advocacy and support for autistic people and their families."
+   },
+   "reference": null
+  },
+  {
+   "section": "association",
+   "key": "unafam",
+   "url": "https://www.unafam.org/",
+   "title": {
+    "fr": "Unafam",
+    "en": "Unafam"
+   },
+   "description": {
+    "fr": "Écoute et information pour les proches de personnes vivant avec des troubles psychiques.",
+    "en": "Listening and information for relatives of people living with psychological disorders."
+   },
+   "reference": null
+  },
+  {
+   "section": "association",
+   "key": "unapei",
+   "url": "http://www.unapei.org/",
+   "title": {
+    "fr": "Unapei",
+    "en": "Unapei"
+   },
+   "description": {
+    "fr": "Défense des droits des personnes avec une déficience intellectuelle et de leurs familles.",
+    "en": "Rights advocacy for people with an intellectual disability and their families."
+   },
+   "reference": null
+  },
+  {
+   "section": "association",
+   "key": "fas",
+   "url": "https://www.france-assos-sante.org/",
+   "title": {
+    "fr": "France Assos Santé",
+    "en": "France Assos Santé"
+   },
+   "description": {
+    "fr": "Information sur vos droits en santé et orientation vers des associations de malades, notamment pour les maladies chroniques.",
+    "en": "Information about your health rights and guidance to patient associations, notably for chronic illnesses."
+   },
+   "reference": null
+  },
+  {
+   "section": "association",
+   "key": "tremplin",
+   "url": "http://www.tremplin-handicap.fr/",
+   "title": {
+    "fr": "Tremplin",
+    "en": "Tremplin"
+   },
+   "description": {
+    "fr": "Accompagnement de lycéens et d'étudiants en situation de handicap, des études à l'entreprise.",
+    "en": "Support for secondary and higher-education students with disabilities, from studies to the workplace."
+   },
+   "reference": null
+  },
+  {
+   "section": "association",
+   "key": "arpejeh",
+   "url": "http://www.arpejeh.com/site/",
+   "title": {
+    "fr": "Arpejeh",
+    "en": "Arpejeh"
+   },
+   "description": {
+    "fr": "Accompagnement des jeunes élèves et étudiants en situation de handicap vers leurs études et leur projet professionnel.",
+    "en": "Support for young pupils and students with disabilities towards their studies and career plans."
+   },
+   "reference": null
+  },
+  {
+   "section": "association",
+   "key": "handinamique",
+   "url": "https://handinamique.org/",
+   "title": {
+    "fr": "100 % Handinamique",
+    "en": "100 % Handinamique"
+   },
+   "description": {
+    "fr": "Réussite scolaire des jeunes en situation de handicap.",
+    "en": "Academic success for young people with disabilities."
+   },
+   "reference": null
+  },
+  {
+   "section": "association",
+   "key": "ladapt",
+   "url": "https://www.ladapt.net/",
+   "title": {
+    "fr": "LADAPT",
+    "en": "LADAPT"
+   },
+   "description": {
+    "fr": "Insertion sociale et professionnelle des personnes en situation de handicap.",
+    "en": "Social and professional inclusion of people with disabilities."
+   },
+   "reference": null
+  },
+  {
+   "section": "association",
+   "key": "droitausavoir",
+   "url": "http://www.droitausavoir.asso.fr/",
+   "title": {
+    "fr": "Droit au savoir",
+    "en": "Droit au savoir"
+   },
+   "description": {
+    "fr": "Information sur les droits à l'éducation et aux études, tous handicaps.",
+    "en": "Information on rights to education and studies, all disabilities."
+   },
+   "reference": null
+  },
+  {
+   "section": "law",
+   "key": "def",
+   "url": null,
+   "title": {
+    "fr": "Le handicap selon la loi",
+    "en": "Disability in law"
+   },
+   "description": {
+    "fr": "La loi du 11 février 2005 définit le handicap comme toute limitation d'activité ou restriction de participation à la vie en société, due à une altération durable de fonctions physiques, sensorielles, mentales, cognitives ou psychiques, à un polyhandicap ou à un trouble de santé invalidant. Elle crée le droit à la compensation.",
+    "en": "The law of 11 February 2005 defines disability as any limitation of activity or restriction of participation in society caused by a lasting impairment of physical, sensory, mental, cognitive or psychological functions, by multiple disabilities or by a disabling health condition. It creates the right to compensation."
+   },
+   "reference": {
+    "fr": "Loi n° 2005-102 du 11 février 2005 ; Code de l'action sociale et des familles, article L114",
+    "en": "Law no. 2005-102 of 11 February 2005; Code de l'action sociale et des familles, article L114"
+   }
+  },
+  {
+   "section": "law",
+   "key": "exams",
+   "url": "https://www.enseignementsup-recherche.gouv.fr/fr/bo/23/Hebdo10/ESRS2234137C.htm",
+   "title": {
+    "fr": "Aménagements d'examens dans le supérieur",
+    "en": "Exam accommodations in higher education"
+   },
+   "description": {
+    "fr": "Les textes nationaux prévoient des aménagements des épreuves pour les étudiants en situation de handicap ou ayant un trouble de santé invalidant : temps majoré (jusqu'à un tiers du temps total), pauses, aide humaine ou technique, sujets adaptés, salle adaptée. Un médecin désigné par la CDAPH donne un avis, puis l'établissement décide et notifie sa décision. Les aménagements valent pour toute la formation menant au diplôme. Le pôle handicap vous explique comment faire à l'école.",
+    "en": "National texts provide exam accommodations for students with disabilities or a disabling health condition: extra time (up to one third of the total time), breaks, human or technical help, adapted papers, an adapted room. A doctor appointed by the CDAPH gives an opinion, then the institution decides and notifies its decision. Accommodations last for the whole programme leading to the degree. The disability office explains how to proceed at school."
+   },
+   "reference": {
+    "fr": "Code de l'éducation, articles L112-4, D112-1 et D613-26 à D613-27-1 ; circulaire du 6 février 2023 (NOR ESRS2234137C)",
+    "en": "Code de l'éducation, articles L112-4, D112-1 and D613-26 to D613-27-1; circular of 6 February 2023 (NOR ESRS2234137C)"
+   }
+  },
+  {
+   "section": "law",
+   "key": "rqth",
+   "url": null,
+   "title": {
+    "fr": "La RQTH",
+    "en": "The RQTH"
+   },
+   "description": {
+    "fr": "La qualité de travailleur handicapé concerne toute personne dont les possibilités d'obtenir ou de conserver un emploi sont effectivement réduites. La demande se fait auprès de la MDPH ; la CDAPH décide. La reconnaissance est accordée de 1 à 10 ans, ou sans limitation de durée en cas d'altération définitive.",
+    "en": "Recognition as a disabled worker concerns anyone whose chances of getting or keeping a job are effectively reduced. The application goes to the MDPH; the CDAPH decides. It is granted for 1 to 10 years, or without time limit for a permanent impairment."
+   },
+   "reference": {
+    "fr": "Code du travail, articles L5213-1 et suivants",
+    "en": "Code du travail, articles L5213-1 and following"
+   }
+  },
+  {
+   "section": "law",
+   "key": "work",
+   "url": null,
+   "title": {
+    "fr": "Aménagements au travail",
+    "en": "Accommodations at work"
+   },
+   "description": {
+    "fr": "L'employeur prend, en fonction des besoins, les mesures appropriées pour permettre à un travailleur handicapé d'accéder à un emploi, de l'exercer et d'y progresser, sauf si elles représentent une charge disproportionnée. Les aménagements du poste ou du temps de travail se décident avec le médecin du travail.",
+    "en": "Employers take, according to needs, the appropriate measures to enable a disabled worker to get a job, do it and progress, unless they impose a disproportionate burden. Workstation or working-time adjustments are decided with the occupational physician."
+   },
+   "reference": {
+    "fr": "Code du travail, article L5213-6",
+    "en": "Code du travail, article L5213-6"
+   }
+  },
+  {
+   "section": "law",
+   "key": "quota",
+   "url": null,
+   "title": {
+    "fr": "Obligation d'emploi et aides",
+    "en": "Employment obligation and funding"
+   },
+   "description": {
+    "fr": "Les entreprises et administrations d'au moins 20 salariés ou agents doivent employer au moins 6 % de travailleurs handicapés. Des aides financières existent : Agefiph pour le secteur privé, FIPHFP pour la fonction publique.",
+    "en": "Companies and public bodies with at least 20 employees must employ at least 6% of disabled workers. Financial aid exists: Agefiph for the private sector, FIPHFP for the civil service."
+   },
+   "reference": {
+    "fr": "Code du travail, article L5212-2",
+    "en": "Code du travail, article L5212-2"
+   }
+  },
+  {
+   "section": "law",
+   "key": "freedom",
+   "url": null,
+   "title": {
+    "fr": "Liberté d'en parler ou non",
+    "en": "Freedom to talk about it or not"
+   },
+   "description": {
+    "fr": "Le salarié reste libre de parler ou non de sa RQTH à l'embauche comme en cours d'emploi. Le médecin du travail est tenu au secret médical. Écarter un candidat à cause de son handicap ou de son état de santé est une discrimination.",
+    "en": "Employees stay free to mention their RQTH or not, at hiring or during employment. The occupational physician is bound by medical confidentiality. Rejecting a candidate because of disability or health is discrimination."
+   },
+   "reference": {
+    "fr": "Code du travail, articles L1132-1 et L5213-1",
+    "en": "Code du travail, articles L1132-1 and L5213-1"
+   }
+  },
+  {
+   "section": "law",
+   "key": "data",
+   "url": null,
+   "title": {
+    "fr": "Vos données de santé",
+    "en": "Your health data"
+   },
+   "description": {
+    "fr": "Les données de santé et de handicap sont des données sensibles, protégées par le RGPD : leur traitement est en principe interdit, sauf exceptions comme le consentement. HandiDiag ne conserve aucune de vos réponses.",
+    "en": "Health and disability data are sensitive data protected by the GDPR: processing them is in principle prohibited, except in cases such as consent. HandiDiag keeps none of your answers."
+   },
+   "reference": {
+    "fr": "Règlement (UE) 2016/679 (RGPD), article 9",
+    "en": "Regulation (EU) 2016/679 (GDPR), article 9"
+   }
+  }
+ ]
 }

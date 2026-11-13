@@ -1,7 +1,17 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import type { Condition, Contact, Level, LocalizedText, Question, Rule } from '../core/models';
+import type {
+  Condition,
+  Contact,
+  ContentPage,
+  Level,
+  LocalizedText,
+  Question,
+  Resource,
+  ResourceSection,
+  Rule,
+} from '../core/models';
 
 export interface Admin {
   username: string;
@@ -47,7 +57,19 @@ export interface Stats {
   daily: { date: string; start: Masked; complete: Masked }[];
 }
 
-export type Collection = 'questions' | 'rules' | 'levels' | 'flags' | 'suggestions' | 'contacts';
+export interface AdminResource extends Resource {
+  id: number;
+  position: number;
+  is_published: boolean;
+}
+export interface AdminPage extends ContentPage {
+  id: number;
+  position: number;
+  is_published: boolean;
+}
+
+export type Collection =
+  'questions' | 'rules' | 'levels' | 'flags' | 'suggestions' | 'contacts' | 'resources' | 'pages';
 export type Payload<T> = Omit<T, 'id' | 'position' | 'updated_at'>;
 export type { Condition };
 
@@ -114,6 +136,13 @@ export class AdminApi {
 
   reorder(collection: Collection, ids: number[]): Promise<unknown> {
     return this.call(firstValueFrom(this.http.post(`${API}/admin/${collection}/reorder`, { ids })));
+  }
+
+  /** Les ressources se réordonnent rubrique par rubrique. */
+  reorderResources(section: ResourceSection, ids: number[]): Promise<unknown> {
+    return this.call(
+      firstValueFrom(this.http.post(`${API}/admin/resources/reorder/${section}`, { ids })),
+    );
   }
 
   poleOutcomes(): Promise<PoleOutcome[]> {

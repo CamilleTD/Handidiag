@@ -3,7 +3,7 @@ from typing import Annotated, Any, Literal
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, HttpUrl, StringConstraints
 
-from app.models import PoleGroup, PoleOutcomeKey, QuestionKind, QuestionPhase
+from app.models import PoleGroup, PoleOutcomeKey, QuestionKind, QuestionPhase, ResourceSection
 
 Key = Annotated[str, StringConstraints(pattern=r"^[A-Za-z][A-Za-z0-9_]{0,63}$")]
 Icon = Literal["book", "chat", "clock", "badge", "user", "building", "shield", "doc", "compass"]
@@ -151,6 +151,63 @@ class ContactOut(ContactIn):
     position: int
     email: str | None = None
     link_url: str | None = None
+
+
+# --------------------------------------------------------------------------- contenus éditoriaux
+
+
+class ResourceIn(BaseModel):
+    section: ResourceSection
+    key: Key
+    url: HttpUrl | None = None
+    title: LocalizedText
+    description: LocalizedText
+    reference: LocalizedText | None = None
+    is_published: bool = True
+
+
+class ResourceOut(ResourceIn, Schema):
+    id: int
+    position: int
+    url: str | None = None
+
+
+class TextBlock(BaseModel):
+    type: Literal["text", "accordion"]
+    title: LocalizedText
+    text: LocalizedText
+
+
+class LinkBlock(BaseModel):
+    type: Literal["link"]
+    title: LocalizedText
+    text: LocalizedText | None = None
+    url: Annotated[str, StringConstraints(pattern=r"^https://\S+$", max_length=2048)]
+
+
+class DocumentBlock(BaseModel):
+    """PDF servi par le site lui-même (dossier frontend/public/docs)."""
+
+    type: Literal["document"]
+    title: LocalizedText
+    text: LocalizedText | None = None
+    url: Annotated[str, StringConstraints(pattern=r"^/docs/[A-Za-z0-9_.-]+\.pdf$")]
+
+
+PageBlock = Annotated[TextBlock | LinkBlock | DocumentBlock, Field(discriminator="type")]
+
+
+class ContentPageIn(BaseModel):
+    slug: Annotated[str, StringConstraints(pattern=r"^[a-z0-9]+(-[a-z0-9]+)*$", max_length=80)]
+    title: LocalizedText
+    intro: LocalizedText | None = None
+    blocks: list[PageBlock] = Field(default_factory=list, max_length=60)
+    is_published: bool = True
+
+
+class ContentPageOut(ContentPageIn, Schema):
+    id: int
+    position: int
 
 
 # --------------------------------------------------------------------------- statistiques

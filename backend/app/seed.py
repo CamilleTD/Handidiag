@@ -12,12 +12,14 @@ from app.config import get_settings
 from app.models import (
     AdminUser,
     Contact,
+    ContentPage,
     Flag,
     Level,
     PoleOutcome,
     ProfileContact,
     Question,
     QuestionOption,
+    Resource,
     Rule,
     Suggestion,
 )
@@ -79,6 +81,19 @@ async def seed_content(path: Path = CONTENT_FILE) -> bool:
     return True
 
 
+async def seed_editorial(path: Path = CONTENT_FILE) -> None:
+    """Pages et ressources de départ, chargées séparément pour compléter une base existante."""
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not await Resource.exists():
+        positions: dict[str, int] = {}
+        for item in data["resources"]:
+            position = positions[item["section"]] = positions.get(item["section"], -1) + 1
+            await Resource.create(**item, position=position)
+    if not await ContentPage.exists():
+        for position, item in enumerate(data["pages"]):
+            await ContentPage.create(**item, position=position)
+
+
 async def seed_admin() -> None:
     """Crée le premier compte s'il n'en existe aucun.
 
@@ -105,4 +120,5 @@ async def seed_admin() -> None:
 async def seed() -> None:
     if await seed_content():
         logger.info("Contenu de départ chargé.")
+    await seed_editorial()
     await seed_admin()

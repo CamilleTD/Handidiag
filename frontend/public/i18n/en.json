@@ -65,7 +65,8 @@
   "read_page": "Read this page aloud",
   "nav_resources": "Resources",
   "not_found_text": "This page does not exist or has been moved.",
-  "footer_disclaimer": "HandiDiag guides and informs: it is neither a diagnosis nor a decision. Only the MDPH can recognise a disability."
+  "footer_disclaimer": "HandiDiag guides and informs: it is neither a diagnosis nor a decision. Only the MDPH can recognise a disability.",
+  "nav_info": "Learn more"
  },
  "pages": {
   "info": "Understanding the RQTH process",
@@ -76,7 +77,8 @@
   "more": "Additional questions",
   "admin": "Admin area",
   "resources": "Resources",
-  "not_found": "Page not found"
+  "not_found": "Page not found",
+  "info_pages": "Learn more"
  },
  "info": {
   "title": "Your RQTH orientation, before entering the working world",
@@ -231,36 +233,6 @@
   "refine_text": "Answer {n} additional questions to get more precise leads, adapted to what you ticked.",
   "refine_btn": "Answer the additional questions"
  },
- "links": {
-  "rqth_mph": {
-   "label": "Mon Parcours Handicap: the RQTH",
-   "desc": "Official page on recognition and procedures (in French)."
-  },
-  "mdph_portal": {
-   "label": "Mon Parcours Handicap (national portal)",
-   "desc": "Find your MDPH and make an application (in French)."
-  },
-  "service_public_rqth": {
-   "label": "Service-public.fr: the RQTH",
-   "desc": "Definition, procedures, forms (in French)."
-  },
-  "agefiph": {
-   "label": "Agefiph",
-   "desc": "Funding and information for the private sector."
-  },
-  "fiphfp": {
-   "label": "FIPHFP",
-   "desc": "Funding and information for the public sector."
-  },
-  "france_travail": {
-   "label": "France Travail",
-   "desc": "Support for jobseekers."
-  },
-  "compensation": {
-   "label": "Mon Parcours Handicap: compensation",
-   "desc": "The main principles of disability compensation in higher education."
-  }
- },
  "kit": {
   "title": "Resource kit",
   "intro": "Everything you need to move forward, with official sources. Always check forms and the list of documents on the official websites: they can change.",
@@ -400,92 +372,12 @@
   "law_intro": "A few simple landmarks from national texts. This is general information, not legal advice: each school or employer applies them through its own procedures, and you should always check the up-to-date texts.",
   "law_ref": "Reference",
   "law_link": "Search a text on Légifrance",
-  "law_items": {
-   "def": {
-    "title": "Disability in law",
-    "text": "The law of 11 February 2005 defines disability as any limitation of activity or restriction of participation in society caused by a lasting impairment of physical, sensory, mental, cognitive or psychological functions, by multiple disabilities or by a disabling health condition. It creates the right to compensation.",
-    "ref": "Law no. 2005-102 of 11 February 2005; Code de l'action sociale et des familles, article L114"
-   },
-   "exams": {
-    "title": "Exam accommodations in higher education",
-    "text": "National texts provide exam accommodations for students with disabilities or a disabling health condition: extra time (up to one third of the total time), breaks, human or technical help, adapted papers, an adapted room. A doctor appointed by the CDAPH gives an opinion, then the institution decides and notifies its decision. Accommodations last for the whole programme leading to the degree. The disability office explains how to proceed at school.",
-    "ref": "Code de l'éducation, articles L112-4, D112-1 and D613-26 to D613-27-1; circular of 6 February 2023 (NOR ESRS2234137C)"
-   },
-   "rqth": {
-    "title": "The RQTH",
-    "text": "Recognition as a disabled worker concerns anyone whose chances of getting or keeping a job are effectively reduced. The application goes to the MDPH; the CDAPH decides. It is granted for 1 to 10 years, or without time limit for a permanent impairment.",
-    "ref": "Code du travail, articles L5213-1 and following"
-   },
-   "work": {
-    "title": "Accommodations at work",
-    "text": "Employers take, according to needs, the appropriate measures to enable a disabled worker to get a job, do it and progress, unless they impose a disproportionate burden. Workstation or working-time adjustments are decided with the occupational physician.",
-    "ref": "Code du travail, article L5213-6"
-   },
-   "quota": {
-    "title": "Employment obligation and funding",
-    "text": "Companies and public bodies with at least 20 employees must employ at least 6% of disabled workers. Financial aid exists: Agefiph for the private sector, FIPHFP for the civil service.",
-    "ref": "Code du travail, article L5212-2"
-   },
-   "freedom": {
-    "title": "Freedom to talk about it or not",
-    "text": "Employees stay free to mention their RQTH or not, at hiring or during employment. The occupational physician is bound by medical confidentiality. Rejecting a candidate because of disability or health is discrimination.",
-    "ref": "Code du travail, articles L1132-1 and L5213-1"
-   },
-   "data": {
-    "title": "Your health data",
-    "text": "Health and disability data are sensitive data protected by the GDPR: processing them is in principle prohibited, except in cases such as consent. HandiDiag keeps none of your answers.",
-    "ref": "Regulation (EU) 2016/679 (GDPR), article 9"
-   }
-  },
-  "assoc": {
-   "apf": {
-    "name": "APF France handicap",
-    "text": "Rights advocacy and support for people with disabilities, notably motor disabilities."
-   },
-   "ffdys": {
-    "name": "Fédération française des Dys (FFDys)",
-    "text": "Information and support for “dys” disorders: reading, writing, calculation, language, coordination."
-   },
-   "tdah": {
-    "name": "HyperSupers TDAH France",
-    "text": "Information and peer support around attention deficit with or without hyperactivity."
-   },
-   "autisme": {
-    "name": "Autisme France",
-    "text": "Information, rights advocacy and support for autistic people and their families."
-   },
-   "unafam": {
-    "name": "Unafam",
-    "text": "Listening and information for relatives of people living with psychological disorders."
-   },
-   "unapei": {
-    "name": "Unapei",
-    "text": "Rights advocacy for people with an intellectual disability and their families."
-   },
-   "fas": {
-    "name": "France Assos Santé",
-    "text": "Information about your health rights and guidance to patient associations, notably for chronic illnesses."
-   },
-   "tremplin": {
-    "name": "Tremplin",
-    "text": "Support for secondary and higher-education students with disabilities, from studies to the workplace."
-   },
-   "arpejeh": {
-    "name": "Arpejeh",
-    "text": "Support for young pupils and students with disabilities towards their studies and career plans."
-   },
-   "handinamique": {
-    "name": "100 % Handinamique",
-    "text": "Academic success for young people with disabilities."
-   },
-   "ladapt": {
-    "name": "LADAPT",
-    "text": "Social and professional inclusion of people with disabilities."
-   },
-   "droitausavoir": {
-    "name": "Droit au savoir",
-    "text": "Information on rights to education and studies, all disabilities."
-   }
-  }
+  "assoc_more_url": "https://www.onisep.fr/inclusion-et-handicap/qui-peut-vous-aider/les-associations-de-soutien-aux-personnes-en-situation-de-handicap",
+  "law_link_url": "https://www.legifrance.gouv.fr/"
+ },
+ "info_pages": {
+  "menu": "Topics",
+  "open_link": "Open the resource",
+  "open_pdf": "Open the PDF document"
  }
 }
