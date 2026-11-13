@@ -31,6 +31,7 @@
   "logout": "Se déconnecter"
  },
  "common": {
+  "quoted": "« {text} »",
   "add": "Ajouter",
   "edit": "Modifier",
   "save": "Enregistrer",

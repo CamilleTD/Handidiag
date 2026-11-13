@@ -23,7 +23,7 @@ export function describe(
     const question = questions.find((x) => x.key === q);
     return keys
       .map((k) => text(question?.options.find((o) => o.key === k)?.label) || k)
-      .map((label) => `« ${label} »`)
+      .map((label) => t('common.quoted', { text: label }))
       .join(` ${t('cond.or')} `);
   };
   const wrap = (part: string) =>

@@ -16,7 +16,7 @@
           @if (rule) {
             <p class="condition-summary">{{ t('rules.if') }} {{ summary(rule.condition) }}</p>
             @if (rule.explanation) {
-              <p>« {{ text(rule.explanation) }} »</p>
+              <p>{{ t('common.quoted', { text: text(rule.explanation) }) }}</p>
             }
           }
           <div class="cond-row">
