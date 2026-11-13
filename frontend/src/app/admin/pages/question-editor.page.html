@@ -1,0 +1,233 @@
+<p><a routerLink="/admin/questions">← Toutes les questions</a></p>
+@if (draft(); as d) {
+  <h1>{{ isNew() ? 'Nouvelle question' : d.text.fr || d.key }}</h1>
+
+  <form (submit)="$event.preventDefault(); save()" novalidate>
+    <section class="form-section" aria-labelledby="s-general">
+      <h2 id="s-general">Paramètres</h2>
+      <div class="form-grid three">
+        <div class="field">
+          <label for="q-key">Clé technique</label>
+          <input
+            id="q-key"
+            class="text-input key"
+            aria-describedby="q-key-hint"
+            [value]="d.key"
+            [readonly]="!isNew()"
+            (input)="patch({ key: value($event) })"
+          />
+          <p id="q-key-hint" class="hint">{{ keyHint }}</p>
+        </div>
+        <div class="field">
+          <label for="q-kind">Type de réponse</label>
+          <select id="q-kind" (change)="patch({ kind: $any(value($event)) })">
+            <option value="single" [selected]="d.kind === 'single'">Une seule réponse</option>
+            <option value="multiple" [selected]="d.kind === 'multiple'">Plusieurs réponses</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="q-phase">Place dans le parcours</label>
+          <select id="q-phase" (change)="patch({ phase: $any(value($event)) })">
+            <option value="core" [selected]="d.phase === 'core'">Question essentielle</option>
+            <option value="deep" [selected]="d.phase === 'deep'">
+              Question complémentaire (facultative)
+            </option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="q-step">Étape particulière (facultatif)</label>
+          <input
+            id="q-step"
+            class="text-input"
+            aria-describedby="q-step-hint"
+            [value]="d.step ?? ''"
+            (input)="patch({ step: value($event) || null })"
+          />
+          <p id="q-step-hint" class="hint">Ex. « pole » pour l'étape du pôle handicap.</p>
+        </div>
+        <div class="field">
+          <label for="q-tracks">Parcours associés (facultatif)</label>
+          <input
+            id="q-tracks"
+            class="text-input"
+            aria-describedby="q-tracks-hint"
+            [value]="d.tracks.join(', ')"
+            (change)="setTracks(value($event))"
+          />
+          <p id="q-tracks-hint" class="hint">
+            Question complémentaire encore proposée quand on termine après l'étape « pole » :
+            indiquez « pole ».
+          </p>
+        </div>
+        <div class="field">
+          <span class="field-label">Options</span>
+          <label class="check">
+            <input
+              type="checkbox"
+              [checked]="d.required"
+              (change)="patch({ required: checked($event) })"
+            />
+            <span>Réponse obligatoire</span>
+          </label>
+          <label class="check">
+            <input
+              type="checkbox"
+              [checked]="d.hidden"
+              (change)="patch({ hidden: checked($event) })"
+            />
+            <span>Masquée (réponse fixée d'office)</span>
+          </label>
+        </div>
+      </div>
+      @if (d.hidden) {
+        <div class="field">
+          <label for="q-auto">Réponse fixée d'office</label>
+          <select id="q-auto" (change)="patch({ auto_answer: value($event) || null })">
+            <option value="">— choisir —</option>
+            @for (option of options(); track option.key) {
+              <option [value]="option.key" [selected]="option.key === d.auto_answer">
+                {{ option.label.fr || option.key }}
+              </option>
+            }
+          </select>
+        </div>
+      }
+    </section>
+
+    <section class="form-section" aria-labelledby="s-texts">
+      <h2 id="s-texts">Textes</h2>
+      <div class="form-grid">
+        <app-localized-field
+          label="Question"
+          [required]="true"
+          [multiline]="true"
+          [value]="d.text"
+          (valueChange)="patch({ text: $event! })"
+        />
+        <app-localized-field
+          label="Version simplifiée (FALC)"
+          hint="Facultatif : affichée quand la personne active les textes simplifiés."
+          [multiline]="true"
+          [value]="d.text_falc"
+          (valueChange)="patch({ text_falc: $event })"
+        />
+        <app-localized-field
+          label="Aide (facultatif)"
+          [multiline]="true"
+          [value]="d.help"
+          (valueChange)="patch({ help: $event })"
+        />
+      </div>
+    </section>
+
+    <section class="form-section" aria-labelledby="s-options">
+      <h2 id="s-options">Réponses proposées</h2>
+      @for (option of options(); track $index; let i = $index) {
+        <div class="option-row">
+          <div class="option-head">
+            <div class="cond-row">
+              <label class="sr-only" [for]="'opt-key-' + i">Clé de la réponse {{ i + 1 }}</label>
+              <input
+                [id]="'opt-key-' + i"
+                class="text-input key"
+                [value]="option.key"
+                [readonly]="option.saved"
+                [title]="option.saved ? 'Clé déjà enregistrée : non modifiable' : ''"
+                (input)="patchOption(i, { key: value($event) })"
+              />
+              <label class="check">
+                <input
+                  type="checkbox"
+                  [checked]="option.exclusive"
+                  (change)="patchOption(i, { exclusive: checked($event) })"
+                />
+                <span>Exclusive (décoche les autres)</span>
+              </label>
+            </div>
+            <div class="item-actions">
+              <button
+                type="button"
+                class="btn btn-small btn-quiet"
+                [attr.aria-label]="'Monter la réponse ' + option.key"
+                [disabled]="i === 0"
+                (click)="moveOption(i, -1)"
+              >
+                <app-icon name="up" />
+              </button>
+              <button
+                type="button"
+                class="btn btn-small btn-quiet"
+                [attr.aria-label]="'Descendre la réponse ' + option.key"
+                [disabled]="i === options().length - 1"
+                (click)="moveOption(i, 1)"
+              >
+                <app-icon name="down" />
+              </button>
+              <button
+                type="button"
+                class="btn btn-small btn-quiet"
+                [attr.aria-label]="'Supprimer la réponse ' + option.key"
+                [disabled]="options().length === 1"
+                (click)="removeOption(i)"
+              >
+                <app-icon name="trash" />
+              </button>
+            </div>
+          </div>
+          <app-localized-field
+            [label]="'Libellé de la réponse ' + (i + 1)"
+            [required]="true"
+            [value]="option.label"
+            (valueChange)="setOptionLabel(i, $event)"
+          />
+        </div>
+      }
+      <button type="button" class="btn btn-small" (click)="addOption()">
+        <app-icon name="plus" /> Ajouter une réponse
+      </button>
+    </section>
+
+    <app-condition-field
+      label="Condition d'affichage"
+      hint="Sans condition, la question est toujours posée."
+      [optional]="true"
+      optionalLabel="Poser cette question seulement si…"
+      [questions]="catalog()"
+      [value]="d.show_if"
+      (valueChange)="patch({ show_if: $event })"
+    />
+    <app-condition-field
+      label="Condition d'arrêt (facultatif)"
+      hint="Si elle est vraie, les questions essentielles s'arrêtent après celle-ci."
+      [optional]="true"
+      optionalLabel="Arrêter le questionnaire après cette question si…"
+      [questions]="catalog()"
+      [value]="d.stop_if"
+      (valueChange)="patch({ stop_if: $event })"
+    />
+
+    @if (message()) {
+      <p class="status" [class.is-error]="failed()" role="status">{{ message() }}</p>
+    }
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="saving()">Enregistrer</button>
+      <a class="btn btn-quiet" routerLink="/admin/questions">Annuler</a>
+      @if (!isNew()) {
+        @if (confirmDelete()) {
+          <button type="button" class="btn" (click)="remove()">Confirmer la suppression</button>
+          <button type="button" class="btn btn-quiet" (click)="confirmDelete.set(false)">
+            Garder la question
+          </button>
+        } @else {
+          <button type="button" class="btn btn-quiet" (click)="confirmDelete.set(true)">
+            <app-icon name="trash" /> Supprimer…
+          </button>
+        }
+      }
+    </div>
+  </form>
+} @else if (message()) {
+  <p class="status is-error" role="alert">{{ message() }}</p>
+} @else {
+  <p>Chargement…</p>
+}

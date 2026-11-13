@@ -1,0 +1,187 @@
+@let p = prefs.value();
+<div class="narrow settings-page">
+  <div class="settings-head">
+    <h1>{{ i18n.t('ui.settings_title') }}</h1>
+    <button class="btn btn-small btn-quiet" type="button" (click)="leave()">
+      {{ i18n.t('ui.back') }}
+    </button>
+  </div>
+  <p class="sr-only" role="status" aria-live="polite">{{ announcement() }}</p>
+
+  <div class="set-group">
+    <h2>{{ i18n.t('ui.profiles_title') }}</h2>
+    <p class="hint">{{ i18n.t('ui.profiles_hint') }}</p>
+    <div class="profiles">
+      @for (profile of profiles; track profile) {
+        <button
+          type="button"
+          class="profile-btn"
+          [attr.aria-describedby]="'pd-' + profile"
+          (click)="applyProfile(profile)"
+        >
+          <strong>{{ i18n.t('ui.profile_' + profile) }}</strong>
+          <span [id]="'pd-' + profile">{{ i18n.t('ui.profile_' + profile + '_desc') }}</span>
+        </button>
+      }
+    </div>
+    <button type="button" class="linklike" (click)="resetDisplay()">
+      {{ i18n.t('ui.profile_reset') }}
+    </button>
+  </div>
+
+  <div class="set-group">
+    <h2>{{ i18n.t('ui.display_title') }}</h2>
+    <div class="settings-grid">
+      <div class="field">
+        <label for="set-lang">{{ i18n.t('ui.lang') }}</label>
+        <select id="set-lang" [value]="p.lang" (change)="setLang(value($event))">
+          <option value="fr" lang="fr">Français</option>
+          <option value="en" lang="en">English</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="set-font">{{ i18n.t('ui.font') }}</label>
+        <select
+          id="set-font"
+          aria-describedby="font-note"
+          [value]="p.font"
+          (change)="prefs.update({ font: $any(value($event)) })"
+        >
+          @for (font of fonts; track font) {
+            <option [value]="font" [selected]="font === p.font">
+              {{ i18n.t('ui.font_' + font) }}
+            </option>
+          }
+        </select>
+        <p id="font-note" class="hint">{{ i18n.t('ui.font_note') }}</p>
+      </div>
+      <div class="field">
+        <label for="set-theme">{{ i18n.t('ui.theme') }}</label>
+        <select
+          id="set-theme"
+          [value]="p.theme"
+          (change)="prefs.update({ theme: $any(value($event)) })"
+        >
+          @for (theme of themes; track theme) {
+            <option [value]="theme" [selected]="theme === p.theme">
+              {{ i18n.t('ui.theme_' + theme) }}
+            </option>
+          }
+        </select>
+      </div>
+      <div class="field field-wide">
+        <label for="set-size">
+          {{ i18n.t('ui.text_size') }} : <output for="set-size">{{ p.size }} %</output>
+        </label>
+        <div class="size-row">
+          <button
+            class="btn btn-small"
+            type="button"
+            [attr.aria-label]="i18n.t('ui.smaller')"
+            [disabled]="p.size <= SIZE_MIN"
+            (click)="resize(-1)"
+          >
+            A−
+          </button>
+          <input
+            type="range"
+            id="set-size"
+            [min]="SIZE_MIN"
+            [max]="SIZE_MAX"
+            step="10"
+            [value]="p.size"
+            (input)="prefs.update({ size: +value($event) })"
+          />
+          <button
+            class="btn btn-small"
+            type="button"
+            [attr.aria-label]="i18n.t('ui.larger')"
+            [disabled]="p.size >= SIZE_MAX"
+            (click)="resize(1)"
+          >
+            A+
+          </button>
+          <button
+            class="btn btn-small btn-quiet"
+            type="button"
+            [attr.aria-label]="i18n.t('ui.reset')"
+            (click)="resize(null)"
+          >
+            100 %
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="checks">
+      <label class="check"
+        ><input
+          type="checkbox"
+          [checked]="p.falc"
+          (change)="prefs.update({ falc: checked($event) })"
+        /><span>{{ i18n.t('ui.falc') }}</span></label
+      >
+      <label class="check"
+        ><input
+          type="checkbox"
+          [checked]="p.dys"
+          (change)="prefs.update({ dys: checked($event) })"
+        /><span>{{ i18n.t('ui.dys') }}</span></label
+      >
+      <label class="check"
+        ><input
+          type="checkbox"
+          [checked]="p.ruler"
+          (change)="prefs.update({ ruler: checked($event) })"
+        /><span>{{ i18n.t('ui.ruler') }}</span></label
+      >
+      <label class="check">
+        <input
+          type="checkbox"
+          aria-describedby="remember-hint"
+          [checked]="p.remember"
+          (change)="prefs.update({ remember: checked($event) })"
+        />
+        <span>{{ i18n.t('ui.remember') }}</span>
+      </label>
+    </div>
+    <p id="remember-hint" class="hint">{{ i18n.t('ui.remember_hint') }}</p>
+  </div>
+
+  <div class="set-group">
+    <h2>{{ i18n.t('ui.voice_title') }}</h2>
+    @if (voice.available) {
+      <div class="settings-grid">
+        <div class="field">
+          <label for="set-voice">{{ i18n.t('ui.voice') }}</label>
+          <select id="set-voice" (change)="prefs.update({ voice: value($event) })">
+            <option value="" [selected]="!p.voice">{{ i18n.t('ui.voice_auto') }}</option>
+            @for (v of voices(); track v.voiceURI) {
+              <option [value]="v.voiceURI" [selected]="v.voiceURI === p.voice">
+                {{ v.name }}{{ v.localService ? '' : ' (' + i18n.t('ui.voice_online') + ')' }}
+              </option>
+            }
+          </select>
+        </div>
+        <div class="field">
+          <label for="set-rate"
+            >{{ i18n.t('ui.rate') }} : <output for="set-rate">{{ rate() }}</output></label
+          >
+          <input
+            type="range"
+            id="set-rate"
+            min="0.6"
+            max="1.4"
+            step="0.05"
+            [value]="p.rate"
+            (input)="prefs.update({ rate: +value($event) })"
+          />
+        </div>
+      </div>
+      <p class="hint">{{ i18n.t('ui.voice_note') }}</p>
+    } @else {
+      <p>{{ i18n.t('ui.voice_unavailable') }}</p>
+    }
+  </div>
+
+  <button class="btn btn-primary" type="button" (click)="leave()">{{ i18n.t('ui.back') }}</button>
+</div>

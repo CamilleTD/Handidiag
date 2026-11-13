@@ -1,0 +1,137 @@
+<div class="narrow res-page">
+  <h1>{{ i18n.t('resources.title') }}</h1>
+  <p class="lead">{{ i18n.t('resources.lead') }}</p>
+  <app-read-button id="resources" [parts]="readParts" />
+
+  <nav class="res-nav" [attr.aria-label]="i18n.t('resources.nav_label')">
+    @for (section of sections; track section.id) {
+      <button type="button" class="btn btn-small" (click)="jump(section.id)">
+        {{ i18n.t(section.label) }}
+      </button>
+    }
+  </nav>
+
+  <section aria-labelledby="r-efrei">
+    <h2 id="r-efrei">{{ i18n.t('resources.efrei_title') }}</h2>
+    <p>{{ i18n.t('resources.efrei_intro') }}</p>
+    <h3>{{ i18n.t('resources.contacts_title') }}</h3>
+    @for (group of poleGroups(); track group.group) {
+      <div class="pole-group">
+        <p class="group-label">{{ i18n.t('pole_result.who_' + group.group) }}</p>
+        <ul class="cards">
+          @for (contact of group.contacts; track contact.key) {
+            <li [appContactCard]="contact"></li>
+          }
+        </ul>
+      </div>
+    }
+    <ul class="cards">
+      @for (contact of schoolContacts(); track contact.key) {
+        <li [appContactCard]="contact"></li>
+      }
+    </ul>
+    <p class="hint">{{ i18n.t('pole_result.privacy_note') }}</p>
+
+    <h3>{{ i18n.t('resources.steps_title') }}</h3>
+    <ol class="steps">
+      @for (step of i18n.steps('resources.steps'); track $index) {
+        <li>
+          <h4>{{ step.title }}</h4>
+          <p>{{ step.text }}</p>
+        </li>
+      }
+    </ol>
+    <h3>{{ i18n.t('resources.types_title') }}</h3>
+    <p>{{ i18n.t('resources.types_text') }}</p>
+    <h3>{{ i18n.t('resources.freq_title') }}</h3>
+    <p>{{ i18n.t('resources.freq_intro') }}</p>
+    <ul class="chips">
+      @for (item of i18n.list('resources.freq'); track $index) {
+        <li>{{ item }}</li>
+      }
+    </ul>
+    <h3>{{ i18n.t('resources.school_title') }}</h3>
+    <ul class="plain-list">
+      @for (item of i18n.list('resources.school'); track $index) {
+        <li>{{ item }}</li>
+      }
+    </ul>
+    <p class="hint">{{ i18n.t('resources.source_pole') }}</p>
+  </section>
+
+  <section aria-labelledby="r-national">
+    <h2 id="r-national">{{ i18n.t('resources.national_title') }}</h2>
+    <p>{{ i18n.t('resources.national_intro') }}</p>
+    <h3>{{ i18n.t('resources.public_title') }}</h3>
+    <ul class="cards kit-links two">
+      @for (link of content.links().resource_links; track link.id) {
+        <li>
+          <h3>
+            <a [href]="link.url" target="_blank" rel="noopener noreferrer">
+              {{ i18n.t('links.' + link.id + '.label')
+              }}<span class="sr-only"> {{ i18n.t('ui.new_tab') }}</span>
+            </a>
+            <app-icon name="link" />
+          </h3>
+          <p>{{ i18n.t('links.' + link.id + '.desc') }}</p>
+        </li>
+      }
+    </ul>
+    <h3>{{ i18n.t('resources.assoc_title') }}</h3>
+    <p>{{ i18n.t('resources.assoc_intro') }}</p>
+    <ul class="cards">
+      @for (assoc of content.links().associations; track assoc.id) {
+        <li>
+          <app-medal name="building" />
+          <h3>{{ i18n.t('resources.assoc.' + assoc.id + '.name') }}</h3>
+          <p>{{ i18n.t('resources.assoc.' + assoc.id + '.text') }}</p>
+          <p>
+            <a [href]="assoc.url" target="_blank" rel="noopener noreferrer">
+              {{ i18n.t('resources.visit') }} :
+              {{ i18n.t('resources.assoc.' + assoc.id + '.name') }}
+              <span class="sr-only"> {{ i18n.t('ui.new_tab') }}</span>
+            </a>
+          </p>
+        </li>
+      }
+    </ul>
+    <p>
+      <a [href]="content.links().association_directory" target="_blank" rel="noopener noreferrer">
+        {{ i18n.t('resources.assoc_more') }}<span class="sr-only"> {{ i18n.t('ui.new_tab') }}</span>
+      </a>
+      <app-icon name="link" />
+    </p>
+  </section>
+
+  <section aria-labelledby="r-law">
+    <h2 id="r-law">{{ i18n.t('resources.law_title') }}</h2>
+    <p class="notice">{{ i18n.t('resources.law_intro') }}</p>
+    <ul class="cards">
+      @for (law of content.links().laws; track law.id) {
+        <li>
+          <app-medal name="doc" />
+          <h3>{{ i18n.t('resources.law_items.' + law.id + '.title') }}</h3>
+          <p>{{ i18n.t('resources.law_items.' + law.id + '.text') }}</p>
+          <p class="hint">
+            {{ i18n.t('resources.law_ref') }} :
+            {{ i18n.t('resources.law_items.' + law.id + '.ref') }}
+          </p>
+          @if (law.url) {
+            <p>
+              <a [href]="law.url" target="_blank" rel="noopener noreferrer">
+                {{ i18n.t('resources.law_items.' + law.id + '.title') }}
+                <span class="sr-only"> {{ i18n.t('ui.new_tab') }}</span>
+              </a>
+            </p>
+          }
+        </li>
+      }
+    </ul>
+    <p>
+      <a [href]="content.links().legifrance" target="_blank" rel="noopener noreferrer">
+        {{ i18n.t('resources.law_link') }}<span class="sr-only"> {{ i18n.t('ui.new_tab') }}</span>
+      </a>
+      <app-icon name="link" />
+    </p>
+  </section>
+</div>

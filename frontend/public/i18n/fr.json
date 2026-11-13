@@ -1,0 +1,491 @@
+{
+ "meta": {
+  "name": "Français",
+  "speech": "fr-FR"
+ },
+ "ui": {
+  "skip": "Aller au contenu principal",
+  "nav_label": "Navigation principale",
+  "nav_home": "Accueil",
+  "nav_quiz": "Questionnaire",
+  "nav_kit": "Kit",
+  "settings_btn": "Réglages",
+  "settings_title": "Réglages d'affichage",
+  "lang": "Langue",
+  "falc": "Textes simplifiés (inspirés du FALC)",
+  "text_size": "Taille du texte (50 % à 300 %)",
+  "smaller": "A− : réduire le texte",
+  "reset": "100 % : taille normale",
+  "larger": "A+ : agrandir le texte",
+  "theme": "Thème",
+  "theme_auto": "Automatique",
+  "theme_light": "Clair",
+  "theme_dark": "Sombre",
+  "dys": "Espacement renforcé (confort de lecture)",
+  "close": "Fermer",
+  "loading": "Chargement…",
+  "load_error": "Impossible de charger l'application. Vérifiez votre connexion puis rechargez la page.",
+  "noscript": "HandiDiag a besoin de JavaScript : vos réponses sont traitées uniquement dans votre navigateur.",
+  "new_tab": "(s'ouvre dans un nouvel onglet)",
+  "page_title_suffix": "HandiDiag",
+  "profiles_title": "Profils rapides",
+  "profiles_hint": "Un clic règle plusieurs options à la fois. Vous pouvez ensuite tout ajuster.",
+  "profile_dys": "Dyslexie",
+  "profile_dys_desc": "Police OpenDyslexic, espacement renforcé, texte un peu plus grand.",
+  "profile_adhd": "TDAH / concentration",
+  "profile_adhd_desc": "Police Lexend, textes simplifiés, espacement renforcé et repère de lecture.",
+  "profile_lowvision": "Malvoyance",
+  "profile_lowvision_desc": "Police Atkinson Hyperlegible, texte à 150 %, contraste élevé.",
+  "profile_reset": "Revenir aux réglages d'origine",
+  "profile_applied": "Profil appliqué : {name}",
+  "profile_reset_done": "Réglages d'origine rétablis.",
+  "display_title": "Lecture et affichage",
+  "font": "Police de caractères",
+  "font_system": "Police du système (par défaut)",
+  "font_atkinson": "Atkinson Hyperlegible (malvoyance)",
+  "font_dyslexic": "OpenDyslexic (dyslexie)",
+  "font_lexend": "Lexend (lecture fluide, TDAH)",
+  "font_note": "Aucune police n'est efficace pour tout le monde : gardez celle qui vous est la plus confortable.",
+  "theme_contrast": "Contraste élevé",
+  "ruler": "Repère de lecture : une bande claire suit la souris ou la sélection",
+  "remember": "Mémoriser ces réglages sur cet appareil",
+  "remember_hint": "Seuls les réglages d'affichage sont enregistrés, jamais vos réponses.",
+  "voice_title": "Lecture à voix haute",
+  "voice": "Voix",
+  "voice_auto": "Automatique (meilleure voix disponible)",
+  "voice_online": "en ligne",
+  "rate": "Vitesse de lecture",
+  "voice_unavailable": "La lecture à voix haute n'est pas disponible sur ce navigateur.",
+  "voice_note": "Les voix les plus naturelles dépendent de votre appareil : sur Edge, cherchez une voix « Natural » ; sur Chrome, « Google français » ; sur iPhone et Mac, une voix « améliorée » ou « premium ». Une voix marquée « en ligne » envoie le texte lu à un service du navigateur. Pour la lecture du résultat, la voix automatique reste locale : choisissez une voix dans la liste pour utiliser une voix en ligne.",
+  "lang_switch": "English",
+  "back": "Retour",
+  "footer_brand": "© Équipe HandiDiag",
+  "admin_link": "Espace administrateur",
+  "meta_description": "HandiDiag : comprendre la démarche RQTH avant d'entrer dans le monde du travail et savoir vers qui se tourner. Anonyme, sans compte.",
+  "read_page": "Lire cette page à voix haute",
+  "nav_resources": "Ressources",
+  "not_found_text": "Cette page n'existe pas ou a été déplacée.",
+  "footer_disclaimer": "HandiDiag oriente et informe : ce n'est ni un diagnostic, ni une décision. Seule la MDPH peut reconnaître une situation de handicap."
+ },
+ "pages": {
+  "info": "Comprendre la démarche RQTH",
+  "quiz": "Questionnaire d'orientation",
+  "result": "Votre orientation",
+  "kit": "Kit documentaire",
+  "settings": "Réglages d'affichage",
+  "more": "Questions complémentaires",
+  "admin": "Espace administrateur",
+  "resources": "Ressources",
+  "not_found": "Page introuvable"
+ },
+ "info": {
+  "title": "Votre orientation RQTH, avant d'entrer dans le monde du travail",
+  "lead": "HandiDiag s'adresse aux étudiants de l'école qui se préparent à travailler : il vous aide à savoir si une démarche de reconnaissance (RQTH) peut avoir du sens pour votre projet professionnel, et vers qui vous tourner.",
+  "what_title": "Qu'est-ce que la RQTH ?",
+  "what": "La RQTH (reconnaissance de la qualité de travailleur handicapé) est une décision administrative. Elle peut donner accès à des mesures pour trouver ou garder un emploi, comme des aménagements de poste ou d'horaires et des aides financières. Elle concerne des personnes dont les possibilités d'obtenir ou de conserver un emploi sont réduites par une altération durable de fonctions physiques, sensorielles, mentales ou psychiques. La demande est personnelle et volontaire.",
+  "what_falc": "La RQTH est une décision de l'administration. Elle peut aider à trouver un travail ou à le garder. Par exemple : des horaires adaptés, un poste adapté, des aides pour payer du matériel. La demande est personnelle. Personne ne peut la faire à votre place.",
+  "does_title": "Ce que fait HandiDiag",
+  "does": [
+   "Il vous explique la démarche avec des mots simples.",
+   "Il vous demande d'abord si vous êtes suivi(e) par le pôle handicap. Si oui, il passe aux questions sur la RQTH. Si non, il vous propose de voir (quelques questions) si le pôle peut vous être utile, puis vous laisse choisir : continuer vers la RQTH ou terminer ici.",
+   "Il vous dit s'il peut être utile d'en parler, et à qui : le pôle handicap pour vos études, le Career Center pour le monde du travail.",
+   "Il vous donne un kit pour avancer, et des ressources à l'école, au niveau national et dans la loi."
+  ],
+  "does_falc": [
+   "Il explique la démarche avec des mots simples.",
+   "Il demande d'abord si le pôle handicap vous suit. Si oui, il pose des questions sur la RQTH. Si non, il propose de voir si le pôle peut vous aider. Vous choisissez ensuite : continuer ou arrêter.",
+   "Il dit s'il peut être utile d'en parler, et à qui.",
+   "Il donne des liens officiels, des contacts et une liste de choses à faire."
+  ],
+  "not_title": "Ce que HandiDiag ne fait pas",
+  "not": [
+   "Il ne pose aucun diagnostic médical.",
+   "Il ne dit jamais si vous obtiendrez une reconnaissance : seule la MDPH décide.",
+   "Il ne remplace ni un médecin, ni la MDPH, ni un conseiller.",
+   "Il ne transmet vos réponses à personne."
+  ],
+  "not_falc": [
+   "Il ne fait pas de diagnostic.",
+   "Il ne dit pas si vous aurez la RQTH. C'est la MDPH qui décide.",
+   "Il ne remplace pas un médecin ou un conseiller.",
+   "Il n'envoie vos réponses à personne."
+  ],
+  "privacy_title": "Confidentialité",
+  "privacy": [
+   "Pas de compte, pas d'adresse email demandée.",
+   "Vos réponses restent dans votre navigateur. Elles disparaissent quand vous rechargez ou fermez la page.",
+   "Seuls des compteurs anonymes (par exemple : nombre de questionnaires terminés) peuvent être envoyés. Vous pouvez le refuser ci-dessous.",
+   "Pas de cookie, pas de traceur, pas de service tiers."
+  ],
+  "privacy_falc": [
+   "Pas de compte. Pas d'email.",
+   "Vos réponses restent sur votre appareil. Elles sont effacées quand vous fermez la page.",
+   "On compte seulement combien de personnes ont fini le questionnaire. On ne sait pas qui. Vous pouvez dire non ci-dessous.",
+   "Pas de cookie. Pas de pub."
+  ],
+  "stats_label": "J'accepte de contribuer aux statistiques anonymes (compteurs agrégés, sans lien avec mes réponses détaillées).",
+  "start": "Commencer le questionnaire",
+  "start_hint": "Entre 8 et 13 questions, environ 6 minutes. Chaque question peut être passée avec « Je préfère ne pas répondre ».",
+  "kit_link": "Voir directement le kit documentaire",
+  "path_title": "Votre parcours en 4 étapes",
+  "path": [
+   {
+    "title": "S'informer",
+    "text": "Comprendre ce qu'est la RQTH."
+   },
+   {
+    "title": "Se situer",
+    "text": "Voir si le pôle handicap peut vous être utile, puis, si vous le souhaitez, répondre à une dizaine de questions sur la RQTH, sans détail médical."
+   },
+   {
+    "title": "Échanger",
+    "text": "Savoir à qui en parler."
+   },
+   {
+    "title": "Agir",
+    "text": "Préparer la démarche avec le kit et les ressources."
+   }
+  ],
+  "eco": [
+   "Léger : moins de 60 Ko transférés à la première visite, sans image ni vidéo.",
+   "Aucun service tiers, aucun traceur, aucune police téléchargée sans votre demande.",
+   "Les calculs se font dans votre navigateur : pas de base de données, très peu de serveur sollicité.",
+   "Le thème sombre est disponible : il consomme moins sur les écrans OLED."
+  ],
+  "eco_title": "Un site éco-conçu (Green IT)",
+  "calm_title": "Handicap, RQTH : des mots qui font parfois peur",
+  "calm": [
+   "Beaucoup d'étudiants sont concernés. La plupart des situations accompagnées à l'école sont des handicaps invisibles : troubles « dys », maladies invalidantes, troubles psychiques ou de l'attention.",
+   "Demander un aménagement n'est pas demander une faveur : c'est donner à chacun les mêmes conditions pour réussir.",
+   "Se renseigner n'engage à rien. Vous restez libre de continuer ou non, à votre rythme.",
+   "La RQTH est une démarche personnelle et volontaire. Vous restez libre d'en parler ou non à un employeur.",
+   "Au pôle handicap, seules les informations utiles à l'aménagement sont communiquées."
+  ],
+  "pole_title": "Et à l'école ? Le pôle handicap",
+  "pole_text": "Le pôle handicap vous reçoit lors d'un premier entretien : mise en confiance, respect de la vie privée, identification de vos besoins, explication des règles. Il met ensuite en place les aménagements, vous suit pendant toute la scolarité et aide à l'insertion professionnelle.",
+  "pole_link": "Voir les ressources à l'école, au niveau national et dans la loi"
+ },
+ "quiz": {
+  "progress": "Question {n} sur {total}",
+  "single_hint": "Une seule réponse possible.",
+  "multi_hint": "Plusieurs réponses possibles.",
+  "next": "Valider",
+  "back": "Question précédente",
+  "skip": "Je préfère ne pas répondre",
+  "finish": "Valider et voir mon orientation",
+  "required": "Choisissez une réponse, ou « Je préfère ne pas répondre ».",
+  "read_aloud": "Lire la question à voix haute",
+  "stop_reading": "Arrêter la lecture",
+  "cancel": "Quitter et effacer mes réponses",
+  "required_optional": "Choisissez une réponse, ou « Je préfère ne pas répondre ».",
+  "read_intro": "Voici les réponses possibles.",
+  "more_title": "Les questions essentielles sont terminées",
+  "more_text": "Merci ! Vous pouvez voir votre orientation maintenant, ou répondre à {n} questions complémentaires (environ {m} min) pour obtenir des pistes plus précises, adaptées à ce que vous avez indiqué.",
+  "more_text_falc": "Merci ! Vous pouvez voir votre orientation maintenant. Ou répondre à {n} questions en plus (environ {m} min). Vous aurez des conseils plus précis.",
+  "more_continue": "Répondre aux questions complémentaires",
+  "more_skip": "Voir mon orientation maintenant",
+  "more_later": "Vous pourrez aussi y revenir depuis votre résultat.",
+  "deep_tag": "complémentaire",
+  "pole_panel_title": "Pour contacter le pôle handicap",
+  "pole_panel_subjects": "Sujets traités",
+  "pole_subjects": [
+   "Handicap",
+   "Tiers-temps",
+   "Social",
+   "Aides exceptionnelles",
+   "Aménagements"
+  ],
+  "pole_panel_write": "Écrivez à la personne qui correspond à votre besoin (un seul e-mail suffit) :",
+  "pole_panel_then": "Choisissez ensuite : continuer vers les questions sur la RQTH, ou terminer ici.",
+  "email_label": "E-mail",
+  "pole_panel_school": "Pour vos études à l'école",
+  "pole_panel_work": "Pour le monde du travail",
+  "pole_hint_title": "Ce que suggèrent vos réponses"
+ },
+ "result": {
+  "title": "Votre orientation",
+  "notdecision": "Ce résultat est une aide à l'orientation. Ce n'est pas un diagnostic et ce n'est pas une décision.",
+  "why_title": "Ce qui a été pris en compte",
+  "why_intro": "HandiDiag n'utilise aucune intelligence artificielle : il applique des règles simples, que voici.",
+  "points": "{n} point",
+  "points_plural": "{n} points",
+  "score_line": "Total : {score} (seuils : 3 pour « il peut être utile d'en parler », 6 pour « échange rapide conseillé »).",
+  "attention_title": "Points d'attention pour vous",
+  "contacts_title": "Vers qui vous tourner",
+  "contacts_intro": "Voici des points de départ adaptés à votre situation. Vous pouvez en contacter un seul.",
+  "confidential_tip": "Pour garder la main sur ce que vous partagez, vous pouvez commencer par un professionnel tenu au secret médical, signalé ci-dessous.",
+  "secret_badge": "Tenu au secret médical",
+  "next_title": "Et maintenant ?",
+  "to_kit": "Ouvrir le kit documentaire",
+  "print": "Imprimer",
+  "download": "Résumé en texte (.txt)",
+  "restart": "Effacer mes réponses et recommencer",
+  "summary_note": "Le PDF et le résumé sont fabriqués sur votre appareil et ne contiennent pas vos réponses détaillées.",
+  "read_aloud": "Écouter ce résultat",
+  "read_hint": "Résultat",
+  "pdf": "Télécharger en PDF",
+  "todo_title": "Pistes pour avancer",
+  "todo_note": "Ce ne sont que des pistes de réflexion, adaptées à ce que vous avez coché. Ce ne sont ni des conseils médicaux, ni des décisions, ni des obligations : un professionnel pourra les préciser avec vous.",
+  "todo_note_falc": "Ce sont seulement des idées, selon vos réponses. Ce ne sont pas des conseils de médecin. Ce ne sont pas des obligations. Un professionnel peut vous aider.",
+  "refine_title": "Affiner mes pistes",
+  "refine_text": "Répondez à {n} questions complémentaires pour obtenir des pistes plus précises, adaptées à ce que vous avez coché.",
+  "refine_btn": "Répondre aux questions complémentaires"
+ },
+ "links": {
+  "rqth_mph": {
+   "label": "Mon Parcours Handicap : la RQTH",
+   "desc": "Fiche officielle sur la reconnaissance et les démarches."
+  },
+  "mdph_portal": {
+   "label": "Mon Parcours Handicap (portail national)",
+   "desc": "Trouver votre MDPH et faire une demande."
+  },
+  "service_public_rqth": {
+   "label": "Service-public.fr : la RQTH",
+   "desc": "Définition, démarches, formulaires."
+  },
+  "agefiph": {
+   "label": "Agefiph",
+   "desc": "Aides et informations pour le secteur privé."
+  },
+  "fiphfp": {
+   "label": "FIPHFP",
+   "desc": "Aides et informations pour la fonction publique."
+  },
+  "france_travail": {
+   "label": "France Travail",
+   "desc": "Accompagnement des demandeurs d'emploi."
+  },
+  "compensation": {
+   "label": "Mon Parcours Handicap : la compensation",
+   "desc": "Les grands principes de la compensation du handicap dans les études supérieures."
+  }
+ },
+ "kit": {
+  "title": "Kit documentaire",
+  "intro": "Tout ce qu'il faut pour avancer, avec des sources officielles. Vérifiez toujours les formulaires et la liste des pièces sur les sites officiels : ils peuvent changer.",
+  "links_title": "Liens officiels",
+  "checklist_title": "Checklist de la démarche",
+  "checklist_intro": "Cochez au fur et à mesure. Rien n'est enregistré : si vous rechargez la page, la liste se vide.",
+  "checklist": [
+   "Lire la fiche officielle sur la RQTH",
+   "Repérer la MDPH de mon département",
+   "Noter mes difficultés et leurs effets sur mes études ou mon travail",
+   "Prendre rendez-vous avec un médecin pour le certificat médical",
+   "Remplir le formulaire de demande, avec la partie « projet de vie »",
+   "Rassembler les pièces demandées (liste officielle) : pièce d'identité, justificatif de domicile, documents médicaux utiles",
+   "Déposer le dossier (en ligne ou par courrier) et en garder une copie",
+   "Noter la date de dépôt et surveiller le courrier de réponse"
+  ],
+  "guide_title": "Guide pas à pas",
+  "guide": [
+   {
+    "title": "S'informer",
+    "text": "Lisez la fiche officielle et le résumé de cette page. Vous n'avez rien à décider à ce stade."
+   },
+   {
+    "title": "En parler à une personne de confiance",
+    "text": "Un référent handicap, un médecin de prévention ou du travail, un conseiller : la liste de votre orientation propose des points de départ."
+   },
+   {
+    "title": "Voir un médecin",
+    "text": "Un médecin remplit un certificat médical qui décrit les effets de votre situation de santé. Vous pouvez l'amener avec votre dossier."
+   },
+   {
+    "title": "Constituer le dossier",
+    "text": "Remplissez le formulaire de demande de la MDPH et rassemblez les pièces demandées. N'hésitez pas à demander de l'aide à la MDPH ou à un conseiller."
+   },
+   {
+    "title": "Déposer la demande",
+    "text": "La demande se fait auprès de la MDPH de votre département, en ligne ou par courrier. Gardez une copie de tout ce que vous envoyez."
+   },
+   {
+    "title": "Attendre la décision",
+    "text": "La commission des droits et de l'autonomie (CDAPH) décide. Les délais varient selon les départements. Une fois la décision reçue, vous choisissez qui vous en informez."
+   }
+  ],
+  "vigilance_title": "Points de vigilance",
+  "vigilance": [
+   "HandiDiag ne remplace ni un médecin, ni la MDPH, ni un conseiller.",
+   "Vérifiez toujours les formulaires et la liste des pièces sur les sites officiels.",
+   "Gardez l'original de votre notification de décision.",
+   "Ne partagez pas d'informations médicales par des canaux non sécurisés."
+  ],
+  "print": "Imprimer",
+  "pdf": "Télécharger en PDF"
+ },
+ "pdf": {
+  "footer": "HandiDiag – ni diagnostic, ni décision – page {n}/{total}",
+  "result_title": "HandiDiag – Votre orientation",
+  "kit_title": "HandiDiag – Kit documentaire",
+  "links": "Liens officiels",
+  "guide": "Étapes",
+  "checklist": "Checklist de la démarche",
+  "todo": "Pistes pour avancer (indicatives)"
+ },
+ "pole_result": {
+  "title": "Le pôle handicap de l'école",
+  "who_school": "Pour vos études à l'école (examens, tiers-temps, aides sociales, aménagements)",
+  "who_work": "Pour le monde du travail (stage, alternance, recherche d'emploi, aménagements en entreprise)",
+  "privacy_note": "Le pôle handicap est confidentiel : seules les informations utiles à la mise en place de l'aménagement sont communiquées.",
+  "continue_title": "Voir si une RQTH peut avoir du sens pour vous",
+  "continue_text": "Vous avez choisi de terminer après l'étape du pôle handicap. Vous pouvez à tout moment répondre aux questions sur la RQTH (une dizaine de questions, sans détail médical).",
+  "continue_btn": "Répondre aux questions sur la RQTH"
+ },
+ "resources": {
+  "title": "Ressources",
+  "lead": "Des interlocuteurs et des textes fiables : à l'école, au niveau national et dans la loi.",
+  "nav_label": "Aller à la partie",
+  "tab_efrei": "À l'Efrei",
+  "tab_national": "Au niveau national",
+  "tab_law": "La loi",
+  "efrei_title": "Ressources à l'Efrei",
+  "efrei_intro": "À l'école, plusieurs personnes peuvent vous écouter. Écrivez-leur par e-mail : vous choisissez ce que vous partagez.",
+  "contacts_title": "Qui contacter",
+  "steps_title": "Comment se passe l'accompagnement du pôle handicap",
+  "steps": [
+   {
+    "title": "Premier entretien",
+    "text": "Mise en confiance, respect de la vie privée, identification des besoins, explication des règles et des justificatifs nécessaires."
+   },
+   {
+    "title": "Mise en place des aménagements",
+    "text": "Le pôle utilise des outils internes de suivi des aménagements."
+   },
+   {
+    "title": "Échange avec les équipes pédagogiques",
+    "text": "Si besoin, selon le handicap : diffusion de consignes, mise en situation, explications."
+   },
+   {
+    "title": "Suivi pendant toute la scolarité",
+    "text": "Le pôle vérifie que les aménagements correspondent aux besoins et intervient aux jurys si besoin."
+   },
+   {
+    "title": "Aide à l'insertion professionnelle",
+    "text": "Les entreprises partenaires recherchent des diplômés en situation de handicap."
+   }
+  ],
+  "freq_title": "Les aménagements les plus fréquents à l'école",
+  "freq_intro": "Les salles particulières et le temps majoré sont les plus fréquents. Les outils numériques et le matériel spécialisé prennent une place croissante.",
+  "freq": [
+   "Salle particulière",
+   "Temps majoré (tiers-temps)",
+   "Matériel informatique",
+   "Temps de pause",
+   "Matériel technique et autre",
+   "Logiciel adapté",
+   "Aide humaine (reformulation)",
+   "Documents adaptés",
+   "Épreuves aménagées",
+   "Placement spécifique",
+   "Aide à la communication"
+  ],
+  "types_title": "Les situations accompagnées",
+  "types_text": "La majorité des situations accompagnées concerne des handicaps invisibles : les troubles « dys » (lecture, écriture, langage) et les maladies invalidantes arrivent en tête, puis les troubles psychiques, cognitifs, moteurs, l'autisme, les troubles de l'audition et de la vue. Chaque situation reçoit une réponse individualisée.",
+  "school_title": "Ce que fait déjà l'école",
+  "school": [
+   "Plusieurs services contribuent à l'accessibilité : systèmes d'information, transformation, vie associative, innovation pédagogique, projets transverses et laboratoire de recherche.",
+   "De nombreux collaborateurs ont reçu la formation aux Premiers Secours en Santé Mentale (PSSM).",
+   "L'accessibilité et l'inclusion sont une responsabilité partagée par toute la communauté, pas seulement par le service handicap."
+  ],
+  "source_pole": "Source : fiche d'information du pôle handicap de l'Efrei.",
+  "national_title": "Ressources au niveau national",
+  "national_intro": "Ces organismes et associations sont indépendants de l'école. Ils peuvent informer, accompagner ou défendre vos droits.",
+  "public_title": "Organismes publics et sites officiels",
+  "assoc_title": "Associations nationales (hors Efrei)",
+  "assoc_intro": "Choisies pour les situations les plus fréquentes à l'école et pour les jeunes en études ou en recherche d'emploi.",
+  "assoc_more": "Autres associations : annuaire de l'ONISEP",
+  "visit": "Visiter le site",
+  "law_title": "Ce que dit la loi",
+  "law_intro": "Quelques repères simples, issus des textes nationaux. Ce sont des informations générales, pas un conseil juridique : chaque établissement ou employeur les applique avec ses procédures, et il faut toujours vérifier les textes à jour.",
+  "law_ref": "Référence",
+  "law_link": "Rechercher un texte sur Légifrance",
+  "law_items": {
+   "def": {
+    "title": "Le handicap selon la loi",
+    "text": "La loi du 11 février 2005 définit le handicap comme toute limitation d'activité ou restriction de participation à la vie en société, due à une altération durable de fonctions physiques, sensorielles, mentales, cognitives ou psychiques, à un polyhandicap ou à un trouble de santé invalidant. Elle crée le droit à la compensation.",
+    "ref": "Loi n° 2005-102 du 11 février 2005 ; Code de l'action sociale et des familles, article L114"
+   },
+   "exams": {
+    "title": "Aménagements d'examens dans le supérieur",
+    "text": "Les textes nationaux prévoient des aménagements des épreuves pour les étudiants en situation de handicap ou ayant un trouble de santé invalidant : temps majoré (jusqu'à un tiers du temps total), pauses, aide humaine ou technique, sujets adaptés, salle adaptée. Un médecin désigné par la CDAPH donne un avis, puis l'établissement décide et notifie sa décision. Les aménagements valent pour toute la formation menant au diplôme. Le pôle handicap vous explique comment faire à l'école.",
+    "ref": "Code de l'éducation, articles L112-4, D112-1 et D613-26 à D613-27-1 ; circulaire du 6 février 2023 (NOR ESRS2234137C)"
+   },
+   "rqth": {
+    "title": "La RQTH",
+    "text": "La qualité de travailleur handicapé concerne toute personne dont les possibilités d'obtenir ou de conserver un emploi sont effectivement réduites. La demande se fait auprès de la MDPH ; la CDAPH décide. La reconnaissance est accordée de 1 à 10 ans, ou sans limitation de durée en cas d'altération définitive.",
+    "ref": "Code du travail, articles L5213-1 et suivants"
+   },
+   "work": {
+    "title": "Aménagements au travail",
+    "text": "L'employeur prend, en fonction des besoins, les mesures appropriées pour permettre à un travailleur handicapé d'accéder à un emploi, de l'exercer et d'y progresser, sauf si elles représentent une charge disproportionnée. Les aménagements du poste ou du temps de travail se décident avec le médecin du travail.",
+    "ref": "Code du travail, article L5213-6"
+   },
+   "quota": {
+    "title": "Obligation d'emploi et aides",
+    "text": "Les entreprises et administrations d'au moins 20 salariés ou agents doivent employer au moins 6 % de travailleurs handicapés. Des aides financières existent : Agefiph pour le secteur privé, FIPHFP pour la fonction publique.",
+    "ref": "Code du travail, article L5212-2"
+   },
+   "freedom": {
+    "title": "Liberté d'en parler ou non",
+    "text": "Le salarié reste libre de parler ou non de sa RQTH à l'embauche comme en cours d'emploi. Le médecin du travail est tenu au secret médical. Écarter un candidat à cause de son handicap ou de son état de santé est une discrimination.",
+    "ref": "Code du travail, articles L1132-1 et L5213-1"
+   },
+   "data": {
+    "title": "Vos données de santé",
+    "text": "Les données de santé et de handicap sont des données sensibles, protégées par le RGPD : leur traitement est en principe interdit, sauf exceptions comme le consentement. HandiDiag ne conserve aucune de vos réponses.",
+    "ref": "Règlement (UE) 2016/679 (RGPD), article 9"
+   }
+  },
+  "assoc": {
+   "apf": {
+    "name": "APF France handicap",
+    "text": "Défense des droits et accompagnement des personnes en situation de handicap, notamment moteur."
+   },
+   "ffdys": {
+    "name": "Fédération française des Dys (FFDys)",
+    "text": "Information et soutien pour les troubles « dys » : lecture, écriture, calcul, langage, coordination."
+   },
+   "tdah": {
+    "name": "HyperSupers TDAH France",
+    "text": "Information et entraide autour du trouble de l'attention avec ou sans hyperactivité."
+   },
+   "autisme": {
+    "name": "Autisme France",
+    "text": "Information, défense des droits et soutien pour les personnes autistes et leurs proches."
+   },
+   "unafam": {
+    "name": "Unafam",
+    "text": "Écoute et information pour les proches de personnes vivant avec des troubles psychiques."
+   },
+   "unapei": {
+    "name": "Unapei",
+    "text": "Défense des droits des personnes avec une déficience intellectuelle et de leurs familles."
+   },
+   "fas": {
+    "name": "France Assos Santé",
+    "text": "Information sur vos droits en santé et orientation vers des associations de malades, notamment pour les maladies chroniques."
+   },
+   "tremplin": {
+    "name": "Tremplin",
+    "text": "Accompagnement de lycéens et d'étudiants en situation de handicap, des études à l'entreprise."
+   },
+   "arpejeh": {
+    "name": "Arpejeh",
+    "text": "Accompagnement des jeunes élèves et étudiants en situation de handicap vers leurs études et leur projet professionnel."
+   },
+   "handinamique": {
+    "name": "100 % Handinamique",
+    "text": "Réussite scolaire des jeunes en situation de handicap."
+   },
+   "ladapt": {
+    "name": "LADAPT",
+    "text": "Insertion sociale et professionnelle des personnes en situation de handicap."
+   },
+   "droitausavoir": {
+    "name": "Droit au savoir",
+    "text": "Information sur les droits à l'éducation et aux études, tous handicaps."
+   }
+  }
+ }
+}

@@ -1,0 +1,155 @@
+@if (restitution.view(); as view) {
+  <div class="narrow">
+    <h1>{{ i18n.t('result.title') }}</h1>
+
+    <ng-template #pole>
+      @if (view.poleMessage; as message) {
+        <section class="pole-result" aria-labelledby="pole-t">
+          <h2 id="pole-t">{{ i18n.t('pole_result.title') }}</h2>
+          <div class="panel level lv-pole pv-{{ view.pole }}">
+            <app-medal [name]="view.pole === 'none' ? 'book' : 'user'" />
+            <div>
+              <h3 id="pole-v">{{ i18n.text(message.title) }}</h3>
+              <p>{{ i18n.text(message.body) }}</p>
+            </div>
+          </div>
+          @for (group of view.poleGroups; track group.group) {
+            <div class="pole-group">
+              <p class="group-label">{{ i18n.t('pole_result.who_' + group.group) }}</p>
+              <ul class="cards">
+                @for (contact of group.contacts; track contact.key) {
+                  <li [appContactCard]="contact"></li>
+                }
+              </ul>
+            </div>
+          }
+          <p class="hint">{{ i18n.t('pole_result.privacy_note') }}</p>
+        </section>
+      }
+    </ng-template>
+
+    @if (view.poleFirst) {
+      <ng-container [ngTemplateOutlet]="pole" />
+    }
+
+    @if (!view.result.poleOnly && view.level; as level) {
+      <section class="panel level lv-{{ level.key }}" aria-labelledby="lvl">
+        <app-medal [name]="level.icon" />
+        <div>
+          <h2 id="lvl">{{ i18n.text(level.title) }}</h2>
+          <p>{{ i18n.text(level.body, level.body_falc) }}</p>
+        </div>
+      </section>
+    }
+    <p class="notice" id="notice">{{ i18n.t('result.notdecision') }}</p>
+
+    @if (view.result.poleOnly) {
+      <section class="panel refine" aria-labelledby="s-rqth">
+        <h2 id="s-rqth">{{ i18n.t('pole_result.continue_title') }}</h2>
+        <p>{{ i18n.t('pole_result.continue_text') }}</p>
+        <button type="button" class="btn btn-primary" (click)="continueToRqth()">
+          {{ i18n.t('pole_result.continue_btn') }} <app-icon name="arrow" />
+        </button>
+      </section>
+    }
+
+    @if (!view.poleFirst) {
+      <ng-container [ngTemplateOutlet]="pole" />
+    }
+
+    <app-read-button
+      id="result"
+      label="result.read_aloud"
+      [parts]="readParts"
+      [allowOnline]="false"
+    />
+
+    @if (view.flags.length) {
+      <section aria-labelledby="s-att">
+        <h2 id="s-att">{{ i18n.t('result.attention_title') }}</h2>
+        <ul class="plain-list">
+          @for (flag of view.flags; track flag.key) {
+            <li [id]="'flag-' + flag.key">{{ i18n.text(flag.text) }}</li>
+          }
+        </ul>
+      </section>
+    }
+
+    @if (view.suggestions.length) {
+      <section aria-labelledby="s-todo">
+        <h2 id="s-todo">{{ i18n.t('result.todo_title') }}</h2>
+        <p class="notice">{{ i18n.t('result.todo_note') }}</p>
+        <ul class="plain-list todo-list">
+          @for (suggestion of view.suggestions; track suggestion.key) {
+            <li [id]="'todo-' + suggestion.key">{{ i18n.text(suggestion.text) }}</li>
+          }
+        </ul>
+      </section>
+    }
+
+    @if (!quiz.deep() && quiz.deepQuestions().length) {
+      <section class="panel refine" aria-labelledby="s-refine">
+        <h2 id="s-refine">{{ i18n.t('result.refine_title') }}</h2>
+        <p>{{ i18n.t('result.refine_text', { n: quiz.deepQuestions().length }) }}</p>
+        <button type="button" class="btn btn-primary" (click)="refine()">
+          {{ i18n.t('result.refine_btn') }} <app-icon name="arrow" />
+        </button>
+      </section>
+    }
+
+    <section aria-labelledby="s-who">
+      <h2 id="s-who">{{ i18n.t('result.contacts_title') }}</h2>
+      <p>{{ i18n.t('result.contacts_intro') }}</p>
+      @if (view.sensitive) {
+        <p class="hint">{{ i18n.t('result.confidential_tip') }}</p>
+      }
+      <ul class="cards">
+        @for (contact of view.contacts; track contact.key) {
+          <li [id]="'contact-' + contact.key" [appContactCard]="contact"></li>
+        }
+      </ul>
+    </section>
+
+    @if (!view.result.poleOnly) {
+      <section aria-labelledby="s-why">
+        <h2 id="s-why">{{ i18n.t('result.why_title') }}</h2>
+        <p>{{ i18n.t('result.why_intro') }}</p>
+        <ul class="plain-list">
+          @for (reason of view.reasons; track reason.key) {
+            <li>
+              {{ i18n.text(reason.explanation) }}
+              @if (reason.points > 0) {
+                <span class="pts">(+{{ points(reason.points) }})</span>
+              }
+            </li>
+          }
+        </ul>
+        @if (!view.result.overridden) {
+          <p class="hint">{{ i18n.t('result.score_line', { score: view.result.score }) }}</p>
+        }
+      </section>
+    }
+
+    <section aria-labelledby="s-next">
+      <h2 id="s-next">{{ i18n.t('result.next_title') }}</h2>
+      <div class="actions">
+        <a class="btn btn-primary" routerLink="/kit"
+          >{{ i18n.t('result.to_kit') }} <app-icon name="arrow"
+        /></a>
+        <button type="button" class="btn" (click)="docs.print()">
+          <app-icon name="print" /> {{ i18n.t('result.print') }}
+        </button>
+        <button type="button" class="btn" (click)="docs.resultPdf()">
+          <app-icon name="doc" /> {{ i18n.t('result.pdf') }}
+        </button>
+        <button type="button" class="btn btn-quiet" (click)="docs.summary()">
+          <app-icon name="download" /> {{ i18n.t('result.download') }}
+        </button>
+        <button type="button" class="btn btn-quiet" (click)="restart()">
+          <app-icon name="restart" /> {{ i18n.t('result.restart') }}
+        </button>
+      </div>
+      <p class="hint no-print">{{ i18n.t('result.summary_note') }}</p>
+    </section>
+  </div>
+}

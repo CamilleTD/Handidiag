@@ -1,0 +1,143 @@
+<section class="hero">
+  <div class="hero-copy">
+    <h1>{{ i18n.t('info.title') }}</h1>
+    <p class="lead">{{ i18n.t('info.lead') }}</p>
+    <div class="actions">
+      <button type="button" class="btn btn-primary" (click)="start()">
+        {{ i18n.t('info.start') }} <app-icon name="arrow" />
+      </button>
+      <a class="btn" routerLink="/kit">{{ i18n.t('info.kit_link') }}</a>
+    </div>
+    <p class="hint hero-hint">{{ i18n.t('info.start_hint') }}</p>
+    <app-read-button id="home" [parts]="readParts" />
+  </div>
+  <div class="hero-art">
+    <!-- Illustration décorative : un sentier en 4 étapes qui monte vers un drapeau -->
+    <svg class="scene" viewBox="0 0 480 420" aria-hidden="true" focusable="false">
+      <defs>
+        <clipPath id="scene-clip"><rect width="480" height="420" rx="36" /></clipPath>
+      </defs>
+      <g clip-path="url(#scene-clip)">
+        <rect class="sc-sky" width="480" height="420" />
+        <circle class="sc-sun" cx="372" cy="92" r="36" />
+        <path class="sc-hill-back" d="M0 290C70 240 150 240 230 270S400 300 480 250V420H0Z" />
+        <path class="sc-hill-front" d="M0 350C100 310 210 335 300 350S440 365 480 335V420H0Z" />
+        <path
+          class="sc-road"
+          pathLength="1"
+          d="M70 385C150 355 95 310 180 285S330 275 300 215S215 170 292 118"
+        />
+        <path
+          class="sc-dash"
+          pathLength="1"
+          d="M70 385C150 355 95 310 180 285S330 275 300 215S215 170 292 118"
+        />
+        <g class="sc-pin p1">
+          <circle cx="70" cy="385" r="17" />
+          <text x="70" y="391">1</text>
+        </g>
+        <g class="sc-pin p2">
+          <circle cx="180" cy="285" r="17" />
+          <text x="180" y="291">2</text>
+        </g>
+        <g class="sc-pin p3">
+          <circle cx="300" cy="215" r="17" />
+          <text x="300" y="221">3</text>
+        </g>
+        <g class="sc-pin p4">
+          <circle cx="292" cy="118" r="17" />
+          <text x="292" y="124">4</text>
+        </g>
+        <g class="sc-flag-g">
+          <line class="sc-flag-pole" x1="292" y1="100" x2="292" y2="58" />
+          <path class="sc-flag" d="M292 58l34 12-34 12z" />
+        </g>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<section aria-labelledby="s-route">
+  <h2 id="s-route" class="route-title">{{ i18n.t('info.path_title') }}</h2>
+  <ol class="route">
+    @for (step of i18n.steps('info.path'); track $index) {
+      <li>
+        <strong>{{ step.title }}</strong><span>{{ step.text }}</span>
+      </li>
+    }
+  </ol>
+</section>
+
+<section class="callout" aria-labelledby="s-what">
+  <app-medal name="book" />
+  <div>
+    <h2 id="s-what">{{ i18n.t('info.what_title') }}</h2>
+    <p>{{ i18n.t('info.what') }}</p>
+  </div>
+</section>
+
+<section class="callout calm" aria-labelledby="s-calm">
+  <app-medal name="chat" />
+  <div>
+    <h2 id="s-calm">{{ i18n.t('info.calm_title') }}</h2>
+    <ul class="plain-list">
+      @for (item of i18n.list('info.calm'); track $index) {
+        <li>{{ item }}</li>
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="callout" aria-labelledby="s-pole">
+  <app-medal name="user" />
+  <div>
+    <h2 id="s-pole">{{ i18n.t('info.pole_title') }}</h2>
+    <p>{{ i18n.t('info.pole_text') }}</p>
+    <p class="callout-link">
+      <a routerLink="/resources">{{ i18n.t('info.pole_link') }}</a>
+    </p>
+  </div>
+</section>
+
+<div class="trio">
+  @for (feature of features; track feature.css) {
+    <section class="feature {{ feature.css }}" [attr.aria-labelledby]="'s-' + feature.css">
+      <app-medal [name]="feature.icon" />
+      <h2 [id]="'s-' + feature.css">{{ i18n.t(feature.title) }}</h2>
+      <ul class="plain-list">
+        @for (item of i18n.list(feature.list); track $index) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+    </section>
+  }
+</div>
+
+<section class="callout eco" aria-labelledby="s-eco">
+  <app-medal name="leaf" />
+  <div>
+    <h2 id="s-eco">{{ i18n.t('info.eco_title') }}</h2>
+    <ul class="plain-list">
+      @for (item of i18n.list('info.eco'); track $index) {
+        <li>{{ item }}</li>
+      }
+    </ul>
+  </div>
+</section>
+
+<div class="panel optin">
+  <label class="check">
+    <input
+      type="checkbox"
+      [checked]="analytics.enabled()"
+      (change)="analytics.enabled.set($any($event.target).checked)"
+    />
+    <span>{{ i18n.t('info.stats_label') }}</span>
+  </label>
+</div>
+
+<div class="actions">
+  <button type="button" class="btn btn-primary" (click)="start()">
+    {{ i18n.t('info.start') }} <app-icon name="arrow" />
+  </button>
+</div>

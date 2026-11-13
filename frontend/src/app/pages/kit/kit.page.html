@@ -1,0 +1,80 @@
+<div class="narrow">
+  <h1>{{ i18n.t('kit.title') }}</h1>
+  <p class="lead">{{ i18n.t('kit.intro') }}</p>
+  <app-read-button id="kit" [parts]="readParts" />
+
+  <section aria-labelledby="k-links">
+    <h2 id="k-links">{{ i18n.t('kit.links_title') }}</h2>
+    <ul class="cards kit-links two">
+      @for (link of content.links().official_links; track link.id) {
+        <li>
+          <h3>
+            <a
+              [href]="link.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              (click)="opened(link.id)"
+            >
+              {{ i18n.t('links.' + link.id + '.label') }}
+              <span class="sr-only"> {{ i18n.t('ui.new_tab') }}</span>
+            </a>
+            <app-icon name="link" />
+          </h3>
+          <p>{{ i18n.t('links.' + link.id + '.desc') }}</p>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section aria-labelledby="k-guide">
+    <h2 id="k-guide">{{ i18n.t('kit.guide_title') }}</h2>
+    <ol class="steps">
+      @for (step of i18n.steps('kit.guide'); track $index) {
+        <li>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.text }}</p>
+        </li>
+      }
+    </ol>
+  </section>
+
+  <section aria-labelledby="k-check">
+    <h2 id="k-check">
+      {{ i18n.t('kit.checklist_title') }}
+      <span class="pts">{{ done() }} / {{ items().length }}</span>
+    </h2>
+    <p class="hint">{{ i18n.t('kit.checklist_intro') }}</p>
+    <ul class="checklist">
+      @for (item of items(); track $index) {
+        <li>
+          <label>
+            <input
+              type="checkbox"
+              [checked]="!!quiz.checklist()[$index]"
+              (change)="check($index, $event)"
+            />
+            <span>{{ item }}</span>
+          </label>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section aria-labelledby="k-vig">
+    <h2 id="k-vig">{{ i18n.t('kit.vigilance_title') }}</h2>
+    <ul class="plain-list">
+      @for (item of i18n.list('kit.vigilance'); track $index) {
+        <li>{{ item }}</li>
+      }
+    </ul>
+  </section>
+
+  <div class="actions">
+    <button type="button" class="btn btn-primary" (click)="docs.kitPdf()">
+      <app-icon name="doc" /> {{ i18n.t('kit.pdf') }}
+    </button>
+    <button type="button" class="btn" (click)="docs.print()">
+      <app-icon name="print" /> {{ i18n.t('kit.print') }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+name: handidiag
+
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: handidiag
+      POSTGRES_USER: handidiag
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-handidiag}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U handidiag -d handidiag"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build: ./backend
+    environment:
+      ENVIRONMENT: ${ENVIRONMENT:-development}
+      DATABASE_URL: postgres://handidiag:${POSTGRES_PASSWORD:-handidiag}@db:5432/handidiag
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      # Vide : un mot de passe provisoire est généré et affiché dans les journaux de l'API
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      DISABLE_STATS: ${DISABLE_STATS:-false}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build: ./frontend
+    depends_on:
+      - api
+    ports:
+      - "${PORT:-8080}:80"
+
+volumes:
+  pgdata:

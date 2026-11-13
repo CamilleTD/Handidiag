@@ -1,0 +1,101 @@
+@if (question(); as q) {
+  <div class="narrow">
+    <div class="quiz-card">
+      <p class="q-meta" aria-hidden="true">{{ progress() }}</p>
+      <ol class="trail" aria-hidden="true">
+        @for (step of trail(); track step) {
+          <li [class.done]="step < index()" [class.current]="step === index()"></li>
+        }
+      </ol>
+
+      <h1 class="q-title" id="q-title">
+        <span class="sr-only">{{ progress() }} : </span>{{ i18n.text(q.text, q.text_falc) }}
+      </h1>
+      @if (q.help) {
+        <p class="q-help" id="q-help">{{ i18n.text(q.help) }}</p>
+      }
+      <p class="hint" id="q-hint">
+        {{ i18n.t(q.kind === 'multiple' ? 'quiz.multi_hint' : 'quiz.single_hint') }}
+      </p>
+      <app-read-button [id]="'q-' + q.key" label="quiz.read_aloud" [parts]="readParts" />
+
+      @if (poleHint(); as hint) {
+        <section class="panel pole-hint" aria-labelledby="pole-hint-title">
+          <h2 id="pole-hint-title">{{ i18n.t('quiz.pole_hint_title') }}</h2>
+          <p class="pole-verdict">
+            <strong>{{ i18n.text(hint.title) }}</strong>
+          </p>
+          <p>{{ i18n.text(hint.body) }}</p>
+          <p class="hint">{{ i18n.t('pole_result.privacy_note') }}</p>
+        </section>
+      }
+
+      <fieldset
+        class="choices"
+        aria-labelledby="q-title"
+        [attr.aria-describedby]="q.help ? 'q-hint q-help' : 'q-hint'"
+      >
+        @for (option of q.options; track option.key) {
+          <label class="choice" [id]="'choice-' + option.key">
+            <input
+              [type]="q.kind === 'multiple' ? 'checkbox' : 'radio'"
+              [name]="q.key"
+              [value]="option.key"
+              [checked]="selected(q, option.key)"
+              (change)="choose(q, option.key, $event)"
+            />
+            <span>{{ i18n.text(option.label) }}</span>
+          </label>
+        }
+      </fieldset>
+
+      @if (showPolePanel()) {
+        <section class="panel pole-panel" aria-labelledby="pole-title">
+          <h2 id="pole-title">{{ i18n.t('quiz.pole_panel_title') }}</h2>
+          <p class="hint">{{ i18n.t('quiz.pole_panel_subjects') }} :</p>
+          <ul class="chips">
+            @for (subject of i18n.list('quiz.pole_subjects'); track $index) {
+              <li>{{ subject }}</li>
+            }
+          </ul>
+          <p>{{ i18n.t('quiz.pole_panel_write') }}</p>
+          @for (group of poleGroups(); track group.group) {
+            <div class="pole-group">
+              <p class="group-label">{{ i18n.t('pole_result.who_' + group.group) }}</p>
+              <ul class="cards">
+                @for (contact of group.contacts; track contact.key) {
+                  <li [appContactCard]="contact"></li>
+                }
+              </ul>
+            </div>
+          }
+          <p class="hint">{{ i18n.t('quiz.pole_panel_then') }}</p>
+        </section>
+      }
+
+      @if (error()) {
+        <p class="error" role="alert">{{ error() }}</p>
+      }
+
+      <div class="validate-bar">
+        <button type="button" class="btn btn-primary btn-validate" (click)="next()">
+          <app-icon name="check" /> {{ i18n.t(isLast() ? 'quiz.finish' : 'quiz.next') }}
+        </button>
+      </div>
+      <div class="nav-row">
+        @if (index() > 0) {
+          <button type="button" class="btn" (click)="back()">
+            <app-icon name="back" /> {{ i18n.t('quiz.back') }}
+          </button>
+        }
+        <span class="spacer"></span>
+        <button type="button" class="btn btn-quiet" (click)="skip()">
+          {{ i18n.t('quiz.skip') }}
+        </button>
+      </div>
+    </div>
+    <p>
+      <button type="button" class="linklike" (click)="cancel()">{{ i18n.t('quiz.cancel') }}</button>
+    </p>
+  </div>
+}

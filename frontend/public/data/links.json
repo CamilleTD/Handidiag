@@ -1,0 +1,147 @@
+{
+ "verified_on": "2026-11-12",
+ "official_links": [
+  {
+   "id": "rqth_mph",
+   "url": "https://www.monparcourshandicap.gouv.fr/aides/la-reconnaissance-de-la-qualite-de-travailleur-handicape-rqth"
+  },
+  {
+   "id": "mdph_portal",
+   "url": "https://www.monparcourshandicap.gouv.fr/"
+  },
+  {
+   "id": "service_public_rqth",
+   "url": "https://www.service-public.fr/particuliers/vosdroits/R19993"
+  },
+  {
+   "id": "agefiph",
+   "url": "https://www.agefiph.fr/"
+  },
+  {
+   "id": "fiphfp",
+   "url": "https://www.fiphfp.fr/"
+  },
+  {
+   "id": "france_travail",
+   "url": "https://www.francetravail.fr/"
+  }
+ ],
+ "resource_links": [
+  {
+   "id": "rqth_mph",
+   "url": "https://www.monparcourshandicap.gouv.fr/aides/la-reconnaissance-de-la-qualite-de-travailleur-handicape-rqth",
+   "group": "public"
+  },
+  {
+   "id": "mdph_portal",
+   "url": "https://www.monparcourshandicap.gouv.fr/",
+   "group": "public"
+  },
+  {
+   "id": "service_public_rqth",
+   "url": "https://www.service-public.fr/particuliers/vosdroits/R19993",
+   "group": "public"
+  },
+  {
+   "id": "agefiph",
+   "url": "https://www.agefiph.fr/",
+   "group": "public"
+  },
+  {
+   "id": "fiphfp",
+   "url": "https://www.fiphfp.fr/",
+   "group": "public"
+  },
+  {
+   "id": "france_travail",
+   "url": "https://www.francetravail.fr/",
+   "group": "public"
+  },
+  {
+   "id": "compensation",
+   "url": "https://www.monparcourshandicap.gouv.fr/etudes-superieures/quels-sont-les-grands-principes-de-la-compensation-du-handicap",
+   "group": "public"
+  }
+ ],
+ "associations": [
+  {
+   "id": "apf",
+   "url": "https://www.apf-francehandicap.org/"
+  },
+  {
+   "id": "ffdys",
+   "url": "http://www.ffdys.com/"
+  },
+  {
+   "id": "tdah",
+   "url": "https://www.tdah-france.fr/",
+   "to_check": true
+  },
+  {
+   "id": "autisme",
+   "url": "https://www.autisme-france.fr/",
+   "to_check": true
+  },
+  {
+   "id": "unafam",
+   "url": "https://www.unafam.org/",
+   "to_check": true
+  },
+  {
+   "id": "unapei",
+   "url": "http://www.unapei.org/"
+  },
+  {
+   "id": "fas",
+   "url": "https://www.france-assos-sante.org/",
+   "to_check": true
+  },
+  {
+   "id": "tremplin",
+   "url": "http://www.tremplin-handicap.fr/"
+  },
+  {
+   "id": "arpejeh",
+   "url": "http://www.arpejeh.com/site/"
+  },
+  {
+   "id": "handinamique",
+   "url": "https://handinamique.org/"
+  },
+  {
+   "id": "ladapt",
+   "url": "https://www.ladapt.net/",
+   "to_check": true
+  },
+  {
+   "id": "droitausavoir",
+   "url": "http://www.droitausavoir.asso.fr/"
+  }
+ ],
+ "association_directory": "https://www.onisep.fr/inclusion-et-handicap/qui-peut-vous-aider/les-associations-de-soutien-aux-personnes-en-situation-de-handicap",
+ "laws": [
+  {
+   "id": "def"
+  },
+  {
+   "id": "exams",
+   "url": "https://www.enseignementsup-recherche.gouv.fr/fr/bo/23/Hebdo10/ESRS2234137C.htm"
+  },
+  {
+   "id": "rqth"
+  },
+  {
+   "id": "work"
+  },
+  {
+   "id": "quota"
+  },
+  {
+   "id": "freedom"
+  },
+  {
+   "id": "data"
+  }
+ ],
+ "legifrance": "https://www.legifrance.gouv.fr/"
+}

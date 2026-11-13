@@ -1,0 +1,353 @@
+// Administration : mise en page en deux colonnes, listes et formulaires d'édition.
+// Les couleurs viennent des variables de thème définies dans styles.scss.
+
+.wrap-wide {
+  max-width: 82rem;
+}
+
+.admin-layout {
+  display: grid;
+  gap: 1.5rem;
+  align-items: start;
+  padding-block: 1rem 2rem;
+}
+
+@container page (min-width: 56em) {
+  .admin-layout {
+    grid-template-columns: 14rem minmax(0, 1fr);
+  }
+  .admin-side {
+    position: sticky;
+    top: 1rem;
+  }
+}
+
+.admin-side {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem;
+  ul {
+    list-style: none;
+    margin: 0 0 1rem;
+    padding: 0;
+    display: grid;
+    gap: 0.25rem;
+  }
+  a {
+    display: block;
+    padding: 0.55rem 0.75rem;
+    border-radius: 10px;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  a:hover {
+    background: var(--accent-soft);
+  }
+  a.active {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+}
+
+.admin-user {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 0 0 0.75rem;
+  overflow-wrap: anywhere;
+}
+
+.admin-content {
+  min-width: 0;
+  h1 {
+    margin-top: 0;
+  }
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  .text-input {
+    max-width: 22rem;
+  }
+}
+
+.status {
+  padding: 0.6rem 0.9rem;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  margin: 0 0 1rem;
+  &.is-error {
+    background: transparent;
+    border: 2px solid var(--error);
+    color: var(--error);
+  }
+}
+
+// ----------------------------------------------------------------- listes
+
+.item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: start;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  p {
+    margin: 0.2rem 0 0;
+  }
+}
+
+.item-title {
+  font-weight: 700;
+  margin: 0;
+  a {
+    color: var(--ink);
+  }
+}
+
+.item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 600;
+  &.is-sun {
+    background: var(--sun-soft);
+    color: var(--sun-ink);
+  }
+  &.is-quiet {
+    background: transparent;
+    border: 1px solid var(--control);
+  }
+}
+
+.key {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.item-actions {
+  display: flex;
+  gap: 0.25rem;
+  .btn {
+    min-width: 2.5rem;
+    justify-content: center;
+  }
+}
+
+.condition-summary {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.group-title {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+// ----------------------------------------------------------------- formulaires
+
+.form-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@container page (min-width: 48em) {
+  .form-grid.two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .form-grid.three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.field > label:not(.check),
+.field .field-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+textarea.text-input {
+  min-height: 4.5rem;
+  resize: vertical;
+}
+
+.lang-pair {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  legend {
+    font-weight: 700;
+    padding: 0 0.25rem;
+  }
+  .lang-row {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 0.5rem;
+    align-items: start;
+  }
+  .lang-code {
+    font-weight: 700;
+    padding-top: 0.55rem;
+    color: var(--ink-soft);
+  }
+}
+
+.form-section {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  h2 {
+    margin-top: 0;
+    font-size: 1.15rem;
+  }
+}
+
+.option-row {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: 1px dashed var(--control);
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+}
+
+.option-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pick-list {
+  max-height: 18rem;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.5rem 0.75rem;
+  display: grid;
+  gap: 0.35rem;
+  .check {
+    align-items: flex-start;
+  }
+  small {
+    display: block;
+    color: var(--ink-soft);
+  }
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  position: sticky;
+  bottom: 0;
+  background: var(--paper);
+  padding-block: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+// ----------------------------------------------------------------- éditeur de conditions
+
+.cond {
+  border-left: 4px solid var(--accent);
+  padding: 0.5rem 0 0.5rem 0.75rem;
+  margin: 0.4rem 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.cond-not {
+  border-left-color: var(--error);
+}
+
+.cond-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  select,
+  input[type='number'] {
+    max-width: 100%;
+  }
+  input[type='number'] {
+    width: 5rem;
+  }
+}
+
+.cond-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+
+.cond-children {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.json-view {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.85rem;
+  width: 100%;
+  min-height: 8rem;
+}
+
+// ----------------------------------------------------------------- onglets
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  border-bottom: 2px solid var(--line);
+  margin-bottom: 1rem;
+  button {
+    border: 0;
+    background: none;
+    padding: 0.6rem 0.9rem;
+    font: inherit;
+    font-weight: 600;
+    color: var(--ink-soft);
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    cursor: pointer;
+  }
+  button[aria-selected='true'] {
+    color: var(--ink);
+    border-bottom-color: var(--accent);
+  }
+}
