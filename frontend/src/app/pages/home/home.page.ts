@@ -5,12 +5,14 @@ import { ContentService } from '../../core/content.service';
 import { I18nService } from '../../core/i18n.service';
 import { QuizService } from '../../core/quiz.service';
 import { ReadPart } from '../../core/voice.service';
-import { IconComponent, MedalComponent } from '../../shared/icon.component';
-import { ReadButtonComponent } from '../../shared/read-button.component';
+import { IconComponent } from '../../shared/icon/icon.component';
+import { MedalComponent } from '../../shared/medal/medal.component';
+import { ReadButtonComponent } from '../../shared/read-button/read-button.component';
 
 @Component({
   imports: [RouterLink, IconComponent, MedalComponent, ReadButtonComponent],
   templateUrl: './home.page.html',
+  styleUrl: './home.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePage {

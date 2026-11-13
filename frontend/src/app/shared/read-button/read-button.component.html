@@ -1,0 +1,13 @@
+@if (voice.available) {
+  <p class="read-row">
+    <button
+      type="button"
+      class="btn btn-quiet btn-small"
+      [attr.aria-pressed]="reading()"
+      (click)="toggle()"
+    >
+      <app-icon [name]="reading() ? 'stop' : 'speaker'" />
+      {{ i18n.t(reading() ? 'quiz.stop_reading' : label()) }}
+    </button>
+  </p>
+}

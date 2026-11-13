@@ -1,0 +1,174 @@
+<p class="hint">{{ t('builder.outcomes_intro') }}</p>
+@if (store.detail(); as d) {
+  <ol class="item-list">
+    @for (
+      outcome of d.outcomes;
+      track outcome.id;
+      let i = $index;
+      let first = $first;
+      let last = $last
+    ) {
+      <li class="item" [class.is-open]="editing() === outcome.id">
+        <div>
+          <p class="item-title">{{ text(outcome.title) }}</p>
+          <p>{{ text(outcome.body) }}</p>
+          <div class="item-meta">
+            <span class="key">{{ outcome.key }}</span>
+            <span class="tag">
+              {{
+                outcome.min_score === null
+                  ? t('builder.imposed_only')
+                  : t('builder.score_from', { n: outcome.min_score })
+              }}
+            </span>
+            @if (outcome.next_questionnaire) {
+              <span class="tag is-quiet">{{
+                t('builder.then', { q: outcome.next_questionnaire })
+              }}</span>
+            }
+            @if (outcome.contacts.length) {
+              <span class="tag is-quiet">{{
+                t('rules.n_contacts', { n: outcome.contacts.length })
+              }}</span>
+            }
+          </div>
+        </div>
+        <div class="item-actions">
+          <button type="button" class="btn btn-small" (click)="open(outcome)">
+            {{ t('common.edit') }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-small btn-quiet"
+            [attr.aria-label]="t('common.move_up') + ' : ' + outcome.key"
+            [disabled]="first"
+            (click)="move(i, -1)"
+          >
+            <app-icon name="up" />
+          </button>
+          <button
+            type="button"
+            class="btn btn-small btn-quiet"
+            [attr.aria-label]="t('common.move_down') + ' : ' + outcome.key"
+            [disabled]="last"
+            (click)="move(i, 1)"
+          >
+            <app-icon name="down" />
+          </button>
+          <button
+            type="button"
+            class="btn btn-small btn-quiet"
+            [attr.aria-label]="t('common.delete') + ' : ' + outcome.key"
+            (click)="remove(outcome)"
+          >
+            <app-icon name="trash" />
+          </button>
+        </div>
+        @if (editing() === outcome.id) {
+          <div style="grid-column: 1 / -1"><ng-container [ngTemplateOutlet]="form" /></div>
+        }
+      </li>
+    }
+  </ol>
+  @if (editing() === 0) {
+    <ng-container [ngTemplateOutlet]="form" />
+  } @else {
+    <button type="button" class="btn" (click)="open(null)">
+      <app-icon name="plus" /> {{ t('builder.add_outcome') }}
+    </button>
+  }
+}
+
+<ng-template #form>
+  @if (draft(); as d) {
+    <form class="form-section" (submit)="$event.preventDefault(); save()" novalidate>
+      <div class="form-grid three">
+        <div class="field">
+          <label for="o-key">{{ t('common.key') }}</label>
+          <input
+            id="o-key"
+            class="text-input key"
+            [value]="d.key"
+            [readonly]="editing() !== 0"
+            (input)="patch({ key: $any($event.target).value })"
+          />
+        </div>
+        <div class="field">
+          <label for="o-min">{{ t('builder.min_score') }}</label>
+          <input
+            id="o-min"
+            class="text-input"
+            type="number"
+            aria-describedby="o-min-hint"
+            [value]="d.min_score ?? ''"
+            (input)="setMin($any($event.target).value)"
+          />
+          <p id="o-min-hint" class="hint">{{ t('builder.min_score_hint') }}</p>
+        </div>
+        <div class="field">
+          <label for="o-icon">{{ t('common.icon') }}</label>
+          <select id="o-icon" (change)="patch({ icon: $any($event.target).value })">
+            @for (icon of icons; track icon) {
+              <option [value]="icon" [selected]="icon === d.icon">{{ icon }}</option>
+            }
+          </select>
+        </div>
+      </div>
+      <div class="form-grid">
+        <app-localized-field
+          [label]="t('builder.outcome_title')"
+          [required]="true"
+          [value]="d.title"
+          (valueChange)="patch({ title: $event! })"
+        />
+        <app-localized-field
+          [label]="t('builder.outcome_body')"
+          [required]="true"
+          [multiline]="true"
+          [value]="d.body"
+          (valueChange)="patch({ body: $event! })"
+        />
+        <app-localized-field
+          [label]="t('builder.outcome_falc')"
+          [multiline]="true"
+          [value]="d.body_falc"
+          (valueChange)="patch({ body_falc: $event })"
+        />
+        <div class="field">
+          <label for="o-next">{{ t('builder.next_questionnaire') }}</label>
+          <select
+            id="o-next"
+            aria-describedby="o-next-hint"
+            (change)="patch({ next_questionnaire: $any($event.target).value || null })"
+          >
+            <option value="" [selected]="!d.next_questionnaire">
+              {{ t('builder.next_none') }}
+            </option>
+            @for (q of others(); track q.key) {
+              <option [value]="q.key" [selected]="q.key === d.next_questionnaire">
+                {{ text(q.title) }}
+              </option>
+            }
+          </select>
+          <p id="o-next-hint" class="hint">{{ t('builder.next_hint') }}</p>
+        </div>
+      </div>
+      <app-pick-list
+        [label]="t('builder.outcome_contacts')"
+        [hint]="t('builder.outcome_contacts_hint')"
+        [ordered]="true"
+        [items]="contactItems()"
+        [selected]="d.contacts"
+        (selectedChange)="patch({ contacts: $event })"
+      />
+      <div class="actions">
+        <button type="submit" class="btn btn-primary" [disabled]="store.busy()">
+          {{ t('common.save') }}
+        </button>
+        <button type="button" class="btn btn-quiet" (click)="editing.set(null)">
+          {{ t('common.cancel') }}
+        </button>
+      </div>
+    </form>
+  }
+</ng-template>

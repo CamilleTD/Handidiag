@@ -7,12 +7,13 @@ import { AppState } from './core/app-state.service';
 import { I18nService } from './core/i18n.service';
 import { PreferencesService } from './core/preferences.service';
 import { VoiceService } from './core/voice.service';
-import { IconComponent } from './shared/icon.component';
+import { IconComponent } from './shared/icon/icon.component';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, RouterLink, RouterLinkActive, IconComponent],
   templateUrl: './app.html',
+  styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(document:pointermove)': 'moveRuler($event.clientY)',

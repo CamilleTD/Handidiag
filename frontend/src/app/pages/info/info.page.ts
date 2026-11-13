@@ -14,13 +14,14 @@ import { ContentService } from '../../core/content.service';
 import { I18nService } from '../../core/i18n.service';
 import type { ContentPage } from '../../core/models';
 import { PageTitleStrategy } from '../../core/page-title.strategy';
-import { IconComponent } from '../../shared/icon.component';
+import { IconComponent } from '../../shared/icon/icon.component';
 
 /** Rubrique « S'informer » : pages thématiques rédigées dans l'administration. */
 @Component({
   imports: [RouterLink, RouterLinkActive, IconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './info.page.html',
+  styleUrl: './info.page.scss',
 })
 export class InfoPage {
   protected readonly i18n = inject(I18nService);

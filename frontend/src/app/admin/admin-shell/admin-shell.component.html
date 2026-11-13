@@ -1,0 +1,31 @@
+<div class="admin-layout">
+  <nav class="admin-side" [attr.aria-label]="t('nav.label')">
+    <p class="admin-user">
+      {{ t('nav.signed_in') }} <strong>{{ api.admin()?.username }}</strong>
+    </p>
+    @for (group of groups; track group.label) {
+      @if (group.label) {
+        <p class="admin-side-group">{{ t(group.label) }}</p>
+      }
+      <ul>
+        @for (link of group.links; track link.path) {
+          <li>
+            <a
+              [routerLink]="link.path"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+              [routerLinkActiveOptions]="{ exact: link.path === '/admin' }"
+              >{{ t(link.label) }}</a
+            >
+          </li>
+        }
+      </ul>
+    }
+    <button type="button" class="btn btn-small btn-quiet" (click)="logout()">
+      {{ t('nav.logout') }}
+    </button>
+  </nav>
+  <div class="admin-content">
+    <router-outlet />
+  </div>
+</div>

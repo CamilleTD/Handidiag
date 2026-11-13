@@ -1,0 +1,21 @@
+<div class="narrow">
+  <div class="quiz-card more-card">
+    <app-medal name="badge" />
+    <h1>{{ i18n.t('quiz.more_title') }}</h1>
+    <p class="lead">{{ i18n.t('quiz.more_text', { n: count(), m: minutes() }) }}</p>
+    <div class="actions">
+      <button type="button" class="btn btn-primary" (click)="continue()">
+        {{ i18n.t('quiz.more_continue') }} <app-icon name="arrow" />
+      </button>
+      <button type="button" class="btn" (click)="finish()">
+        {{ i18n.t('quiz.more_skip') }}
+      </button>
+    </div>
+    <p class="hint">{{ i18n.t('quiz.more_later') }}</p>
+  </div>
+  <p>
+    <button type="button" class="linklike" (click)="back()">
+      <app-icon name="back" /> {{ i18n.t('quiz.back') }}
+    </button>
+  </p>
+</div>

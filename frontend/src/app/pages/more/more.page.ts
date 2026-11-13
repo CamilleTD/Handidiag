@@ -2,35 +2,15 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { Router } from '@angular/router';
 import { I18nService } from '../../core/i18n.service';
 import { QuizService } from '../../core/quiz.service';
-import { IconComponent, MedalComponent } from '../../shared/icon.component';
+import { IconComponent } from '../../shared/icon/icon.component';
+import { MedalComponent } from '../../shared/medal/medal.component';
 
 /** Fin des questions principales : voir le résultat ou répondre aux questions facultatives. */
 @Component({
   imports: [IconComponent, MedalComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <div class="narrow">
-      <div class="quiz-card more-card">
-        <app-medal name="badge" />
-        <h1>{{ i18n.t('quiz.more_title') }}</h1>
-        <p class="lead">{{ i18n.t('quiz.more_text', { n: count(), m: minutes() }) }}</p>
-        <div class="actions">
-          <button type="button" class="btn btn-primary" (click)="continue()">
-            {{ i18n.t('quiz.more_continue') }} <app-icon name="arrow" />
-          </button>
-          <button type="button" class="btn" (click)="finish()">
-            {{ i18n.t('quiz.more_skip') }}
-          </button>
-        </div>
-        <p class="hint">{{ i18n.t('quiz.more_later') }}</p>
-      </div>
-      <p>
-        <button type="button" class="linklike" (click)="back()">
-          <app-icon name="back" /> {{ i18n.t('quiz.back') }}
-        </button>
-      </p>
-    </div>
-  `,
+  templateUrl: './more.page.html',
+  styleUrl: './more.page.scss',
 })
 export class MorePage {
   protected readonly i18n = inject(I18nService);

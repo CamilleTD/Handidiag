@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router, Routes } from '@angular/router';
 import { I18nService } from '../core/i18n.service';
 import { AdminApi } from './admin-api.service';
-import { AdminShell } from './admin-shell.component';
+import { AdminShell } from './admin-shell/admin-shell.component';
 
 /** Charge les textes de l'administration (français et anglais) avant le premier écran. */
 const adminTexts: CanActivateFn = async () => {
@@ -32,7 +32,7 @@ export const ADMIN_ROUTES: Routes = [
     path: '',
     canActivate: [adminTexts],
     children: [
-      page('login', 'login', () => import('./pages/login.page').then((m) => m.LoginPage)),
+      page('login', 'login', () => import('./pages/login/login.page').then((m) => m.LoginPage)),
       {
         path: '',
         component: AdminShell,
@@ -40,40 +40,42 @@ export const ADMIN_ROUTES: Routes = [
         canActivateChild: [signedIn],
         children: [
           page('', 'dashboard', () =>
-            import('./pages/dashboard.page').then((m) => m.DashboardPage),
+            import('./pages/dashboard/dashboard.page').then((m) => m.DashboardPage),
           ),
           page('questionnaires', 'questionnaires', () =>
             import('./questionnaires/questionnaires.page').then((m) => m.QuestionnairesPage),
           ),
           page('questionnaires/:id', 'builder', () =>
-            import('./questionnaires/builder.page').then((m) => m.BuilderPage),
+            import('./questionnaires/builder/builder.page').then((m) => m.BuilderPage),
           ),
           page('library/questions', 'questions', () =>
-            import('./library/questions.page').then((m) => m.QuestionsPage),
+            import('./library/questions/questions.page').then((m) => m.QuestionsPage),
           ),
           page('library/questions/:id', 'question', () =>
-            import('./library/question-editor.page').then((m) => m.QuestionEditorPage),
+            import('./library/question-editor/question-editor.page').then(
+              (m) => m.QuestionEditorPage,
+            ),
           ),
           page('library/rules', 'rules', () =>
-            import('./library/rules.page').then((m) => m.RulesPage),
+            import('./library/rules/rules.page').then((m) => m.RulesPage),
           ),
           page('library/rules/:id', 'rule', () =>
-            import('./library/rule-editor.page').then((m) => m.RuleEditorPage),
+            import('./library/rule-editor/rule-editor.page').then((m) => m.RuleEditorPage),
           ),
           page('library/messages', 'messages', () =>
             import('./messages/messages.page').then((m) => m.MessagesPage),
           ),
           page('pages', 'pages', () =>
-            import('./pages/content-pages.page').then((m) => m.ContentPagesPage),
+            import('./pages/content-pages/content-pages.page').then((m) => m.ContentPagesPage),
           ),
           page('pages/:id', 'page', () =>
-            import('./pages/page-editor.page').then((m) => m.PageEditorPage),
+            import('./pages/page-editor/page-editor.page').then((m) => m.PageEditorPage),
           ),
           page('resources', 'resources', () =>
-            import('./pages/resources.page').then((m) => m.ResourcesAdminPage),
+            import('./pages/resources/resources.page').then((m) => m.ResourcesAdminPage),
           ),
           page('account', 'account', () =>
-            import('./pages/account.page').then((m) => m.AccountPage),
+            import('./pages/account/account.page').then((m) => m.AccountPage),
           ),
         ],
       },

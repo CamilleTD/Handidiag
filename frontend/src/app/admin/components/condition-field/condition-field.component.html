@@ -1,0 +1,46 @@
+<section class="form-section" [attr.aria-labelledby]="id">
+  <h2 [id]="id">{{ label() }}</h2>
+  @if (hint()) {
+    <p class="hint">{{ hint() }}</p>
+  }
+  @if (optional()) {
+    <label class="check">
+      <input type="checkbox" [checked]="!!value()" (change)="toggle($event)" />
+      <span>{{ optionalLabel() }}</span>
+    </label>
+  }
+  @if (value(); as condition) {
+    <p class="condition-summary">
+      <strong>{{ t('cond.in_plain_words') }}</strong> {{ summary() }}
+    </p>
+    @if (json() === null) {
+      <app-condition-editor
+        [condition]="condition"
+        (conditionChange)="value.set($event)"
+        [questions]="questions()"
+      />
+      <button type="button" class="linklike" (click)="openJson()">
+        {{ t('cond.edit_json') }}
+      </button>
+    } @else {
+      <label class="field-label" [for]="id + '-json'">{{ t('cond.json_label') }}</label>
+      <textarea
+        [id]="id + '-json'"
+        class="text-input json-view"
+        [value]="json()"
+        (input)="json.set(text($event))"
+      ></textarea>
+      @if (jsonError()) {
+        <p class="error" role="alert">{{ jsonError() }}</p>
+      }
+      <div class="cond-row">
+        <button type="button" class="btn btn-small" (click)="applyJson()">
+          {{ t('cond.apply_json') }}
+        </button>
+        <button type="button" class="btn btn-small btn-quiet" (click)="json.set(null)">
+          {{ t('cond.back_visual') }}
+        </button>
+      </div>
+    }
+  }
+</section>

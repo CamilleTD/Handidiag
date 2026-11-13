@@ -16,6 +16,7 @@ import { VoiceService } from '../../core/voice.service';
 
 @Component({
   templateUrl: './settings.page.html',
+  styleUrl: './settings.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { '(keydown.escape)': 'leave()' },
 })

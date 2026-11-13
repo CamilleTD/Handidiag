@@ -5,13 +5,15 @@ import { I18nService } from '../../core/i18n.service';
 import { QuizService } from '../../core/quiz.service';
 import { RestitutionService } from '../../core/restitution.service';
 import { ReadPart } from '../../core/voice.service';
-import { ContactCardComponent } from '../../shared/contact-card.component';
-import { IconComponent, MedalComponent } from '../../shared/icon.component';
-import { ReadButtonComponent } from '../../shared/read-button.component';
+import { ContactCardComponent } from '../../shared/contact-card/contact-card.component';
+import { IconComponent } from '../../shared/icon/icon.component';
+import { MedalComponent } from '../../shared/medal/medal.component';
+import { ReadButtonComponent } from '../../shared/read-button/read-button.component';
 
 @Component({
   imports: [RouterLink, IconComponent, MedalComponent, ReadButtonComponent, ContactCardComponent],
   templateUrl: './result.page.html',
+  styleUrl: './result.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResultPage {

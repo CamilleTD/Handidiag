@@ -1,0 +1,50 @@
+<div class="narrow">
+  <h1>{{ t('login.title') }}</h1>
+  <p class="lead">{{ t('login.lead') }}</p>
+  <ul class="chips" [attr.aria-label]="t('login.chips_label')">
+    <li>{{ t('login.chip1') }}</li>
+    <li>{{ t('login.chip2') }}</li>
+    <li>{{ t('login.chip3') }}</li>
+  </ul>
+  <form class="panel login-card" (submit)="submit($event)" novalidate>
+    <h2>{{ t('login.form_title') }}</h2>
+    <div class="field">
+      <label for="adm-user">{{ t('login.username') }}</label>
+      <input
+        id="adm-user"
+        class="text-input"
+        name="username"
+        autocomplete="username"
+        autocapitalize="none"
+        spellcheck="false"
+        required
+        [value]="username()"
+        (input)="username.set(value($event))"
+      />
+    </div>
+    <div class="field">
+      <label for="adm-pass">{{ t('login.password') }}</label>
+      <input
+        id="adm-pass"
+        class="text-input"
+        type="password"
+        name="password"
+        autocomplete="current-password"
+        required
+        (input)="password.set(value($event))"
+      />
+    </div>
+    @if (error()) {
+      <p class="error" role="alert">{{ error() }}</p>
+    }
+    <div class="actions">
+      <button type="submit" class="btn btn-primary" [disabled]="busy()">
+        {{ t('login.submit') }}
+      </button>
+    </div>
+  </form>
+  <p class="hint">
+    {{ t('login.no_account') }}
+    <code>python -m app.cli create-admin &lt;{{ t('login.username') }}&gt;</code>
+  </p>
+</div>

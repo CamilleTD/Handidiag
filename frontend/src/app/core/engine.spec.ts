@@ -83,7 +83,15 @@ describe('check', () => {
     [{ q: 'areas', countAtLeast: 2, among: ['energy', 'other'] }, false],
     [{ q: 'missing', answered: false }, true],
     [{ all: [{ q: 'a', in: ['yes'] }, { not: { q: 'areas', hasAny: ['other'] } }] }, true],
-    [{ any: [{ q: 'a', in: ['no'] }, { q: 'areas', answered: true }] }, true],
+    [
+      {
+        any: [
+          { q: 'a', in: ['no'] },
+          { q: 'areas', answered: true },
+        ],
+      },
+      true,
+    ],
   ] as [Condition, boolean][])('%j → %s', (condition, expected) => {
     expect(check(condition, answers)).toBe(expected);
   });

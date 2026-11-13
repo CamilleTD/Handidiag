@@ -49,7 +49,7 @@ export const routes: Routes = [
   {
     path: 'preview/:id',
     title: 'pages.quiz',
-    loadComponent: () => import('./pages/preview.page').then((m) => m.PreviewPage),
+    loadComponent: () => import('./pages/preview/preview.page').then((m) => m.PreviewPage),
   },
   {
     path: 'kit',
@@ -85,6 +85,6 @@ export const routes: Routes = [
   {
     path: '**',
     title: 'pages.not_found',
-    loadComponent: () => import('./pages/not-found.page').then((m) => m.NotFoundPage),
+    loadComponent: () => import('./pages/not-found/not-found.page').then((m) => m.NotFoundPage),
   },
 ];

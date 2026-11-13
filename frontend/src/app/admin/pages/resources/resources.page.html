@@ -1,0 +1,23 @@
+<h1>{{ t('resources.title') }}</h1>
+<div class="tabs" role="tablist" [attr.aria-label]="t('resources.sections')">
+  @for (s of sections; track s) {
+    <button
+      type="button"
+      role="tab"
+      [id]="'tab-' + s"
+      [attr.aria-selected]="section() === s"
+      [attr.aria-controls]="'panel-' + s"
+      (click)="section.set(s)"
+    >
+      {{ t('resources.section_' + s) }}
+    </button>
+  }
+</div>
+@for (s of sections; track s) {
+  @if (section() === s) {
+    <div role="tabpanel" [id]="'panel-' + s" [attr.aria-labelledby]="'tab-' + s">
+      <p class="hint">{{ t('resources.hint_' + s) }}</p>
+      <app-resource-list [section]="s" />
+    </div>
+  }
+}

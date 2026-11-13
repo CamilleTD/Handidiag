@@ -1,0 +1,11 @@
+<div class="narrow">
+  @if (failed()) {
+    <h1>{{ i18n.t('pages.not_found') }}</h1>
+    <p>{{ i18n.t('quiz.preview_failed') }}</p>
+    <p>
+      <a class="btn" routerLink="/admin/login">{{ i18n.t('ui.admin_link') }}</a>
+    </p>
+  } @else {
+    <p role="status">{{ i18n.t('ui.loading') }}</p>
+  }
+</div>

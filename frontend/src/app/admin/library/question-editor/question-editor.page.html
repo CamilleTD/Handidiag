@@ -1,0 +1,160 @@
+<p>
+  <a routerLink="/admin/library/questions">← {{ t('questions.back') }}</a>
+</p>
+@if (draft(); as d) {
+  <h1>{{ isNew() ? t('questions.new') : d.text.fr || d.key }}</h1>
+  @if (usedIn().length) {
+    <p class="status">{{ t('questions.used_in', { list: usedIn().join(', ') }) }}</p>
+  }
+  <form (submit)="$event.preventDefault(); save()" novalidate>
+    <section class="form-section">
+      <div class="form-grid two">
+        <div class="field">
+          <label for="q-key">{{ t('common.key') }}</label>
+          <input
+            id="q-key"
+            class="text-input key"
+            aria-describedby="q-key-hint"
+            [value]="d.key"
+            [readonly]="!isNew()"
+            (input)="patch({ key: value($event) })"
+          />
+          <p id="q-key-hint" class="hint">{{ t('common.key_hint') }}</p>
+        </div>
+        <div class="field">
+          <label for="q-kind">{{ t('questions.kind') }}</label>
+          <select id="q-kind" (change)="patch({ kind: $any(value($event)) })">
+            <option value="single" [selected]="d.kind === 'single'">
+              {{ t('questions.kind_single') }}
+            </option>
+            <option value="multiple" [selected]="d.kind === 'multiple'">
+              {{ t('questions.kind_multiple') }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-grid">
+        <app-localized-field
+          [label]="t('questions.text')"
+          [required]="true"
+          [multiline]="true"
+          [value]="d.text"
+          (valueChange)="patch({ text: $event! })"
+        />
+        <app-localized-field
+          [label]="t('questions.text_falc')"
+          [hint]="t('questions.text_falc_hint')"
+          [multiline]="true"
+          [value]="d.text_falc"
+          (valueChange)="patch({ text_falc: $event })"
+        />
+        <app-localized-field
+          [label]="t('questions.help')"
+          [multiline]="true"
+          [value]="d.help"
+          (valueChange)="patch({ help: $event })"
+        />
+      </div>
+    </section>
+
+    <section class="form-section" aria-labelledby="s-options">
+      <h2 id="s-options">{{ t('questions.options') }}</h2>
+      @for (
+        option of options();
+        track $index;
+        let i = $index;
+        let first = $first;
+        let last = $last
+      ) {
+        <div class="option-row">
+          <div class="option-head">
+            <div class="cond-row">
+              <label class="sr-only" [for]="'opt-key-' + i">{{ t('common.key') }}</label>
+              <input
+                [id]="'opt-key-' + i"
+                class="text-input key"
+                [value]="option.key"
+                [readonly]="option.saved"
+                (input)="patchOption(i, { key: value($event) })"
+              />
+              <label class="check">
+                <input
+                  type="checkbox"
+                  [checked]="option.exclusive"
+                  (change)="patchOption(i, { exclusive: $any($event.target).checked })"
+                />
+                <span>{{ t('questions.exclusive') }}</span>
+              </label>
+            </div>
+            <div class="item-actions">
+              <button
+                type="button"
+                class="btn btn-small btn-quiet"
+                [attr.aria-label]="t('common.move_up') + ' : ' + option.key"
+                [disabled]="first"
+                (click)="moveOption(i, -1)"
+              >
+                <app-icon name="up" />
+              </button>
+              <button
+                type="button"
+                class="btn btn-small btn-quiet"
+                [attr.aria-label]="t('common.move_down') + ' : ' + option.key"
+                [disabled]="last"
+                (click)="moveOption(i, 1)"
+              >
+                <app-icon name="down" />
+              </button>
+              <button
+                type="button"
+                class="btn btn-small btn-quiet"
+                [attr.aria-label]="t('common.delete') + ' : ' + option.key"
+                [disabled]="options().length === 1"
+                (click)="removeOption(i)"
+              >
+                <app-icon name="trash" />
+              </button>
+            </div>
+          </div>
+          <app-localized-field
+            [label]="t('questions.option_label', { n: i + 1 })"
+            [required]="true"
+            [value]="option.label"
+            (valueChange)="setOptionLabel(i, $event)"
+          />
+        </div>
+      }
+      <button type="button" class="btn btn-small" (click)="addOption()">
+        <app-icon name="plus" /> {{ t('questions.add_option') }}
+      </button>
+    </section>
+
+    @if (message()) {
+      <p class="status" [class.is-error]="failed()" role="status">{{ message() }}</p>
+    }
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="saving()">
+        {{ t('common.save') }}
+      </button>
+      <a class="btn btn-quiet" routerLink="/admin/library/questions">{{ t('common.cancel') }}</a>
+      @if (!isNew()) {
+        @if (confirmDelete()) {
+          <button type="button" class="btn" (click)="remove()">
+            {{ t('common.confirm_delete') }}
+          </button>
+          <button type="button" class="btn btn-quiet" (click)="confirmDelete.set(false)">
+            {{ t('common.keep') }}
+          </button>
+        } @else {
+          <button type="button" class="btn btn-quiet" (click)="confirmDelete.set(true)">
+            <app-icon name="trash" /> {{ t('common.delete') }}…
+          </button>
+        }
+      }
+    </div>
+  </form>
+} @else if (message()) {
+  <p class="status is-error" role="alert">{{ message() }}</p>
+} @else {
+  <p>{{ t('common.loading') }}</p>
+}

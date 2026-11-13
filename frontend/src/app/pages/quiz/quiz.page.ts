@@ -14,12 +14,13 @@ import type { QuestionnaireQuestion } from '../../core/models';
 import { PageTitleStrategy } from '../../core/page-title.strategy';
 import { QuizService } from '../../core/quiz.service';
 import { ReadPart } from '../../core/voice.service';
-import { IconComponent } from '../../shared/icon.component';
-import { ReadButtonComponent } from '../../shared/read-button.component';
+import { IconComponent } from '../../shared/icon/icon.component';
+import { ReadButtonComponent } from '../../shared/read-button/read-button.component';
 
 @Component({
   imports: [IconComponent, ReadButtonComponent],
   templateUrl: './quiz.page.html',
+  styleUrl: './quiz.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuizPage {

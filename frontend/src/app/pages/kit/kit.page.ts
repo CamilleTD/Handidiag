@@ -5,12 +5,13 @@ import { DocumentService } from '../../core/document.service';
 import { I18nService } from '../../core/i18n.service';
 import { QuizService } from '../../core/quiz.service';
 import { ReadPart } from '../../core/voice.service';
-import { IconComponent } from '../../shared/icon.component';
-import { ReadButtonComponent } from '../../shared/read-button.component';
+import { IconComponent } from '../../shared/icon/icon.component';
+import { ReadButtonComponent } from '../../shared/read-button/read-button.component';
 
 @Component({
   imports: [IconComponent, ReadButtonComponent],
   templateUrl: './kit.page.html',
+  styleUrl: './kit.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class KitPage {

@@ -2,14 +2,16 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { ContentService } from '../../core/content.service';
 import { I18nService } from '../../core/i18n.service';
 import { ReadPart } from '../../core/voice.service';
-import { ContactCardComponent } from '../../shared/contact-card.component';
-import { IconComponent, MedalComponent } from '../../shared/icon.component';
-import { ReadButtonComponent } from '../../shared/read-button.component';
+import { ContactCardComponent } from '../../shared/contact-card/contact-card.component';
+import { IconComponent } from '../../shared/icon/icon.component';
+import { MedalComponent } from '../../shared/medal/medal.component';
+import { ReadButtonComponent } from '../../shared/read-button/read-button.component';
 
 /** Ressources : à l'école, au niveau national, ce que dit la loi. Aucun clic n'est compté ici. */
 @Component({
   imports: [IconComponent, MedalComponent, ReadButtonComponent, ContactCardComponent],
   templateUrl: './resources.page.html',
+  styleUrl: './resources.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResourcesPage {

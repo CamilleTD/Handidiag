@@ -1,0 +1,92 @@
+<p>
+  <a routerLink="/admin/library/rules">← {{ t('rules.back') }}</a>
+</p>
+@if (draft(); as d) {
+  <h1>{{ isNew() ? t('rules.new') : d.key }}</h1>
+  @if (usedIn().length) {
+    <p class="status">{{ t('rules.used_in', { list: usedIn().join(', ') }) }}</p>
+  }
+  <form (submit)="$event.preventDefault(); save()" novalidate>
+    <section class="form-section">
+      <div class="form-grid">
+        <div class="field">
+          <label for="r-key">{{ t('common.key') }}</label>
+          <input
+            id="r-key"
+            class="text-input key"
+            aria-describedby="r-key-hint"
+            [value]="d.key"
+            [readonly]="!isNew()"
+            (input)="patch({ key: value($event) })"
+          />
+          <p id="r-key-hint" class="hint">{{ t('common.key_hint') }}</p>
+        </div>
+        <app-localized-field
+          [label]="t('rules.explanation')"
+          [hint]="t('rules.explanation_hint')"
+          [multiline]="true"
+          [value]="d.explanation"
+          (valueChange)="patch({ explanation: $event })"
+        />
+      </div>
+    </section>
+
+    <app-condition-field
+      [label]="t('rules.condition')"
+      [hint]="t('rules.condition_hint')"
+      [questions]="questions()"
+      [value]="d.condition"
+      (valueChange)="patch({ condition: $event! })"
+    />
+
+    <app-pick-list
+      [label]="t('rules.flags')"
+      [items]="flagItems()"
+      [selected]="d.flags"
+      (selectedChange)="patch({ flags: $event })"
+    />
+    <app-pick-list
+      [label]="t('rules.suggestions')"
+      [items]="suggestionItems()"
+      [selected]="d.suggestions"
+      (selectedChange)="patch({ suggestions: $event })"
+    />
+    <app-pick-list
+      [label]="t('rules.contacts')"
+      [hint]="t('rules.contacts_hint')"
+      [ordered]="true"
+      [items]="contactItems()"
+      [selected]="d.contacts"
+      (selectedChange)="patch({ contacts: $event })"
+    />
+    <p class="hint">{{ t('rules.messages_hint') }}</p>
+
+    @if (message()) {
+      <p class="status" [class.is-error]="failed()" role="status">{{ message() }}</p>
+    }
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="saving()">
+        {{ t('common.save') }}
+      </button>
+      <a class="btn btn-quiet" routerLink="/admin/library/rules">{{ t('common.cancel') }}</a>
+      @if (!isNew()) {
+        @if (confirmDelete()) {
+          <button type="button" class="btn" (click)="remove()">
+            {{ t('common.confirm_delete') }}
+          </button>
+          <button type="button" class="btn btn-quiet" (click)="confirmDelete.set(false)">
+            {{ t('common.keep') }}
+          </button>
+        } @else {
+          <button type="button" class="btn btn-quiet" (click)="confirmDelete.set(true)">
+            <app-icon name="trash" /> {{ t('common.delete') }}…
+          </button>
+        }
+      }
+    </div>
+  </form>
+} @else if (message()) {
+  <p class="status is-error" role="alert">{{ message() }}</p>
+} @else {
+  <p>{{ t('common.loading') }}</p>
+}

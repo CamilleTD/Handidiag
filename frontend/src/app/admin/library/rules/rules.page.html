@@ -1,0 +1,56 @@
+<div class="toolbar">
+  <h1>{{ t('rules.title') }}</h1>
+  <a class="btn btn-primary" routerLink="/admin/library/rules/new">
+    <app-icon name="plus" /> {{ t('rules.new') }}
+  </a>
+</div>
+<p class="hint">{{ t('rules.intro') }}</p>
+<div class="toolbar">
+  <label class="sr-only" for="r-filter">{{ t('common.filter') }}</label>
+  <input
+    id="r-filter"
+    class="text-input"
+    type="search"
+    [placeholder]="t('common.filter_placeholder')"
+    (input)="filter.set($any($event.target).value)"
+  />
+  <span class="hint">{{ t('common.count', { n: shown().length }) }}</span>
+</div>
+@if (error()) {
+  <p class="status is-error" role="alert">{{ error() }}</p>
+}
+<ul class="item-list">
+  @for (rule of shown(); track rule.id) {
+    <li class="item">
+      <div>
+        <p class="item-title">
+          <a [routerLink]="['/admin/library/rules', rule.id]">{{ rule.key }}</a>
+        </p>
+        <p class="condition-summary">{{ t('rules.if') }} {{ summary(rule) }}</p>
+        @if (rule.explanation) {
+          <p>« {{ text(rule.explanation) }} »</p>
+        }
+        <div class="item-meta">
+          @for (where of rule.used_in; track where) {
+            <span class="tag">{{ where }}</span>
+          } @empty {
+            <span class="tag is-sun">{{ t('rules.unused') }}</span>
+          }
+          @if (rule.flags.length) {
+            <span class="tag is-quiet">{{ t('rules.n_flags', { n: rule.flags.length }) }}</span>
+          }
+          @if (rule.suggestions.length) {
+            <span class="tag is-quiet">{{
+              t('rules.n_suggestions', { n: rule.suggestions.length })
+            }}</span>
+          }
+          @if (rule.contacts.length) {
+            <span class="tag is-quiet">{{
+              t('rules.n_contacts', { n: rule.contacts.length })
+            }}</span>
+          }
+        </div>
+      </div>
+    </li>
+  }
+</ul>

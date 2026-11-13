@@ -1,0 +1,47 @@
+<h1>{{ t('account.title') }}</h1>
+@if (api.admin()?.must_change_password) {
+  <p class="status is-error" role="alert">{{ t('account.temporary') }}</p>
+}
+<form class="form-section" (submit)="submit($event)" novalidate>
+  <h2>{{ t('account.change_password') }}</h2>
+  <div class="form-grid">
+    <div class="field">
+      <label for="pw-current">{{ t('account.current') }}</label>
+      <input
+        id="pw-current"
+        class="text-input"
+        type="password"
+        autocomplete="current-password"
+        (input)="current.set(value($event))"
+      />
+    </div>
+    <div class="field">
+      <label for="pw-new">{{ t('account.new') }}</label>
+      <input
+        id="pw-new"
+        class="text-input"
+        type="password"
+        autocomplete="new-password"
+        aria-describedby="pw-rule"
+        (input)="next.set(value($event))"
+      />
+      <p id="pw-rule" class="hint">{{ t('account.rule') }}</p>
+    </div>
+    <div class="field">
+      <label for="pw-confirm">{{ t('account.confirm') }}</label>
+      <input
+        id="pw-confirm"
+        class="text-input"
+        type="password"
+        autocomplete="new-password"
+        (input)="confirm.set(value($event))"
+      />
+    </div>
+  </div>
+  @if (message()) {
+    <p class="status" [class.is-error]="failed()" role="status">{{ message() }}</p>
+  }
+  <div class="actions">
+    <button type="submit" class="btn btn-primary">{{ t('common.save') }}</button>
+  </div>
+</form>
