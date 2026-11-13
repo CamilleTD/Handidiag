@@ -74,7 +74,15 @@
         </div>
       } @else {
         <div class="header-tools">
-          <a class="btn btn-quiet btn-small" routerLink="/">Voir le site public</a>
+          <button
+            class="btn btn-quiet btn-small"
+            type="button"
+            [attr.lang]="i18n.lang() === 'fr' ? 'en' : 'fr'"
+            (click)="toggleLang()"
+          >
+            {{ i18n.t('ui.lang_switch') }}
+          </button>
+          <a class="btn btn-quiet btn-small" routerLink="/">{{ i18n.t('ui.view_site') }}</a>
         </div>
       }
     </div>

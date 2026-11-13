@@ -9,31 +9,27 @@ import {
   untracked,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ContentService } from '../../core/content.service';
 import { I18nService } from '../../core/i18n.service';
-import type { Question } from '../../core/models';
+import type { QuestionnaireQuestion } from '../../core/models';
 import { PageTitleStrategy } from '../../core/page-title.strategy';
 import { QuizService } from '../../core/quiz.service';
-import { RestitutionService } from '../../core/restitution.service';
 import { ReadPart } from '../../core/voice.service';
-import { ContactCardComponent } from '../../shared/contact-card.component';
 import { IconComponent } from '../../shared/icon.component';
 import { ReadButtonComponent } from '../../shared/read-button.component';
 
 @Component({
-  imports: [IconComponent, ReadButtonComponent, ContactCardComponent],
+  imports: [IconComponent, ReadButtonComponent],
   templateUrl: './quiz.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuizPage {
   protected readonly i18n = inject(I18nService);
   protected readonly quiz = inject(QuizService);
-  private readonly content = inject(ContentService);
-  private readonly restitution = inject(RestitutionService);
   private readonly router = inject(Router);
   private readonly titles = inject(PageTitleStrategy);
 
-  /** Numéro de la question dans l'adresse (/quiz/3) : le bouton retour du navigateur fonctionne. */
+  readonly key = input.required<string>();
+  /** Numéro de la question dans l'adresse (/q/rqth/3) : le bouton retour du navigateur fonctionne. */
   readonly number = input<string>();
   protected readonly error = signal('');
 
@@ -42,58 +38,46 @@ export class QuizPage {
   protected readonly index = computed(() =>
     Math.max(0, Math.min(this.wanted(), this.quiz.maxIndex(), this.quiz.flow().length - 1)),
   );
-  protected readonly question = computed<Question | undefined>(
+  protected readonly question = computed<QuestionnaireQuestion | undefined>(
     () => this.quiz.flow()[this.index()],
   );
-  protected readonly isDeep = computed(() => this.index() >= this.quiz.core().length);
+  protected readonly isOptional = computed(() => this.index() >= this.quiz.core().length);
+  protected readonly total = computed(() => this.quiz.flow().length);
   protected readonly progress = computed(
     () =>
-      this.i18n.t('quiz.progress', { n: this.index() + 1, total: this.quiz.estimatedTotal() }) +
-      (this.isDeep() ? ` · ${this.i18n.t('quiz.deep_tag')}` : ''),
+      this.i18n.t('quiz.progress', { n: this.index() + 1, total: this.total() }) +
+      (this.isOptional() ? ` · ${this.i18n.t('quiz.deep_tag')}` : ''),
   );
-  protected readonly trail = computed(() =>
-    Array.from({ length: this.quiz.estimatedTotal() }, (_, i) => i),
-  );
+  protected readonly trail = computed(() => Array.from({ length: this.total() }, (_, i) => i));
   protected readonly isLast = computed(
     () =>
-      this.index() === this.quiz.flow().length - 1 &&
-      (this.quiz.deep() || !this.quiz.deepQuestions().length),
+      this.index() === this.total() - 1 &&
+      (this.quiz.optionalOpen() || !this.quiz.optionalQuestions().length),
   );
-
-  /** Étape « pôle » : ce que suggèrent les réponses, puis comment contacter le pôle. */
-  protected readonly poleHint = computed(() => {
-    if (this.question()?.key !== 'pole_next' || !this.quiz.answers()['pole_fit']) return null;
-    const key = this.quiz.preview().pole ?? 'none';
-    return this.content.content().pole_outcomes[key] ?? null;
-  });
-  protected readonly showPolePanel = computed(
-    () => this.question()?.key === 'pole_next' && this.quiz.answers()['pole_check'] === 'yes',
-  );
-  protected readonly poleGroups = computed(() => this.restitution.poleGroups());
 
   constructor() {
-    this.quiz.begin();
     effect(() => {
       const wanted = this.wanted();
       const core = this.quiz.core().length;
       untracked(() => {
         this.error.set('');
-        // Accès direct à une question complémentaire sans l'avoir choisie : écran de choix
-        if (!this.quiz.deep() && wanted >= core && this.quiz.maxIndex() >= core - 1) {
-          void this.router.navigateByUrl('/more', { replaceUrl: true });
+        this.quiz.begin();
+        // Accès direct à une question facultative sans l'avoir choisie : écran de choix
+        if (!this.quiz.optionalOpen() && wanted >= core && this.quiz.maxIndex() >= core - 1) {
+          void this.router.navigate(['/q', this.key(), 'more'], { replaceUrl: true });
         } else if (wanted !== this.index()) {
-          void this.router.navigate(['/quiz', this.index() + 1], { replaceUrl: true });
+          void this.router.navigate(['/q', this.key(), this.index() + 1], { replaceUrl: true });
         }
       });
     });
     effect(() => this.titles.prefix.set(this.progress()));
   }
 
-  protected selected(question: Question, option: string): boolean {
+  protected selected(question: QuestionnaireQuestion, option: string): boolean {
     return this.quiz.selected(question).includes(option);
   }
 
-  protected choose(question: Question, option: string, event: Event): void {
+  protected choose(question: QuestionnaireQuestion, option: string, event: Event): void {
     this.error.set('');
     this.quiz.choose(question, option, (event.target as HTMLInputElement).checked);
   }
@@ -115,11 +99,11 @@ export class QuizPage {
   }
 
   protected back(): void {
-    if (this.index() > 0) void this.router.navigate(['/quiz', this.index()]);
+    if (this.index() > 0) void this.router.navigate(['/q', this.key(), this.index()]);
   }
 
   protected cancel(): void {
-    this.quiz.reset();
+    this.quiz.forgetAll();
     void this.router.navigateByUrl('/');
   }
 
@@ -127,13 +111,13 @@ export class QuizPage {
     const index = this.index();
     if (index < this.quiz.flow().length - 1) {
       this.quiz.reach(index + 1);
-      void this.router.navigate(['/quiz', index + 2]);
-    } else if (!this.quiz.deep() && this.quiz.deepQuestions().length) {
+      void this.router.navigate(['/q', this.key(), index + 2]);
+    } else if (!this.quiz.optionalOpen() && this.quiz.optionalQuestions().length) {
       this.quiz.reach(index);
-      void this.router.navigateByUrl('/more');
+      void this.router.navigate(['/q', this.key(), 'more']);
     } else {
       this.quiz.finish();
-      void this.router.navigateByUrl('/result');
+      void this.router.navigate(['/q', this.key(), 'result']);
     }
   }
 

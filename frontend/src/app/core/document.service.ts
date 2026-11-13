@@ -39,10 +39,9 @@ export class DocumentService {
     if (!view) return;
     const { t, text } = this.helpers();
     const lines = ['HandiDiag', ''];
-    if (!view.result.poleOnly && view.level)
-      lines.push(text(view.level.title), text(view.level.body, view.level.body_falc), '');
-    const pole = this.poleText();
-    if (pole) lines.push(t('pole_result.title').toUpperCase(), pole.title, pole.body, '');
+    lines.push(text(view.snapshot.title).toUpperCase());
+    if (view.outcome)
+      lines.push(text(view.outcome.title), text(view.outcome.body, view.outcome.body_falc), '');
     lines.push(t('result.contacts_title').toUpperCase());
     for (const c of view.contacts)
       lines.push(`- ${text(c.name)} : ${text(c.role)}${c.email ? ` (${c.email})` : ''}`);
@@ -67,14 +66,6 @@ export class DocumentService {
     };
   }
 
-  private poleText(): { title: string; body: string } | null {
-    const key = this.restitution.exportablePole();
-    const message = key ? this.content.content().pole_outcomes[key] : null;
-    return message
-      ? { title: this.i18n.text(message.title), body: this.i18n.text(message.body) }
-      : null;
-  }
-
   private checklist(): Block[] {
     return [
       { type: 'h2', text: this.i18n.t('pdf.checklist') },
@@ -87,19 +78,13 @@ export class DocumentService {
     if (!view) return [];
     const { t, text } = this.helpers();
     const blocks: Block[] = [{ type: 'title', text: t('pdf.result_title') }];
-    if (!view.result.poleOnly && view.level)
+    blocks.push({ type: 'p', text: text(view.snapshot.title) });
+    if (view.outcome)
       blocks.push(
-        { type: 'h2', text: text(view.level.title) },
-        { type: 'p', text: text(view.level.body, view.level.body_falc) },
+        { type: 'h2', text: text(view.outcome.title) },
+        { type: 'p', text: text(view.outcome.body, view.outcome.body_falc) },
       );
     blocks.push({ type: 'notice', text: t('result.notdecision') });
-    const pole = this.poleText();
-    if (pole)
-      blocks.push(
-        { type: 'h2', text: t('pole_result.title') },
-        { type: 'h3', text: pole.title },
-        { type: 'p', text: pole.body },
-      );
     blocks.push({ type: 'h2', text: t('result.contacts_title') });
     for (const contact of view.contacts) {
       blocks.push(

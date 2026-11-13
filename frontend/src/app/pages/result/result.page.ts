@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { DocumentService } from '../../core/document.service';
 import { I18nService } from '../../core/i18n.service';
@@ -11,14 +10,7 @@ import { IconComponent, MedalComponent } from '../../shared/icon.component';
 import { ReadButtonComponent } from '../../shared/read-button.component';
 
 @Component({
-  imports: [
-    NgTemplateOutlet,
-    RouterLink,
-    IconComponent,
-    MedalComponent,
-    ReadButtonComponent,
-    ContactCardComponent,
-  ],
+  imports: [RouterLink, IconComponent, MedalComponent, ReadButtonComponent, ContactCardComponent],
   templateUrl: './result.page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -34,17 +26,18 @@ export class ResultPage {
   }
 
   protected refine(): void {
-    const first = this.quiz.startDeep();
-    void this.router.navigate(['/quiz', first + 1]);
+    const first = this.quiz.openOptional();
+    void this.router.navigate(['/q', this.quiz.key(), first + 1]);
   }
 
-  protected continueToRqth(): void {
-    const next = this.quiz.continueToRqth();
-    void this.router.navigate(['/quiz', next + 1]);
+  /** Questionnaire suivant : les réponses déjà données sont reprises. */
+  protected async continueTo(key: string): Promise<void> {
+    if (this.quiz.preview()) return;
+    if (await this.quiz.open(key)) void this.router.navigate(['/q', key, 1]);
   }
 
   protected restart(): void {
-    this.quiz.reset();
+    this.quiz.forgetAll();
     void this.router.navigateByUrl('/');
   }
 
@@ -55,15 +48,10 @@ export class ResultPage {
     const el = (id: string) => document.getElementById(id);
     const text = this.i18n.text.bind(this.i18n);
     const parts: ReadPart[] = [];
-    if (view.poleFirst && view.poleMessage)
+    if (view.outcome)
       parts.push(
-        { text: text(view.poleMessage.title), element: el('pole-v'), pause: 500 },
-        { text: text(view.poleMessage.body), pause: 600 },
-      );
-    if (!view.result.poleOnly && view.level)
-      parts.push(
-        { text: text(view.level.title), element: el('lvl'), pause: 500 },
-        { text: text(view.level.body, view.level.body_falc), pause: 600 },
+        { text: text(view.outcome.title), element: el('outcome'), pause: 500 },
+        { text: text(view.outcome.body, view.outcome.body_falc), pause: 600 },
       );
     parts.push({ text: this.i18n.t('result.notdecision'), element: el('notice'), pause: 700 });
     view.flags.forEach((f) =>
@@ -72,7 +60,8 @@ export class ResultPage {
     view.suggestions.forEach((s) =>
       parts.push({ text: text(s.text), element: el(`todo-${s.key}`), pause: 500 }),
     );
-    parts.push({ text: this.i18n.t('result.contacts_title'), pause: 450 });
+    if (view.contacts.length)
+      parts.push({ text: this.i18n.t('result.contacts_title'), pause: 450 });
     view.contacts.forEach((c) =>
       parts.push({ text: text(c.name), element: el(`contact-${c.key}`), pause: 450 }),
     );

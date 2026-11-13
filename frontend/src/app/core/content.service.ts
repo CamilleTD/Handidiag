@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import type { Contact, Content, Resource, ResourceSection } from './models';
+import type { Content, Resource, ResourceSection } from './models';
 
-/** Contenu publié : questionnaire, règles, restitution, ressources et pages. */
+/** Contenu publié : liste des questionnaires, ressources, pages, interlocuteurs de l'école. */
 @Injectable({ providedIn: 'root' })
 export class ContentService {
   private readonly http = inject(HttpClient);
@@ -14,8 +14,9 @@ export class ContentService {
     if (!data) throw new Error('Contenu non chargé');
     return data;
   });
-  readonly contacts = computed(
-    () => new Map<string, Contact>(this.content().contacts.map((c) => [c.key, c])),
+  /** Questionnaire mis en avant sur l'accueil (à défaut, le premier publié). */
+  readonly featured = computed(
+    () => this.content().questionnaires.find((q) => q.featured) ?? this.content().questionnaires[0],
   );
 
   async load(): Promise<void> {

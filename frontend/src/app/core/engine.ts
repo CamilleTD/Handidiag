@@ -2,19 +2,25 @@
  * Moteur de règles explicable (fonctions pures, sans Angular).
  * Les réponses restent dans le navigateur : rien de ce qui est calculé ici n'est envoyé.
  */
-import type { Condition, Level, PoleOutcomeKey, Question, Rule } from './models';
+import type {
+  Condition,
+  Contact,
+  Outcome,
+  QuestionnaireQuestion,
+  QuestionnaireSnapshot,
+  Rule,
+} from './models';
 
 export type Answers = Record<string, string | string[]>;
 
 export interface Evaluation {
   score: number;
-  level: string;
+  outcome: string;
   matched: { key: string; points: number }[];
   flags: string[];
   suggestions: string[];
+  /** Résultat imposé par une règle (null : choisi d'après le score). */
   overridden: string | null;
-  /** Orientation vers le pôle handicap déduite des règles (« suggest » l'emporte sur « maybe »). */
-  pole: 'suggest' | 'maybe' | null;
 }
 
 function values(answers: Answers, question: string): string[] {
@@ -38,23 +44,22 @@ export function check(condition: Condition, answers: Answers): boolean {
   return false;
 }
 
-/** Niveau atteint par le score : le dernier palier dont le seuil est atteint. */
-export function levelFromScore(score: number, levels: Level[]): string {
-  const steps = levels.filter((l) => l.min_score !== null);
-  let current = steps[0]?.key ?? levels[0]?.key ?? '';
-  for (const level of steps) if (score >= level.min_score!) current = level.key;
+/** Résultat atteint par le score : le dernier palier (dans l'ordre) dont le seuil est atteint. */
+export function outcomeFromScore(score: number, outcomes: Outcome[]): string {
+  const steps = outcomes.filter((o) => o.min_score !== null);
+  let current = steps[0]?.key ?? outcomes[0]?.key ?? '';
+  for (const outcome of steps) if (score >= outcome.min_score!) current = outcome.key;
   return current;
 }
 
-export function evaluate(answers: Answers, rules: Rule[], levels: Level[]): Evaluation {
+export function evaluate(answers: Answers, rules: Rule[], outcomes: Outcome[]): Evaluation {
   const result: Evaluation = {
     score: 0,
-    level: '',
+    outcome: '',
     matched: [],
     flags: [],
     suggestions: [],
     overridden: null,
-    pole: null,
   };
   for (const rule of rules) {
     if (!check(rule.condition, answers)) continue;
@@ -63,60 +68,56 @@ export function evaluate(answers: Answers, rules: Rule[], levels: Level[]): Eval
     for (const flag of rule.flags) if (!result.flags.includes(flag)) result.flags.push(flag);
     for (const s of rule.suggestions)
       if (!result.suggestions.includes(s)) result.suggestions.push(s);
-    // La première règle qui impose un niveau l'emporte
-    if (rule.override_level && !result.overridden) result.overridden = rule.override_level;
-    if (rule.pole_outcome && (rule.pole_outcome === 'suggest' || !result.pole))
-      result.pole = rule.pole_outcome;
+    // La première règle qui impose un résultat l'emporte
+    if (rule.override && !result.overridden) result.overridden = rule.override;
   }
-  result.level = result.overridden ?? levelFromScore(result.score, levels);
+  result.outcome = result.overridden ?? outcomeFromScore(result.score, outcomes);
   return result;
 }
 
 /* ---------------------------------------------------------------- déroulé du questionnaire */
 
-/** Étape « pôle » terminée ici : la personne ne poursuit pas vers les questions RQTH. */
-export function endedAfterPole(answers: Answers): boolean {
-  return answers['pole'] === 'no' && answers['pole_next'] === 'end';
+/** Questions à poser : ni fixées d'office, ni masquées par leur condition d'affichage. */
+export function visibleQuestions(
+  snapshot: QuestionnaireSnapshot,
+  answers: Answers,
+  optional: boolean,
+): QuestionnaireQuestion[] {
+  return snapshot.sections
+    .filter((s) => s.optional === optional)
+    .flatMap((s) => s.questions)
+    .filter((q) => !q.auto_answer && (!q.show_if || check(q.show_if, answers)));
 }
 
-export function visibleIn(questions: Question[], phase: Question['phase'], answers: Answers) {
-  const stop = endedAfterPole(answers);
-  return questions.filter((q) => {
-    if (stop && phase === 'deep' && !q.tracks.includes('pole')) return false;
-    return !q.hidden && q.phase === phase && (!q.show_if || check(q.show_if, answers));
-  });
-}
-
-/** Questions essentielles : la liste s'arrête après une question dont la condition d'arrêt est vraie. */
-export function coreQuestions(questions: Question[], answers: Answers): Question[] {
-  const list = visibleIn(questions, 'core', answers);
-  const stop = list.findIndex((q) => q.stop_if && check(q.stop_if, answers));
-  return stop === -1 ? list : list.slice(0, stop + 1);
-}
-
-/** Réponses fixées d'office pour les questions masquées (ex. profil « student »). */
-export function automaticAnswers(questions: Question[]): Answers {
+/** Réponses fixées d'office (ex. profil « student »). */
+export function automaticAnswers(snapshot: QuestionnaireSnapshot): Answers {
   const answers: Answers = {};
-  for (const q of questions) if (q.hidden && q.auto_answer) answers[q.key] = q.auto_answer;
+  for (const section of snapshot.sections)
+    for (const q of section.questions) if (q.auto_answer) answers[q.key] = q.auto_answer;
   return answers;
 }
 
-/** Retire les réponses aux questions devenues invisibles. */
-export function prune(questions: Question[], answers: Answers): Answers {
-  const auto = automaticAnswers(questions);
+/**
+ * Retire les réponses aux questions de ce questionnaire devenues invisibles. Les réponses aux
+ * questions d'autres questionnaires sont gardées : elles sont partagées pendant la visite.
+ */
+export function prune(snapshot: QuestionnaireSnapshot, answers: Answers): Answers {
+  const own = new Set(snapshot.sections.flatMap((s) => s.questions.map((q) => q.key)));
   const visible = new Set(
-    [...coreQuestions(questions, answers), ...visibleIn(questions, 'deep', answers)].map(
-      (q) => q.key,
-    ),
+    [
+      ...visibleQuestions(snapshot, answers, false),
+      ...visibleQuestions(snapshot, answers, true),
+    ].map((q) => q.key),
   );
-  const kept: Answers = { ...auto };
-  for (const [key, value] of Object.entries(answers)) if (visible.has(key)) kept[key] = value;
-  return kept;
+  const kept: Answers = {};
+  for (const [key, value] of Object.entries(answers))
+    if (!own.has(key) || visible.has(key)) kept[key] = value;
+  return { ...kept, ...automaticAnswers(snapshot) };
 }
 
 /** Applique un choix à une réponse multiple en respectant les options exclusives. */
 export function toggleOption(
-  question: Question,
+  question: { options: { key: string; exclusive: boolean }[] },
   current: string[],
   option: string,
   checked: boolean,
@@ -131,49 +132,28 @@ export function toggleOption(
 
 /* ---------------------------------------------------------------- restitution */
 
-/** Message de la section « pôle handicap », ou null si la question a été passée. */
-export function poleOutcome(answers: Answers, evaluation: Evaluation): PoleOutcomeKey | null {
-  if (answers['pole'] === 'yes') return 'followed';
-  if (answers['pole'] !== 'no') return null;
-  return answers['pole_check'] === 'yes' ? (evaluation.pole ?? 'none') : 'declined';
-}
-
-/** Le projet vise-t-il le monde du travail ? Sert à ordonner les interlocuteurs. */
-export function workFocused(answers: Answers): boolean {
-  const has = (q: string, wanted: string[]) => values(answers, q).some((v) => wanted.includes(v));
-  return (
-    has('pathway', ['internship', 'job', 'jobsearch']) ||
-    has('st_next', ['internship', 'alternance', 'first_job']) ||
-    has('ctx_student', ['work', 'recruit'])
-  );
-}
-
-export const SENSITIVE_FLAGS = ['employer', 'stigma'];
-
 /**
- * Interlocuteurs proposés pour un profil. Projet tourné vers le travail : le référent « travail »
- * du pôle passe avant les autres. Crainte du regard des autres : les professionnels tenus au
- * secret médical passent en premier.
+ * Interlocuteurs proposés : ceux du résultat, puis ceux des règles déclenchées, dans l'ordre.
+ * Si un point d'attention le demande, les professionnels tenus au secret médical passent en premier.
  */
-export function orderContacts(
-  keys: string[],
-  options: {
-    workFocused: boolean;
-    sensitive: boolean;
-    confidential: Set<string>;
-    work: Set<string>;
-  },
-): string[] {
-  let ordered = [...keys];
-  if (options.workFocused) {
-    ordered = [
-      ...ordered.filter((k) => options.work.has(k)),
-      ...ordered.filter((k) => !options.work.has(k)),
-    ];
+export function collectContacts(
+  snapshot: QuestionnaireSnapshot,
+  evaluation: Evaluation,
+): { contacts: Contact[]; confidentialFirst: boolean } {
+  const outcome = snapshot.outcomes.find((o) => o.key === evaluation.outcome);
+  const matched = new Set(evaluation.matched.map((m) => m.key));
+  const keys = [
+    ...(outcome?.contacts ?? []),
+    ...snapshot.rules.filter((r) => matched.has(r.key)).flatMap((r) => r.contacts),
+  ];
+  const byKey = new Map(snapshot.contacts.map((c) => [c.key, c]));
+  let contacts = [...new Set(keys)].map((k) => byKey.get(k)).filter((c): c is Contact => !!c);
+  const confidentialFirst = snapshot.flags.some(
+    (f) => f.highlight_confidential && evaluation.flags.includes(f.key),
+  );
+  if (confidentialFirst) {
+    const rank = (c: Contact) => (c.is_confidential ? 0 : 1);
+    contacts = [...contacts].sort((a, b) => rank(a) - rank(b));
   }
-  if (options.sensitive) {
-    const rank = (k: string) => (options.confidential.has(k) ? 0 : 1);
-    ordered = [...ordered].sort((a, b) => rank(a) - rank(b));
-  }
-  return ordered;
+  return { contacts, confidentialFirst };
 }

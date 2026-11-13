@@ -2,26 +2,13 @@ import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
 import type { ResourceSection } from '../../core/models';
 import { IconComponent } from '../../shared/icon.component';
-import { AdminResource, Collection, Payload } from '../admin-api.service';
+import { Collection, Payload, ResourceRow } from '../admin-api.service';
+import { adminT } from '../admin-i18n';
 import { LocalizedFieldComponent } from '../components/localized-field.component';
-import { EditableList } from '../restitution/editable-list';
+import { EditableList } from '../messages/editable-list';
 
-type Draft = Payload<AdminResource>;
-
-const SECTIONS: { id: ResourceSection; label: string; hint: string }[] = [
-  {
-    id: 'official',
-    label: 'Kit : liens officiels',
-    hint: 'Affichés dans le kit documentaire et son PDF. Les ouvertures sont comptées dans les statistiques.',
-  },
-  {
-    id: 'public',
-    label: 'Organismes publics',
-    hint: 'Page Ressources, rubrique « Au niveau national ».',
-  },
-  { id: 'association', label: 'Associations', hint: 'Page Ressources, rubrique « Associations ».' },
-  { id: 'law', label: 'Textes de loi', hint: 'Page Ressources, rubrique « Ce que dit la loi ».' },
-];
+type Draft = Payload<ResourceRow>;
+const SECTIONS: ResourceSection[] = ['official', 'public', 'association', 'law'];
 
 /** Liste éditable des ressources d'une rubrique. */
 @Component({
@@ -32,7 +19,7 @@ const SECTIONS: { id: ResourceSection; label: string; hint: string }[] = [
     <div class="toolbar">
       <span></span>
       <button type="button" class="btn btn-primary" (click)="open('new')">
-        <app-icon name="plus" /> Ajouter
+        <app-icon name="plus" /> {{ t('common.add') }}
       </button>
     </div>
     @if (message()) {
@@ -43,20 +30,20 @@ const SECTIONS: { id: ResourceSection; label: string; hint: string }[] = [
     }
     <ol class="item-list">
       @for (item of shown(); track item.id; let first = $first; let last = $last) {
-        <li class="item">
+        <li class="item" [class.is-open]="editing() === item.id">
           @if (editing() === item.id) {
             <div style="grid-column: 1 / -1"><ng-container *ngTemplateOutlet="form" /></div>
           } @else {
             <div>
-              <p class="item-title">{{ item.title.fr }}</p>
-              <p>{{ item.description.fr }}</p>
+              <p class="item-title">{{ text(item.title) }}</p>
+              <p>{{ text(item.description) }}</p>
               <div class="item-meta">
                 <span class="key">{{ item.key }}</span>
                 @if (!item.is_published) {
-                  <span class="tag is-sun">Masquée</span>
+                  <span class="tag is-sun">{{ t('resources.hidden') }}</span>
                 }
                 @if (!item.title.en) {
-                  <span class="tag is-sun">Anglais manquant</span>
+                  <span class="tag is-sun">{{ t('common.missing_en') }}</span>
                 }
                 @if (item.url) {
                   <span class="tag is-quiet">{{ item.url }}</span>
@@ -64,11 +51,13 @@ const SECTIONS: { id: ResourceSection; label: string; hint: string }[] = [
               </div>
             </div>
             <div class="item-actions">
-              <button type="button" class="btn btn-small" (click)="open(item.id)">Modifier</button>
+              <button type="button" class="btn btn-small" (click)="open(item.id)">
+                {{ t('common.edit') }}
+              </button>
               <button
                 type="button"
                 class="btn btn-small btn-quiet"
-                [attr.aria-label]="'Monter ' + item.key"
+                [attr.aria-label]="t('common.move_up') + ' : ' + item.key"
                 [disabled]="busy() || first"
                 (click)="moveIn(item, -1)"
               >
@@ -77,7 +66,7 @@ const SECTIONS: { id: ResourceSection; label: string; hint: string }[] = [
               <button
                 type="button"
                 class="btn btn-small btn-quiet"
-                [attr.aria-label]="'Descendre ' + item.key"
+                [attr.aria-label]="t('common.move_down') + ' : ' + item.key"
                 [disabled]="busy() || last"
                 (click)="moveIn(item, 1)"
               >
@@ -85,13 +74,13 @@ const SECTIONS: { id: ResourceSection; label: string; hint: string }[] = [
               </button>
               @if (confirmDelete() === item.id) {
                 <button type="button" class="btn btn-small" (click)="remove(item)">
-                  Confirmer
+                  {{ t('common.confirm') }}
                 </button>
               } @else {
                 <button
                   type="button"
                   class="btn btn-small btn-quiet"
-                  [attr.aria-label]="'Supprimer ' + item.key"
+                  [attr.aria-label]="t('common.delete') + ' : ' + item.key"
                   (click)="confirmDelete.set(item.id)"
                 >
                   <app-icon name="trash" />
@@ -108,7 +97,7 @@ const SECTIONS: { id: ResourceSection; label: string; hint: string }[] = [
         <form class="form-section" (submit)="$event.preventDefault(); submit()" novalidate>
           <div class="form-grid two">
             <div class="field">
-              <label for="res-key">Clé technique</label>
+              <label for="res-key">{{ t('common.key') }}</label>
               <input
                 id="res-key"
                 class="text-input key"
@@ -118,9 +107,7 @@ const SECTIONS: { id: ResourceSection; label: string; hint: string }[] = [
               />
             </div>
             <div class="field">
-              <label for="res-url"
-                >Adresse du lien {{ section() === 'official' ? '' : '(facultatif)' }}</label
-              >
+              <label for="res-url">{{ t('resources.url') }}</label>
               <input
                 id="res-url"
                 class="text-input"
@@ -133,13 +120,13 @@ const SECTIONS: { id: ResourceSection; label: string; hint: string }[] = [
           </div>
           <div class="form-grid">
             <app-localized-field
-              label="Titre"
+              [label]="t('resources.res_title')"
               [required]="true"
               [value]="d.title"
               (valueChange)="patch({ title: $event! })"
             />
             <app-localized-field
-              label="Description"
+              [label]="t('resources.description')"
               [required]="true"
               [multiline]="true"
               [value]="d.description"
@@ -147,7 +134,7 @@ const SECTIONS: { id: ResourceSection; label: string; hint: string }[] = [
             />
             @if (section() === 'law') {
               <app-localized-field
-                label="Référence (ex. article de loi)"
+                [label]="t('resources.reference')"
                 [value]="d.reference"
                 (valueChange)="patch({ reference: $event })"
               />
@@ -158,19 +145,23 @@ const SECTIONS: { id: ResourceSection; label: string; hint: string }[] = [
                 [checked]="d.is_published"
                 (change)="patch({ is_published: checked($event) })"
               />
-              <span>Publiée sur le site</span>
+              <span>{{ t('resources.published') }}</span>
             </label>
           </div>
           <div class="actions">
-            <button type="submit" class="btn btn-primary" [disabled]="busy()">Enregistrer</button>
-            <button type="button" class="btn btn-quiet" (click)="editing.set(null)">Annuler</button>
+            <button type="submit" class="btn btn-primary" [disabled]="busy()">
+              {{ t('common.save') }}
+            </button>
+            <button type="button" class="btn btn-quiet" (click)="editing.set(null)">
+              {{ t('common.cancel') }}
+            </button>
           </div>
         </form>
       }
     </ng-template>
   `,
 })
-export class ResourceList extends EditableList<AdminResource> {
+export class ResourceList extends EditableList<ResourceRow> {
   readonly section = input.required<ResourceSection>();
   protected readonly collection: Collection = 'resources';
   protected readonly draft = signal<Draft | null>(null);
@@ -208,7 +199,7 @@ export class ResourceList extends EditableList<AdminResource> {
   }
 
   /** Réordonnancement au sein de la rubrique. */
-  protected async moveIn(item: AdminResource, delta: number): Promise<void> {
+  protected async moveIn(item: ResourceRow, delta: number): Promise<void> {
     const list = [...this.shown()];
     const index = list.findIndex((i) => i.id === item.id);
     const target = index + delta;
@@ -219,8 +210,8 @@ export class ResourceList extends EditableList<AdminResource> {
         this.section(),
         list.map((i) => i.id),
       );
-      this.items.set(await this.api.list<AdminResource>('resources'));
-      this.done(`« ${item.key} » déplacée.`);
+      this.items.set(await this.api.list<ResourceRow>('resources'));
+      this.done(this.t('common.moved', { key: item.key }));
     });
   }
 }
@@ -229,32 +220,33 @@ export class ResourceList extends EditableList<AdminResource> {
   imports: [ResourceList],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <h1>Ressources</h1>
-    <div class="tabs" role="tablist" aria-label="Rubriques">
-      @for (s of sections; track s.id) {
+    <h1>{{ t('resources.title') }}</h1>
+    <div class="tabs" role="tablist" [attr.aria-label]="t('resources.sections')">
+      @for (s of sections; track s) {
         <button
           type="button"
           role="tab"
-          [id]="'tab-' + s.id"
-          [attr.aria-selected]="section() === s.id"
-          [attr.aria-controls]="'panel-' + s.id"
-          (click)="section.set(s.id)"
+          [id]="'tab-' + s"
+          [attr.aria-selected]="section() === s"
+          [attr.aria-controls]="'panel-' + s"
+          (click)="section.set(s)"
         >
-          {{ s.label }}
+          {{ t('resources.section_' + s) }}
         </button>
       }
     </div>
-    @for (s of sections; track s.id) {
-      @if (section() === s.id) {
-        <div role="tabpanel" [id]="'panel-' + s.id" [attr.aria-labelledby]="'tab-' + s.id">
-          <p class="hint">{{ s.hint }}</p>
-          <app-resource-list [section]="s.id" />
+    @for (s of sections; track s) {
+      @if (section() === s) {
+        <div role="tabpanel" [id]="'panel-' + s" [attr.aria-labelledby]="'tab-' + s">
+          <p class="hint">{{ t('resources.hint_' + s) }}</p>
+          <app-resource-list [section]="s" />
         </div>
       }
     }
   `,
 })
 export class ResourcesAdminPage {
+  protected readonly t = adminT();
   protected readonly sections = SECTIONS;
   protected readonly section = signal<ResourceSection>('official');
 }

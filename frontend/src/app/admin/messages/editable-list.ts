@@ -1,15 +1,18 @@
 import { Directive, OnInit, inject, signal } from '@angular/core';
 import { ContentService } from '../../core/content.service';
 import { AdminApi, Collection } from '../admin-api.service';
+import { adminT, adminText } from '../admin-i18n';
 
 /**
- * Logique commune aux listes éditables de la restitution : chargement, enregistrement,
+ * Logique commune aux listes éditables (messages, ressources) : chargement, enregistrement,
  * suppression confirmée, réordonnancement et message d'état.
  */
 @Directive()
 export abstract class EditableList<T extends { id: number; key: string }> implements OnInit {
   protected readonly api = inject(AdminApi);
   private readonly content = inject(ContentService);
+  protected readonly t = adminT();
+  protected readonly text = adminText();
   protected abstract readonly collection: Collection;
 
   readonly items = signal<T[]>([]);
@@ -34,7 +37,7 @@ export abstract class EditableList<T extends { id: number; key: string }> implem
       else await this.api.update(this.collection, id, body);
       this.items.set(await this.api.list<T>(this.collection));
       this.editing.set(null);
-      this.done('Enregistré. En ligne immédiatement.');
+      this.done(this.t('common.saved_live'));
     });
   }
 
@@ -43,7 +46,7 @@ export abstract class EditableList<T extends { id: number; key: string }> implem
     await this.run(async () => {
       await this.api.remove(this.collection, item.id);
       this.items.update((list) => list.filter((i) => i.id !== item.id));
-      this.done(`« ${item.key} » supprimé.`);
+      this.done(this.t('common.deleted', { key: item.key }));
     });
   }
 
@@ -59,7 +62,7 @@ export abstract class EditableList<T extends { id: number; key: string }> implem
         list.map((i) => i.id),
       );
       this.items.set(list);
-      this.done(`« ${item.key} » déplacé.`);
+      this.done(this.t('common.moved', { key: item.key }));
     });
   }
 

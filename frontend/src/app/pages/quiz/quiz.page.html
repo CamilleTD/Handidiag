@@ -1,5 +1,8 @@
 @if (question(); as q) {
   <div class="narrow">
+    @if (quiz.preview()) {
+      <p class="notice" role="status">{{ i18n.t('quiz.preview_notice') }}</p>
+    }
     <div class="quiz-card">
       <p class="q-meta" aria-hidden="true">{{ progress() }}</p>
       <ol class="trail" aria-hidden="true">
@@ -18,17 +21,6 @@
         {{ i18n.t(q.kind === 'multiple' ? 'quiz.multi_hint' : 'quiz.single_hint') }}
       </p>
       <app-read-button [id]="'q-' + q.key" label="quiz.read_aloud" [parts]="readParts" />
-
-      @if (poleHint(); as hint) {
-        <section class="panel pole-hint" aria-labelledby="pole-hint-title">
-          <h2 id="pole-hint-title">{{ i18n.t('quiz.pole_hint_title') }}</h2>
-          <p class="pole-verdict">
-            <strong>{{ i18n.text(hint.title) }}</strong>
-          </p>
-          <p>{{ i18n.text(hint.body) }}</p>
-          <p class="hint">{{ i18n.t('pole_result.privacy_note') }}</p>
-        </section>
-      }
 
       <fieldset
         class="choices"
@@ -49,30 +41,6 @@
         }
       </fieldset>
 
-      @if (showPolePanel()) {
-        <section class="panel pole-panel" aria-labelledby="pole-title">
-          <h2 id="pole-title">{{ i18n.t('quiz.pole_panel_title') }}</h2>
-          <p class="hint">{{ i18n.t('quiz.pole_panel_subjects') }} :</p>
-          <ul class="chips">
-            @for (subject of i18n.list('quiz.pole_subjects'); track $index) {
-              <li>{{ subject }}</li>
-            }
-          </ul>
-          <p>{{ i18n.t('quiz.pole_panel_write') }}</p>
-          @for (group of poleGroups(); track group.group) {
-            <div class="pole-group">
-              <p class="group-label">{{ i18n.t('pole_result.who_' + group.group) }}</p>
-              <ul class="cards">
-                @for (contact of group.contacts; track contact.key) {
-                  <li [appContactCard]="contact"></li>
-                }
-              </ul>
-            </div>
-          }
-          <p class="hint">{{ i18n.t('quiz.pole_panel_then') }}</p>
-        </section>
-      }
-
       @if (error()) {
         <p class="error" role="alert">{{ error() }}</p>
       }
@@ -89,9 +57,11 @@
           </button>
         }
         <span class="spacer"></span>
-        <button type="button" class="btn btn-quiet" (click)="skip()">
-          {{ i18n.t('quiz.skip') }}
-        </button>
+        @if (!q.required) {
+          <button type="button" class="btn btn-quiet" (click)="skip()">
+            {{ i18n.t('quiz.skip') }}
+          </button>
+        }
       </div>
     </div>
     <p>

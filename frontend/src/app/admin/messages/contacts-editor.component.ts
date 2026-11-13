@@ -1,29 +1,24 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { ContentService } from '../../core/content.service';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { IconComponent } from '../../shared/icon.component';
-import { AdminContact, Collection, Payload } from '../admin-api.service';
+import { Collection, ContactRow, Payload } from '../admin-api.service';
 import { LocalizedFieldComponent } from '../components/localized-field.component';
 import { EditableList } from './editable-list';
 
-type Draft = Payload<AdminContact>;
+type Draft = Payload<ContactRow>;
 const ICONS = ['user', 'building', 'shield', 'doc', 'compass', 'book', 'chat', 'clock', 'badge'];
 
-/** Interlocuteurs proposés dans la restitution, par profil. */
+/** Bibliothèque d'interlocuteurs, proposés par les résultats et les règles. */
 @Component({
   selector: 'app-contacts-editor',
   imports: [NgTemplateOutlet, IconComponent, LocalizedFieldComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <p class="hint">
-      Chaque interlocuteur est proposé aux profils cochés. Ceux tenus au secret médical passent en
-      premier quand la personne craint le regard des autres ; ceux du pôle handicap apparaissent
-      aussi dans la section dédiée.
-    </p>
+    <p class="hint">{{ t('messages.contacts_intro') }}</p>
     <div class="toolbar">
       <span></span>
       <button type="button" class="btn btn-primary" (click)="open('new')">
-        <app-icon name="plus" /> Ajouter un interlocuteur
+        <app-icon name="plus" /> {{ t('common.add') }}
       </button>
     </div>
     @if (message()) {
@@ -33,29 +28,21 @@ const ICONS = ['user', 'building', 'shield', 'doc', 'compass', 'book', 'chat', '
       <ng-container *ngTemplateOutlet="form" />
     }
     <ol class="item-list">
-      @for (contact of items(); track contact.id) {
-        <li class="item">
+      @for (contact of items(); track contact.id; let first = $first; let last = $last) {
+        <li class="item" [class.is-open]="editing() === contact.id">
           @if (editing() === contact.id) {
             <div style="grid-column: 1 / -1"><ng-container *ngTemplateOutlet="form" /></div>
           } @else {
             <div>
-              <p class="item-title">{{ contact.name.fr }}</p>
-              <p>{{ contact.role.fr }}</p>
+              <p class="item-title">{{ text(contact.name) }}</p>
+              <p>{{ text(contact.role) }}</p>
               <div class="item-meta">
                 <span class="key">{{ contact.key }}</span>
-                @for (profile of contact.profiles; track profile) {
-                  <span class="tag">{{ profileLabel(profile) }}</span>
-                }
-                @if (!contact.profiles.length) {
-                  <span class="tag is-sun">Aucun profil</span>
-                }
                 @if (contact.is_confidential) {
-                  <span class="tag is-quiet">Secret médical</span>
+                  <span class="tag">{{ t('messages.confidential_tag') }}</span>
                 }
-                @if (contact.pole_group) {
-                  <span class="tag is-quiet"
-                    >Pôle : {{ contact.pole_group === 'school' ? 'études' : 'travail' }}</span
-                  >
+                @if (contact.group) {
+                  <span class="tag is-quiet">{{ t('messages.group_' + contact.group) }}</span>
                 }
                 @if (contact.email) {
                   <span class="tag is-quiet">{{ contact.email }}</span>
@@ -64,13 +51,13 @@ const ICONS = ['user', 'building', 'shield', 'doc', 'compass', 'book', 'chat', '
             </div>
             <div class="item-actions">
               <button type="button" class="btn btn-small" (click)="open(contact.id)">
-                Modifier
+                {{ t('common.edit') }}
               </button>
               <button
                 type="button"
                 class="btn btn-small btn-quiet"
-                [attr.aria-label]="'Monter ' + contact.key"
-                [disabled]="busy()"
+                [attr.aria-label]="t('common.move_up') + ' : ' + contact.key"
+                [disabled]="busy() || first"
                 (click)="move(contact, -1)"
               >
                 <app-icon name="up" />
@@ -78,21 +65,21 @@ const ICONS = ['user', 'building', 'shield', 'doc', 'compass', 'book', 'chat', '
               <button
                 type="button"
                 class="btn btn-small btn-quiet"
-                [attr.aria-label]="'Descendre ' + contact.key"
-                [disabled]="busy()"
+                [attr.aria-label]="t('common.move_down') + ' : ' + contact.key"
+                [disabled]="busy() || last"
                 (click)="move(contact, 1)"
               >
                 <app-icon name="down" />
               </button>
               @if (confirmDelete() === contact.id) {
                 <button type="button" class="btn btn-small" (click)="remove(contact)">
-                  Confirmer
+                  {{ t('common.confirm') }}
                 </button>
               } @else {
                 <button
                   type="button"
                   class="btn btn-small btn-quiet"
-                  [attr.aria-label]="'Supprimer ' + contact.key"
+                  [attr.aria-label]="t('common.delete') + ' : ' + contact.key"
                   (click)="confirmDelete.set(contact.id)"
                 >
                   <app-icon name="trash" />
@@ -109,7 +96,7 @@ const ICONS = ['user', 'building', 'shield', 'doc', 'compass', 'book', 'chat', '
         <form class="form-section" (submit)="$event.preventDefault(); submit()" novalidate>
           <div class="form-grid three">
             <div class="field">
-              <label for="ct-key">Clé technique</label>
+              <label for="ct-key">{{ t('common.key') }}</label>
               <input
                 id="ct-key"
                 class="text-input key"
@@ -119,7 +106,7 @@ const ICONS = ['user', 'building', 'shield', 'doc', 'compass', 'book', 'chat', '
               />
             </div>
             <div class="field">
-              <label for="ct-email">E-mail (facultatif)</label>
+              <label for="ct-email">{{ t('messages.email') }}</label>
               <input
                 id="ct-email"
                 class="text-input"
@@ -129,7 +116,7 @@ const ICONS = ['user', 'building', 'shield', 'doc', 'compass', 'book', 'chat', '
               />
             </div>
             <div class="field">
-              <label for="ct-icon">Pictogramme</label>
+              <label for="ct-icon">{{ t('common.icon') }}</label>
               <select id="ct-icon" (change)="patch({ icon: $any(value($event)) })">
                 @for (icon of icons; track icon) {
                   <option [value]="icon" [selected]="icon === d.icon">{{ icon }}</option>
@@ -139,20 +126,20 @@ const ICONS = ['user', 'building', 'shield', 'doc', 'compass', 'book', 'chat', '
           </div>
           <div class="form-grid">
             <app-localized-field
-              label="Nom"
+              [label]="t('messages.name')"
               [required]="true"
               [value]="d.name"
               (valueChange)="patch({ name: $event! })"
             />
             <app-localized-field
-              label="Rôle"
+              [label]="t('messages.role')"
               [required]="true"
               [multiline]="true"
               [value]="d.role"
               (valueChange)="patch({ role: $event! })"
             />
             <div class="field">
-              <label for="ct-url">Lien (facultatif)</label>
+              <label for="ct-url">{{ t('messages.link') }}</label>
               <input
                 id="ct-url"
                 class="text-input"
@@ -164,73 +151,51 @@ const ICONS = ['user', 'building', 'shield', 'doc', 'compass', 'book', 'chat', '
             </div>
             @if (d.link_url) {
               <app-localized-field
-                label="Texte du lien"
+                [label]="t('messages.link_label')"
                 [value]="d.link_label"
                 (valueChange)="patch({ link_label: $event })"
               />
             }
           </div>
           <div class="form-grid two">
-            <fieldset class="lang-pair">
-              <legend>Profils concernés</legend>
-              @for (profile of profiles(); track profile.key) {
-                <label class="check">
-                  <input
-                    type="checkbox"
-                    [checked]="d.profiles.includes(profile.key)"
-                    (change)="toggleProfile(profile.key, $event)"
-                  />
-                  <span>{{ profile.label }}</span>
-                </label>
-              }
-            </fieldset>
-            <fieldset class="lang-pair">
-              <legend>Particularités</legend>
-              <label class="check">
-                <input
-                  type="checkbox"
-                  [checked]="d.is_confidential"
-                  (change)="patch({ is_confidential: checked($event) })"
-                />
-                <span>Tenu au secret médical</span>
-              </label>
-              <label for="ct-pole">Pôle handicap</label>
-              <select id="ct-pole" (change)="patch({ pole_group: $any(value($event) || null) })">
-                <option value="" [selected]="!d.pole_group">Ne fait pas partie du pôle</option>
-                <option value="school" [selected]="d.pole_group === 'school'">
-                  Pôle : études à l'école
-                </option>
-                <option value="work" [selected]="d.pole_group === 'work'">
-                  Pôle : monde du travail
-                </option>
+            <label class="check">
+              <input
+                type="checkbox"
+                [checked]="d.is_confidential"
+                (change)="patch({ is_confidential: checked($event) })"
+              />
+              <span>{{ t('messages.confidential') }}</span>
+            </label>
+            <div class="field">
+              <label for="ct-group">{{ t('messages.group') }}</label>
+              <select id="ct-group" (change)="patch({ group: $any(value($event) || null) })">
+                <option value="" [selected]="!d.group">{{ t('messages.group_none') }}</option>
+                @for (group of groups; track group) {
+                  <option [value]="group" [selected]="d.group === group">
+                    {{ t('messages.group_' + group) }}
+                  </option>
+                }
               </select>
-            </fieldset>
+            </div>
           </div>
           <div class="actions">
-            <button type="submit" class="btn btn-primary" [disabled]="busy()">Enregistrer</button>
-            <button type="button" class="btn btn-quiet" (click)="editing.set(null)">Annuler</button>
+            <button type="submit" class="btn btn-primary" [disabled]="busy()">
+              {{ t('common.save') }}
+            </button>
+            <button type="button" class="btn btn-quiet" (click)="editing.set(null)">
+              {{ t('common.cancel') }}
+            </button>
           </div>
         </form>
       }
     </ng-template>
   `,
 })
-export class ContactsEditor extends EditableList<AdminContact> {
-  private readonly site = inject(ContentService);
+export class ContactsEditor extends EditableList<ContactRow> {
   protected readonly collection: Collection = 'contacts';
   protected readonly icons = ICONS;
+  protected readonly groups = ['school', 'work', 'other'] as const;
   protected readonly draft = signal<Draft | null>(null);
-  protected readonly profiles = computed(
-    () =>
-      this.site
-        .content()
-        .questions.find((q) => q.key === 'profile')
-        ?.options.map((o) => ({ key: o.key, label: o.label.fr })) ?? [],
-  );
-
-  protected profileLabel(key: string): string {
-    return this.profiles().find((p) => p.key === key)?.label ?? key;
-  }
 
   protected open(id: number | 'new'): void {
     const contact = this.items().find((c) => c.id === id);
@@ -247,8 +212,7 @@ export class ContactsEditor extends EditableList<AdminContact> {
         link_url: null,
         link_label: null,
         is_confidential: false,
-        pole_group: null,
-        profiles: [],
+        group: null,
       });
     }
     this.message.set('');
@@ -257,13 +221,6 @@ export class ContactsEditor extends EditableList<AdminContact> {
 
   protected patch(change: Partial<Draft>): void {
     this.draft.update((d) => (d ? { ...d, ...change } : d));
-  }
-
-  protected toggleProfile(key: string, event: Event): void {
-    const profiles = this.draft()?.profiles ?? [];
-    this.patch({
-      profiles: this.checked(event) ? [...profiles, key] : profiles.filter((p) => p !== key),
-    });
   }
 
   protected submit(): void {

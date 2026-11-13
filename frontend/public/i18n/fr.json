@@ -66,7 +66,8 @@
   "nav_resources": "Ressources",
   "not_found_text": "Cette page n'existe pas ou a été déplacée.",
   "footer_disclaimer": "HandiDiag oriente et informe : ce n'est ni un diagnostic, ni une décision. Seule la MDPH peut reconnaître une situation de handicap.",
-  "nav_info": "S'informer"
+  "nav_info": "S'informer",
+  "view_site": "Voir le site public"
  },
  "pages": {
   "info": "Comprendre la démarche RQTH",
@@ -165,7 +166,9 @@
   ],
   "pole_title": "Et à l'école ? Le pôle handicap",
   "pole_text": "Le pôle handicap vous reçoit lors d'un premier entretien : mise en confiance, respect de la vie privée, identification de vos besoins, explication des règles. Il met ensuite en place les aménagements, vous suit pendant toute la scolarité et aide à l'insertion professionnelle.",
-  "pole_link": "Voir les ressources à l'école, au niveau national et dans la loi"
+  "pole_link": "Voir les ressources à l'école, au niveau national et dans la loi",
+  "other_questionnaires": "Les autres questionnaires",
+  "start_questionnaire": "Commencer ce questionnaire"
  },
  "quiz": {
   "progress": "Question {n} sur {total}",
@@ -188,21 +191,9 @@
   "more_skip": "Voir mon orientation maintenant",
   "more_later": "Vous pourrez aussi y revenir depuis votre résultat.",
   "deep_tag": "complémentaire",
-  "pole_panel_title": "Pour contacter le pôle handicap",
-  "pole_panel_subjects": "Sujets traités",
-  "pole_subjects": [
-   "Handicap",
-   "Tiers-temps",
-   "Social",
-   "Aides exceptionnelles",
-   "Aménagements"
-  ],
-  "pole_panel_write": "Écrivez à la personne qui correspond à votre besoin (un seul e-mail suffit) :",
-  "pole_panel_then": "Choisissez ensuite : continuer vers les questions sur la RQTH, ou terminer ici.",
   "email_label": "E-mail",
-  "pole_panel_school": "Pour vos études à l'école",
-  "pole_panel_work": "Pour le monde du travail",
-  "pole_hint_title": "Ce que suggèrent vos réponses"
+  "preview_notice": "Aperçu du brouillon (administration) : rien n'est compté dans les statistiques.",
+  "preview_failed": "Aperçu impossible : connectez-vous à l'administration, puis relancez « Tester le brouillon »."
  },
  "result": {
   "title": "Votre orientation",
@@ -211,7 +202,7 @@
   "why_intro": "HandiDiag n'utilise aucune intelligence artificielle : il applique des règles simples, que voici.",
   "points": "{n} point",
   "points_plural": "{n} points",
-  "score_line": "Total : {score} (seuils : 3 pour « il peut être utile d'en parler », 6 pour « échange rapide conseillé »).",
+  "score_line": "Total des points : {score}.",
   "attention_title": "Points d'attention pour vous",
   "contacts_title": "Vers qui vous tourner",
   "contacts_intro": "Voici des points de départ adaptés à votre situation. Vous pouvez en contacter un seul.",
@@ -231,7 +222,9 @@
   "todo_note_falc": "Ce sont seulement des idées, selon vos réponses. Ce ne sont pas des conseils de médecin. Ce ne sont pas des obligations. Un professionnel peut vous aider.",
   "refine_title": "Affiner mes pistes",
   "refine_text": "Répondez à {n} questions complémentaires pour obtenir des pistes plus précises, adaptées à ce que vous avez coché.",
-  "refine_btn": "Répondre aux questions complémentaires"
+  "refine_btn": "Répondre aux questions complémentaires",
+  "next_text": "Vous pouvez continuer avec ce questionnaire. Vos réponses déjà données sont reprises : vous pourrez les vérifier ou les modifier.",
+  "next_btn": "Continuer"
  },
  "kit": {
   "title": "Kit documentaire",
@@ -299,10 +292,7 @@
   "title": "Le pôle handicap de l'école",
   "who_school": "Pour vos études à l'école (examens, tiers-temps, aides sociales, aménagements)",
   "who_work": "Pour le monde du travail (stage, alternance, recherche d'emploi, aménagements en entreprise)",
-  "privacy_note": "Le pôle handicap est confidentiel : seules les informations utiles à la mise en place de l'aménagement sont communiquées.",
-  "continue_title": "Voir si une RQTH peut avoir du sens pour vous",
-  "continue_text": "Vous avez choisi de terminer après l'étape du pôle handicap. Vous pouvez à tout moment répondre aux questions sur la RQTH (une dizaine de questions, sans détail médical).",
-  "continue_btn": "Répondre aux questions sur la RQTH"
+  "privacy_note": "Le pôle handicap est confidentiel : seules les informations utiles à la mise en place de l'aménagement sont communiquées."
  },
  "resources": {
   "title": "Ressources",

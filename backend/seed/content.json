@@ -3,14 +3,6 @@
   {
    "key": "profile",
    "kind": "single",
-   "phase": "core",
-   "step": null,
-   "required": false,
-   "hidden": true,
-   "auto_answer": "student",
-   "show_if": null,
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Quelle est votre situation actuelle ?",
     "en": "What is your current situation?"
@@ -58,14 +50,6 @@
   {
    "key": "pole",
    "kind": "single",
-   "phase": "core",
-   "step": "pole",
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": null,
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Êtes-vous suivi(e) par le pôle handicap de l'école ?",
     "en": "Are you followed by the school's disability office (pôle handicap)?"
@@ -100,19 +84,6 @@
   {
    "key": "pole_check",
    "kind": "single",
-   "phase": "core",
-   "step": "pole",
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "pole",
-    "in": [
-     "no"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Souhaitez-vous voir si le pôle handicap pourrait vous être utile ?",
     "en": "Would you like to see whether the disability office could be useful to you?"
@@ -144,19 +115,6 @@
   {
    "key": "pole_fit",
    "kind": "multiple",
-   "phase": "core",
-   "step": "pole",
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "pole_check",
-    "in": [
-     "yes"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Dans vos études, vous arrive-t-il de rencontrer l'une de ces situations ?",
     "en": "In your studies, do you ever face any of these situations?"
@@ -237,65 +195,8 @@
    ]
   },
   {
-   "key": "pole_next",
-   "kind": "single",
-   "phase": "core",
-   "step": "pole",
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "pole",
-    "in": [
-     "no"
-    ]
-   },
-   "stop_if": {
-    "q": "pole_next",
-    "in": [
-     "end"
-    ]
-   },
-   "tracks": [],
-   "text": {
-    "fr": "Et maintenant ?",
-    "en": "And now?"
-   },
-   "text_falc": null,
-   "help": {
-    "fr": "Vous pourrez aussi répondre aux questions sur la RQTH plus tard, depuis votre résultat.",
-    "en": "You can also answer the RQTH questions later, from your result."
-   },
-   "options": [
-    {
-     "key": "rqth",
-     "exclusive": false,
-     "label": {
-      "fr": "Continuer : voir si une RQTH peut avoir du sens pour mon projet professionnel",
-      "en": "Continue: see whether an RQTH could make sense for my career plans"
-     }
-    },
-    {
-     "key": "end",
-     "exclusive": false,
-     "label": {
-      "fr": "Terminer ici et voir mes contacts",
-      "en": "Stop here and see my contacts"
-     }
-    }
-   ]
-  },
-  {
    "key": "duration",
    "kind": "single",
-   "phase": "core",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": null,
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Avez-vous des difficultés de santé qui durent depuis longtemps ou qui risquent de durer ?",
     "en": "Do you have health difficulties that have lasted a long time or are likely to last?"
@@ -346,21 +247,6 @@
   {
    "key": "areas",
    "kind": "multiple",
-   "phase": "core",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "not": {
-     "q": "duration",
-     "in": [
-      "none"
-     ]
-    }
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Dans quels domaines ressentez-vous une gêne dans votre vie quotidienne ?",
     "en": "In which areas do you feel difficulty in your daily life?"
@@ -435,19 +321,6 @@
   {
    "key": "for_whom",
    "kind": "single",
-   "phase": "core",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "duration",
-    "in": [
-     "none"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Pour qui vous renseignez-vous ?",
     "en": "Who are you looking into this for?"
@@ -495,21 +368,6 @@
   {
    "key": "frequency",
    "kind": "single",
-   "phase": "core",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "not": {
-     "q": "duration",
-     "in": [
-      "none"
-     ]
-    }
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "À quelle fréquence ces difficultés compliquent-elles vos études, votre stage ou votre alternance ?",
     "en": "How often do these difficulties make your studies, internship or work-study harder?"
@@ -557,19 +415,6 @@
   {
    "key": "worry",
    "kind": "multiple",
-   "phase": "core",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "duration",
-    "in": [
-     "none"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Un changement à venir pourrait-il peser sur votre santé ou vos conditions d'études et de travail ?",
     "en": "Could an upcoming change affect your health or your study and work conditions?"
@@ -614,21 +459,6 @@
   {
    "key": "needs",
    "kind": "multiple",
-   "phase": "core",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "not": {
-     "q": "duration",
-     "in": [
-      "none"
-     ]
-    }
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "De quels aménagements auriez-vous besoin pour travailler ou étudier plus facilement ?",
     "en": "Which adjustments would make work or study easier for you?"
@@ -700,14 +530,6 @@
   {
    "key": "pathway",
    "kind": "multiple",
-   "phase": "core",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": null,
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Quelle partie de votre parcours est concernée ?",
     "en": "Which part of your path is affected?"
@@ -760,19 +582,6 @@
   {
    "key": "ctx_student",
    "kind": "multiple",
-   "phase": "core",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "profile",
-    "in": [
-     "student"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Sur le chemin du monde du travail, qu'est-ce qui est le plus concerné ?",
     "en": "On the way to the working world, what is most affected?"
@@ -839,19 +648,6 @@
   {
    "key": "ctx_employee",
    "kind": "single",
-   "phase": "core",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "profile",
-    "in": [
-     "employee"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Comment est organisé votre travail ?",
     "en": "How is your work organised?"
@@ -899,19 +695,6 @@
   {
    "key": "ctx_jobseeker",
    "kind": "single",
-   "phase": "core",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "profile",
-    "in": [
-     "jobseeker"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Depuis combien de temps cherchez-vous un emploi ?",
     "en": "How long have you been looking for a job?"
@@ -959,19 +742,6 @@
   {
    "key": "ctx_public",
    "kind": "single",
-   "phase": "core",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "profile",
-    "in": [
-     "public_agent"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Quel est votre statut dans la fonction publique ?",
     "en": "What is your status in the public sector?"
@@ -1019,14 +789,6 @@
   {
    "key": "support",
    "kind": "single",
-   "phase": "core",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": null,
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Avez-vous déjà un accompagnement ou une reconnaissance ?",
     "en": "Do you already have support or official recognition?"
@@ -1071,14 +833,6 @@
   {
    "key": "barriers",
    "kind": "multiple",
-   "phase": "core",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": null,
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Qu'est-ce qui vous freine, ou pourrait vous freiner, pour faire cette démarche ?",
     "en": "What holds you back, or could hold you back, from taking this step?"
@@ -1142,14 +896,6 @@
   {
    "key": "urgency",
    "kind": "single",
-   "phase": "core",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": null,
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Avez-vous une échéance proche (stage, alternance, premier emploi, examens) ?",
     "en": "Do you have a deadline coming up (internship, work-study, first job, exams)?"
@@ -1194,14 +940,6 @@
   {
    "key": "awareness",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": null,
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Que savez-vous de la RQTH ?",
     "en": "What do you know about the RQTH?"
@@ -1238,37 +976,6 @@
   {
    "key": "pole_proof",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "all": [
-     {
-      "q": "pole",
-      "in": [
-       "no"
-      ]
-     },
-     {
-      "q": "pole_fit",
-      "hasAny": [
-       "exam_time",
-       "write_read",
-       "focus",
-       "noise_stress",
-       "fatigue_health",
-       "senses_mobility",
-       "instructions"
-      ]
-     }
-    ]
-   },
-   "stop_if": null,
-   "tracks": [
-    "pole"
-   ],
    "text": {
     "fr": "Avez-vous un document qui décrit votre situation (certificat médical, bilan, compte rendu) ?",
     "en": "Do you have a document describing your situation (medical certificate, assessment, report)?"
@@ -1308,21 +1015,6 @@
   {
    "key": "pole_fear",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "pole",
-    "in": [
-     "no"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [
-    "pole"
-   ],
    "text": {
     "fr": "Qu'est-ce qui pourrait vous freiner pour contacter le pôle handicap ?",
     "en": "What might hold you back from contacting the disability office?"
@@ -1378,19 +1070,6 @@
   {
    "key": "energy_when",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "areas",
-    "hasAny": [
-     "energy"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Quand la fatigue ou les douleurs se font-elles le plus sentir ?",
     "en": "When do tiredness or pain affect you most?"
@@ -1446,19 +1125,6 @@
   {
    "key": "energy_effects",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "areas",
-    "hasAny": [
-     "energy"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Qu'est-ce qui devient plus difficile ?",
     "en": "What becomes harder?"
@@ -1519,19 +1185,6 @@
   {
    "key": "energy_rest",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "areas",
-    "hasAny": [
-     "energy"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Avez-vous besoin de pauses ou de repos pendant la journée ?",
     "en": "Do you need breaks or rest during the day?"
@@ -1576,19 +1229,6 @@
   {
    "key": "attn_tasks",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "areas",
-    "hasAny": [
-     "attention"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Quelles tâches vous demandent plus de temps ou d'efforts ?",
     "en": "Which tasks take you more time or effort?"
@@ -1649,19 +1289,6 @@
   {
    "key": "attn_tools",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "areas",
-    "hasAny": [
-     "attention"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Quelles aides utilisez-vous déjà ?",
     "en": "Which aids do you already use?"
@@ -1714,19 +1341,6 @@
   {
    "key": "senses_which",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "areas",
-    "hasAny": [
-     "senses"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Qu'est-ce qui est concerné ?",
     "en": "What is affected?"
@@ -1763,19 +1377,6 @@
   {
    "key": "senses_needs",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "areas",
-    "hasAny": [
-     "senses"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Quelles adaptations vous aideraient ?",
     "en": "Which adjustments would help you?"
@@ -1828,19 +1429,6 @@
   {
    "key": "mob_aspects",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "areas",
-    "hasAny": [
-     "mobility"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Qu'est-ce qui est le plus difficile dans vos déplacements et gestes ?",
     "en": "What is hardest in your movements and gestures?"
@@ -1901,19 +1489,6 @@
   {
    "key": "mob_access",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "areas",
-    "hasAny": [
-     "mobility"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Quels aménagements d'accès seraient utiles ?",
     "en": "Which access adjustments would be useful?"
@@ -1966,19 +1541,6 @@
   {
    "key": "psych_situations",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "areas",
-    "hasAny": [
-     "psych"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Quelles situations sont les plus éprouvantes ?",
     "en": "Which situations are the most difficult?"
@@ -2031,19 +1593,6 @@
   {
    "key": "psych_support",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "areas",
-    "hasAny": [
-     "psych"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Avez-vous un soutien (proches, professionnels) ?",
     "en": "Do you have support (people close to you, professionals)?"
@@ -2088,21 +1637,6 @@
   {
    "key": "stability",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "not": {
-     "q": "duration",
-     "in": [
-      "none"
-     ]
-    }
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Ces difficultés varient-elles d'un jour à l'autre ?",
     "en": "Do these difficulties vary from day to day?"
@@ -2142,32 +1676,6 @@
   {
    "key": "life_impact",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "all": [
-     {
-      "not": {
-       "q": "duration",
-       "in": [
-        "none"
-       ]
-      }
-     },
-     {
-      "q": "frequency",
-      "in": [
-       "often",
-       "always"
-      ]
-     }
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Au-delà des études ou du travail, qu'est-ce qui est touché ?",
     "en": "Beyond studies or work, what is affected?"
@@ -2228,21 +1736,6 @@
   {
    "key": "followup",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "not": {
-     "q": "duration",
-     "in": [
-      "none"
-     ]
-    }
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Un professionnel de santé suit-il ou a-t-il suivi ces difficultés ?",
     "en": "Has a health professional followed, or is following, these difficulties?"
@@ -2293,19 +1786,6 @@
   {
    "key": "st_year",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "profile",
-    "in": [
-     "student"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Où en êtes-vous dans votre cursus ?",
     "en": "Where are you in your studies?"
@@ -2350,37 +1830,6 @@
   {
    "key": "st_exam_detail",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "any": [
-     {
-      "q": "ctx_student",
-      "hasAny": [
-       "exams"
-      ]
-     },
-     {
-      "q": "pole_fit",
-      "hasAny": [
-       "exam_time",
-       "write_read",
-       "focus",
-       "noise_stress",
-       "fatigue_health",
-       "senses_mobility",
-       "instructions"
-      ]
-     }
-    ]
-   },
-   "stop_if": null,
-   "tracks": [
-    "pole"
-   ],
    "text": {
     "fr": "Quels aménagements d'examens vous aideraient ?",
     "en": "Which exam adjustments would help you?"
@@ -2465,19 +1914,6 @@
   {
    "key": "st_work_detail",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "ctx_student",
-    "hasAny": [
-     "work"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "En stage ou en alternance, qu'est-ce qui pose question ?",
     "en": "In an internship or work-study, what raises questions?"
@@ -2546,39 +1982,6 @@
   {
    "key": "st_contact",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "all": [
-     {
-      "q": "profile",
-      "in": [
-       "student"
-      ]
-     },
-     {
-      "not": {
-       "q": "duration",
-       "in": [
-        "none"
-       ]
-      }
-     },
-     {
-      "not": {
-       "q": "pole",
-       "in": [
-        "yes"
-       ]
-      }
-     }
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Avez-vous déjà contacté le pôle handicap ou la scolarité à ce sujet ?",
     "en": "Have you already contacted the disability office or administration about this?"
@@ -2615,31 +2018,6 @@
   {
    "key": "emp_manager",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "all": [
-     {
-      "q": "profile",
-      "in": [
-       "employee"
-      ]
-     },
-     {
-      "not": {
-       "q": "duration",
-       "in": [
-        "none"
-       ]
-      }
-     }
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Votre manager ou les ressources humaines sont-ils au courant de vos difficultés ?",
     "en": "Are your manager or HR aware of your difficulties?"
@@ -2684,31 +2062,6 @@
   {
    "key": "emp_workstation",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "all": [
-     {
-      "q": "profile",
-      "in": [
-       "employee"
-      ]
-     },
-     {
-      "not": {
-       "q": "duration",
-       "in": [
-        "none"
-       ]
-      }
-     }
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Qu'est-ce qui pose le plus de difficulté dans votre travail ?",
     "en": "What causes the most difficulty in your work?"
@@ -2777,31 +2130,6 @@
   {
    "key": "emp_occ",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "all": [
-     {
-      "q": "profile",
-      "in": [
-       "employee"
-      ]
-     },
-     {
-      "not": {
-       "q": "duration",
-       "in": [
-        "none"
-       ]
-      }
-     }
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Avez-vous vu le médecin du travail récemment ?",
     "en": "Have you seen the occupational physician recently?"
@@ -2846,31 +2174,6 @@
   {
    "key": "emp_leave",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "all": [
-     {
-      "q": "profile",
-      "in": [
-       "employee"
-      ]
-     },
-     {
-      "not": {
-       "q": "duration",
-       "in": [
-        "none"
-       ]
-      }
-     }
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Avez-vous eu des arrêts de travail liés à ces difficultés au cours de l'année ?",
     "en": "Have you had sick leave linked to these difficulties this year?"
@@ -2915,31 +2218,6 @@
   {
    "key": "js_obstacles",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "all": [
-     {
-      "q": "profile",
-      "in": [
-       "jobseeker"
-      ]
-     },
-     {
-      "not": {
-       "q": "duration",
-       "in": [
-        "none"
-       ]
-      }
-     }
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Qu'est-ce qui complique votre recherche d'emploi ?",
     "en": "What makes your job search harder?"
@@ -3000,19 +2278,6 @@
   {
    "key": "js_training",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "profile",
-    "in": [
-     "jobseeker"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Envisagez-vous une formation ou une reconversion ?",
     "en": "Are you considering training or a career change?"
@@ -3049,19 +2314,6 @@
   {
    "key": "js_support",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "profile",
-    "in": [
-     "jobseeker"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Êtes-vous accompagné(e) par France Travail, Cap emploi ou une autre structure ?",
     "en": "Are you supported by France Travail, Cap emploi or another organisation?"
@@ -3098,31 +2350,6 @@
   {
    "key": "pub_prevention",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "all": [
-     {
-      "q": "profile",
-      "in": [
-       "public_agent"
-      ]
-     },
-     {
-      "not": {
-       "q": "duration",
-       "in": [
-        "none"
-       ]
-      }
-     }
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Avez-vous vu le médecin de prévention de votre administration ?",
     "en": "Have you seen your administration's prevention physician?"
@@ -3159,19 +2386,6 @@
   {
    "key": "pub_referent",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "profile",
-    "in": [
-     "public_agent"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Savez-vous qui est le référent handicap de votre administration ?",
     "en": "Do you know who the disability officer in your administration is?"
@@ -3200,19 +2414,6 @@
   {
    "key": "pub_mobility",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "profile",
-    "in": [
-     "public_agent"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Un changement de poste ou de service est-il envisagé ?",
     "en": "Is a change of post or department planned?"
@@ -3249,21 +2450,6 @@
   {
    "key": "goals",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "not": {
-     "q": "duration",
-     "in": [
-      "none"
-     ]
-    }
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Qu'attendez-vous d'une démarche ?",
     "en": "What do you expect from taking this step?"
@@ -3327,14 +2513,6 @@
   {
    "key": "pref_contact",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": null,
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Comment préférez-vous être accompagné(e) ?",
     "en": "How do you prefer to be supported?"
@@ -3379,21 +2557,6 @@
   {
    "key": "time_available",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "not": {
-     "q": "duration",
-     "in": [
-      "none"
-     ]
-    }
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Combien de temps pouvez-vous consacrer à la démarche ?",
     "en": "How much time can you give to the process?"
@@ -3430,21 +2593,6 @@
   {
    "key": "helper",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "not": {
-     "q": "duration",
-     "in": [
-      "none"
-     ]
-    }
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Quelqu'un peut-il vous aider dans la démarche ?",
     "en": "Can someone help you with the process?"
@@ -3481,21 +2629,6 @@
   {
    "key": "sup_goal",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "for_whom",
-    "in": [
-     "relative",
-     "colleague",
-     "pro"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Que souhaitez-vous faire ?",
     "en": "What would you like to do?"
@@ -3548,21 +2681,6 @@
   {
    "key": "sup_worry",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "for_whom",
-    "in": [
-     "relative",
-     "colleague",
-     "pro"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Qu'est-ce qui vous inquiète dans l'accompagnement ?",
     "en": "What worries you about supporting someone?"
@@ -3615,29 +2733,6 @@
   {
    "key": "prev_interest",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "all": [
-     {
-      "q": "duration",
-      "in": [
-       "none"
-      ]
-     },
-     {
-      "q": "for_whom",
-      "in": [
-       "self"
-      ]
-     }
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Qu'aimeriez-vous faire avec ces informations ?",
     "en": "What would you like to do with this information?"
@@ -3682,19 +2777,6 @@
   {
    "key": "st_next",
    "kind": "single",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "q": "profile",
-    "in": [
-     "student"
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Après l'école, qu'est-ce qui est prévu pour vous ?",
     "en": "What is planned for you after school?"
@@ -3747,31 +2829,6 @@
   {
    "key": "recruit",
    "kind": "multiple",
-   "phase": "deep",
-   "step": null,
-   "required": false,
-   "hidden": false,
-   "auto_answer": null,
-   "show_if": {
-    "all": [
-     {
-      "q": "profile",
-      "in": [
-       "student"
-      ]
-     },
-     {
-      "not": {
-       "q": "duration",
-       "in": [
-        "none"
-       ]
-      }
-     }
-    ]
-   },
-   "stop_if": null,
-   "tracks": [],
    "text": {
     "fr": "Dans votre recherche de stage ou d'emploi, qu'est-ce qui vous inquiète ?",
     "en": "In your search for an internship or a job, what worries you?"
@@ -3836,244 +2893,198 @@
    ]
   }
  ],
- "levels": [
-  {
-   "key": "explore",
-   "min_score": 0,
-   "icon": "book",
-   "title": {
-    "fr": "Pour l'instant, vous pouvez vous informer à votre rythme",
-    "en": "For now, you can look into this at your own pace"
-   },
-   "body": {
-    "fr": "D'après vos réponses, rien n'indique un besoin pressant. Cela ne veut pas dire que votre situation est sans importance : consultez les informations ci-dessous, et parlez-en à un interlocuteur de confiance si vous avez un doute.",
-    "en": "Based on your answers, nothing points to an urgent need. That does not mean your situation does not matter: read the information below, and talk to someone you trust if you have doubts."
-   },
-   "body_falc": {
-    "fr": "D'après vos réponses, il n'y a pas d'urgence. Vous pouvez lire les informations. Si vous avez un doute, parlez-en à quelqu'un de confiance.",
-    "en": "From your answers, there is no emergency. You can read the information. If you have doubts, talk to someone you trust."
-   }
-  },
-  {
-   "key": "talk",
-   "min_score": 3,
-   "icon": "chat",
-   "title": {
-    "fr": "Il peut être utile d'en parler à un interlocuteur",
-    "en": "It may be useful to talk to a contact person"
-   },
-   "body": {
-    "fr": "Vos réponses montrent que votre santé peut avoir des effets sur vos études ou votre travail. Il peut être utile d'en parler à l'un des interlocuteurs ci-dessous. Il pourra vous aider à voir si une démarche de reconnaissance, comme la RQTH, a du sens pour vous.",
-    "en": "Your answers suggest your health may affect your studies or work. It may be useful to talk to one of the contacts below. They can help you see whether applying for recognition, such as the RQTH, makes sense for you."
-   },
-   "body_falc": {
-    "fr": "Votre santé peut avoir des effets sur vos études ou votre travail. Il peut être utile d'en parler à quelqu'un de la liste ci-dessous. Cette personne vous aidera à voir si la RQTH peut vous aider.",
-    "en": "Your health may affect your studies or work. It may help to talk to someone in the list below. They can help you see if the RQTH could help you."
-   }
-  },
-  {
-   "key": "talk_soon",
-   "min_score": 6,
-   "icon": "clock",
-   "title": {
-    "fr": "Un échange rapide avec un interlocuteur est conseillé",
-    "en": "A quick conversation with a contact person is recommended"
-   },
-   "body": {
-    "fr": "Vos réponses montrent des effets importants ou répétés sur votre quotidien. Il peut être utile d'en parler assez vite à l'un des interlocuteurs ci-dessous. Seule la MDPH peut décider d'une reconnaissance, mais ces personnes peuvent vous aider à préparer votre démarche.",
-    "en": "Your answers show significant or repeated effects on your daily life. It may be useful to talk fairly soon to one of the contacts below. Only the MDPH can decide on recognition, but these people can help you prepare your application."
-   },
-   "body_falc": {
-    "fr": "Votre santé a des effets importants sur votre quotidien. Il peut être utile d'en parler assez vite à quelqu'un de la liste ci-dessous. Seule la MDPH décide de la RQTH. Ces personnes peuvent vous aider à préparer la demande.",
-    "en": "Your health has big effects on your daily life. It may help to talk fairly soon to someone in the list below. Only the MDPH decides on the RQTH. These people can help you prepare the application."
-   }
-  },
-  {
-   "key": "already",
-   "min_score": null,
-   "icon": "badge",
-   "title": {
-    "fr": "Vous indiquez avoir déjà une reconnaissance",
-    "en": "You say you already have recognition"
-   },
-   "body": {
-    "fr": "Vous avez déjà fait une partie du chemin. Les ressources ci-dessous peuvent vous aider à faire valoir votre reconnaissance (aménagements, aides) ou à anticiper son renouvellement.",
-    "en": "You have already covered part of the way. The resources below can help you make use of your recognition (adjustments, support) or plan its renewal."
-   },
-   "body_falc": {
-    "fr": "Vous avez déjà une reconnaissance. Les liens ci-dessous vous aident à l'utiliser et à la renouveler.",
-    "en": "You already have recognition. The links below help you use it and renew it."
-   }
-  }
- ],
  "flags": [
   {
    "key": "urgent",
    "text": {
     "fr": "Vous avez une échéance proche. Les délais de traitement d'un dossier peuvent être longs : si vous souhaitez agir, mieux vaut demander conseil dès maintenant.",
     "en": "You have a deadline coming up. Processing times for an application can be long: if you want to act, it is better to ask for advice now."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "psych_support_none",
    "text": {
     "fr": "Vous n'avez pas de soutien identifié : un professionnel de santé, le service de santé étudiante ou le médecin du travail peut être un premier contact. En cas de détresse, ne restez pas seul(e) : en France, le 3114 est joignable 24 h/24.",
     "en": "You have no identified support: a health professional, the student health service or the occupational physician can be a first contact. If you are in distress, do not stay alone: in France, 3114 is available 24/7."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "already_rqth",
    "text": {
     "fr": "Pensez à vérifier la date de fin de validité de votre reconnaissance et à anticiper son renouvellement auprès de la MDPH.",
     "en": "Remember to check the end date of your recognition and plan its renewal with the MDPH."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "see_doctor",
    "text": {
     "fr": "Un médecin remplit le certificat médical de la demande. Si vous n'avez pas de suivi, un médecin généraliste, le service de santé étudiante ou le médecin du travail peut être un premier contact.",
     "en": "A doctor fills in the medical certificate for the application. If you have no follow-up, a general practitioner, the student health service or the occupational physician can be a first contact."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "no_support",
    "text": {
     "fr": "Vous n'êtes pas encore accompagné(e). Un premier contact avec l'un des interlocuteurs ci-dessous est un bon point de départ.",
     "en": "You are not yet supported. A first contact with one of the contacts below is a good starting point."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "informal_adjust",
    "text": {
     "fr": "Vous avez des aménagements sans cadre officiel. Une reconnaissance peut permettre de les sécuriser dans la durée : un interlocuteur peut vous dire si c'est adapté à votre cas.",
     "en": "You have adjustments with no official framework. Recognition can help secure them over time: a contact person can tell you whether it suits your case."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "student_exam",
    "text": {
     "fr": "Pour les examens : la mission handicap de l'école peut vous expliquer quels aménagements existent et dans quels délais les demander. Anticipez avant la période d'examens.",
     "en": "For exams: your institution's disability office can explain which adjustments exist and how far ahead to ask. Plan before the exam period."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "student_work",
    "text": {
     "fr": "Pour un stage ou une alternance : l'entreprise d'accueil peut avoir un référent handicap. Vous choisissez ce que vous partagez, et à quel moment.",
     "en": "For an internship or work-study: the host company may have a disability officer. You choose what you share, and when."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "shift_work",
    "text": {
     "fr": "Vos horaires sont décalés : le médecin du travail peut recommander des adaptations d'horaires ou de rythme.",
     "en": "Your hours are irregular: the occupational physician can recommend adjustments to hours or pace."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "long_search",
    "text": {
     "fr": "Votre recherche dure depuis longtemps : France Travail et Cap emploi proposent des accompagnements spécialisés.",
     "en": "Your job search has lasted a long time: France Travail and Cap emploi offer specialised support."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "public_status",
    "text": {
     "fr": "Les règles peuvent différer selon votre statut. Le référent handicap ou le médecin de prévention pourra vous préciser ce qui s'applique.",
     "en": "Rules may differ depending on your status. The disability officer or prevention physician can tell you what applies."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "emp_unaware",
    "text": {
     "fr": "Votre manager n'est pas informé : vous n'y êtes pas obligé(e) pour vous renseigner. Le médecin du travail est tenu au secret médical.",
     "en": "Your manager is not aware: you do not have to tell them in order to find out more. The occupational physician is bound by medical confidentiality."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "emp_leave",
    "text": {
     "fr": "Des arrêts de travail liés à ces difficultés : un échange avec le médecin du travail peut permettre d'envisager des aménagements pour en limiter le nombre.",
     "en": "Sick leave linked to these difficulties: talking to the occupational physician may allow adjustments to be considered to reduce it."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "life_sleep",
    "text": {
     "fr": "Si votre sommeil est perturbé, c'est un point à évoquer avec un médecin.",
     "en": "If your sleep is disturbed, this is something to raise with a doctor."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "for_relative",
    "text": {
     "fr": "La démarche reste personnelle : seule la personne concernée peut la demander. Vous pouvez l'aider, sans décider à sa place.",
     "en": "The process is personal: only the person concerned can apply. You can help, without deciding for them."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "for_support",
    "text": {
     "fr": "Vous vous renseignez pour accompagner quelqu'un : respectez sa confidentialité et son choix de partager, ou non.",
     "en": "You are looking into this to support someone: respect their confidentiality and their choice to share, or not."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "sup_confidentiality",
    "text": {
     "fr": "Ne partagez rien sur la santé d'une personne sans son accord.",
     "en": "Do not share anything about a person's health without their agreement."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "goal_info_only",
    "text": {
     "fr": "Vous souhaitez seulement vous informer : le kit documentaire suffit pour commencer ; rien ne vous oblige à aller plus loin.",
     "en": "You only want to get information: the resource kit is enough to start; nothing obliges you to go further."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "needs_info",
    "text": {
     "fr": "Vous connaissez peu la RQTH. Le kit documentaire explique la démarche étape par étape.",
     "en": "You know little about the RQTH. The resource kit explains the process step by step."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "employer",
    "text": {
     "fr": "La demande de RQTH est une démarche personnelle : vous n'avez pas à en informer votre employeur ou votre école pour vous renseigner ou la demander.",
     "en": "Applying for the RQTH is a personal step: you do not have to tell your employer or school in order to find out more or to apply."
-   }
+   },
+   "highlight_confidential": true
   },
   {
    "key": "stigma",
    "text": {
     "fr": "La peur du regard des autres est fréquente. La démarche est personnelle et volontaire. Un interlocuteur de confiance peut vous expliquer ce qui est partagé, avec qui, et ce qui reste confidentiel.",
     "en": "Fear of other people's judgement is common. The process is personal and voluntary. A trusted contact can explain what is shared, with whom, and what stays confidential."
-   }
+   },
+   "highlight_confidential": true
   },
   {
    "key": "complexity",
    "text": {
     "fr": "Le dossier peut sembler lourd. Le kit propose une checklist et des étapes simples, et la MDPH ou un conseiller peut vous aider à le remplir.",
     "en": "The file can seem heavy. The kit offers a checklist and simple steps, and the MDPH or an adviser can help you fill it in."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "who",
    "text": {
     "fr": "Vous ne savez pas à qui vous adresser : la liste ci-dessous propose des points de départ adaptés à votre situation.",
     "en": "You don't know who to turn to: the list below offers starting points suited to your situation."
-   }
+   },
+   "highlight_confidential": false
   },
   {
    "key": "time",
    "text": {
     "fr": "Le manque de temps est un frein courant. Un premier échange peut se faire en un seul rendez-vous ou appel.",
     "en": "Lack of time is a common obstacle. A first conversation can happen in a single appointment or call."
-   }
+   },
+   "highlight_confidential": false
   }
  ],
  "suggestions": [
@@ -4561,7 +3572,297 @@
    }
   }
  ],
+ "contacts": [
+  {
+   "key": "school_officer",
+   "icon": "user",
+   "name": {
+    "fr": "Mission handicap ou référent handicap de votre établissement",
+    "en": "Disability office or disability officer at your institution"
+   },
+   "role": {
+    "fr": "Écoute, aménagements d'études et d'examens, aide pour s'orienter dans la démarche.",
+    "en": "Listening, study and exam adjustments, help finding your way through the process."
+   },
+   "email": null,
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": false,
+   "group": null
+  },
+  {
+   "key": "student_health",
+   "icon": "shield",
+   "name": {
+    "fr": "Service de santé étudiante (médecine préventive)",
+    "en": "Student health service (preventive medicine)"
+   },
+   "role": {
+    "fr": "Professionnels de santé qui peuvent vous conseiller et vous orienter.",
+    "en": "Health professionals who can advise and guide you."
+   },
+   "email": null,
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": true,
+   "group": "other"
+  },
+  {
+   "key": "registrar",
+   "icon": "doc",
+   "name": {
+    "fr": "Scolarité",
+    "en": "Student administration office"
+   },
+   "role": {
+    "fr": "Pour mettre en place les aménagements d'examens et de scolarité une fois la demande formulée.",
+    "en": "To put exam and course adjustments in place once the request is made."
+   },
+   "email": null,
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": false,
+   "group": "other"
+  },
+  {
+   "key": "occ_physician",
+   "icon": "shield",
+   "name": {
+    "fr": "Médecin du travail (service de prévention et de santé au travail)",
+    "en": "Occupational physician (workplace health service)"
+   },
+   "role": {
+    "fr": "Peut vous conseiller sur votre santé au travail et les aménagements de poste.",
+    "en": "Can advise you on health at work and workstation adjustments."
+   },
+   "email": null,
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": true,
+   "group": null
+  },
+  {
+   "key": "hr_officer",
+   "icon": "user",
+   "name": {
+    "fr": "Référent handicap ou service RH",
+    "en": "Disability officer or HR department"
+   },
+   "role": {
+    "fr": "Pour mettre en place des aménagements et connaître la politique handicap de votre organisation.",
+    "en": "To set up adjustments and learn about your organisation's disability policy."
+   },
+   "email": null,
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": false,
+   "group": null
+  },
+  {
+   "key": "prevention_physician",
+   "icon": "shield",
+   "name": {
+    "fr": "Médecin de prévention",
+    "en": "Prevention physician"
+   },
+   "role": {
+    "fr": "Conseille les agents sur leur santé au travail et les aménagements possibles.",
+    "en": "Advises public-sector staff on health at work and possible adjustments."
+   },
+   "email": null,
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": true,
+   "group": null
+  },
+  {
+   "key": "cap_emploi",
+   "icon": "compass",
+   "name": {
+    "fr": "Cap emploi",
+    "en": "Cap emploi"
+   },
+   "role": {
+    "fr": "Organisme d'accompagnement vers l'emploi des personnes en situation de handicap. Votre conseiller France Travail ou l'Agefiph peut vous mettre en relation.",
+    "en": "Organisation supporting people with disabilities towards employment. Your France Travail adviser or Agefiph can put you in touch."
+   },
+   "email": null,
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": false,
+   "group": null
+  },
+  {
+   "key": "france_travail",
+   "icon": "building",
+   "name": {
+    "fr": "France Travail (conseiller ou référent handicap)",
+    "en": "France Travail (adviser or disability officer)"
+   },
+   "role": {
+    "fr": "Accompagnement dans la recherche d'emploi et orientation vers un accompagnement spécialisé.",
+    "en": "Job-search support and referral to specialised support."
+   },
+   "email": null,
+   "link_url": "https://www.francetravail.fr/",
+   "link_label": {
+    "fr": "France Travail",
+    "en": "France Travail"
+   },
+   "is_confidential": false,
+   "group": null
+  },
+  {
+   "key": "agefiph",
+   "icon": "building",
+   "name": {
+    "fr": "Agefiph",
+    "en": "Agefiph"
+   },
+   "role": {
+    "fr": "Informations et aides pour l'emploi des personnes handicapées dans le secteur privé.",
+    "en": "Information and funding for the employment of people with disabilities in the private sector."
+   },
+   "email": null,
+   "link_url": "https://www.agefiph.fr/",
+   "link_label": {
+    "fr": "Agefiph",
+    "en": "Agefiph"
+   },
+   "is_confidential": false,
+   "group": null
+  },
+  {
+   "key": "fiphfp",
+   "icon": "building",
+   "name": {
+    "fr": "FIPHFP",
+    "en": "FIPHFP"
+   },
+   "role": {
+    "fr": "Informations et aides pour l'emploi des personnes en situation de handicap dans la fonction publique.",
+    "en": "Information and funding for the employment of people with disabilities in the public sector."
+   },
+   "email": null,
+   "link_url": "https://www.fiphfp.fr/",
+   "link_label": {
+    "fr": "FIPHFP",
+    "en": "FIPHFP"
+   },
+   "is_confidential": false,
+   "group": null
+  },
+  {
+   "key": "mdph",
+   "icon": "building",
+   "name": {
+    "fr": "MDPH (Maison départementale des personnes handicapées)",
+    "en": "MDPH (departmental disability office)"
+   },
+   "role": {
+    "fr": "Reçoit et instruit la demande. La décision est prise par la commission des droits et de l'autonomie (CDAPH).",
+    "en": "Receives and processes the application. The decision is made by the CDAPH commission."
+   },
+   "email": null,
+   "link_url": "https://www.monparcourshandicap.gouv.fr/",
+   "link_label": {
+    "fr": "Mon Parcours Handicap (portail national)",
+    "en": "Mon Parcours Handicap (national portal)"
+   },
+   "is_confidential": false,
+   "group": null
+  },
+  {
+   "key": "pole_social",
+   "icon": "user",
+   "name": {
+    "fr": "Charlie DUPIC, référente social et handicap",
+    "en": "Charlie DUPIC, social and disability officer"
+   },
+   "role": {
+    "fr": "Pôle handicap de l'école, pour vos études : handicap, tiers-temps, social, aides exceptionnelles, aménagements.",
+    "en": "School disability office, for your studies: disability, extra exam time, social support, exceptional aid, accommodations."
+   },
+   "email": "charlie.dupic@efrei.fr",
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": false,
+   "group": "school"
+  },
+  {
+   "key": "pole_rse",
+   "icon": "user",
+   "name": {
+    "fr": "Stéphanie LIBESKIND, responsable RSE",
+    "en": "Stéphanie LIBESKIND, CSR manager"
+   },
+   "role": {
+    "fr": "Pôle handicap de l'école, pour vos études : handicap, tiers-temps, social, aides exceptionnelles, aménagements.",
+    "en": "School disability office, for your studies: disability, extra exam time, social support, exceptional aid, accommodations."
+   },
+   "email": "stephanie.libeskind@efrei.fr",
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": false,
+   "group": "school"
+  },
+  {
+   "key": "pole_career",
+   "icon": "user",
+   "name": {
+    "fr": "Jordan SACCASYN, référent handicap au Career Center",
+    "en": "Jordan SACCASYN, disability contact at the Career Center"
+   },
+   "role": {
+    "fr": "Pour le monde du travail : recherche de stage, d'alternance ou d'emploi, et aménagements en entreprise.",
+    "en": "For the working world: finding an internship, work-study or a job, and accommodations at the company."
+   },
+   "email": "jordan.saccasyn@efrei.fr",
+   "link_url": null,
+   "link_label": null,
+   "is_confidential": false,
+   "group": "work"
+  }
+ ],
  "rules": [
+  {
+   "key": "R_pole_followed",
+   "condition": {
+    "q": "pole",
+    "in": [
+     "yes"
+    ]
+   },
+   "explanation": null,
+   "flags": [],
+   "suggestions": [],
+   "contacts": []
+  },
+  {
+   "key": "R_pole_declined",
+   "condition": {
+    "all": [
+     {
+      "q": "pole",
+      "in": [
+       "no"
+      ]
+     },
+     {
+      "not": {
+       "q": "pole_check",
+       "in": [
+        "yes"
+       ]
+      }
+     }
+    ]
+   },
+   "explanation": null,
+   "flags": [],
+   "suggestions": [],
+   "contacts": []
+  },
   {
    "key": "R_already_rqth",
    "condition": {
@@ -4570,9 +3871,6 @@
      "has_rqth"
     ]
    },
-   "points": 0,
-   "override_level": "already",
-   "pole_outcome": null,
    "explanation": {
     "fr": "Vous avez indiqué avoir déjà une RQTH ou une reconnaissance.",
     "en": "You said you already have an RQTH or recognition."
@@ -4580,7 +3878,8 @@
    "flags": [
     "already_rqth"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_no_signal",
@@ -4616,15 +3915,13 @@
      }
     ]
    },
-   "points": 0,
-   "override_level": "explore",
-   "pole_outcome": null,
    "explanation": {
     "fr": "Vous n'avez indiqué ni difficulté durable, ni besoin d'aménagement.",
     "en": "You reported neither lasting difficulty nor any need for adjustments."
    },
    "flags": [],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_duration_long",
@@ -4634,15 +3931,13 @@
      "long"
     ]
    },
-   "points": 2,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Vos difficultés durent depuis 6 mois ou plus.",
     "en": "Your difficulties have lasted 6 months or more."
    },
    "flags": [],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_duration_short",
@@ -4652,15 +3947,13 @@
      "short"
     ]
    },
-   "points": 1,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Vos difficultés durent depuis moins de 6 mois.",
     "en": "Your difficulties have lasted less than 6 months."
    },
    "flags": [],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_duration_unsure",
@@ -4670,15 +3963,13 @@
      "unsure"
     ]
    },
-   "points": 1,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Vous ne savez pas depuis quand ni si elles vont durer.",
     "en": "You don't know since when, or whether they will last."
    },
    "flags": [],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_freq_often",
@@ -4688,15 +3979,13 @@
      "often"
     ]
    },
-   "points": 1,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Ces difficultés compliquent souvent vos études ou votre travail.",
     "en": "These difficulties often make your studies or work harder."
    },
    "flags": [],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_freq_always",
@@ -4706,15 +3995,13 @@
      "always"
     ]
    },
-   "points": 2,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Ces difficultés compliquent presque toujours vos études ou votre travail.",
     "en": "These difficulties almost always make your studies or work harder."
    },
    "flags": [],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_areas_declared",
@@ -4729,15 +4016,13 @@
      "other"
     ]
    },
-   "points": 1,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Vous avez indiqué au moins un domaine du quotidien concerné.",
     "en": "You indicated at least one affected area of daily life."
    },
    "flags": [],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_needs_some",
@@ -4753,15 +4038,13 @@
      "docs"
     ]
    },
-   "points": 1,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Vous avez indiqué au moins un besoin d'aménagement.",
     "en": "You indicated at least one adjustment need."
    },
    "flags": [],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_needs_many",
@@ -4777,15 +4060,13 @@
      "docs"
     ]
    },
-   "points": 1,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Vous avez indiqué trois besoins d'aménagement ou plus.",
     "en": "You indicated three or more adjustment needs."
    },
    "flags": [],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_pathway_impact",
@@ -4798,15 +4079,13 @@
      "jobsearch"
     ]
    },
-   "points": 1,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Votre parcours (études, stage, emploi ou recherche d'emploi) est concerné.",
     "en": "Your path (studies, internship, job or job search) is affected."
    },
    "flags": [],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_support_adjust",
@@ -4816,9 +4095,6 @@
      "has_adjust"
     ]
    },
-   "points": 1,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Vous avez des aménagements sans reconnaissance officielle.",
     "en": "You have adjustments without official recognition."
@@ -4826,7 +4102,8 @@
    "flags": [
     "informal_adjust"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_no_support",
@@ -4848,14 +4125,12 @@
      }
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "no_support"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_urgent",
@@ -4866,14 +4141,12 @@
      "urgent"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "urgent"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_aware_low",
@@ -4884,14 +4157,12 @@
      "partial"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "needs_info"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_barrier_stigma",
@@ -4901,14 +4172,12 @@
      "stigma"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "stigma"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_barrier_employer",
@@ -4918,14 +4187,12 @@
      "employer"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "employer"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_barrier_complexity",
@@ -4935,14 +4202,12 @@
      "complexity"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "complexity"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_barrier_who",
@@ -4952,14 +4217,12 @@
      "who"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "who"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_barrier_time",
@@ -4969,14 +4232,12 @@
      "time"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "time"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_student_exam",
@@ -4986,14 +4247,12 @@
      "exams"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "student_exam"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_student_work",
@@ -5003,14 +4262,12 @@
      "work"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "student_work"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_shift_work",
@@ -5020,14 +4277,12 @@
      "shifts"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "shift_work"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_long_search",
@@ -5037,14 +4292,12 @@
      "long"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "long_search"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_public_status",
@@ -5055,14 +4308,12 @@
      "trainee"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "public_status"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_see_doctor",
@@ -5084,14 +4335,12 @@
      }
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "see_doctor"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_for_relative",
@@ -5101,14 +4350,12 @@
      "relative"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "for_relative"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_for_support",
@@ -5119,14 +4366,12 @@
      "pro"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "for_support"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_worry_watch",
@@ -5138,14 +4383,12 @@
      "health_event"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "watch"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_energy_posture",
@@ -5158,14 +4401,12 @@
      "typing"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "posture"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_energy_conc",
@@ -5175,14 +4416,12 @@
      "concentrating"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "conc_energy"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_energy_commute",
@@ -5202,14 +4441,12 @@
      }
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "commute"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_energy_rest",
@@ -5220,14 +4457,12 @@
      "planned"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "breaks"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_energy_when",
@@ -5239,14 +4474,12 @@
      "unpredictable"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "schedule_time"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_attn_rw",
@@ -5258,14 +4491,12 @@
      "calculating"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "reading_writing"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_attn_org",
@@ -5276,14 +4507,12 @@
      "organizing"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "organisation"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_attn_listen",
@@ -5293,14 +4522,12 @@
      "listening"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "listening"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_attn_tools_none",
@@ -5310,14 +4537,12 @@
      "none"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "try_tools"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_vision",
@@ -5328,14 +4553,12 @@
      "both"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "vision"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_hearing",
@@ -5346,14 +4569,12 @@
      "both"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "hearing"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_lighting",
@@ -5363,14 +4584,12 @@
      "lighting"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "lighting"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_access",
@@ -5393,14 +4612,12 @@
      }
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "access"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_equipment",
@@ -5420,14 +4637,12 @@
      }
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "equipment"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_psych_groups",
@@ -5437,14 +4652,12 @@
      "groups"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "oral_groups"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_psych_pace",
@@ -5455,14 +4668,12 @@
      "overload"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "pace"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_psych_env",
@@ -5473,14 +4684,12 @@
      "changes"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "environment"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_psych_nosupport",
@@ -5490,14 +4699,12 @@
      "no"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "psych_support_none"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_stability",
@@ -5508,14 +4715,12 @@
      "flares"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "diary"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_life_wide",
@@ -5528,14 +4733,12 @@
      "leisure"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "life_wide"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_life_sleep",
@@ -5545,14 +4748,12 @@
      "sleep"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "life_sleep"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_st_exam_req",
@@ -5570,14 +4771,12 @@
      "placement"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "exam_request"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_st_disclosure",
@@ -5587,14 +4786,12 @@
      "disclosure"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "disclosure"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_st_work_adapt",
@@ -5608,14 +4805,12 @@
      "remote"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "work_adapt"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_st_contact",
@@ -5626,14 +4821,12 @@
      "unsure"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "contact_school"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_st_year",
@@ -5644,14 +4837,12 @@
      "graduating"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "transition"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_emp_unaware",
@@ -5661,14 +4852,12 @@
      "no"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "emp_unaware"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_emp_manager_ok",
@@ -5679,14 +4868,12 @@
      "partly"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "manager_ok"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_emp_ws",
@@ -5698,14 +4885,12 @@
      "noise"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "workstation_study"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_emp_org",
@@ -5717,14 +4902,12 @@
      "pace"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "org_work"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_emp_occ",
@@ -5735,14 +4918,12 @@
      "never"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "occ_visit"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_emp_leave",
@@ -5753,14 +4934,12 @@
      "several"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "emp_leave"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_js_interview",
@@ -5772,14 +4951,12 @@
      "tools"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "interview"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_js_org",
@@ -5790,14 +4967,12 @@
      "long_days"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "js_org"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_js_training",
@@ -5808,14 +4983,12 @@
      "maybe"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "training"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_js_contact",
@@ -5826,14 +4999,12 @@
      "unsure"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "js_contact"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_pub_prev",
@@ -5844,14 +5015,12 @@
      "unsure"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "prevention_doc"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_pub_ref",
@@ -5861,14 +5030,12 @@
      "no"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "referent"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_pub_posting",
@@ -5879,14 +5046,12 @@
      "maybe"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "posting"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_goal_keep",
@@ -5897,14 +5062,12 @@
      "adapt"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "keep_job"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_goal_funding",
@@ -5914,14 +5077,12 @@
      "funding"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "funding"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_goal_training",
@@ -5931,14 +5092,12 @@
      "training"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "training"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_goal_secure",
@@ -5948,14 +5107,12 @@
      "secure"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "secure"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_goal_info",
@@ -5965,14 +5122,12 @@
      "info_only"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "goal_info_only"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_pref_written",
@@ -5982,14 +5137,12 @@
      "written"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "written"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_pref_remote",
@@ -6000,14 +5153,12 @@
      "video"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "remote_contact"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_time_little",
@@ -6017,14 +5168,12 @@
      "little"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "small_steps"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_helper",
@@ -6035,14 +5184,12 @@
      "would_like"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "helper"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_sup_talk",
@@ -6053,14 +5200,12 @@
      "understand"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "how_to_talk"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_sup_orient",
@@ -6071,14 +5216,12 @@
      "understand"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "sup_resources"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_sup_setup",
@@ -6088,14 +5231,12 @@
      "set_up"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "sup_setup"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_sup_aware",
@@ -6105,14 +5246,12 @@
      "raise"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "sup_aware"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_sup_conf",
@@ -6122,14 +5261,12 @@
      "confidentiality"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [
     "sup_confidentiality"
    ],
-   "suggestions": []
+   "suggestions": [],
+   "contacts": []
   },
   {
    "key": "R_sup_words",
@@ -6139,14 +5276,12 @@
      "words"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "how_to_talk"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_sup_legal",
@@ -6156,14 +5291,12 @@
      "legal"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "sup_legal"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_prev_ready",
@@ -6174,14 +5307,12 @@
      "later"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "prev_ready"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_prev_share",
@@ -6191,14 +5322,12 @@
      "share"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "prev_share"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_pole_member",
@@ -6208,9 +5337,6 @@
      "yes"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Vous êtes suivi(e) par le pôle handicap.",
     "en": "You are followed by the disability office."
@@ -6218,7 +5344,8 @@
    "flags": [],
    "suggestions": [
     "pole_member_rqth"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_work_world",
@@ -6230,9 +5357,6 @@
      "jobsearch"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Un stage, un emploi ou une recherche d'emploi est concerné.",
     "en": "An internship, a job or a job search is concerned."
@@ -6240,7 +5364,8 @@
    "flags": [],
    "suggestions": [
     "rqth_work_value"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_next_alternance",
@@ -6250,9 +5375,6 @@
      "alternance"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Vous prévoyez une alternance.",
     "en": "You plan a work-study contract."
@@ -6261,7 +5383,8 @@
    "suggestions": [
     "alternance_rqth",
     "rqth_delay"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_next_work",
@@ -6272,9 +5395,6 @@
      "first_job"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Vous prévoyez un stage ou un premier emploi.",
     "en": "You plan an internship or a first job."
@@ -6283,7 +5403,8 @@
    "suggestions": [
     "rqth_work_value",
     "rqth_delay"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_recruit_tests",
@@ -6304,9 +5425,6 @@
      }
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Les tests ou entretiens de recrutement vous préoccupent.",
     "en": "Recruitment tests or interviews worry you."
@@ -6314,7 +5432,8 @@
    "flags": [],
    "suggestions": [
     "recruit_adapt"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_recruit_cv",
@@ -6324,9 +5443,6 @@
      "cv"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Le contenu de votre CV vous préoccupe.",
     "en": "The content of your CV worries you."
@@ -6334,7 +5450,8 @@
    "flags": [],
    "suggestions": [
     "disclosure"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_recruit_conditions",
@@ -6345,9 +5462,6 @@
      "commute"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": {
     "fr": "Les conditions de travail ou les trajets vous préoccupent.",
     "en": "Working conditions or commuting worry you."
@@ -6355,7 +5469,8 @@
    "flags": [],
    "suggestions": [
     "work_adapt"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "P_fit_many",
@@ -6388,14 +5503,12 @@
      }
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": "suggest",
    "explanation": null,
    "flags": [],
    "suggestions": [
     "pole_suggest"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "P_fit_one",
@@ -6443,63 +5556,12 @@
      }
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": "maybe",
    "explanation": null,
    "flags": [],
    "suggestions": [
     "pole_maybe"
-   ]
-  },
-  {
-   "key": "P_health_maybe",
-   "condition": {
-    "all": [
-     {
-      "q": "pole",
-      "in": [
-       "no"
-      ]
-     },
-     {
-      "q": "duration",
-      "in": [
-       "unsure",
-       "short",
-       "long"
-      ]
-     },
-     {
-      "not": {
-       "q": "pole_fit",
-       "hasAny": [
-        "exam_time",
-        "write_read",
-        "focus",
-        "noise_stress",
-        "fatigue_health",
-        "senses_mobility",
-        "instructions"
-       ]
-      }
-     },
-     {
-      "q": "pole_check",
-      "in": [
-       "yes"
-      ]
-     }
-    ]
-   },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": "maybe",
-   "explanation": null,
-   "flags": [],
-   "suggestions": [
-    "pole_maybe"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "P_time",
@@ -6509,14 +5571,12 @@
      "exam_time"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "pole_time"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "P_write",
@@ -6526,14 +5586,12 @@
      "write_read"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "pole_write"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "P_focus",
@@ -6543,14 +5601,12 @@
      "focus"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "pole_focus"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "P_noise",
@@ -6560,14 +5616,12 @@
      "noise_stress"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "pole_noise"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "P_health",
@@ -6577,14 +5631,12 @@
      "fatigue_health"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "pole_health"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "P_sens",
@@ -6594,14 +5646,12 @@
      "senses_mobility"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "pole_sens"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "P_instr",
@@ -6611,14 +5661,12 @@
      "instructions"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "pole_instr"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "P_proof_yes",
@@ -6628,14 +5676,12 @@
      "yes"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "pole_proof_yes"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "P_proof_info",
@@ -6646,14 +5692,12 @@
      "unsure"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "pole_proof_info"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "P_fear_private",
@@ -6664,14 +5708,12 @@
      "privacy"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "pole_confidential"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "P_fear_unknown",
@@ -6681,14 +5723,12 @@
      "unknown"
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "pole_what"
-   ]
+   ],
+   "contacts": []
   },
   {
    "key": "R_career_center",
@@ -6719,795 +5759,1715 @@
      }
     ]
    },
-   "points": 0,
-   "override_level": null,
-   "pole_outcome": null,
    "explanation": null,
    "flags": [],
    "suggestions": [
     "career_center"
+   ],
+   "contacts": []
+  },
+  {
+   "key": "R_contacts_work_focus",
+   "condition": {
+    "any": [
+     {
+      "q": "pathway",
+      "hasAny": [
+       "internship",
+       "job",
+       "jobsearch"
+      ]
+     },
+     {
+      "q": "st_next",
+      "in": [
+       "internship",
+       "alternance",
+       "first_job"
+      ]
+     },
+     {
+      "q": "ctx_student",
+      "hasAny": [
+       "work",
+       "recruit"
+      ]
+     }
+    ]
+   },
+   "explanation": null,
+   "flags": [],
+   "suggestions": [],
+   "contacts": [
+    "pole_career"
+   ]
+  },
+  {
+   "key": "R_contacts_student",
+   "condition": {
+    "q": "profile",
+    "in": [
+     "student"
+    ]
+   },
+   "explanation": null,
+   "flags": [],
+   "suggestions": [],
+   "contacts": [
+    "pole_social",
+    "pole_rse",
+    "pole_career",
+    "student_health",
+    "registrar",
+    "agefiph",
+    "mdph"
+   ]
+  },
+  {
+   "key": "R_contacts_employee",
+   "condition": {
+    "q": "profile",
+    "in": [
+     "employee"
+    ]
+   },
+   "explanation": null,
+   "flags": [],
+   "suggestions": [],
+   "contacts": [
+    "occ_physician",
+    "hr_officer",
+    "agefiph",
+    "mdph"
+   ]
+  },
+  {
+   "key": "R_contacts_jobseeker",
+   "condition": {
+    "q": "profile",
+    "in": [
+     "jobseeker"
+    ]
+   },
+   "explanation": null,
+   "flags": [],
+   "suggestions": [],
+   "contacts": [
+    "france_travail",
+    "cap_emploi",
+    "agefiph",
+    "mdph"
+   ]
+  },
+  {
+   "key": "R_contacts_public_agent",
+   "condition": {
+    "q": "profile",
+    "in": [
+     "public_agent"
+    ]
+   },
+   "explanation": null,
+   "flags": [],
+   "suggestions": [],
+   "contacts": [
+    "prevention_physician",
+    "hr_officer",
+    "fiphfp",
+    "mdph"
    ]
   }
  ],
- "pole_outcomes": [
+ "questionnaires": [
   {
-   "key": "followed",
+   "key": "pole",
+   "featured": true,
    "title": {
-    "fr": "Vous êtes déjà suivi(e) par le pôle handicap",
-    "en": "You are already followed by the disability office"
+    "fr": "Le pôle handicap de l'école",
+    "en": "The school's disability office"
    },
-   "body": {
-    "fr": "C'est un bon point de départ. Pour la RQTH et pour le monde du travail, le pôle peut vous aider à préparer la démarche ; pour les stages, l'alternance et la recherche d'emploi, le référent handicap du Career Center peut prendre le relais.",
-    "en": "That is a good starting point. For the RQTH and for the working world, the office can help you prepare the process; for internships, work-study and job search, the disability contact at the Career Center can take over."
-   }
-  },
-  {
-   "key": "suggest",
-   "title": {
-    "fr": "Le pôle handicap peut vous aider dans vos études",
-    "en": "The disability office can help you with your studies"
+   "description": {
+    "fr": "Quelques questions pour savoir si le pôle handicap peut vous aider dans vos études, et comment le contacter.",
+    "en": "A few questions to see whether the disability office can help with your studies, and how to contact it."
    },
-   "body": {
-    "fr": "Vous décrivez plusieurs situations pour lesquelles le pôle accompagne des étudiants : par exemple du temps supplémentaire, une salle plus calme, des pauses ou du matériel adapté. Seul le pôle, après un entretien confidentiel, peut dire quels aménagements sont possibles dans votre cas. Ce n'est pas une décision de HandiDiag.",
-    "en": "You describe several situations for which the office supports students: for example extra time, a quieter room, breaks or adapted equipment. Only the office, after a confidential meeting, can say which accommodations are possible in your case. This is not a decision by HandiDiag."
-   }
-  },
-  {
-   "key": "maybe",
-   "title": {
-    "fr": "Cela vaut la peine d'en parler au pôle handicap",
-    "en": "It is worth talking to the disability office"
-   },
-   "body": {
-    "fr": "Vos réponses laissent penser que certains aménagements pourraient vous aider. Un premier échange avec le pôle est confidentiel et n'engage à rien : il permet de voir ensemble si une démarche a du sens.",
-    "en": "Your answers suggest that some accommodations might help you. A first conversation with the office is confidential and commits you to nothing: it lets you see together whether a process makes sense."
-   }
-  },
-  {
-   "key": "none",
-   "title": {
-    "fr": "Pour l'instant, rien n'indique un besoin d'aménagement à l'école",
-    "en": "For now, nothing points to a need for accommodations at school"
-   },
-   "body": {
-    "fr": "Cela peut changer : le pôle handicap reste ouvert si une situation apparaît (blessure, maladie, fatigue durable, nouvelle difficulté…). Vous pouvez aussi simplement vous renseigner.",
-    "en": "That may change: the disability office remains open if a situation appears (injury, illness, lasting fatigue, a new difficulty…). You can also simply find out more."
-   }
-  },
-  {
-   "key": "declined",
-   "title": {
-    "fr": "Le pôle handicap reste à votre disposition",
-    "en": "The disability office remains at your disposal"
-   },
-   "body": {
-    "fr": "Vous pouvez le contacter à tout moment si vous le souhaitez : un e-mail suffit, c'est confidentiel et cela n'engage à rien.",
-    "en": "You can contact them at any time if you wish: an e-mail is enough, it is confidential and commits you to nothing."
-   }
-  }
- ],
- "contacts": [
-  {
-   "key": "school_officer",
-   "icon": "user",
-   "name": {
-    "fr": "Mission handicap ou référent handicap de votre établissement",
-    "en": "Disability office or disability officer at your institution"
-   },
-   "role": {
-    "fr": "Écoute, aménagements d'études et d'examens, aide pour s'orienter dans la démarche.",
-    "en": "Listening, study and exam adjustments, help finding your way through the process."
-   },
-   "email": null,
-   "link_url": null,
-   "link_label": null,
-   "is_confidential": false,
-   "pole_group": null
-  },
-  {
-   "key": "student_health",
-   "icon": "shield",
-   "name": {
-    "fr": "Service de santé étudiante (médecine préventive)",
-    "en": "Student health service (preventive medicine)"
-   },
-   "role": {
-    "fr": "Professionnels de santé qui peuvent vous conseiller et vous orienter.",
-    "en": "Health professionals who can advise and guide you."
-   },
-   "email": null,
-   "link_url": null,
-   "link_label": null,
-   "is_confidential": true,
-   "pole_group": null
-  },
-  {
-   "key": "registrar",
-   "icon": "doc",
-   "name": {
-    "fr": "Scolarité",
-    "en": "Student administration office"
-   },
-   "role": {
-    "fr": "Pour mettre en place les aménagements d'examens et de scolarité une fois la demande formulée.",
-    "en": "To put exam and course adjustments in place once the request is made."
-   },
-   "email": null,
-   "link_url": null,
-   "link_label": null,
-   "is_confidential": false,
-   "pole_group": null
-  },
-  {
-   "key": "occ_physician",
-   "icon": "shield",
-   "name": {
-    "fr": "Médecin du travail (service de prévention et de santé au travail)",
-    "en": "Occupational physician (workplace health service)"
-   },
-   "role": {
-    "fr": "Peut vous conseiller sur votre santé au travail et les aménagements de poste.",
-    "en": "Can advise you on health at work and workstation adjustments."
-   },
-   "email": null,
-   "link_url": null,
-   "link_label": null,
-   "is_confidential": true,
-   "pole_group": null
-  },
-  {
-   "key": "hr_officer",
-   "icon": "user",
-   "name": {
-    "fr": "Référent handicap ou service RH",
-    "en": "Disability officer or HR department"
-   },
-   "role": {
-    "fr": "Pour mettre en place des aménagements et connaître la politique handicap de votre organisation.",
-    "en": "To set up adjustments and learn about your organisation's disability policy."
-   },
-   "email": null,
-   "link_url": null,
-   "link_label": null,
-   "is_confidential": false,
-   "pole_group": null
-  },
-  {
-   "key": "prevention_physician",
-   "icon": "shield",
-   "name": {
-    "fr": "Médecin de prévention",
-    "en": "Prevention physician"
-   },
-   "role": {
-    "fr": "Conseille les agents sur leur santé au travail et les aménagements possibles.",
-    "en": "Advises public-sector staff on health at work and possible adjustments."
-   },
-   "email": null,
-   "link_url": null,
-   "link_label": null,
-   "is_confidential": true,
-   "pole_group": null
-  },
-  {
-   "key": "cap_emploi",
-   "icon": "compass",
-   "name": {
-    "fr": "Cap emploi",
-    "en": "Cap emploi"
-   },
-   "role": {
-    "fr": "Organisme d'accompagnement vers l'emploi des personnes en situation de handicap. Votre conseiller France Travail ou l'Agefiph peut vous mettre en relation.",
-    "en": "Organisation supporting people with disabilities towards employment. Your France Travail adviser or Agefiph can put you in touch."
-   },
-   "email": null,
-   "link_url": null,
-   "link_label": null,
-   "is_confidential": false,
-   "pole_group": null
-  },
-  {
-   "key": "france_travail",
-   "icon": "building",
-   "name": {
-    "fr": "France Travail (conseiller ou référent handicap)",
-    "en": "France Travail (adviser or disability officer)"
-   },
-   "role": {
-    "fr": "Accompagnement dans la recherche d'emploi et orientation vers un accompagnement spécialisé.",
-    "en": "Job-search support and referral to specialised support."
-   },
-   "email": null,
-   "link_url": "https://www.francetravail.fr/",
-   "link_label": {
-    "fr": "France Travail",
-    "en": "France Travail"
-   },
-   "is_confidential": false,
-   "pole_group": null
-  },
-  {
-   "key": "agefiph",
-   "icon": "building",
-   "name": {
-    "fr": "Agefiph",
-    "en": "Agefiph"
-   },
-   "role": {
-    "fr": "Informations et aides pour l'emploi des personnes handicapées dans le secteur privé.",
-    "en": "Information and funding for the employment of people with disabilities in the private sector."
-   },
-   "email": null,
-   "link_url": "https://www.agefiph.fr/",
-   "link_label": {
-    "fr": "Agefiph",
-    "en": "Agefiph"
-   },
-   "is_confidential": false,
-   "pole_group": null
-  },
-  {
-   "key": "fiphfp",
-   "icon": "building",
-   "name": {
-    "fr": "FIPHFP",
-    "en": "FIPHFP"
-   },
-   "role": {
-    "fr": "Informations et aides pour l'emploi des personnes en situation de handicap dans la fonction publique.",
-    "en": "Information and funding for the employment of people with disabilities in the public sector."
-   },
-   "email": null,
-   "link_url": "https://www.fiphfp.fr/",
-   "link_label": {
-    "fr": "FIPHFP",
-    "en": "FIPHFP"
-   },
-   "is_confidential": false,
-   "pole_group": null
-  },
-  {
-   "key": "mdph",
-   "icon": "building",
-   "name": {
-    "fr": "MDPH (Maison départementale des personnes handicapées)",
-    "en": "MDPH (departmental disability office)"
-   },
-   "role": {
-    "fr": "Reçoit et instruit la demande. La décision est prise par la commission des droits et de l'autonomie (CDAPH).",
-    "en": "Receives and processes the application. The decision is made by the CDAPH commission."
-   },
-   "email": null,
-   "link_url": "https://www.monparcourshandicap.gouv.fr/",
-   "link_label": {
-    "fr": "Mon Parcours Handicap (portail national)",
-    "en": "Mon Parcours Handicap (national portal)"
-   },
-   "is_confidential": false,
-   "pole_group": null
-  },
-  {
-   "key": "pole_social",
-   "icon": "user",
-   "name": {
-    "fr": "Charlie DUPIC, référente social et handicap",
-    "en": "Charlie DUPIC, social and disability officer"
-   },
-   "role": {
-    "fr": "Pôle handicap de l'école, pour vos études : handicap, tiers-temps, social, aides exceptionnelles, aménagements.",
-    "en": "School disability office, for your studies: disability, extra exam time, social support, exceptional aid, accommodations."
-   },
-   "email": "charlie.dupic@efrei.fr",
-   "link_url": null,
-   "link_label": null,
-   "is_confidential": false,
-   "pole_group": "school"
-  },
-  {
-   "key": "pole_rse",
-   "icon": "user",
-   "name": {
-    "fr": "Stéphanie LIBESKIND, responsable RSE",
-    "en": "Stéphanie LIBESKIND, CSR manager"
-   },
-   "role": {
-    "fr": "Pôle handicap de l'école, pour vos études : handicap, tiers-temps, social, aides exceptionnelles, aménagements.",
-    "en": "School disability office, for your studies: disability, extra exam time, social support, exceptional aid, accommodations."
-   },
-   "email": "stephanie.libeskind@efrei.fr",
-   "link_url": null,
-   "link_label": null,
-   "is_confidential": false,
-   "pole_group": "school"
-  },
-  {
-   "key": "pole_career",
-   "icon": "user",
-   "name": {
-    "fr": "Jordan SACCASYN, référent handicap au Career Center",
-    "en": "Jordan SACCASYN, disability contact at the Career Center"
-   },
-   "role": {
-    "fr": "Pour le monde du travail : recherche de stage, d'alternance ou d'emploi, et aménagements en entreprise.",
-    "en": "For the working world: finding an internship, work-study or a job, and accommodations at the company."
-   },
-   "email": "jordan.saccasyn@efrei.fr",
-   "link_url": null,
-   "link_label": null,
-   "is_confidential": false,
-   "pole_group": "work"
-  }
- ],
- "profile_contacts": {
-  "student": [
-   "pole_social",
-   "pole_rse",
-   "pole_career",
-   "student_health",
-   "registrar",
-   "agefiph",
-   "mdph"
-  ],
-  "employee": [
-   "occ_physician",
-   "hr_officer",
-   "agefiph",
-   "mdph"
-  ],
-  "jobseeker": [
-   "france_travail",
-   "cap_emploi",
-   "agefiph",
-   "mdph"
-  ],
-  "public_agent": [
-   "prevention_physician",
-   "hr_officer",
-   "fiphfp",
-   "mdph"
-  ]
- },
- "pages": [
-  {
-   "slug": "handicaps",
-   "title": {
-    "fr": "Comprendre les situations de handicap",
-    "en": ""
-   },
-   "intro": {
-    "fr": "Le handicap peut prendre des formes très diverses, visibles ou non. Les besoins d'une personne dépendent aussi de son environnement. Ces repères ne constituent pas un diagnostic.",
-    "en": ""
-   },
-   "is_published": true,
-   "blocks": [
+   "sections": [
     {
-     "type": "text",
      "title": {
-      "fr": "Des situations et des besoins différents",
-      "en": ""
+      "fr": "Le pôle handicap",
+      "en": "The disability office"
      },
-     "text": {
-      "fr": "Une même situation peut avoir des conséquences différentes selon les personnes et le contexte. Il est utile de demander quels aménagements facilitent réellement les études, le travail ou la vie quotidienne.",
-      "en": ""
-     }
+     "intro": null,
+     "optional": false,
+     "items": [
+      {
+       "question": "pole",
+       "required": false,
+       "show_if": null,
+       "auto_answer": null
+      },
+      {
+       "question": "pole_check",
+       "required": false,
+       "show_if": {
+        "q": "pole",
+        "in": [
+         "no"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "pole_fit",
+       "required": false,
+       "show_if": {
+        "q": "pole_check",
+        "in": [
+         "yes"
+        ]
+       },
+       "auto_answer": null
+      }
+     ]
     },
     {
-     "type": "accordion",
      "title": {
-      "fr": "Handicap moteur",
-      "en": ""
+      "fr": "Pour aller plus loin",
+      "en": "Going further"
      },
-     "text": {
-      "fr": "Il concerne la mobilité, les gestes, la posture ou l'endurance. Les besoins possibles comprennent un accès sans obstacle, du matériel adapté ou des horaires aménagés.",
-      "en": ""
-     }
+     "intro": null,
+     "optional": true,
+     "items": [
+      {
+       "question": "pole_proof",
+       "required": false,
+       "auto_answer": null,
+       "show_if": {
+        "all": [
+         {
+          "q": "pole",
+          "in": [
+           "no"
+          ]
+         },
+         {
+          "q": "pole_fit",
+          "hasAny": [
+           "exam_time",
+           "write_read",
+           "focus",
+           "noise_stress",
+           "fatigue_health",
+           "senses_mobility",
+           "instructions"
+          ]
+         }
+        ]
+       }
+      },
+      {
+       "question": "pole_fear",
+       "required": false,
+       "auto_answer": null,
+       "show_if": {
+        "q": "pole",
+        "in": [
+         "no"
+        ]
+       }
+      },
+      {
+       "question": "st_exam_detail",
+       "required": false,
+       "auto_answer": null,
+       "show_if": {
+        "q": "pole_fit",
+        "hasAny": [
+         "exam_time",
+         "write_read",
+         "focus",
+         "noise_stress",
+         "fatigue_health",
+         "senses_mobility",
+         "instructions"
+        ]
+       }
+      }
+     ]
+    }
+   ],
+   "outcomes": [
+    {
+     "key": "followed",
+     "min_score": null,
+     "icon": "user",
+     "title": {
+      "fr": "Vous êtes déjà suivi(e) par le pôle handicap",
+      "en": "You are already followed by the disability office"
+     },
+     "body": {
+      "fr": "C'est un bon point de départ. Pour la RQTH et pour le monde du travail, le pôle peut vous aider à préparer la démarche ; pour les stages, l'alternance et la recherche d'emploi, le référent handicap du Career Center peut prendre le relais.",
+      "en": "That is a good starting point. For the RQTH and for the working world, the office can help you prepare the process; for internships, work-study and job search, the disability contact at the Career Center can take over."
+     },
+     "body_falc": null,
+     "next": "rqth",
+     "contacts": [
+      "pole_social",
+      "pole_rse",
+      "pole_career"
+     ]
     },
     {
-     "type": "accordion",
+     "key": "suggest",
+     "min_score": null,
+     "icon": "user",
      "title": {
-      "fr": "Handicap visuel",
-      "en": ""
+      "fr": "Le pôle handicap peut vous aider dans vos études",
+      "en": "The disability office can help you with your studies"
      },
-     "text": {
-      "fr": "La vision peut être partiellement ou totalement altérée. Des documents lisibles par lecteur d'écran, un bon contraste ou un agrandissement peuvent aider.",
-      "en": ""
-     }
+     "body": {
+      "fr": "Vous décrivez plusieurs situations pour lesquelles le pôle accompagne des étudiants : par exemple du temps supplémentaire, une salle plus calme, des pauses ou du matériel adapté. Seul le pôle, après un entretien confidentiel, peut dire quels aménagements sont possibles dans votre cas. Ce n'est pas une décision de HandiDiag.",
+      "en": "You describe several situations for which the office supports students: for example extra time, a quieter room, breaks or adapted equipment. Only the office, after a confidential meeting, can say which accommodations are possible in your case. This is not a decision by HandiDiag."
+     },
+     "body_falc": null,
+     "next": "rqth",
+     "contacts": [
+      "pole_social",
+      "pole_rse",
+      "pole_career"
+     ]
     },
     {
-     "type": "accordion",
+     "key": "maybe",
+     "min_score": null,
+     "icon": "user",
      "title": {
-      "fr": "Handicap auditif",
-      "en": ""
+      "fr": "Cela vaut la peine d'en parler au pôle handicap",
+      "en": "It is worth talking to the disability office"
      },
-     "text": {
-      "fr": "Il peut concerner différents degrés de surdité ou de malentendance. Le sous-titrage, la transcription, les supports écrits ou une boucle magnétique peuvent faciliter les échanges.",
-      "en": ""
-     }
+     "body": {
+      "fr": "Vos réponses laissent penser que certains aménagements pourraient vous aider. Un premier échange avec le pôle est confidentiel et n'engage à rien : il permet de voir ensemble si une démarche a du sens.",
+      "en": "Your answers suggest that some accommodations might help you. A first conversation with the office is confidential and commits you to nothing: it lets you see together whether a process makes sense."
+     },
+     "body_falc": null,
+     "next": "rqth",
+     "contacts": [
+      "pole_social",
+      "pole_rse",
+      "pole_career"
+     ]
     },
     {
-     "type": "accordion",
+     "key": "declined",
+     "min_score": null,
+     "icon": "user",
      "title": {
-      "fr": "Handicap psychique",
-      "en": ""
+      "fr": "Le pôle handicap reste à votre disposition",
+      "en": "The disability office remains at your disposal"
      },
-     "text": {
-      "fr": "Il peut avoir des effets sur l'énergie, la concentration, les relations ou la gestion du stress. Les besoins varient dans le temps ; un cadre clair et des aménagements adaptés peuvent aider.",
-      "en": ""
-     }
+     "body": {
+      "fr": "Vous pouvez le contacter à tout moment si vous le souhaitez : un e-mail suffit, c'est confidentiel et cela n'engage à rien.",
+      "en": "You can contact them at any time if you wish: an e-mail is enough, it is confidential and commits you to nothing."
+     },
+     "body_falc": null,
+     "next": "rqth",
+     "contacts": [
+      "pole_social",
+      "pole_rse",
+      "pole_career"
+     ]
     },
     {
-     "type": "accordion",
+     "key": "none",
+     "min_score": 0,
+     "icon": "book",
      "title": {
-      "fr": "Handicap intellectuel",
-      "en": ""
+      "fr": "Pour l'instant, rien n'indique un besoin d'aménagement à l'école",
+      "en": "For now, nothing points to a need for accommodations at school"
      },
-     "text": {
-      "fr": "Il peut rendre certaines informations ou démarches plus difficiles à comprendre. Un langage clair, des étapes courtes et des supports faciles à lire et à comprendre peuvent être utiles.",
-      "en": ""
-     }
+     "body": {
+      "fr": "Cela peut changer : le pôle handicap reste ouvert si une situation apparaît (blessure, maladie, fatigue durable, nouvelle difficulté…). Vous pouvez aussi simplement vous renseigner.",
+      "en": "That may change: the disability office remains open if a situation appears (injury, illness, lasting fatigue, a new difficulty…). You can also simply find out more."
+     },
+     "body_falc": null,
+     "next": "rqth",
+     "contacts": [
+      "pole_social",
+      "pole_rse",
+      "pole_career"
+     ]
+    }
+   ],
+   "rules": [
+    {
+     "rule": "R_pole_followed",
+     "points": 0,
+     "override": "followed"
     },
     {
-     "type": "accordion",
-     "title": {
-      "fr": "Troubles cognitifs et troubles du neurodéveloppement",
-      "en": ""
-     },
-     "text": {
-      "fr": "Ils peuvent toucher l'attention, la mémoire, l'apprentissage, la lecture, l'organisation ou la communication. Des consignes explicites, davantage de temps ou des outils adaptés peuvent aider.",
-      "en": ""
-     }
+     "rule": "R_pole_declined",
+     "points": 0,
+     "override": "declined"
     },
     {
-     "type": "accordion",
-     "title": {
-      "fr": "Maladies chroniques et invalidantes",
-      "en": ""
-     },
-     "text": {
-      "fr": "Certaines maladies entraînent fatigue, douleurs ou limitations fluctuantes, même lorsqu'elles ne sont pas visibles. Les aménagements dépendent des conséquences concrètes sur l'activité.",
-      "en": ""
-     }
+     "rule": "R_st_exam_req",
+     "points": 0,
+     "override": null
     },
     {
-     "type": "document",
-     "title": {
-      "fr": "Infographie sur le handicap",
-      "en": ""
-     },
-     "text": {
-      "fr": "Consulter ou télécharger l'infographie au format PDF.",
-      "en": ""
-     },
-     "url": "/docs/infographie-handicap-2025.pdf"
+     "rule": "R_pole_member",
+     "points": 0,
+     "override": null
     },
     {
-     "type": "link",
-     "title": {
-      "fr": "Comprendre la RQTH",
-      "en": ""
-     },
-     "text": {
-      "fr": "Consulter les informations officielles sur la reconnaissance de la qualité de travailleur handicapé.",
-      "en": ""
-     },
-     "url": "https://www.monparcourshandicap.gouv.fr/aides/la-reconnaissance-de-la-qualite-de-travailleur-handicape-rqth#ressources-facile-a-lire-et-a-comprendre"
+     "rule": "P_fit_many",
+     "points": 0,
+     "override": "suggest"
+    },
+    {
+     "rule": "P_fit_one",
+     "points": 0,
+     "override": "maybe"
+    },
+    {
+     "rule": "P_time",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "P_write",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "P_focus",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "P_noise",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "P_health",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "P_sens",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "P_instr",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "P_proof_yes",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "P_proof_info",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "P_fear_private",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "P_fear_unknown",
+     "points": 0,
+     "override": null
     }
    ]
   },
   {
-   "slug": "rqth",
+   "key": "rqth",
+   "featured": false,
    "title": {
-    "fr": "Informations générales",
-    "en": ""
+    "fr": "Faire le point sur la RQTH",
+    "en": "Is RQTH relevant for me?"
    },
-   "intro": {
-    "fr": "Cette rubrique présente des repères généraux sur la démarche de reconnaissance et la vie professionnelle. Elle aide à préparer ses questions, sans dire si une personne doit ou peut engager une démarche : la décision relève de la CDAPH.",
-    "en": ""
+   "description": {
+    "fr": "Une dizaine de questions, sans détail médical, pour savoir si une démarche de reconnaissance (RQTH) peut avoir du sens et vers qui vous tourner.",
+    "en": "About ten questions, with no medical detail, to see whether a recognition process (RQTH) may make sense and who to turn to."
    },
-   "is_published": true,
-   "blocks": [
+   "sections": [
     {
-     "type": "accordion",
      "title": {
-      "fr": "À quoi sert la RQTH ?",
-      "en": ""
+      "fr": "Votre situation",
+      "en": "Your situation"
      },
-     "text": {
-      "fr": "Elle peut faciliter les aménagements du poste ou des horaires, l'accompagnement vers l'emploi et l'accès à certaines formations. Elle ne donne pas, à elle seule, droit à une aide financière.",
-      "en": ""
-     }
+     "intro": null,
+     "optional": false,
+     "items": [
+      {
+       "question": "profile",
+       "required": false,
+       "show_if": null,
+       "auto_answer": "student"
+      },
+      {
+       "question": "duration",
+       "required": false,
+       "show_if": null,
+       "auto_answer": null
+      },
+      {
+       "question": "areas",
+       "required": false,
+       "show_if": {
+        "not": {
+         "q": "duration",
+         "in": [
+          "none"
+         ]
+        }
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "for_whom",
+       "required": false,
+       "show_if": {
+        "q": "duration",
+        "in": [
+         "none"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "frequency",
+       "required": false,
+       "show_if": {
+        "not": {
+         "q": "duration",
+         "in": [
+          "none"
+         ]
+        }
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "worry",
+       "required": false,
+       "show_if": {
+        "q": "duration",
+        "in": [
+         "none"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "needs",
+       "required": false,
+       "show_if": {
+        "not": {
+         "q": "duration",
+         "in": [
+          "none"
+         ]
+        }
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "pathway",
+       "required": false,
+       "show_if": null,
+       "auto_answer": null
+      },
+      {
+       "question": "ctx_student",
+       "required": false,
+       "show_if": {
+        "q": "profile",
+        "in": [
+         "student"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "ctx_employee",
+       "required": false,
+       "show_if": {
+        "q": "profile",
+        "in": [
+         "employee"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "ctx_jobseeker",
+       "required": false,
+       "show_if": {
+        "q": "profile",
+        "in": [
+         "jobseeker"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "ctx_public",
+       "required": false,
+       "show_if": {
+        "q": "profile",
+        "in": [
+         "public_agent"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "support",
+       "required": false,
+       "show_if": null,
+       "auto_answer": null
+      },
+      {
+       "question": "barriers",
+       "required": false,
+       "show_if": null,
+       "auto_answer": null
+      },
+      {
+       "question": "urgency",
+       "required": false,
+       "show_if": null,
+       "auto_answer": null
+      }
+     ]
     },
     {
-     "type": "accordion",
      "title": {
-      "fr": "Qui peut la demander ?",
-      "en": ""
+      "fr": "Questions complémentaires",
+      "en": "Additional questions"
      },
-     "text": {
-      "fr": "Elle concerne les personnes dont les possibilités d'obtenir ou de conserver un emploi sont réduites du fait d'une altération d'une fonction physique, sensorielle, mentale ou psychique. La demande est généralement possible à partir de 16 ans ; des situations particulières concernent les jeunes dès 15 ans.",
-      "en": ""
-     }
-    },
-    {
-     "type": "accordion",
-     "title": {
-      "fr": "Combien de temps dure-t-elle ?",
-      "en": ""
-     },
-     "text": {
-      "fr": "La CDAPH peut l'attribuer pour 1 à 10 ans, ou sans limite de durée lorsque la situation n'est pas susceptible d'évoluer.",
-      "en": ""
-     }
-    },
-    {
-     "type": "accordion",
-     "title": {
-      "fr": "Comment faire la demande ?",
-      "en": ""
-     },
-     "text": {
-      "fr": "Remplissez le dossier de demande à la maison départementale des personnes handicapées (MDPH), avec les justificatifs et le certificat médical requis. Décrivez les conséquences de votre situation dans le travail ou la recherche d'emploi. La MDPH de votre lieu de résidence peut vous accompagner.",
-      "en": ""
-     }
-    },
-    {
-     "type": "accordion",
-     "title": {
-      "fr": "Comment renouveler la RQTH ?",
-      "en": ""
-     },
-     "text": {
-      "fr": "Si elle est attribuée pour une durée limitée, le renouvellement n'est pas automatique. Anticipez la demande, idéalement quatre mois avant l'échéance. Vérifiez les démarches et les documents demandés auprès de votre MDPH.",
-      "en": ""
-     }
-    },
-    {
-     "type": "link",
-     "title": {
-      "fr": "Informations officielles et documents FALC",
-      "en": ""
-     },
-     "text": {
-      "fr": "La source officielle détaille les droits, les démarches et propose des ressources faciles à lire et à comprendre.",
-      "en": ""
-     },
-     "url": "https://www.monparcourshandicap.gouv.fr/aides/la-reconnaissance-de-la-qualite-de-travailleur-handicape-rqth#ressources-facile-a-lire-et-a-comprendre"
+     "intro": null,
+     "optional": true,
+     "items": [
+      {
+       "question": "awareness",
+       "required": false,
+       "show_if": null,
+       "auto_answer": null
+      },
+      {
+       "question": "energy_when",
+       "required": false,
+       "show_if": {
+        "q": "areas",
+        "hasAny": [
+         "energy"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "energy_effects",
+       "required": false,
+       "show_if": {
+        "q": "areas",
+        "hasAny": [
+         "energy"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "energy_rest",
+       "required": false,
+       "show_if": {
+        "q": "areas",
+        "hasAny": [
+         "energy"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "attn_tasks",
+       "required": false,
+       "show_if": {
+        "q": "areas",
+        "hasAny": [
+         "attention"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "attn_tools",
+       "required": false,
+       "show_if": {
+        "q": "areas",
+        "hasAny": [
+         "attention"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "senses_which",
+       "required": false,
+       "show_if": {
+        "q": "areas",
+        "hasAny": [
+         "senses"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "senses_needs",
+       "required": false,
+       "show_if": {
+        "q": "areas",
+        "hasAny": [
+         "senses"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "mob_aspects",
+       "required": false,
+       "show_if": {
+        "q": "areas",
+        "hasAny": [
+         "mobility"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "mob_access",
+       "required": false,
+       "show_if": {
+        "q": "areas",
+        "hasAny": [
+         "mobility"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "psych_situations",
+       "required": false,
+       "show_if": {
+        "q": "areas",
+        "hasAny": [
+         "psych"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "psych_support",
+       "required": false,
+       "show_if": {
+        "q": "areas",
+        "hasAny": [
+         "psych"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "stability",
+       "required": false,
+       "show_if": {
+        "not": {
+         "q": "duration",
+         "in": [
+          "none"
+         ]
+        }
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "life_impact",
+       "required": false,
+       "show_if": {
+        "all": [
+         {
+          "not": {
+           "q": "duration",
+           "in": [
+            "none"
+           ]
+          }
+         },
+         {
+          "q": "frequency",
+          "in": [
+           "often",
+           "always"
+          ]
+         }
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "followup",
+       "required": false,
+       "show_if": {
+        "not": {
+         "q": "duration",
+         "in": [
+          "none"
+         ]
+        }
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "st_year",
+       "required": false,
+       "show_if": {
+        "q": "profile",
+        "in": [
+         "student"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "st_exam_detail",
+       "required": false,
+       "show_if": {
+        "q": "ctx_student",
+        "hasAny": [
+         "exams"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "st_work_detail",
+       "required": false,
+       "show_if": {
+        "q": "ctx_student",
+        "hasAny": [
+         "work"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "st_contact",
+       "required": false,
+       "show_if": {
+        "all": [
+         {
+          "q": "profile",
+          "in": [
+           "student"
+          ]
+         },
+         {
+          "not": {
+           "q": "duration",
+           "in": [
+            "none"
+           ]
+          }
+         }
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "emp_manager",
+       "required": false,
+       "show_if": {
+        "all": [
+         {
+          "q": "profile",
+          "in": [
+           "employee"
+          ]
+         },
+         {
+          "not": {
+           "q": "duration",
+           "in": [
+            "none"
+           ]
+          }
+         }
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "emp_workstation",
+       "required": false,
+       "show_if": {
+        "all": [
+         {
+          "q": "profile",
+          "in": [
+           "employee"
+          ]
+         },
+         {
+          "not": {
+           "q": "duration",
+           "in": [
+            "none"
+           ]
+          }
+         }
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "emp_occ",
+       "required": false,
+       "show_if": {
+        "all": [
+         {
+          "q": "profile",
+          "in": [
+           "employee"
+          ]
+         },
+         {
+          "not": {
+           "q": "duration",
+           "in": [
+            "none"
+           ]
+          }
+         }
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "emp_leave",
+       "required": false,
+       "show_if": {
+        "all": [
+         {
+          "q": "profile",
+          "in": [
+           "employee"
+          ]
+         },
+         {
+          "not": {
+           "q": "duration",
+           "in": [
+            "none"
+           ]
+          }
+         }
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "js_obstacles",
+       "required": false,
+       "show_if": {
+        "all": [
+         {
+          "q": "profile",
+          "in": [
+           "jobseeker"
+          ]
+         },
+         {
+          "not": {
+           "q": "duration",
+           "in": [
+            "none"
+           ]
+          }
+         }
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "js_training",
+       "required": false,
+       "show_if": {
+        "q": "profile",
+        "in": [
+         "jobseeker"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "js_support",
+       "required": false,
+       "show_if": {
+        "q": "profile",
+        "in": [
+         "jobseeker"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "pub_prevention",
+       "required": false,
+       "show_if": {
+        "all": [
+         {
+          "q": "profile",
+          "in": [
+           "public_agent"
+          ]
+         },
+         {
+          "not": {
+           "q": "duration",
+           "in": [
+            "none"
+           ]
+          }
+         }
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "pub_referent",
+       "required": false,
+       "show_if": {
+        "q": "profile",
+        "in": [
+         "public_agent"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "pub_mobility",
+       "required": false,
+       "show_if": {
+        "q": "profile",
+        "in": [
+         "public_agent"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "goals",
+       "required": false,
+       "show_if": {
+        "not": {
+         "q": "duration",
+         "in": [
+          "none"
+         ]
+        }
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "pref_contact",
+       "required": false,
+       "show_if": null,
+       "auto_answer": null
+      },
+      {
+       "question": "time_available",
+       "required": false,
+       "show_if": {
+        "not": {
+         "q": "duration",
+         "in": [
+          "none"
+         ]
+        }
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "helper",
+       "required": false,
+       "show_if": {
+        "not": {
+         "q": "duration",
+         "in": [
+          "none"
+         ]
+        }
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "sup_goal",
+       "required": false,
+       "show_if": {
+        "q": "for_whom",
+        "in": [
+         "relative",
+         "colleague",
+         "pro"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "sup_worry",
+       "required": false,
+       "show_if": {
+        "q": "for_whom",
+        "in": [
+         "relative",
+         "colleague",
+         "pro"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "prev_interest",
+       "required": false,
+       "show_if": {
+        "all": [
+         {
+          "q": "duration",
+          "in": [
+           "none"
+          ]
+         },
+         {
+          "q": "for_whom",
+          "in": [
+           "self"
+          ]
+         }
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "st_next",
+       "required": false,
+       "show_if": {
+        "q": "profile",
+        "in": [
+         "student"
+        ]
+       },
+       "auto_answer": null
+      },
+      {
+       "question": "recruit",
+       "required": false,
+       "show_if": {
+        "all": [
+         {
+          "q": "profile",
+          "in": [
+           "student"
+          ]
+         },
+         {
+          "not": {
+           "q": "duration",
+           "in": [
+            "none"
+           ]
+          }
+         }
+        ]
+       },
+       "auto_answer": null
+      }
+     ]
     }
-   ]
-  },
-  {
-   "slug": "demarche-reconnaissance",
-   "title": {
-    "fr": "Réfléchir à une démarche de reconnaissance",
-    "en": ""
-   },
-   "intro": {
-    "fr": "Une démarche de reconnaissance est personnelle et volontaire. Cette page donne des repères pour préparer une discussion avec un interlocuteur compétent ; elle ne remplace ni un avis médical ni la décision de la MDPH.",
-    "en": ""
-   },
-   "is_published": true,
-   "blocks": [
+   ],
+   "outcomes": [
     {
-     "type": "accordion",
+     "key": "explore",
+     "min_score": 0,
+     "icon": "book",
      "title": {
-      "fr": "À quoi peut servir une reconnaissance ?",
-      "en": ""
+      "fr": "Pour l'instant, vous pouvez vous informer à votre rythme",
+      "en": "For now, you can look into this at your own pace"
      },
-     "text": {
-      "fr": "Selon la situation, elle peut faciliter l'accès à des aménagements, à un accompagnement vers l'emploi, à une formation ou au maintien dans l'emploi. Elle n'est pas obligatoire pour travailler ou se former.",
-      "en": ""
-     }
+     "body": {
+      "fr": "D'après vos réponses, rien n'indique un besoin pressant. Cela ne veut pas dire que votre situation est sans importance : consultez les informations ci-dessous, et parlez-en à un interlocuteur de confiance si vous avez un doute.",
+      "en": "Based on your answers, nothing points to an urgent need. That does not mean your situation does not matter: read the information below, and talk to someone you trust if you have doubts."
+     },
+     "body_falc": {
+      "fr": "D'après vos réponses, il n'y a pas d'urgence. Vous pouvez lire les informations. Si vous avez un doute, parlez-en à quelqu'un de confiance.",
+      "en": "From your answers, there is no emergency. You can read the information. If you have doubts, talk to someone you trust."
+     },
+     "next": null,
+     "contacts": []
     },
     {
-     "type": "accordion",
+     "key": "talk",
+     "min_score": 3,
+     "icon": "chat",
      "title": {
-      "fr": "Quels repères regarder ?",
-      "en": ""
+      "fr": "Il peut être utile d'en parler à un interlocuteur",
+      "en": "It may be useful to talk to a contact person"
      },
-     "text": {
-      "fr": "Il peut être utile de partir des conséquences concrètes sur les études, le stage, l'alternance, la recherche d'emploi ou le travail : fatigue, horaires, déplacements, outils, concentration, organisation ou environnement. Ces repères aident à expliquer un besoin ; ils ne préjugent pas de la décision.",
-      "en": ""
-     }
+     "body": {
+      "fr": "Vos réponses montrent que votre santé peut avoir des effets sur vos études ou votre travail. Il peut être utile d'en parler à l'un des interlocuteurs ci-dessous. Il pourra vous aider à voir si une démarche de reconnaissance, comme la RQTH, a du sens pour vous.",
+      "en": "Your answers suggest your health may affect your studies or work. It may be useful to talk to one of the contacts below. They can help you see whether applying for recognition, such as the RQTH, makes sense for you."
+     },
+     "body_falc": {
+      "fr": "Votre santé peut avoir des effets sur vos études ou votre travail. Il peut être utile d'en parler à quelqu'un de la liste ci-dessous. Cette personne vous aidera à voir si la RQTH peut vous aider.",
+      "en": "Your health may affect your studies or work. It may help to talk to someone in the list below. They can help you see if the RQTH could help you."
+     },
+     "next": null,
+     "contacts": []
     },
     {
-     "type": "accordion",
+     "key": "talk_soon",
+     "min_score": 6,
+     "icon": "clock",
      "title": {
-      "fr": "Qui décide ?",
-      "en": ""
+      "fr": "Un échange rapide avec un interlocuteur est conseillé",
+      "en": "A quick conversation with a contact person is recommended"
      },
-     "text": {
-      "fr": "La demande est adressée à la MDPH du lieu de résidence. La CDAPH prend la décision après l'évaluation du dossier. La réponse et le délai peuvent varier selon les départements.",
-      "en": ""
-     }
+     "body": {
+      "fr": "Vos réponses montrent des effets importants ou répétés sur votre quotidien. Il peut être utile d'en parler assez vite à l'un des interlocuteurs ci-dessous. Seule la MDPH peut décider d'une reconnaissance, mais ces personnes peuvent vous aider à préparer votre démarche.",
+      "en": "Your answers show significant or repeated effects on your daily life. It may be useful to talk fairly soon to one of the contacts below. Only the MDPH can decide on recognition, but these people can help you prepare your application."
+     },
+     "body_falc": {
+      "fr": "Votre santé a des effets importants sur votre quotidien. Il peut être utile d'en parler assez vite à quelqu'un de la liste ci-dessous. Seule la MDPH décide de la RQTH. Ces personnes peuvent vous aider à préparer la demande.",
+      "en": "Your health has big effects on your daily life. It may help to talk fairly soon to someone in the list below. Only the MDPH decides on the RQTH. These people can help you prepare the application."
+     },
+     "next": null,
+     "contacts": []
     },
     {
-     "type": "link",
+     "key": "already",
+     "min_score": null,
+     "icon": "badge",
      "title": {
-      "fr": "Vérifier les règles officielles",
-      "en": ""
+      "fr": "Vous indiquez avoir déjà une reconnaissance",
+      "en": "You say you already have recognition"
      },
-     "text": {
-      "fr": "Consulter les conditions, la démarche et les informations actualisées sur Service-Public.fr.",
-      "en": ""
+     "body": {
+      "fr": "Vous avez déjà fait une partie du chemin. Les ressources ci-dessous peuvent vous aider à faire valoir votre reconnaissance (aménagements, aides) ou à anticiper son renouvellement.",
+      "en": "You have already covered part of the way. The resources below can help you make use of your recognition (adjustments, support) or plan its renewal."
      },
-     "url": "https://www.service-public.fr/particuliers/vosdroits/F1650"
+     "body_falc": {
+      "fr": "Vous avez déjà une reconnaissance. Les liens ci-dessous vous aident à l'utiliser et à la renouveler.",
+      "en": "You already have recognition. The links below help you use it and renew it."
+     },
+     "next": null,
+     "contacts": []
     }
-   ]
-  },
-  {
-   "slug": "interlocuteurs",
-   "title": {
-    "fr": "À qui s'adresser ?",
-    "en": ""
-   },
-   "intro": {
-    "fr": "Il n'est pas nécessaire de tout expliquer à tout le monde. Choisissez un interlocuteur selon votre question et le niveau de confidentialité souhaité.",
-    "en": ""
-   },
-   "is_published": true,
-   "blocks": [
+   ],
+   "rules": [
     {
-     "type": "accordion",
-     "title": {
-      "fr": "Pour les études et l'alternance",
-      "en": ""
-     },
-     "text": {
-      "fr": "Le pôle ou référent handicap de l'établissement peut parler des aménagements d'études, d'examens, de stage ou d'alternance. Il peut aussi orienter vers les services adaptés, sans décider à la place de la personne.",
-      "en": ""
-     }
+     "rule": "R_already_rqth",
+     "points": 0,
+     "override": "already"
     },
     {
-     "type": "accordion",
-     "title": {
-      "fr": "Pour la demande administrative",
-      "en": ""
-     },
-     "text": {
-      "fr": "La MDPH du lieu de résidence est le guichet de la demande. Son accueil peut renseigner sur le dossier, les modalités de dépôt et les documents attendus. Un médecin peut compléter le certificat médical requis.",
-      "en": ""
-     }
+     "rule": "R_no_signal",
+     "points": 0,
+     "override": "explore"
     },
     {
-     "type": "accordion",
-     "title": {
-      "fr": "Pour l'emploi",
-      "en": ""
-     },
-     "text": {
-      "fr": "Selon la situation, le service de santé au travail, le référent handicap, Cap emploi ou un conseiller d'insertion peuvent aider à identifier des solutions et des aménagements. La personne choisit les informations qu'elle souhaite communiquer.",
-      "en": ""
-     }
+     "rule": "R_duration_long",
+     "points": 2,
+     "override": null
     },
     {
-     "type": "link",
-     "title": {
-      "fr": "Trouver et contacter sa MDPH",
-      "en": ""
-     },
-     "text": {
-      "fr": "La page officielle explique le rôle de la MDPH et les possibilités de dépôt du dossier.",
-      "en": ""
-     },
-     "url": "https://www.monparcourshandicap.gouv.fr/aides/le-depot-du-dossier-et-le-traitement-de-la-demande-par-la-maison-departementale-des-personnes"
-    }
-   ]
-  },
-  {
-   "slug": "preparer-dossier",
-   "title": {
-    "fr": "Préparer un dossier",
-    "en": ""
-   },
-   "intro": {
-    "fr": "Un dossier complet aide la MDPH à comprendre la situation et les besoins. Les pièces demandées peuvent évoluer : vérifiez toujours celles de votre MDPH avant l'envoi.",
-    "en": ""
-   },
-   "is_published": true,
-   "blocks": [
-    {
-     "type": "accordion",
-     "title": {
-      "fr": "Pièces généralement demandées",
-      "en": ""
-     },
-     "text": {
-      "fr": "Le dossier comprend notamment le formulaire de demande MDPH, un certificat médical, un justificatif d'identité et un justificatif de domicile. D'autres pièces peuvent être utiles selon la demande et la situation.",
-      "en": ""
-     }
+     "rule": "R_duration_short",
+     "points": 1,
+     "override": null
     },
     {
-     "type": "accordion",
-     "title": {
-      "fr": "Décrire les conséquences concrètes",
-      "en": ""
-     },
-     "text": {
-      "fr": "Décrivez ce qui est difficile dans les études, le stage, l'alternance, la recherche d'emploi ou le travail, ainsi que les aides déjà essayées et les besoins envisagés. Il ne s'agit pas de poser soi-même un diagnostic.",
-      "en": ""
-     }
+     "rule": "R_duration_unsure",
+     "points": 1,
+     "override": null
     },
     {
-     "type": "accordion",
-     "title": {
-      "fr": "Conserver une copie",
-      "en": ""
-     },
-     "text": {
-      "fr": "Gardez une copie du formulaire, du certificat médical et des documents transmis. En ligne, numérisez les pièces de façon lisible ; par courrier, conservez une preuve d'envoi si cela est pertinent.",
-      "en": ""
-     }
+     "rule": "R_freq_often",
+     "points": 1,
+     "override": null
     },
     {
-     "type": "link",
-     "title": {
-      "fr": "Liste des pièces et dépôt du dossier",
-      "en": ""
-     },
-     "text": {
-      "fr": "Consulter la liste officielle des documents et les modalités de dépôt auprès de la MDPH.",
-      "en": ""
-     },
-     "url": "https://www.monparcourshandicap.gouv.fr/aides/le-depot-du-dossier-et-le-traitement-de-la-demande-par-la-maison-departementale-des-personnes"
-    }
-   ]
-  },
-  {
-   "slug": "parcours-professionnel",
-   "title": {
-    "fr": "Démarche et parcours professionnel",
-    "en": ""
-   },
-   "intro": {
-    "fr": "Une reconnaissance peut être un outil pour préparer une entrée dans l'emploi, une alternance ou un maintien dans l'emploi. Elle ne décide pas du projet professionnel et ne crée pas d'obligation d'en parler autour de soi.",
-    "en": ""
-   },
-   "is_published": true,
-   "blocks": [
-    {
-     "type": "accordion",
-     "title": {
-      "fr": "Confidentialité et choix de la personne",
-      "en": ""
-     },
-     "text": {
-      "fr": "La demande et la décision sont personnelles. La personne choisit si, quand et à qui elle souhaite en parler, notamment à un employeur, à un établissement de formation ou à un futur employeur.",
-      "en": ""
-     }
+     "rule": "R_freq_always",
+     "points": 2,
+     "override": null
     },
     {
-     "type": "accordion",
-     "title": {
-      "fr": "Aménagements et accompagnement",
-      "en": ""
-     },
-     "text": {
-      "fr": "Selon le contexte, des aménagements de poste, d'horaires, d'outils, de formation ou de concours peuvent être envisagés avec les interlocuteurs compétents. Leur mise en place dépend de la situation et du cadre concerné.",
-      "en": ""
-     }
+     "rule": "R_areas_declared",
+     "points": 1,
+     "override": null
     },
     {
-     "type": "accordion",
-     "title": {
-      "fr": "Anticiper sans se précipiter",
-      "en": ""
-     },
-     "text": {
-      "fr": "Un dossier peut demander du temps à préparer et à être étudié. En cas de stage, d'alternance ou de contrat à venir, anticiper permet de discuter plus sereinement des besoins éventuels.",
-      "en": ""
-     }
+     "rule": "R_needs_some",
+     "points": 1,
+     "override": null
     },
     {
-     "type": "link",
-     "title": {
-      "fr": "Comprendre la compensation au travail",
-      "en": ""
-     },
-     "text": {
-      "fr": "La ressource officielle présente les démarches et les solutions possibles dans l'emploi.",
-      "en": ""
-     },
-     "url": "https://www.monparcourshandicap.gouv.fr/emploi/compenser-votre-handicap-dans-lemploi"
+     "rule": "R_needs_many",
+     "points": 1,
+     "override": null
+    },
+    {
+     "rule": "R_pathway_impact",
+     "points": 1,
+     "override": null
+    },
+    {
+     "rule": "R_support_adjust",
+     "points": 1,
+     "override": null
+    },
+    {
+     "rule": "R_no_support",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_urgent",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_aware_low",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_barrier_stigma",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_barrier_employer",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_barrier_complexity",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_barrier_who",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_barrier_time",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_student_exam",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_student_work",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_shift_work",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_long_search",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_public_status",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_see_doctor",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_for_relative",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_for_support",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_worry_watch",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_energy_posture",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_energy_conc",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_energy_commute",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_energy_rest",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_energy_when",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_attn_rw",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_attn_org",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_attn_listen",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_attn_tools_none",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_vision",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_hearing",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_lighting",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_access",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_equipment",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_psych_groups",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_psych_pace",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_psych_env",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_psych_nosupport",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_stability",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_life_wide",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_life_sleep",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_st_exam_req",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_st_disclosure",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_st_work_adapt",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_st_contact",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_st_year",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_emp_unaware",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_emp_manager_ok",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_emp_ws",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_emp_org",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_emp_occ",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_emp_leave",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_js_interview",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_js_org",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_js_training",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_js_contact",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_pub_prev",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_pub_ref",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_pub_posting",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_goal_keep",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_goal_funding",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_goal_training",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_goal_secure",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_goal_info",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_pref_written",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_pref_remote",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_time_little",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_helper",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_sup_talk",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_sup_orient",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_sup_setup",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_sup_aware",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_sup_conf",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_sup_words",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_sup_legal",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_prev_ready",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_prev_share",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_work_world",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_next_alternance",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_next_work",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_recruit_tests",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_recruit_cv",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_recruit_conditions",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_career_center",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_contacts_work_focus",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_contacts_student",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_contacts_employee",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_contacts_jobseeker",
+     "points": 0,
+     "override": null
+    },
+    {
+     "rule": "R_contacts_public_agent",
+     "points": 0,
+     "override": null
     }
    ]
   }
@@ -7981,6 +7941,451 @@
     "fr": "Règlement (UE) 2016/679 (RGPD), article 9",
     "en": "Regulation (EU) 2016/679 (GDPR), article 9"
    }
+  }
+ ],
+ "pages": [
+  {
+   "slug": "handicaps",
+   "title": {
+    "fr": "Comprendre les situations de handicap",
+    "en": ""
+   },
+   "intro": {
+    "fr": "Le handicap peut prendre des formes très diverses, visibles ou non. Les besoins d'une personne dépendent aussi de son environnement. Ces repères ne constituent pas un diagnostic.",
+    "en": ""
+   },
+   "is_published": true,
+   "blocks": [
+    {
+     "type": "text",
+     "title": {
+      "fr": "Des situations et des besoins différents",
+      "en": ""
+     },
+     "text": {
+      "fr": "Une même situation peut avoir des conséquences différentes selon les personnes et le contexte. Il est utile de demander quels aménagements facilitent réellement les études, le travail ou la vie quotidienne.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Handicap moteur",
+      "en": ""
+     },
+     "text": {
+      "fr": "Il concerne la mobilité, les gestes, la posture ou l'endurance. Les besoins possibles comprennent un accès sans obstacle, du matériel adapté ou des horaires aménagés.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Handicap visuel",
+      "en": ""
+     },
+     "text": {
+      "fr": "La vision peut être partiellement ou totalement altérée. Des documents lisibles par lecteur d'écran, un bon contraste ou un agrandissement peuvent aider.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Handicap auditif",
+      "en": ""
+     },
+     "text": {
+      "fr": "Il peut concerner différents degrés de surdité ou de malentendance. Le sous-titrage, la transcription, les supports écrits ou une boucle magnétique peuvent faciliter les échanges.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Handicap psychique",
+      "en": ""
+     },
+     "text": {
+      "fr": "Il peut avoir des effets sur l'énergie, la concentration, les relations ou la gestion du stress. Les besoins varient dans le temps ; un cadre clair et des aménagements adaptés peuvent aider.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Handicap intellectuel",
+      "en": ""
+     },
+     "text": {
+      "fr": "Il peut rendre certaines informations ou démarches plus difficiles à comprendre. Un langage clair, des étapes courtes et des supports faciles à lire et à comprendre peuvent être utiles.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Troubles cognitifs et troubles du neurodéveloppement",
+      "en": ""
+     },
+     "text": {
+      "fr": "Ils peuvent toucher l'attention, la mémoire, l'apprentissage, la lecture, l'organisation ou la communication. Des consignes explicites, davantage de temps ou des outils adaptés peuvent aider.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Maladies chroniques et invalidantes",
+      "en": ""
+     },
+     "text": {
+      "fr": "Certaines maladies entraînent fatigue, douleurs ou limitations fluctuantes, même lorsqu'elles ne sont pas visibles. Les aménagements dépendent des conséquences concrètes sur l'activité.",
+      "en": ""
+     }
+    },
+    {
+     "type": "document",
+     "title": {
+      "fr": "Infographie sur le handicap",
+      "en": ""
+     },
+     "text": {
+      "fr": "Consulter ou télécharger l'infographie au format PDF.",
+      "en": ""
+     },
+     "url": "/docs/infographie-handicap-2025.pdf"
+    },
+    {
+     "type": "link",
+     "title": {
+      "fr": "Comprendre la RQTH",
+      "en": ""
+     },
+     "text": {
+      "fr": "Consulter les informations officielles sur la reconnaissance de la qualité de travailleur handicapé.",
+      "en": ""
+     },
+     "url": "https://www.monparcourshandicap.gouv.fr/aides/la-reconnaissance-de-la-qualite-de-travailleur-handicape-rqth#ressources-facile-a-lire-et-a-comprendre"
+    }
+   ]
+  },
+  {
+   "slug": "rqth",
+   "title": {
+    "fr": "Informations générales",
+    "en": ""
+   },
+   "intro": {
+    "fr": "Cette rubrique présente des repères généraux sur la démarche de reconnaissance et la vie professionnelle. Elle aide à préparer ses questions, sans dire si une personne doit ou peut engager une démarche : la décision relève de la CDAPH.",
+    "en": ""
+   },
+   "is_published": true,
+   "blocks": [
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "À quoi sert la RQTH ?",
+      "en": ""
+     },
+     "text": {
+      "fr": "Elle peut faciliter les aménagements du poste ou des horaires, l'accompagnement vers l'emploi et l'accès à certaines formations. Elle ne donne pas, à elle seule, droit à une aide financière.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Qui peut la demander ?",
+      "en": ""
+     },
+     "text": {
+      "fr": "Elle concerne les personnes dont les possibilités d'obtenir ou de conserver un emploi sont réduites du fait d'une altération d'une fonction physique, sensorielle, mentale ou psychique. La demande est généralement possible à partir de 16 ans ; des situations particulières concernent les jeunes dès 15 ans.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Combien de temps dure-t-elle ?",
+      "en": ""
+     },
+     "text": {
+      "fr": "La CDAPH peut l'attribuer pour 1 à 10 ans, ou sans limite de durée lorsque la situation n'est pas susceptible d'évoluer.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Comment faire la demande ?",
+      "en": ""
+     },
+     "text": {
+      "fr": "Remplissez le dossier de demande à la maison départementale des personnes handicapées (MDPH), avec les justificatifs et le certificat médical requis. Décrivez les conséquences de votre situation dans le travail ou la recherche d'emploi. La MDPH de votre lieu de résidence peut vous accompagner.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Comment renouveler la RQTH ?",
+      "en": ""
+     },
+     "text": {
+      "fr": "Si elle est attribuée pour une durée limitée, le renouvellement n'est pas automatique. Anticipez la demande, idéalement quatre mois avant l'échéance. Vérifiez les démarches et les documents demandés auprès de votre MDPH.",
+      "en": ""
+     }
+    },
+    {
+     "type": "link",
+     "title": {
+      "fr": "Informations officielles et documents FALC",
+      "en": ""
+     },
+     "text": {
+      "fr": "La source officielle détaille les droits, les démarches et propose des ressources faciles à lire et à comprendre.",
+      "en": ""
+     },
+     "url": "https://www.monparcourshandicap.gouv.fr/aides/la-reconnaissance-de-la-qualite-de-travailleur-handicape-rqth#ressources-facile-a-lire-et-a-comprendre"
+    }
+   ]
+  },
+  {
+   "slug": "demarche-reconnaissance",
+   "title": {
+    "fr": "Réfléchir à une démarche de reconnaissance",
+    "en": ""
+   },
+   "intro": {
+    "fr": "Une démarche de reconnaissance est personnelle et volontaire. Cette page donne des repères pour préparer une discussion avec un interlocuteur compétent ; elle ne remplace ni un avis médical ni la décision de la MDPH.",
+    "en": ""
+   },
+   "is_published": true,
+   "blocks": [
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "À quoi peut servir une reconnaissance ?",
+      "en": ""
+     },
+     "text": {
+      "fr": "Selon la situation, elle peut faciliter l'accès à des aménagements, à un accompagnement vers l'emploi, à une formation ou au maintien dans l'emploi. Elle n'est pas obligatoire pour travailler ou se former.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Quels repères regarder ?",
+      "en": ""
+     },
+     "text": {
+      "fr": "Il peut être utile de partir des conséquences concrètes sur les études, le stage, l'alternance, la recherche d'emploi ou le travail : fatigue, horaires, déplacements, outils, concentration, organisation ou environnement. Ces repères aident à expliquer un besoin ; ils ne préjugent pas de la décision.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Qui décide ?",
+      "en": ""
+     },
+     "text": {
+      "fr": "La demande est adressée à la MDPH du lieu de résidence. La CDAPH prend la décision après l'évaluation du dossier. La réponse et le délai peuvent varier selon les départements.",
+      "en": ""
+     }
+    },
+    {
+     "type": "link",
+     "title": {
+      "fr": "Vérifier les règles officielles",
+      "en": ""
+     },
+     "text": {
+      "fr": "Consulter les conditions, la démarche et les informations actualisées sur Service-Public.fr.",
+      "en": ""
+     },
+     "url": "https://www.service-public.fr/particuliers/vosdroits/F1650"
+    }
+   ]
+  },
+  {
+   "slug": "interlocuteurs",
+   "title": {
+    "fr": "À qui s'adresser ?",
+    "en": ""
+   },
+   "intro": {
+    "fr": "Il n'est pas nécessaire de tout expliquer à tout le monde. Choisissez un interlocuteur selon votre question et le niveau de confidentialité souhaité.",
+    "en": ""
+   },
+   "is_published": true,
+   "blocks": [
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Pour les études et l'alternance",
+      "en": ""
+     },
+     "text": {
+      "fr": "Le pôle ou référent handicap de l'établissement peut parler des aménagements d'études, d'examens, de stage ou d'alternance. Il peut aussi orienter vers les services adaptés, sans décider à la place de la personne.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Pour la demande administrative",
+      "en": ""
+     },
+     "text": {
+      "fr": "La MDPH du lieu de résidence est le guichet de la demande. Son accueil peut renseigner sur le dossier, les modalités de dépôt et les documents attendus. Un médecin peut compléter le certificat médical requis.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Pour l'emploi",
+      "en": ""
+     },
+     "text": {
+      "fr": "Selon la situation, le service de santé au travail, le référent handicap, Cap emploi ou un conseiller d'insertion peuvent aider à identifier des solutions et des aménagements. La personne choisit les informations qu'elle souhaite communiquer.",
+      "en": ""
+     }
+    },
+    {
+     "type": "link",
+     "title": {
+      "fr": "Trouver et contacter sa MDPH",
+      "en": ""
+     },
+     "text": {
+      "fr": "La page officielle explique le rôle de la MDPH et les possibilités de dépôt du dossier.",
+      "en": ""
+     },
+     "url": "https://www.monparcourshandicap.gouv.fr/aides/le-depot-du-dossier-et-le-traitement-de-la-demande-par-la-maison-departementale-des-personnes"
+    }
+   ]
+  },
+  {
+   "slug": "preparer-dossier",
+   "title": {
+    "fr": "Préparer un dossier",
+    "en": ""
+   },
+   "intro": {
+    "fr": "Un dossier complet aide la MDPH à comprendre la situation et les besoins. Les pièces demandées peuvent évoluer : vérifiez toujours celles de votre MDPH avant l'envoi.",
+    "en": ""
+   },
+   "is_published": true,
+   "blocks": [
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Pièces généralement demandées",
+      "en": ""
+     },
+     "text": {
+      "fr": "Le dossier comprend notamment le formulaire de demande MDPH, un certificat médical, un justificatif d'identité et un justificatif de domicile. D'autres pièces peuvent être utiles selon la demande et la situation.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Décrire les conséquences concrètes",
+      "en": ""
+     },
+     "text": {
+      "fr": "Décrivez ce qui est difficile dans les études, le stage, l'alternance, la recherche d'emploi ou le travail, ainsi que les aides déjà essayées et les besoins envisagés. Il ne s'agit pas de poser soi-même un diagnostic.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Conserver une copie",
+      "en": ""
+     },
+     "text": {
+      "fr": "Gardez une copie du formulaire, du certificat médical et des documents transmis. En ligne, numérisez les pièces de façon lisible ; par courrier, conservez une preuve d'envoi si cela est pertinent.",
+      "en": ""
+     }
+    },
+    {
+     "type": "link",
+     "title": {
+      "fr": "Liste des pièces et dépôt du dossier",
+      "en": ""
+     },
+     "text": {
+      "fr": "Consulter la liste officielle des documents et les modalités de dépôt auprès de la MDPH.",
+      "en": ""
+     },
+     "url": "https://www.monparcourshandicap.gouv.fr/aides/le-depot-du-dossier-et-le-traitement-de-la-demande-par-la-maison-departementale-des-personnes"
+    }
+   ]
+  },
+  {
+   "slug": "parcours-professionnel",
+   "title": {
+    "fr": "Démarche et parcours professionnel",
+    "en": ""
+   },
+   "intro": {
+    "fr": "Une reconnaissance peut être un outil pour préparer une entrée dans l'emploi, une alternance ou un maintien dans l'emploi. Elle ne décide pas du projet professionnel et ne crée pas d'obligation d'en parler autour de soi.",
+    "en": ""
+   },
+   "is_published": true,
+   "blocks": [
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Confidentialité et choix de la personne",
+      "en": ""
+     },
+     "text": {
+      "fr": "La demande et la décision sont personnelles. La personne choisit si, quand et à qui elle souhaite en parler, notamment à un employeur, à un établissement de formation ou à un futur employeur.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Aménagements et accompagnement",
+      "en": ""
+     },
+     "text": {
+      "fr": "Selon le contexte, des aménagements de poste, d'horaires, d'outils, de formation ou de concours peuvent être envisagés avec les interlocuteurs compétents. Leur mise en place dépend de la situation et du cadre concerné.",
+      "en": ""
+     }
+    },
+    {
+     "type": "accordion",
+     "title": {
+      "fr": "Anticiper sans se précipiter",
+      "en": ""
+     },
+     "text": {
+      "fr": "Un dossier peut demander du temps à préparer et à être étudié. En cas de stage, d'alternance ou de contrat à venir, anticiper permet de discuter plus sereinement des besoins éventuels.",
+      "en": ""
+     }
+    },
+    {
+     "type": "link",
+     "title": {
+      "fr": "Comprendre la compensation au travail",
+      "en": ""
+     },
+     "text": {
+      "fr": "La ressource officielle présente les démarches et les solutions possibles dans l'emploi.",
+      "en": ""
+     },
+     "url": "https://www.monparcourshandicap.gouv.fr/emploi/compenser-votre-handicap-dans-lemploi"
+    }
+   ]
   }
  ]
 }

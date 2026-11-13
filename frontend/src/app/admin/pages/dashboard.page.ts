@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { ContentService } from '../../core/content.service';
-import { AdminApi, Stats } from '../admin-api.service';
+import { AdminApi, QuestionnaireDetail, QuestionnaireRow, Stats } from '../admin-api.service';
+import { adminT, adminText } from '../admin-i18n';
 
 type Masked = number | string;
 interface Bar {
@@ -9,27 +10,23 @@ interface Bar {
   width: number;
 }
 
-const DOCUMENT_LABELS: Record<string, string> = {
-  rqth_mph: 'Fiche RQTH (Mon Parcours Handicap)',
-  mdph_portal: 'Portail MDPH',
-  service_public_rqth: 'Service-Public : RQTH',
-  agefiph: 'Agefiph',
-  fiphfp: 'FIPHFP',
-  france_travail: 'France Travail',
-  print: 'Impression',
-  pdf_download: 'PDF téléchargé',
-  summary_download: 'Résumé texte téléchargé',
-};
-
-/** Statistiques anonymes. Les valeurs inférieures au seuil sont masquées par le serveur. */
+/** Statistiques anonymes d'un questionnaire. Les petites valeurs sont masquées par le serveur. */
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="toolbar">
-      <h1>Tableau de bord</h1>
+      <h1>{{ t('dashboard.title') }}</h1>
       <div class="admin-actions">
-        <button type="button" class="btn" (click)="load()">Actualiser</button>
-        <a class="btn" href="/api/admin/stats.csv" download>Exporter en CSV</a>
+        <label class="sr-only" for="dash-q">{{ t('dashboard.questionnaire') }}</label>
+        <select id="dash-q" (change)="select($any($event.target).value)">
+          @for (q of questionnaires(); track q.key) {
+            <option [value]="q.key" [selected]="q.key === selected()">{{ text(q.title) }}</option>
+          }
+        </select>
+        <button type="button" class="btn" (click)="load()">{{ t('dashboard.refresh') }}</button>
+        <a class="btn" [href]="'/api/admin/stats/' + selected() + '/csv'" download>
+          {{ t('dashboard.export') }}
+        </a>
       </div>
     </div>
     @if (error()) {
@@ -37,33 +34,27 @@ const DOCUMENT_LABELS: Record<string, string> = {
     }
     @if (stats(); as s) {
       @if (s.disabled) {
-        <p class="status">
-          La collecte des statistiques est désactivée sur ce serveur (DISABLE_STATS).
-        </p>
+        <p class="status">{{ t('dashboard.disabled') }}</p>
       }
-      <p class="hint">
-        Compteurs anonymes et séparés (jamais croisés). Une valeur inférieure à {{ s.k }} est
-        masquée ; « * » signale une valeur masquée en plus pour empêcher de la retrouver par
-        soustraction.
-      </p>
+      <p class="hint">{{ t('dashboard.privacy', { k: s.k }) }}</p>
       <ul class="kpis">
         <li class="kpi">
-          <p class="kpi-label">Parcours commencés</p>
+          <p class="kpi-label">{{ t('dashboard.starts') }}</p>
           <p class="kpi-value">{{ show(s.totals.starts) }}</p>
         </li>
         <li class="kpi">
-          <p class="kpi-label">Parcours terminés</p>
+          <p class="kpi-label">{{ t('dashboard.completes') }}</p>
           <p class="kpi-value">{{ show(s.totals.completes) }}</p>
         </li>
         <li class="kpi">
-          <p class="kpi-label">Taux de finalisation</p>
+          <p class="kpi-label">{{ t('dashboard.rate') }}</p>
           <p class="kpi-value">
             {{ s.totals.completion_rate === null ? '–' : s.totals.completion_rate + ' %' }}
           </p>
         </li>
         <li class="kpi">
-          <p class="kpi-label">Questions complémentaires</p>
-          <p class="kpi-value">{{ show(s.totals.deep) }}</p>
+          <p class="kpi-label">{{ t('dashboard.optional') }}</p>
+          <p class="kpi-value">{{ show(s.totals.optional) }}</p>
         </li>
       </ul>
       <div class="charts">
@@ -85,15 +76,15 @@ const DOCUMENT_LABELS: Record<string, string> = {
         }
       </div>
       <section class="chart-card">
-        <h2>Activité des 30 derniers jours</h2>
+        <h2>{{ t('dashboard.daily') }}</h2>
         @if (s.daily.length) {
           <div class="table-wrap">
             <table>
               <thead>
                 <tr>
-                  <th scope="col">Jour</th>
-                  <th scope="col">Commencés</th>
-                  <th scope="col">Terminés</th>
+                  <th scope="col">{{ t('dashboard.day') }}</th>
+                  <th scope="col">{{ t('dashboard.starts') }}</th>
+                  <th scope="col">{{ t('dashboard.completes') }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -108,36 +99,41 @@ const DOCUMENT_LABELS: Record<string, string> = {
             </table>
           </div>
         } @else {
-          <p>Aucune activité enregistrée pour l'instant.</p>
+          <p>{{ t('dashboard.no_activity') }}</p>
         }
       </section>
       <details class="panel">
-        <summary>Données de démonstration (hors production)</summary>
-        <p>Pour une présentation : ajoute des compteurs fictifs, ou efface tous les compteurs.</p>
+        <summary>{{ t('dashboard.demo_title') }}</summary>
+        <p>{{ t('dashboard.demo_text') }}</p>
         <div class="actions">
-          <button type="button" class="btn" (click)="demo()">Ajouter 120 parcours fictifs</button>
+          <button type="button" class="btn" (click)="demo()">{{ t('dashboard.demo_add') }}</button>
           @if (confirmReset()) {
             <button type="button" class="btn btn-primary" (click)="reset()">
-              Confirmer : tout effacer
+              {{ t('dashboard.reset_confirm') }}
             </button>
             <button type="button" class="btn btn-quiet" (click)="confirmReset.set(false)">
-              Annuler
+              {{ t('common.cancel') }}
             </button>
           } @else {
             <button type="button" class="btn btn-quiet" (click)="confirmReset.set(true)">
-              Effacer les statistiques…
+              {{ t('dashboard.reset') }}…
             </button>
           }
         </div>
       </details>
     } @else if (!error()) {
-      <p>Chargement…</p>
+      <p>{{ t('common.loading') }}</p>
     }
   `,
 })
 export class DashboardPage {
   private readonly api = inject(AdminApi);
   private readonly content = inject(ContentService);
+  protected readonly t = adminT();
+  protected readonly text = adminText();
+  protected readonly questionnaires = signal<QuestionnaireRow[]>([]);
+  protected readonly selected = signal('');
+  private readonly detail = signal<QuestionnaireDetail | null>(null);
   protected readonly stats = signal<Stats | null>(null);
   protected readonly error = signal('');
   protected readonly confirmReset = signal(false);
@@ -145,25 +141,52 @@ export class DashboardPage {
   protected readonly charts = computed(() => {
     const s = this.stats();
     if (!s) return [];
-    const content = this.content.content();
-    const levels = new Map(content.levels.map((l) => [l.key, l.title.fr]));
-    const profile = content.questions.find((q) => q.key === 'profile');
-    const profiles = new Map(profile?.options.map((o) => [o.key, o.label.fr]) ?? []);
+    const outcomes = new Map(this.detail()?.outcomes.map((o) => [o.key, this.text(o.title)]));
+    const documents = new Map(
+      this.content.content().resources.map((r) => [r.key, this.text(r.title)]),
+    );
     return [
-      { title: 'Orientation obtenue', bars: this.bars(s.by_level, (k) => levels.get(k) ?? k) },
-      { title: 'Profil', bars: this.bars(s.by_profile, (k) => profiles.get(k) ?? k) },
-      { title: 'Langue', bars: this.bars(s.by_lang, (k) => (k === 'fr' ? 'Français' : 'English')) },
-      { title: 'Documents ouverts', bars: this.bars(s.documents, (k) => DOCUMENT_LABELS[k] ?? k) },
+      {
+        title: this.t('dashboard.by_outcome'),
+        bars: this.bars(s.by_outcome, (k) => outcomes.get(k) ?? k),
+      },
+      {
+        title: this.t('dashboard.by_lang'),
+        bars: this.bars(s.by_lang, (k) => this.t('field.lang_' + k)),
+      },
+      {
+        title: this.t('dashboard.documents'),
+        bars: this.bars(s.documents, (k) => documents.get(k) ?? this.t('dashboard.doc_' + k)),
+      },
     ];
   });
 
   constructor() {
-    void this.load();
+    void this.init();
+  }
+
+  private async init(): Promise<void> {
+    try {
+      const rows = await this.api.questionnaires();
+      this.questionnaires.set(rows);
+      const first = rows.find((q) => q.featured) ?? rows[0];
+      if (first) await this.select(first.key);
+    } catch (error) {
+      this.error.set((error as Error).message);
+    }
+  }
+
+  protected async select(key: string): Promise<void> {
+    this.selected.set(key);
+    const row = this.questionnaires().find((q) => q.key === key);
+    if (row) this.detail.set(await this.api.questionnaire(row.id).catch(() => null));
+    await this.load();
   }
 
   protected async load(): Promise<void> {
+    if (!this.selected()) return;
     try {
-      this.stats.set(await this.api.stats());
+      this.stats.set(await this.api.stats(this.selected()));
       this.error.set('');
     } catch (error) {
       this.error.set((error as Error).message);
@@ -171,13 +194,15 @@ export class DashboardPage {
   }
 
   protected show(value: Masked): string {
-    return typeof value === 'number'
-      ? String(value)
-      : `moins de ${value.replace(/[<*]/g, '')}${value.endsWith('*') ? '*' : ''}`;
+    if (typeof value === 'number') return String(value);
+    return (
+      this.t('dashboard.under', { n: value.replace(/[<*]/g, '') }) +
+      (value.endsWith('*') ? '*' : '')
+    );
   }
 
   protected formatDate(iso: string): string {
-    return new Date(`${iso}T12:00:00`).toLocaleDateString('fr-FR', {
+    return new Date(`${iso}T12:00:00`).toLocaleDateString(this.t('locale'), {
       weekday: 'short',
       day: 'numeric',
       month: 'short',
@@ -185,7 +210,7 @@ export class DashboardPage {
   }
 
   protected async demo(): Promise<void> {
-    await this.run(() => this.api.addDemoStats());
+    await this.run(() => this.api.addDemoStats(this.selected()));
   }
 
   protected async reset(): Promise<void> {

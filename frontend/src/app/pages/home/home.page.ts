@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AnalyticsService } from '../../core/analytics.service';
+import { ContentService } from '../../core/content.service';
 import { I18nService } from '../../core/i18n.service';
 import { QuizService } from '../../core/quiz.service';
 import { ReadPart } from '../../core/voice.service';
@@ -15,8 +16,13 @@ import { ReadButtonComponent } from '../../shared/read-button.component';
 export class HomePage {
   protected readonly i18n = inject(I18nService);
   protected readonly analytics = inject(AnalyticsService);
+  protected readonly content = inject(ContentService);
   private readonly quiz = inject(QuizService);
   private readonly router = inject(Router);
+  /** Les autres questionnaires publiés, proposés sous le questionnaire mis en avant. */
+  protected readonly others = computed(() =>
+    this.content.content().questionnaires.filter((q) => q.key !== this.content.featured()?.key),
+  );
 
   protected readonly features = [
     { css: 'f-does', icon: 'compass', title: 'info.does_title', list: 'info.does' },
@@ -24,9 +30,10 @@ export class HomePage {
     { css: 'f-priv', icon: 'lock', title: 'info.privacy_title', list: 'info.privacy' },
   ];
 
-  protected start(): void {
-    this.quiz.reset();
-    void this.router.navigateByUrl('/quiz/1');
+  protected async start(key = this.content.featured()?.key): Promise<void> {
+    if (!key || !(await this.quiz.open(key))) return;
+    this.quiz.forgetAll();
+    void this.router.navigate(['/q', key, 1]);
   }
 
   protected readonly readParts = (): ReadPart[] => {

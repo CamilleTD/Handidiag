@@ -66,7 +66,8 @@
   "nav_resources": "Resources",
   "not_found_text": "This page does not exist or has been moved.",
   "footer_disclaimer": "HandiDiag guides and informs: it is neither a diagnosis nor a decision. Only the MDPH can recognise a disability.",
-  "nav_info": "Learn more"
+  "nav_info": "Learn more",
+  "view_site": "View the public site"
  },
  "pages": {
   "info": "Understanding the RQTH process",
@@ -165,7 +166,9 @@
   ],
   "pole_title": "And at school? The disability office",
   "pole_text": "The disability office meets you for a first interview: building trust, respecting your privacy, identifying your needs, explaining the rules. It then sets up the accommodations, follows you throughout your studies and helps with entering the working world.",
-  "pole_link": "See resources at school, nationally and in law"
+  "pole_link": "See resources at school, nationally and in law",
+  "other_questionnaires": "Other questionnaires",
+  "start_questionnaire": "Start this questionnaire"
  },
  "quiz": {
   "progress": "Question {n} of {total}",
@@ -188,21 +191,9 @@
   "more_skip": "See my orientation now",
   "more_later": "You can also come back to it from your result.",
   "deep_tag": "additional",
-  "pole_panel_title": "To contact the disability office",
-  "pole_panel_subjects": "Topics covered",
-  "pole_subjects": [
-   "Disability",
-   "Extra exam time",
-   "Social support",
-   "Exceptional aid",
-   "Accommodations"
-  ],
-  "pole_panel_write": "Write to the person who matches your need (one e-mail is enough):",
-  "pole_panel_then": "Then choose: continue with the RQTH questions, or stop here.",
   "email_label": "E-mail",
-  "pole_panel_school": "For your studies at school",
-  "pole_panel_work": "For the working world",
-  "pole_hint_title": "What your answers suggest"
+  "preview_notice": "Draft preview (administration): nothing is counted in the statistics.",
+  "preview_failed": "Preview unavailable: sign in to the administration, then use \"Test the draft\" again."
  },
  "result": {
   "title": "Your orientation",
@@ -211,7 +202,7 @@
   "why_intro": "HandiDiag uses no artificial intelligence: it applies simple rules, listed here.",
   "points": "{n} point",
   "points_plural": "{n} points",
-  "score_line": "Total: {score} (thresholds: 3 for “it may be useful to talk”, 6 for “quick conversation recommended”).",
+  "score_line": "Total points: {score}.",
   "attention_title": "Points to keep in mind",
   "contacts_title": "Who to turn to",
   "contacts_intro": "Here are starting points suited to your situation. You can contact just one of them.",
@@ -231,7 +222,9 @@
   "todo_note_falc": "These are only ideas, based on your answers. They are not a doctor's advice. They are not obligations. A professional can help you.",
   "refine_title": "Refine my leads",
   "refine_text": "Answer {n} additional questions to get more precise leads, adapted to what you ticked.",
-  "refine_btn": "Answer the additional questions"
+  "refine_btn": "Answer the additional questions",
+  "next_text": "You can continue with this questionnaire. The answers you already gave are carried over: you can check or change them.",
+  "next_btn": "Continue"
  },
  "kit": {
   "title": "Resource kit",
@@ -299,10 +292,7 @@
   "title": "The school's disability office",
   "who_school": "For your studies at school (exams, extra time, social aid, accommodations)",
   "who_work": "For the working world (internship, work-study, job search, accommodations at the company)",
-  "privacy_note": "The disability office is confidential: only the information useful for setting up the accommodation is shared.",
-  "continue_title": "See whether an RQTH could make sense for you",
-  "continue_text": "You chose to stop after the disability office step. You can answer the RQTH questions at any time (about ten questions, no medical detail).",
-  "continue_btn": "Answer the RQTH questions"
+  "privacy_note": "The disability office is confidential: only the information useful for setting up the accommodation is shared."
  },
  "resources": {
   "title": "Resources",

@@ -1,4 +1,4 @@
-/** Types du contenu servi par GET /api/content (voir backend/app/services.py). */
+/** Types des données servies par l'API publique (voir backend/app/services.py). */
 
 export type Lang = 'fr' | 'en';
 
@@ -26,49 +26,69 @@ export interface QuestionOption {
   label: LocalizedText;
 }
 
+/** Question de la banque (textes et réponses possibles). */
 export interface Question {
   key: string;
   kind: 'single' | 'multiple';
-  phase: 'core' | 'deep';
-  step: string | null;
-  required: boolean;
-  hidden: boolean;
-  auto_answer: string | null;
-  show_if: Condition | null;
-  stop_if: Condition | null;
-  tracks: string[];
   text: LocalizedText;
   text_falc: LocalizedText | null;
   help: LocalizedText | null;
   options: QuestionOption[];
 }
 
-export interface Level {
+/** Question placée dans un questionnaire, avec ses réglages propres. */
+export interface QuestionnaireQuestion extends Question {
+  required: boolean;
+  show_if: Condition | null;
+  /** Réponse fixée d'office : la question n'est pas posée. */
+  auto_answer: string | null;
+}
+
+export interface Section {
+  title: LocalizedText;
+  intro: LocalizedText | null;
+  /** Section facultative, proposée après les autres. */
+  optional: boolean;
+  questions: QuestionnaireQuestion[];
+}
+
+export interface Outcome {
   key: string;
+  /** null : résultat imposé uniquement par une règle. */
   min_score: number | null;
   icon: IconName;
   title: LocalizedText;
   body: LocalizedText;
   body_falc: LocalizedText | null;
+  next: { key: string; title: LocalizedText } | null;
+  contacts: string[];
 }
-
-export type PoleOutcomeKey = 'followed' | 'suggest' | 'maybe' | 'none' | 'declined';
 
 export interface Rule {
   key: string;
   condition: Condition;
   points: number;
-  override_level: string | null;
-  pole_outcome: 'suggest' | 'maybe' | null;
+  /** Résultat imposé par la règle (la première déclenchée l'emporte). */
+  override: string | null;
   explanation: LocalizedText | null;
   flags: string[];
   suggestions: string[];
+  contacts: string[];
+}
+
+export interface Flag {
+  key: string;
+  text: LocalizedText;
+  /** Met en avant les interlocuteurs tenus au secret médical. */
+  highlight_confidential: boolean;
 }
 
 export interface TextItem {
   key: string;
   text: LocalizedText;
 }
+
+export type ContactGroup = 'school' | 'work' | 'other';
 
 export interface Contact {
   key: string;
@@ -79,20 +99,28 @@ export interface Contact {
   link_url: string | null;
   link_label: LocalizedText | null;
   is_confidential: boolean;
-  pole_group: 'school' | 'work' | null;
+  group: ContactGroup | null;
 }
 
-export interface Content {
-  questions: Question[];
-  levels: Level[];
+/** Version publiée (ou brouillon en aperçu) d'un questionnaire, autonome. */
+export interface QuestionnaireSnapshot {
+  key: string;
+  version?: number;
+  title: LocalizedText;
+  description: LocalizedText | null;
+  sections: Section[];
+  outcomes: Outcome[];
   rules: Rule[];
-  flags: TextItem[];
+  flags: Flag[];
   suggestions: TextItem[];
-  pole_outcomes: Partial<Record<PoleOutcomeKey, { title: LocalizedText; body: LocalizedText }>>;
   contacts: Contact[];
-  profile_contacts: Record<string, string[]>;
-  resources: Resource[];
-  pages: { slug: string; title: LocalizedText }[];
+}
+
+export interface QuestionnaireSummary {
+  key: string;
+  title: LocalizedText;
+  description: LocalizedText | null;
+  featured: boolean;
 }
 
 export type ResourceSection = 'official' | 'public' | 'association' | 'law';
@@ -117,4 +145,11 @@ export interface ContentPage {
   title: LocalizedText;
   intro: LocalizedText | null;
   blocks: PageBlock[];
+}
+
+export interface Content {
+  questionnaires: QuestionnaireSummary[];
+  resources: Resource[];
+  pages: { slug: string; title: LocalizedText }[];
+  school_contacts: Contact[];
 }

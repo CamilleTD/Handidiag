@@ -1,83 +1,128 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 import { AnalyticsService } from './analytics.service';
-import { ContentService } from './content.service';
 import {
   Answers,
   Evaluation,
   automaticAnswers,
-  coreQuestions,
-  endedAfterPole,
   evaluate,
   prune,
   toggleOption,
-  visibleIn,
+  visibleQuestions,
 } from './engine';
 import { I18nService } from './i18n.service';
-import type { Question } from './models';
+import type { QuestionnaireQuestion, QuestionnaireSnapshot } from './models';
 
-export interface QuizResult extends Evaluation {
-  profile: string;
-  /** Parcours arrêté après l'étape « pôle » : pas de niveau RQTH. */
-  poleOnly: boolean;
-}
+export type QuizResult = Evaluation;
 
 /**
- * État du questionnaire. Les réponses vivent uniquement en mémoire, dans cet onglet :
- * elles ne sont ni enregistrées ni envoyées, et disparaissent en fermant la page.
+ * État du questionnaire en cours. Les réponses vivent uniquement en mémoire, dans cet onglet :
+ * elles ne sont ni enregistrées ni envoyées. Elles sont partagées entre les questionnaires d'une
+ * même visite : une question déjà répondue ailleurs arrive pré-remplie.
  */
 @Injectable({ providedIn: 'root' })
 export class QuizService {
-  private readonly content = inject(ContentService);
+  private readonly http = inject(HttpClient);
   private readonly analytics = inject(AnalyticsService);
   private readonly i18n = inject(I18nService);
 
+  readonly snapshot = signal<QuestionnaireSnapshot | null>(null);
+  /** Aperçu d'un brouillon depuis l'administration : rien n'est compté. */
+  readonly preview = signal(false);
   readonly answers = signal<Answers>({});
   /** Question la plus avancée déjà atteinte (on ne peut pas sauter au-delà). */
   readonly maxIndex = signal(0);
-  readonly deep = signal(false);
+  /** Questions facultatives acceptées par la personne. */
+  readonly optionalOpen = signal(false);
   readonly result = signal<QuizResult | null>(null);
   readonly checklist = signal<Record<number, boolean>>({});
   private started = false;
-  private deepSent = false;
+  private optionalSent = false;
 
-  private readonly questions = computed(() => this.content.content().questions);
-  readonly core = computed(() => coreQuestions(this.questions(), this.answers()));
-  readonly deepQuestions = computed(() => visibleIn(this.questions(), 'deep', this.answers()));
-  readonly flow = computed(() => [...this.core(), ...(this.deep() ? this.deepQuestions() : [])]);
+  readonly key = computed(() => this.snapshot()?.key ?? '');
+  readonly core = computed(() => this.visible(false));
+  readonly optionalQuestions = computed(() => this.visible(true));
+  readonly flow = computed(() => [
+    ...this.core(),
+    ...(this.optionalOpen() ? this.optionalQuestions() : []),
+  ]);
 
-  /** Total affiché : tant que la situation n'est pas connue, on suppose le parcours le plus courant. */
-  readonly estimatedTotal = computed(() => {
-    const assumed: Answers = { duration: 'long', ...this.answers() };
-    return (
-      coreQuestions(this.questions(), assumed).length +
-      (this.deep() ? this.deepQuestions().length : 0)
-    );
-  });
+  private visible(optional: boolean): QuestionnaireQuestion[] {
+    const snapshot = this.snapshot();
+    return snapshot ? visibleQuestions(snapshot, this.answers(), optional) : [];
+  }
 
-  reset(): void {
-    this.answers.set(automaticAnswers(this.questions()));
+  /** Le questionnaire demandé est-il chargé ? Sinon, charge sa version publiée. */
+  async ensure(key: string): Promise<boolean> {
+    return this.snapshot()?.key === key || this.open(key);
+  }
+
+  /** Charge la version publiée d'un questionnaire (sans effacer les réponses déjà données). */
+  async open(key: string): Promise<boolean> {
+    try {
+      const snapshot = await firstValueFrom(
+        this.http.get<QuestionnaireSnapshot>(`/api/questionnaires/${key}`),
+      );
+      this.use(snapshot, false);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  /** Charge le brouillon d'un questionnaire pour le tester (réservé à l'administration). */
+  async openPreview(id: number): Promise<string | null> {
+    try {
+      const snapshot = await firstValueFrom(
+        this.http.get<QuestionnaireSnapshot>(`/api/admin/questionnaires/${id}/preview`),
+      );
+      this.use(snapshot, true);
+      return snapshot.key;
+    } catch {
+      return null;
+    }
+  }
+
+  private use(snapshot: QuestionnaireSnapshot, preview: boolean): void {
+    this.snapshot.set(snapshot);
+    this.preview.set(preview);
+    this.restart(false);
+  }
+
+  /** Recommence le questionnaire en cours ; `forget` efface aussi toutes les réponses. */
+  restart(forget = true): void {
+    const snapshot = this.snapshot();
+    if (forget) this.answers.set({});
+    if (snapshot)
+      this.answers.update((a) => prune(snapshot, { ...a, ...automaticAnswers(snapshot) }));
     this.maxIndex.set(0);
-    this.deep.set(false);
+    this.optionalOpen.set(false);
     this.result.set(null);
-    this.checklist.set({});
     this.started = false;
-    this.deepSent = false;
+    this.optionalSent = false;
   }
 
-  /** À appeler à l'affichage de la première question. */
+  /** Efface toutes les réponses de la visite. */
+  forgetAll(): void {
+    this.answers.set({});
+    this.checklist.set({});
+    this.restart(false);
+  }
+
+  /** À appeler à l'affichage d'une question. */
   begin(): void {
-    if (!Object.keys(this.answers()).length) this.answers.set(automaticAnswers(this.questions()));
-    if (this.started) return;
+    if (this.started || this.preview()) return;
     this.started = true;
-    this.analytics.send({ t: 'start', lang: this.i18n.lang() });
+    this.analytics.send({ t: 'start', questionnaire: this.key(), lang: this.i18n.lang() });
   }
 
-  selected(question: Question): string[] {
+  selected(question: QuestionnaireQuestion): string[] {
     const value = this.answers()[question.key];
     return value === undefined ? [] : Array.isArray(value) ? value : [value];
   }
 
-  choose(question: Question, option: string, checked: boolean): void {
+  choose(question: QuestionnaireQuestion, option: string, checked: boolean): void {
     const answers = { ...this.answers() };
     if (question.kind === 'single') answers[question.key] = option;
     else {
@@ -85,65 +130,45 @@ export class QuizService {
       if (next.length) answers[question.key] = next;
       else delete answers[question.key];
     }
-    this.answers.set(prune(this.questions(), answers));
+    this.setAnswers(answers);
   }
 
-  skip(question: Question): void {
+  skip(question: QuestionnaireQuestion): void {
     const answers = { ...this.answers() };
     delete answers[question.key];
-    this.answers.set(prune(this.questions(), answers));
+    this.setAnswers(answers);
+  }
+
+  private setAnswers(answers: Answers): void {
+    const snapshot = this.snapshot();
+    this.answers.set(snapshot ? prune(snapshot, answers) : answers);
   }
 
   reach(index: number): void {
     this.maxIndex.update((max) => Math.max(max, index));
   }
 
-  startDeep(): number {
-    this.deep.set(true);
+  openOptional(): number {
+    this.optionalOpen.set(true);
     this.result.set(null);
-    if (!this.deepSent) {
-      this.deepSent = true;
-      this.analytics.send({ t: 'deep' });
+    if (!this.optionalSent && !this.preview()) {
+      this.optionalSent = true;
+      this.analytics.send({ t: 'optional', questionnaire: this.key() });
     }
     const first = this.core().length;
     this.reach(first);
     return first;
   }
 
-  /** Depuis un résultat « pôle seul » : reprendre les questions RQTH là où elles s'étaient arrêtées. */
-  continueToRqth(): number {
-    this.answers.update((a) => ({ ...a, pole_next: 'rqth' }));
-    this.result.set(null);
-    this.deep.set(false);
-    const next = this.core().findIndex((q) => q.key === 'pole_next') + 1;
-    this.reach(next);
-    return next;
-  }
-
-  /** Évaluation dans une situation hypothétique (indication affichée pendant l'étape « pôle »). */
-  preview(): Evaluation {
-    const { rules, levels } = this.content.content();
-    return evaluate(this.answers(), rules, levels);
-  }
-
-  finish(): QuizResult {
-    const { questions, rules, levels } = this.content.content();
-    const answers = prune(questions, this.answers());
+  finish(): QuizResult | null {
+    const snapshot = this.snapshot();
+    if (!snapshot) return null;
+    const answers = prune(snapshot, this.answers());
     this.answers.set(answers);
-    const result: QuizResult = {
-      ...evaluate(answers, rules, levels),
-      profile: String(answers['profile'] ?? ''),
-      poleOnly: endedAfterPole(answers),
-    };
+    const result = evaluate(answers, snapshot.rules, snapshot.outcomes);
     this.result.set(result);
-    // Parcours arrêté après le pôle : pas de niveau, donc pas d'événement « terminé »
-    if (!result.poleOnly)
-      this.analytics.send({
-        t: 'complete',
-        profile: result.profile,
-        level: result.level,
-        lang: this.i18n.lang(),
-      });
+    if (!this.preview())
+      this.analytics.send({ t: 'complete', questionnaire: snapshot.key, outcome: result.outcome });
     return result;
   }
 }

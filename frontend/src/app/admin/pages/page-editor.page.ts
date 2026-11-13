@@ -12,18 +12,12 @@ import { Router, RouterLink } from '@angular/router';
 import { ContentService } from '../../core/content.service';
 import type { LocalizedText, PageBlock } from '../../core/models';
 import { IconComponent } from '../../shared/icon.component';
-import { AdminApi, AdminPage, Payload } from '../admin-api.service';
+import { AdminApi, PageRow, Payload } from '../admin-api.service';
+import { adminT, adminText } from '../admin-i18n';
 import { LocalizedFieldComponent } from '../components/localized-field.component';
 
-type Draft = Payload<AdminPage>;
+type Draft = Payload<PageRow>;
 type BlockType = PageBlock['type'];
-
-const BLOCK_LABELS: Record<BlockType, string> = {
-  text: 'Paragraphe avec titre',
-  accordion: 'Section dépliable',
-  link: 'Lien vers un site',
-  document: 'Document PDF du site',
-};
 
 @Component({
   imports: [RouterLink, IconComponent, LocalizedFieldComponent],
@@ -34,10 +28,11 @@ export class PageEditorPage {
   private readonly api = inject(AdminApi);
   private readonly content = inject(ContentService);
   private readonly router = inject(Router);
+  protected readonly t = adminT();
+  protected readonly text = adminText();
   readonly id = input.required<string>();
 
-  protected readonly labels = BLOCK_LABELS;
-  protected readonly types = Object.keys(BLOCK_LABELS) as BlockType[];
+  protected readonly types: BlockType[] = ['text', 'accordion', 'link', 'document'];
   protected readonly isNew = computed(() => this.id() === 'new');
   protected readonly draft = signal<Draft | null>(null);
   protected readonly message = signal('');
@@ -64,8 +59,8 @@ export class PageEditorPage {
       return;
     }
     try {
-      const page = (await this.api.list<AdminPage>('pages')).find((p) => String(p.id) === id);
-      if (!page) throw new Error('Page introuvable.');
+      const page = (await this.api.list<PageRow>('pages')).find((p) => String(p.id) === id);
+      if (!page) throw new Error(this.t('errors.not_found'));
       const { id: _id, position: _position, ...draft } = page;
       this.draft.set(draft);
     } catch (error) {
@@ -122,12 +117,10 @@ export class PageEditorPage {
     this.saving.set(true);
     try {
       const saved = this.isNew()
-        ? await this.api.create<AdminPage>('pages', draft)
-        : await this.api.update<AdminPage>('pages', Number(this.id()), draft);
+        ? await this.api.create<PageRow>('pages', draft)
+        : await this.api.update<PageRow>('pages', Number(this.id()), draft);
       this.failed.set(false);
-      this.message.set(
-        draft.is_published ? 'Page enregistrée et publiée.' : 'Brouillon enregistré (non publié).',
-      );
+      this.message.set(this.t(draft.is_published ? 'pages.saved_published' : 'pages.saved_draft'));
       void this.content.load();
       if (this.isNew()) void this.router.navigate(['/admin/pages', saved.id], { replaceUrl: true });
     } catch (error) {

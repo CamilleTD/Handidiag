@@ -1,25 +1,23 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminApi } from '../admin-api.service';
+import { adminT } from '../admin-i18n';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="narrow">
-      <h1>Espace administrateur</h1>
-      <p class="lead">
-        Modifiez le questionnaire, les règles et la restitution, et consultez les statistiques
-        anonymes.
-      </p>
-      <ul class="chips" aria-label="Ce que contient cet espace">
-        <li>Aucune réponse individuelle</li>
-        <li>Compteurs anonymes uniquement</li>
-        <li>Petits effectifs masqués</li>
+      <h1>{{ t('login.title') }}</h1>
+      <p class="lead">{{ t('login.lead') }}</p>
+      <ul class="chips" [attr.aria-label]="t('login.chips_label')">
+        <li>{{ t('login.chip1') }}</li>
+        <li>{{ t('login.chip2') }}</li>
+        <li>{{ t('login.chip3') }}</li>
       </ul>
       <form class="panel login-card" (submit)="submit($event)" novalidate>
-        <h2>Connexion</h2>
+        <h2>{{ t('login.form_title') }}</h2>
         <div class="field">
-          <label for="adm-user">Identifiant</label>
+          <label for="adm-user">{{ t('login.username') }}</label>
           <input
             id="adm-user"
             class="text-input"
@@ -33,7 +31,7 @@ import { AdminApi } from '../admin-api.service';
           />
         </div>
         <div class="field">
-          <label for="adm-pass">Mot de passe</label>
+          <label for="adm-pass">{{ t('login.password') }}</label>
           <input
             id="adm-pass"
             class="text-input"
@@ -48,12 +46,14 @@ import { AdminApi } from '../admin-api.service';
           <p class="error" role="alert">{{ error() }}</p>
         }
         <div class="actions">
-          <button type="submit" class="btn btn-primary" [disabled]="busy()">Se connecter</button>
+          <button type="submit" class="btn btn-primary" [disabled]="busy()">
+            {{ t('login.submit') }}
+          </button>
         </div>
       </form>
       <p class="hint">
-        Pas de compte ? Un administrateur peut en créer un avec
-        <code>python -m app.cli create-admin &lt;identifiant&gt;</code>.
+        {{ t('login.no_account') }}
+        <code>python -m app.cli create-admin &lt;{{ t('login.username') }}&gt;</code>
       </p>
     </div>
   `,
@@ -61,6 +61,7 @@ import { AdminApi } from '../admin-api.service';
 export class LoginPage {
   private readonly api = inject(AdminApi);
   private readonly router = inject(Router);
+  protected readonly t = adminT();
   protected readonly username = signal('');
   protected readonly password = signal('');
   protected readonly error = signal('');
@@ -73,7 +74,7 @@ export class LoginPage {
   protected async submit(event: Event): Promise<void> {
     event.preventDefault();
     if (!this.username().trim() || !this.password()) {
-      this.error.set('Renseignez l’identifiant et le mot de passe.');
+      this.error.set(this.t('login.fill'));
       return;
     }
     this.busy.set(true);

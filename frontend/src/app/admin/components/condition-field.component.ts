@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input, model, signal } from '@angular/core';
 import type { Condition, Question } from '../../core/models';
+import { adminT, adminText } from '../admin-i18n';
 import { describe, emptyLeaf } from '../conditions';
 import { ConditionEditorComponent } from './condition-editor.component';
 
@@ -26,16 +27,20 @@ let nextId = 0;
         </label>
       }
       @if (value(); as condition) {
-        <p class="condition-summary"><strong>En clair :</strong> {{ summary() }}</p>
+        <p class="condition-summary">
+          <strong>{{ t('cond.in_plain_words') }}</strong> {{ summary() }}
+        </p>
         @if (json() === null) {
           <app-condition-editor
             [condition]="condition"
             (conditionChange)="value.set($event)"
             [questions]="questions()"
           />
-          <button type="button" class="linklike" (click)="openJson()">Modifier en JSON</button>
+          <button type="button" class="linklike" (click)="openJson()">
+            {{ t('cond.edit_json') }}
+          </button>
         } @else {
-          <label class="field-label" [for]="id + '-json'">Condition au format JSON</label>
+          <label class="field-label" [for]="id + '-json'">{{ t('cond.json_label') }}</label>
           <textarea
             [id]="id + '-json'"
             class="text-input json-view"
@@ -47,10 +52,10 @@ let nextId = 0;
           }
           <div class="cond-row">
             <button type="button" class="btn btn-small" (click)="applyJson()">
-              Appliquer le JSON
+              {{ t('cond.apply_json') }}
             </button>
             <button type="button" class="btn btn-small btn-quiet" (click)="json.set(null)">
-              Revenir à l'éditeur visuel
+              {{ t('cond.back_visual') }}
             </button>
           </div>
         }
@@ -64,11 +69,15 @@ export class ConditionFieldComponent {
   readonly label = input.required<string>();
   readonly hint = input('');
   readonly optional = input(false);
-  readonly optionalLabel = input('Sous condition');
+  readonly optionalLabel = input('');
+  protected readonly t = adminT();
+  private readonly localized = adminText();
   protected readonly id = `cf-${nextId++}`;
   protected readonly json = signal<string | null>(null);
   protected readonly jsonError = signal('');
-  protected readonly summary = computed(() => describe(this.value(), this.questions()));
+  protected readonly summary = computed(() =>
+    describe(this.value(), this.questions(), this.t, this.localized),
+  );
 
   protected text(event: Event): string {
     return (event.target as HTMLTextAreaElement).value;
@@ -89,12 +98,12 @@ export class ConditionFieldComponent {
     try {
       const parsed = JSON.parse(this.json() ?? '');
       if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed))
-        throw new Error('Un objet JSON est attendu.');
+        throw new Error(this.t('cond.json_object'));
       this.value.set(parsed as Condition);
       this.json.set(null);
       this.jsonError.set('');
     } catch (error) {
-      this.jsonError.set(`JSON invalide : ${(error as Error).message}`);
+      this.jsonError.set(this.t('cond.json_invalid', { error: (error as Error).message }));
     }
   }
 }

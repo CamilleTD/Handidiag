@@ -19,18 +19,33 @@ export class I18nService {
   readonly lang = computed(() => this.prefs.value().lang);
   readonly falc = computed(() => this.prefs.value().falc);
 
-  /** Charge le français (langue de repli) et la langue demandée. */
+  /** Dictionnaires complémentaires chargés à la demande (ex. « admin »). */
+  private readonly namespaces = new Set<string>();
+
+  /** Charge le français (langue de repli), la langue demandée et les dictionnaires ouverts. */
   async load(lang: Lang = this.lang()): Promise<void> {
     const wanted: Lang[] = lang === 'fr' ? ['fr'] : ['fr', lang];
-    const missing = wanted.filter((l) => !this.dictionaries()[l]);
     const loaded = await Promise.all(
-      missing.map((l) => firstValueFrom(this.http.get<Dictionary>(`/i18n/${l}.json`))),
+      wanted.map(async (l) => {
+        const current = this.dictionaries()[l];
+        const base = current ?? (await this.fetch(`/i18n/${l}.json`));
+        const extra: Dictionary = {};
+        for (const ns of this.namespaces)
+          if (!base[ns]) extra[ns] = await this.fetch(`/i18n/${ns}.${l}.json`);
+        return [l, { ...base, ...extra }] as const;
+      }),
     );
-    this.dictionaries.update((d) => {
-      const next = { ...d };
-      missing.forEach((l, i) => (next[l] = loaded[i]));
-      return next;
-    });
+    this.dictionaries.update((d) => ({ ...d, ...Object.fromEntries(loaded) }));
+  }
+
+  /** Ajoute un dictionnaire (fichiers /i18n/<nom>.<langue>.json) sous la clé <nom>. */
+  async loadNamespace(name: string): Promise<void> {
+    this.namespaces.add(name);
+    await this.load();
+  }
+
+  private fetch(url: string): Promise<Dictionary> {
+    return firstValueFrom(this.http.get<Dictionary>(url));
   }
 
   async setLang(lang: Lang): Promise<void> {

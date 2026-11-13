@@ -8,7 +8,12 @@
       </button>
       <a class="btn" routerLink="/kit">{{ i18n.t('info.kit_link') }}</a>
     </div>
-    <p class="hint hero-hint">{{ i18n.t('info.start_hint') }}</p>
+    <p class="hint hero-hint">
+      @if (content.featured(); as featured) {
+        <strong>{{ i18n.text(featured.title) }}</strong> ·
+      }
+      {{ i18n.t('info.start_hint') }}
+    </p>
     <app-read-button id="home" [parts]="readParts" />
   </div>
   <div class="hero-art">
@@ -56,6 +61,28 @@
     </svg>
   </div>
 </section>
+
+@if (others().length) {
+  <section aria-labelledby="s-questionnaires">
+    <h2 id="s-questionnaires" class="route-title">{{ i18n.t('info.other_questionnaires') }}</h2>
+    <ul class="cards two">
+      @for (q of others(); track q.key) {
+        <li>
+          <app-medal name="compass" />
+          <h3>{{ i18n.text(q.title) }}</h3>
+          @if (q.description) {
+            <p>{{ i18n.text(q.description) }}</p>
+          }
+          <p>
+            <button type="button" class="btn" (click)="start(q.key)">
+              {{ i18n.t('info.start_questionnaire') }} <app-icon name="arrow" />
+            </button>
+          </p>
+        </li>
+      }
+    </ul>
+  </section>
+}
 
 <section aria-labelledby="s-route">
   <h2 id="s-route" class="route-title">{{ i18n.t('info.path_title') }}</h2>

@@ -1,12 +1,19 @@
-"""Modèle de données HandiDiag.
+"""Modèle de données HandiDiag : une banque de questionnaires.
 
-Les textes affichés au public sont stockés en JSON sous la forme {"fr": "...", "en": "..."}
-(type LocalizedText côté API) : la structure d'une question et ses libellés vivent dans la même
-ligne, ce qui évite les clés de traduction à synchroniser à la main.
+Bibliothèques partagées (réutilisables par plusieurs questionnaires) :
+    Question / QuestionOption   questions et réponses possibles
+    Rule                        condition + messages (points d'attention, pistes, interlocuteurs)
+    Flag, Suggestion, Contact   messages et interlocuteurs de la restitution
 
-Les conditions (affichage d'une question, déclenchement d'une règle) sont des arbres JSON
-validés par app.conditions avant chaque enregistrement. Les clés (`key`) des questions et des
-options sont immuables une fois créées : les conditions s'y réfèrent.
+Propre à chaque questionnaire :
+    Section / SectionItem       ordre des questions, condition d'affichage, réponse fixée d'office
+    RuleUsage                   règle utilisée : ordre, points ajoutés, résultat imposé
+    Outcome                     résultats possibles (par seuil de score ou imposés par une règle)
+    QuestionnaireVersion        versions publiées, figées : le public ne voit qu'elles
+
+Les tables ci-dessus forment le brouillon ; publier en fige une copie (snapshot JSON).
+Les textes sont stockés en JSON {"fr": "...", "en": "..."} à côté de leur structure. Les clés
+(`key`) sont immuables : conditions, statistiques et versions publiées s'y réfèrent.
 """
 
 from enum import StrEnum
@@ -20,22 +27,19 @@ class QuestionKind(StrEnum):
     MULTIPLE = "multiple"
 
 
-class QuestionPhase(StrEnum):
-    CORE = "core"  # questions essentielles
-    DEEP = "deep"  # questions complémentaires, facultatives
+class ContactGroup(StrEnum):
+    """Rubrique de la page Ressources où l'interlocuteur apparaît (« À l'école »)."""
 
-
-class PoleOutcomeKey(StrEnum):
-    FOLLOWED = "followed"  # déjà suivi(e) par le pôle handicap
-    SUGGEST = "suggest"  # le pôle peut aider
-    MAYBE = "maybe"  # cela vaut la peine d'en parler
-    NONE = "none"  # rien n'indique un besoin pour l'instant
-    DECLINED = "declined"  # la personne n'a pas souhaité regarder
-
-
-class PoleGroup(StrEnum):
     SCHOOL = "school"  # études à l'école
     WORK = "work"  # stage, alternance, emploi
+    OTHER = "other"  # autres services de l'école
+
+
+class ResourceSection(StrEnum):
+    OFFICIAL = "official"  # liens officiels du kit documentaire (ouvertures comptées)
+    PUBLIC = "public"  # organismes publics (page Ressources)
+    ASSOCIATION = "association"
+    LAW = "law"  # textes de loi
 
 
 class TimestampedModel(Model):
@@ -77,35 +81,23 @@ class AdminSession(Model):
         table = "admin_session"
 
 
-# --------------------------------------------------------------------------- questionnaire
+# --------------------------------------------------------------------------- bibliothèques
 
 
 class Question(TimestampedModel):
     id = fields.IntField(primary_key=True)
     key = fields.CharField(max_length=64, unique=True)
     kind = fields.CharEnumField(QuestionKind, max_length=16)
-    phase = fields.CharEnumField(QuestionPhase, max_length=16, default=QuestionPhase.CORE)
-    # Étape à part dans le parcours (ex. « pole ») : hors du décompte des questions RQTH
-    step = fields.CharField(max_length=32, null=True)
-    position = fields.IntField(default=0)
-    required = fields.BooleanField(default=False)
-    # Question masquée dont la réponse est fixée d'office (ex. profil « student »)
-    hidden = fields.BooleanField(default=False)
-    auto_answer = fields.CharField(max_length=64, null=True)
-    show_if = fields.JSONField(null=True)
-    # La liste des questions essentielles s'arrête après cette question si la condition est vraie
-    stop_if = fields.JSONField(null=True)
-    # Parcours pour lesquels une question complémentaire reste proposée (ex. ["pole"])
-    tracks = fields.JSONField(default=list)
     text = fields.JSONField()
     text_falc = fields.JSONField(null=True)
     help = fields.JSONField(null=True)
 
     options: fields.ReverseRelation["QuestionOption"]
+    items: fields.ReverseRelation["SectionItem"]
 
     class Meta:
         table = "question"
-        ordering = ["position", "id"]
+        ordering = ["key"]
 
 
 class QuestionOption(Model):
@@ -124,26 +116,6 @@ class QuestionOption(Model):
         ordering = ["position", "id"]
 
 
-# --------------------------------------------------------------------------- restitution
-
-
-class Level(TimestampedModel):
-    """Niveau d'orientation RQTH. min_score null : niveau atteint uniquement par une règle."""
-
-    id = fields.IntField(primary_key=True)
-    key = fields.CharField(max_length=64, unique=True)
-    position = fields.IntField(default=0)
-    min_score = fields.IntField(null=True)
-    icon = fields.CharField(max_length=32, default="book")
-    title = fields.JSONField()
-    body = fields.JSONField()
-    body_falc = fields.JSONField(null=True)
-
-    class Meta:
-        table = "level"
-        ordering = ["position", "id"]
-
-
 class Flag(TimestampedModel):
     """Point d'attention affiché dans la restitution (ordre d'affichage = position)."""
 
@@ -151,6 +123,8 @@ class Flag(TimestampedModel):
     key = fields.CharField(max_length=64, unique=True)
     position = fields.IntField(default=0)
     text = fields.JSONField()
+    # Met en avant les interlocuteurs tenus au secret médical (ex. crainte du regard des autres)
+    highlight_confidential = fields.BooleanField(default=False)
 
     class Meta:
         table = "flag"
@@ -170,42 +144,6 @@ class Suggestion(TimestampedModel):
         ordering = ["position", "id"]
 
 
-class PoleOutcome(TimestampedModel):
-    """Message de la section « pôle handicap » de la restitution."""
-
-    id = fields.IntField(primary_key=True)
-    key = fields.CharEnumField(PoleOutcomeKey, max_length=16, unique=True)
-    title = fields.JSONField()
-    body = fields.JSONField()
-
-    class Meta:
-        table = "pole_outcome"
-
-
-class Rule(TimestampedModel):
-    id = fields.IntField(primary_key=True)
-    key = fields.CharField(max_length=64, unique=True)
-    position = fields.IntField(default=0)
-    condition = fields.JSONField()
-    points = fields.IntField(default=0)
-    override_level: fields.ForeignKeyNullableRelation[Level] = fields.ForeignKeyField(
-        "models.Level", related_name="overriding_rules", null=True, on_delete=fields.RESTRICT
-    )
-    pole_outcome = fields.CharEnumField(PoleOutcomeKey, max_length=16, null=True)
-    # Phrase affichée dans « Ce qui a été pris en compte » (null : règle non expliquée)
-    explanation = fields.JSONField(null=True)
-    flags: fields.ManyToManyRelation[Flag] = fields.ManyToManyField(
-        "models.Flag", related_name="rules", through="rule_flag"
-    )
-    suggestions: fields.ManyToManyRelation[Suggestion] = fields.ManyToManyField(
-        "models.Suggestion", related_name="rules", through="rule_suggestion"
-    )
-
-    class Meta:
-        table = "rule"
-        ordering = ["position", "id"]
-
-
 class Contact(TimestampedModel):
     id = fields.IntField(primary_key=True)
     key = fields.CharField(max_length=64, unique=True)
@@ -216,41 +154,202 @@ class Contact(TimestampedModel):
     email = fields.CharField(max_length=254, null=True)
     link_url = fields.CharField(max_length=2048, null=True)
     link_label = fields.JSONField(null=True)
-    # Tenu au secret médical : proposé en premier quand la personne craint le regard des autres
+    # Tenu au secret médical : proposé en premier si un point d'attention le demande
     is_confidential = fields.BooleanField(default=False)
-    pole_group = fields.CharEnumField(PoleGroup, max_length=16, null=True)
-
-    profiles: fields.ReverseRelation["ProfileContact"]
+    group = fields.CharEnumField(ContactGroup, max_length=16, null=True)
 
     class Meta:
         table = "contact"
         ordering = ["position", "id"]
 
 
-class ProfileContact(Model):
-    """Interlocuteurs proposés pour un profil (clé d'option de la question « profile »)."""
+class Rule(TimestampedModel):
+    """Partie partagée d'une règle : quand elle se déclenche et ce qu'elle ajoute."""
 
     id = fields.IntField(primary_key=True)
-    profile = fields.CharField(max_length=64)
+    key = fields.CharField(max_length=64, unique=True)
+    condition = fields.JSONField()
+    # Phrase affichée dans « Ce qui a été pris en compte » (null : règle non expliquée)
+    explanation = fields.JSONField(null=True)
+    flags: fields.ManyToManyRelation[Flag] = fields.ManyToManyField(
+        "models.Flag", related_name="rules", through="rule_flag"
+    )
+    suggestions: fields.ManyToManyRelation[Suggestion] = fields.ManyToManyField(
+        "models.Suggestion", related_name="rules", through="rule_suggestion"
+    )
+    contacts: fields.ReverseRelation["RuleContact"]
+    usages: fields.ReverseRelation["RuleUsage"]
+
+    class Meta:
+        table = "rule"
+        ordering = ["key"]
+
+
+class RuleContact(Model):
+    """Interlocuteurs proposés par une règle, dans l'ordre."""
+
+    id = fields.IntField(primary_key=True)
+    rule: fields.ForeignKeyRelation[Rule] = fields.ForeignKeyField(
+        "models.Rule", related_name="contacts", on_delete=fields.CASCADE
+    )
     contact: fields.ForeignKeyRelation[Contact] = fields.ForeignKeyField(
-        "models.Contact", related_name="profiles", on_delete=fields.CASCADE
+        "models.Contact", related_name="rule_links", on_delete=fields.RESTRICT
     )
     position = fields.IntField(default=0)
 
     class Meta:
-        table = "profile_contact"
-        unique_together = (("profile", "contact"),)
-        ordering = ["profile", "position"]
+        table = "rule_contact"
+        unique_together = (("rule", "contact"),)
+        ordering = ["position", "id"]
+
+
+# --------------------------------------------------------------------------- questionnaires
+
+
+class Questionnaire(TimestampedModel):
+    id = fields.IntField(primary_key=True)
+    key = fields.CharField(max_length=64, unique=True)
+    position = fields.IntField(default=0)
+    title = fields.JSONField()
+    description = fields.JSONField(null=True)
+    # Questionnaire mis en avant sur l'accueil (un seul à la fois)
+    featured = fields.BooleanField(default=False)
+    # Numéro de la version servie au public (null : non publié)
+    published_number = fields.IntField(null=True)
+
+    sections: fields.ReverseRelation["Section"]
+    outcomes: fields.ReverseRelation["Outcome"]
+    rule_usages: fields.ReverseRelation["RuleUsage"]
+    versions: fields.ReverseRelation["QuestionnaireVersion"]
+
+    class Meta:
+        table = "questionnaire"
+        ordering = ["position", "id"]
+
+
+class Section(Model):
+    id = fields.IntField(primary_key=True)
+    questionnaire: fields.ForeignKeyRelation[Questionnaire] = fields.ForeignKeyField(
+        "models.Questionnaire", related_name="sections", on_delete=fields.CASCADE
+    )
+    position = fields.IntField(default=0)
+    title = fields.JSONField()
+    intro = fields.JSONField(null=True)
+    # Section facultative : proposée après les autres (« questions complémentaires »)
+    optional = fields.BooleanField(default=False)
+
+    items: fields.ReverseRelation["SectionItem"]
+
+    class Meta:
+        table = "section"
+        ordering = ["position", "id"]
+
+
+class SectionItem(Model):
+    """Question de la banque placée dans une section, avec ses réglages propres."""
+
+    id = fields.IntField(primary_key=True)
+    section: fields.ForeignKeyRelation[Section] = fields.ForeignKeyField(
+        "models.Section", related_name="items", on_delete=fields.CASCADE
+    )
+    question: fields.ForeignKeyRelation[Question] = fields.ForeignKeyField(
+        "models.Question", related_name="items", on_delete=fields.RESTRICT
+    )
+    position = fields.IntField(default=0)
+    required = fields.BooleanField(default=False)
+    show_if = fields.JSONField(null=True)
+    # Réponse fixée d'office : la question n'est pas posée (ex. profil « student »)
+    auto_answer = fields.CharField(max_length=64, null=True)
+
+    class Meta:
+        table = "section_item"
+        ordering = ["position", "id"]
+
+
+class Outcome(TimestampedModel):
+    """Résultat possible d'un questionnaire. min_score null : imposé uniquement par une règle."""
+
+    id = fields.IntField(primary_key=True)
+    questionnaire: fields.ForeignKeyRelation[Questionnaire] = fields.ForeignKeyField(
+        "models.Questionnaire", related_name="outcomes", on_delete=fields.CASCADE
+    )
+    key = fields.CharField(max_length=64)
+    position = fields.IntField(default=0)
+    min_score = fields.IntField(null=True)
+    icon = fields.CharField(max_length=32, default="book")
+    title = fields.JSONField()
+    body = fields.JSONField()
+    body_falc = fields.JSONField(null=True)
+    # Questionnaire proposé ensuite (ex. « Voir si une RQTH peut avoir du sens »)
+    next_questionnaire: fields.ForeignKeyNullableRelation[Questionnaire] = fields.ForeignKeyField(
+        "models.Questionnaire", related_name=False, null=True, on_delete=fields.SET_NULL
+    )
+    contacts: fields.ReverseRelation["OutcomeContact"]
+
+    class Meta:
+        table = "outcome"
+        unique_together = (("questionnaire", "key"),)
+        ordering = ["position", "id"]
+
+
+class OutcomeContact(Model):
+    id = fields.IntField(primary_key=True)
+    outcome: fields.ForeignKeyRelation[Outcome] = fields.ForeignKeyField(
+        "models.Outcome", related_name="contacts", on_delete=fields.CASCADE
+    )
+    contact: fields.ForeignKeyRelation[Contact] = fields.ForeignKeyField(
+        "models.Contact", related_name="outcome_links", on_delete=fields.RESTRICT
+    )
+    position = fields.IntField(default=0)
+
+    class Meta:
+        table = "outcome_contact"
+        unique_together = (("outcome", "contact"),)
+        ordering = ["position", "id"]
+
+
+class RuleUsage(Model):
+    """Règle utilisée par un questionnaire : ordre, points et résultat imposé y sont propres."""
+
+    id = fields.IntField(primary_key=True)
+    questionnaire: fields.ForeignKeyRelation[Questionnaire] = fields.ForeignKeyField(
+        "models.Questionnaire", related_name="rule_usages", on_delete=fields.CASCADE
+    )
+    rule: fields.ForeignKeyRelation[Rule] = fields.ForeignKeyField(
+        "models.Rule", related_name="usages", on_delete=fields.RESTRICT
+    )
+    position = fields.IntField(default=0)
+    points = fields.IntField(default=0)
+    # La première règle déclenchée qui impose un résultat l'emporte sur le score
+    override_outcome: fields.ForeignKeyNullableRelation[Outcome] = fields.ForeignKeyField(
+        "models.Outcome", related_name="overriding_usages", null=True, on_delete=fields.RESTRICT
+    )
+
+    class Meta:
+        table = "rule_usage"
+        unique_together = (("questionnaire", "rule"),)
+        ordering = ["position", "id"]
+
+
+class QuestionnaireVersion(Model):
+    """Version publiée et figée d'un questionnaire, servie telle quelle au public."""
+
+    id = fields.IntField(primary_key=True)
+    questionnaire: fields.ForeignKeyRelation[Questionnaire] = fields.ForeignKeyField(
+        "models.Questionnaire", related_name="versions", on_delete=fields.CASCADE
+    )
+    number = fields.IntField()
+    snapshot = fields.JSONField()
+    published_at = fields.DatetimeField(auto_now_add=True)
+    published_by = fields.CharField(max_length=80, null=True)
+
+    class Meta:
+        table = "questionnaire_version"
+        unique_together = (("questionnaire", "number"),)
+        ordering = ["-number"]
 
 
 # --------------------------------------------------------------------------- contenus éditoriaux
-
-
-class ResourceSection(StrEnum):
-    OFFICIAL = "official"  # liens officiels du kit documentaire (ouvertures comptées)
-    PUBLIC = "public"  # organismes publics (page Ressources)
-    ASSOCIATION = "association"
-    LAW = "law"  # textes de loi
 
 
 class Resource(TimestampedModel):
@@ -295,10 +394,12 @@ class StatCounter(Model):
 
     id = fields.IntField(primary_key=True)
     day = fields.DateField()
-    metric = fields.CharField(max_length=32)  # start, complete, deep, lang, profile, level, doc
+    # Questionnaire concerné ("" pour les compteurs généraux : langue, documents)
+    questionnaire = fields.CharField(max_length=64, default="")
+    metric = fields.CharField(max_length=32)  # start, complete, optional, lang, outcome, doc
     key = fields.CharField(max_length=64, default="")
     count = fields.IntField(default=0)
 
     class Meta:
         table = "stat_counter"
-        unique_together = (("day", "metric", "key"),)
+        unique_together = (("day", "questionnaire", "metric", "key"),)

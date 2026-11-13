@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
 import type { Condition, Question } from '../../core/models';
-import { LeafOperator, OPERATOR_LABELS, describe, emptyLeaf, leafOperator } from '../conditions';
+import { adminT, adminText } from '../admin-i18n';
+import { LeafOperator, OPERATORS, describe, emptyLeaf, leafOperator } from '../conditions';
 
 let nextId = 0;
 
@@ -13,27 +14,19 @@ let nextId = 0;
   template: `
     @let c = condition();
     @if ('all' in c || 'any' in c) {
-      <div
-        class="cond"
-        role="group"
-        [attr.aria-label]="'Groupe : ' + ('all' in c ? 'toutes' : 'au moins une')"
-      >
+      <div class="cond" role="group" [attr.aria-label]="t('cond.group')">
         <div class="cond-row">
-          <label class="sr-only" [for]="id + '-group'">Type de groupe</label>
-          <select
-            [id]="id + '-group'"
-            [value]="'all' in c ? 'all' : 'any'"
-            (change)="setGroup(value($event))"
-          >
-            <option value="all">Toutes ces conditions (ET)</option>
-            <option value="any">Au moins une de ces conditions (OU)</option>
+          <label class="sr-only" [for]="id + '-group'">{{ t('cond.group_type') }}</label>
+          <select [id]="id + '-group'" (change)="setGroup(value($event))">
+            <option value="all" [selected]="'all' in c">{{ t('cond.group_all') }}</option>
+            <option value="any" [selected]="'any' in c">{{ t('cond.group_any') }}</option>
           </select>
           <button type="button" class="btn btn-small btn-quiet" (click)="negate()">
-            Inverser (NON)
+            {{ t('cond.negate') }}
           </button>
           @if (removable()) {
             <button type="button" class="btn btn-small btn-quiet" (click)="remove.emit()">
-              Supprimer le groupe
+              {{ t('cond.remove_group') }}
             </button>
           }
         </div>
@@ -49,20 +42,24 @@ let nextId = 0;
           }
         </div>
         <div class="cond-row">
-          <button type="button" class="btn btn-small" (click)="addChild(false)">+ Critère</button>
-          <button type="button" class="btn btn-small" (click)="addChild(true)">+ Groupe</button>
+          <button type="button" class="btn btn-small" (click)="addChild(false)">
+            + {{ t('cond.add_criterion') }}
+          </button>
+          <button type="button" class="btn btn-small" (click)="addChild(true)">
+            + {{ t('cond.add_group') }}
+          </button>
         </div>
       </div>
     } @else if ('not' in c) {
-      <div class="cond cond-not" role="group" aria-label="Négation">
+      <div class="cond cond-not" role="group" [attr.aria-label]="t('cond.negation')">
         <div class="cond-row">
-          <strong>NON :</strong>
+          <strong>{{ t('cond.not_word') }} :</strong>
           <button type="button" class="btn btn-small btn-quiet" (click)="condition.set(c.not)">
-            Retirer le NON
+            {{ t('cond.remove_not') }}
           </button>
           @if (removable()) {
             <button type="button" class="btn btn-small btn-quiet" (click)="remove.emit()">
-              Supprimer
+              {{ t('common.delete') }}
             </button>
           }
         </div>
@@ -73,27 +70,27 @@ let nextId = 0;
         />
       </div>
     } @else {
-      <div class="cond" role="group" [attr.aria-label]="'Critère : ' + summary()">
+      <div class="cond" role="group" [attr.aria-label]="summary()">
         <div class="cond-row">
-          <label class="sr-only" [for]="id + '-q'">Question</label>
+          <label class="sr-only" [for]="id + '-q'">{{ t('cond.question') }}</label>
           <select [id]="id + '-q'" (change)="setQuestion(value($event))">
             @if (!question()) {
-              <option value="" selected>— question inconnue : {{ $any(c).q }} —</option>
+              <option value="" selected>{{ t('cond.unknown_question', { q: $any(c).q }) }}</option>
             }
             @for (q of questions(); track q.key) {
               <option [value]="q.key" [selected]="q.key === question()?.key">
-                {{ q.key }} — {{ short(q.text.fr) }}
+                {{ q.key }} — {{ short(text(q.text)) }}
               </option>
             }
           </select>
-          <label class="sr-only" [for]="id + '-op'">Opérateur</label>
+          <label class="sr-only" [for]="id + '-op'">{{ t('cond.operator') }}</label>
           <select [id]="id + '-op'" (change)="setOperator($any(value($event)))">
             @for (op of operators; track op) {
-              <option [value]="op" [selected]="op === operator()">{{ labels[op] }}</option>
+              <option [value]="op" [selected]="op === operator()">{{ t('cond.op_' + op) }}</option>
             }
           </select>
           @if (operator() === 'countAtLeast') {
-            <label class="sr-only" [for]="id + '-n'">Nombre minimal</label>
+            <label class="sr-only" [for]="id + '-n'">{{ t('cond.minimum') }}</label>
             <input
               [id]="id + '-n'"
               type="number"
@@ -104,29 +101,31 @@ let nextId = 0;
             />
           }
           @if (operator() === 'answered') {
-            <label class="sr-only" [for]="id + '-ans'">Répondue ?</label>
+            <label class="sr-only" [for]="id + '-ans'">{{ t('cond.op_answered') }}</label>
             <select [id]="id + '-ans'" (change)="setAnswered(value($event) === 'true')">
-              <option value="true" [selected]="$any(c).answered">répondue</option>
-              <option value="false" [selected]="!$any(c).answered">non répondue</option>
+              <option value="true" [selected]="$any(c).answered">{{ t('cond.answered') }}</option>
+              <option value="false" [selected]="!$any(c).answered">
+                {{ t('cond.not_answered') }}
+              </option>
             </select>
           }
           <button type="button" class="btn btn-small btn-quiet" (click)="negate()">
-            Inverser (NON)
+            {{ t('cond.negate') }}
           </button>
           <button type="button" class="btn btn-small btn-quiet" (click)="wrapInGroup()">
-            Grouper
+            {{ t('cond.wrap') }}
           </button>
           @if (removable()) {
             <button type="button" class="btn btn-small btn-quiet" (click)="remove.emit()">
-              Supprimer
+              {{ t('common.delete') }}
             </button>
           }
         </div>
         @if (operator() !== 'answered' && question(); as q) {
           <fieldset class="cond-options">
-            <legend class="sr-only">Réponses concernées</legend>
+            <legend class="sr-only">{{ t('cond.options') }}</legend>
             @if (operator() === 'countAtLeast') {
-              <p class="hint">Réponses comptées (aucune cochée : toutes les réponses) :</p>
+              <p class="hint">{{ t('cond.count_hint') }}</p>
             }
             @for (option of q.options; track option.key) {
               <label class="check">
@@ -135,7 +134,7 @@ let nextId = 0;
                   [checked]="chosen().includes(option.key)"
                   (change)="toggle(option.key, $event)"
                 />
-                <span>{{ option.label.fr }}</span>
+                <span>{{ text(option.label) }}</span>
               </label>
             }
           </fieldset>
@@ -149,9 +148,10 @@ export class ConditionEditorComponent {
   readonly questions = input.required<Question[]>();
   readonly removable = input(false);
   readonly remove = output();
+  protected readonly t = adminT();
+  protected readonly text = adminText();
   protected readonly id = `ce-${nextId++}`;
-  protected readonly labels = OPERATOR_LABELS;
-  protected readonly operators = Object.keys(OPERATOR_LABELS) as LeafOperator[];
+  protected readonly operators = OPERATORS;
 
   protected readonly children = computed(() => {
     const c = this.condition();
@@ -169,14 +169,16 @@ export class ConditionEditorComponent {
     if ('countAtLeast' in c) return c.among ?? [];
     return [];
   });
-  protected readonly summary = computed(() => describe(this.condition(), this.questions()));
+  protected readonly summary = computed(() =>
+    describe(this.condition(), this.questions(), this.t, this.text),
+  );
 
   protected value(event: Event): string {
     return (event.target as HTMLInputElement | HTMLSelectElement).value;
   }
 
-  protected short(text: string): string {
-    return text.length > 60 ? `${text.slice(0, 57)}…` : text;
+  protected short(value: string): string {
+    return value.length > 60 ? `${value.slice(0, 57)}…` : value;
   }
 
   protected setGroup(kind: string): void {
@@ -219,9 +221,8 @@ export class ConditionEditorComponent {
   }
 
   protected setOperator(op: LeafOperator): void {
-    const q =
-      this.question()?.key ??
-      ('q' in this.condition() ? (this.condition() as { q: string }).q : '');
+    const current = this.condition();
+    const q = 'q' in current ? current.q : '';
     const chosen = this.chosen().length
       ? this.chosen()
       : (this.question()

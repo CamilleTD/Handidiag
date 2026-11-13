@@ -351,3 +351,65 @@ textarea.text-input {
     border-bottom-color: var(--accent);
   }
 }
+
+.admin-side-group {
+  margin: 1rem 0 0.35rem;
+  padding-inline: 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.builder-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.publish-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  margin-bottom: 1rem;
+}
+
+.section-block {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  .item-list {
+    margin-top: 0.75rem;
+  }
+}
+
+.item.is-open {
+  border-color: var(--accent);
+}
+
+.chosen-list {
+  list-style: none;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  display: grid;
+  gap: 0.25rem;
+  li {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0.35rem 0.5rem 0.35rem 0.75rem;
+  }
+}

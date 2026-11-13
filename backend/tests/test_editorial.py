@@ -19,6 +19,7 @@ async def test_public_content_lists_resources_and_pages(client):
     sections = {r["section"] for r in data["resources"]}
     assert sections == {"official", "public", "association", "law"}
     assert {"slug", "title"} == set(data["pages"][0])
+    assert {c["group"] for c in data["school_contacts"]} == {"school", "work", "other"}
     first = data["pages"][0]["slug"]
     assert (await client.get(f"/api/pages/{first}")).json()["blocks"]
 
@@ -54,9 +55,8 @@ async def test_resource_crud_and_stats_whitelist(admin):
     created = await admin.post("/api/admin/resources", json=resource)
     assert created.status_code == 201
     # Un lien officiel ajouté devient comptable dans les statistiques
-    assert (
-        await admin.post("/api/events", json={"t": "doc", "doc": "new_link"})
-    ).status_code == 204
+    response = await admin.post("/api/events", json={"t": "doc", "doc": "new_link"})
+    assert response.status_code == 204
     assert await StatCounter.exists(metric="doc", key="new_link")
 
     moved = {**resource, "section": "law"}

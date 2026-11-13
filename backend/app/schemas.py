@@ -3,10 +3,11 @@ from typing import Annotated, Any, Literal
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, HttpUrl, StringConstraints
 
-from app.models import PoleGroup, PoleOutcomeKey, QuestionKind, QuestionPhase, ResourceSection
+from app.models import ContactGroup, QuestionKind, ResourceSection
 
 Key = Annotated[str, StringConstraints(pattern=r"^[A-Za-z][A-Za-z0-9_]{0,63}$")]
 Icon = Literal["book", "chat", "clock", "badge", "user", "building", "shield", "doc", "compass"]
+Condition = dict[str, Any]
 
 
 class LocalizedText(BaseModel):
@@ -20,6 +21,10 @@ class LocalizedText(BaseModel):
 
 class Schema(BaseModel):
     model_config = ConfigDict(from_attributes=True)
+
+
+class ReorderIn(BaseModel):
+    ids: list[int] = Field(min_length=1)
 
 
 # --------------------------------------------------------------------------- authentification
@@ -40,7 +45,7 @@ class AdminOut(Schema):
     must_change_password: bool
 
 
-# --------------------------------------------------------------------------- questionnaire
+# --------------------------------------------------------------------------- bibliothèques
 
 
 class OptionIn(BaseModel):
@@ -49,88 +54,19 @@ class OptionIn(BaseModel):
     label: LocalizedText
 
 
-class OptionOut(OptionIn, Schema):
-    pass
-
-
 class QuestionIn(BaseModel):
     key: Key
     kind: QuestionKind
-    phase: QuestionPhase = QuestionPhase.CORE
-    step: Key | None = None
-    required: bool = False
-    hidden: bool = False
-    auto_answer: Key | None = None
-    show_if: dict[str, Any] | None = None
-    stop_if: dict[str, Any] | None = None
-    tracks: list[Key] = []
     text: LocalizedText
     text_falc: LocalizedText | None = None
     help: LocalizedText | None = None
     options: list[OptionIn] = Field(min_length=1, max_length=30)
 
 
-class QuestionOut(QuestionIn, Schema):
-    id: int
-    position: int
-    options: list[OptionOut]
-    updated_at: datetime
-
-
-class ReorderIn(BaseModel):
-    ids: list[int] = Field(min_length=1)
-
-
-# --------------------------------------------------------------------------- restitution
-
-
-class LevelIn(BaseModel):
-    key: Key
-    min_score: int | None = Field(default=None, ge=0, le=1000)
-    icon: Icon = "book"
-    title: LocalizedText
-    body: LocalizedText
-    body_falc: LocalizedText | None = None
-
-
-class LevelOut(LevelIn, Schema):
-    id: int
-    position: int
-
-
 class TextItemIn(BaseModel):
     key: Key
     text: LocalizedText
-
-
-class TextItemOut(TextItemIn, Schema):
-    id: int
-    position: int
-
-
-class PoleOutcomeIn(BaseModel):
-    title: LocalizedText
-    body: LocalizedText
-
-
-class PoleOutcomeOut(PoleOutcomeIn, Schema):
-    key: PoleOutcomeKey
-
-
-class RuleIn(BaseModel):
-    key: Key
-    condition: dict[str, Any]
-    points: int = Field(default=0, ge=-100, le=100)
-    override_level: Key | None = None
-    pole_outcome: Literal[PoleOutcomeKey.SUGGEST, PoleOutcomeKey.MAYBE] | None = None
-    explanation: LocalizedText | None = None
-    flags: list[Key] = []
-    suggestions: list[Key] = []
-
-
-class RuleOut(RuleIn):
-    id: int
-    position: int
+    highlight_confidential: bool = False
 
 
 class ContactIn(BaseModel):
@@ -142,15 +78,56 @@ class ContactIn(BaseModel):
     link_url: HttpUrl | None = None
     link_label: LocalizedText | None = None
     is_confidential: bool = False
-    pole_group: PoleGroup | None = None
-    profiles: list[Key] = []
+    group: ContactGroup | None = None
 
 
-class ContactOut(ContactIn):
-    id: int
-    position: int
-    email: str | None = None
-    link_url: str | None = None
+class RuleIn(BaseModel):
+    key: Key
+    condition: Condition
+    explanation: LocalizedText | None = None
+    flags: list[Key] = []
+    suggestions: list[Key] = []
+    contacts: list[Key] = []
+
+
+# --------------------------------------------------------------------------- questionnaires
+
+
+class QuestionnaireIn(BaseModel):
+    key: Key
+    title: LocalizedText
+    description: LocalizedText | None = None
+    featured: bool = False
+
+
+class SectionIn(BaseModel):
+    title: LocalizedText
+    intro: LocalizedText | None = None
+    optional: bool = False
+
+
+class ItemIn(BaseModel):
+    question: Key
+    required: bool = False
+    show_if: Condition | None = None
+    auto_answer: Key | None = None
+
+
+class OutcomeIn(BaseModel):
+    key: Key
+    min_score: int | None = Field(default=None, ge=-1000, le=1000)
+    icon: Icon = "book"
+    title: LocalizedText
+    body: LocalizedText
+    body_falc: LocalizedText | None = None
+    next_questionnaire: Key | None = None
+    contacts: list[Key] = []
+
+
+class RuleUsageIn(BaseModel):
+    rule: Key
+    points: int = Field(default=0, ge=-100, le=100)
+    override_outcome: Key | None = None
 
 
 # --------------------------------------------------------------------------- contenus éditoriaux
@@ -208,14 +185,15 @@ class ContentPageIn(BaseModel):
 class ContentPageOut(ContentPageIn, Schema):
     id: int
     position: int
+    updated_at: datetime
 
 
 # --------------------------------------------------------------------------- statistiques
 
 
 class EventIn(BaseModel):
-    t: Literal["start", "complete", "deep", "doc"]
+    t: Literal["start", "complete", "optional", "doc"]
+    questionnaire: Key | None = None
     lang: Key | None = None
-    profile: Key | None = None
-    level: Key | None = None
+    outcome: Key | None = None
     doc: Key | None = None

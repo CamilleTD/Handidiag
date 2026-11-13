@@ -15,9 +15,11 @@
     <h2 id="r-efrei">{{ i18n.t('resources.efrei_title') }}</h2>
     <p>{{ i18n.t('resources.efrei_intro') }}</p>
     <h3>{{ i18n.t('resources.contacts_title') }}</h3>
-    @for (group of poleGroups(); track group.group) {
+    @for (group of groups(); track group.group) {
       <div class="pole-group">
-        <p class="group-label">{{ i18n.t('pole_result.who_' + group.group) }}</p>
+        @if (group.group !== 'other') {
+          <p class="group-label">{{ i18n.t('pole_result.who_' + group.group) }}</p>
+        }
         <ul class="cards">
           @for (contact of group.contacts; track contact.key) {
             <li [appContactCard]="contact"></li>
@@ -25,11 +27,6 @@
         </ul>
       </div>
     }
-    <ul class="cards">
-      @for (contact of schoolContacts(); track contact.key) {
-        <li [appContactCard]="contact"></li>
-      }
-    </ul>
     <p class="hint">{{ i18n.t('pole_result.privacy_note') }}</p>
 
     <h3>{{ i18n.t('resources.steps_title') }}</h3>

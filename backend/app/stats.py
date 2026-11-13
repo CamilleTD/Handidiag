@@ -17,9 +17,13 @@ async def document_keys() -> list[str]:
     return [*official, *EXPORTS]
 
 
-async def increment(metric: str, key: str = "", day: date | None = None, by: int = 1) -> None:
-    counter, _ = await StatCounter.get_or_create(day=day or date.today(), metric=metric, key=key)
-    await StatCounter.filter(id=counter.id).update(count=F("count") + by)
+async def increment(
+    metric: str, key: str = "", questionnaire: str = "", day: date | None = None
+) -> None:
+    counter, _ = await StatCounter.get_or_create(
+        day=day or date.today(), questionnaire=questionnaire, metric=metric, key=key
+    )
+    await StatCounter.filter(id=counter.id).update(count=F("count") + 1)
 
 
 def mask(value: int, k: int) -> int | str:
@@ -39,21 +43,21 @@ def mask_dimension(values: dict[str, int], keys: list[str], k: int) -> dict[str,
     return {key: f"<{k}*" if key in forced else mask(value, k) for key, value in cells.items()}
 
 
-async def dashboard(k: int, levels: list[str], profiles: list[str]) -> dict:
-    documents = await document_keys()
-    counters = await StatCounter.all()
+async def dashboard(k: int, questionnaire: str, outcomes: list[str]) -> dict:
+    """Indicateurs d'un questionnaire, plus les compteurs généraux (documents)."""
+    counters = await StatCounter.filter(questionnaire__in=[questionnaire, ""])
     totals: dict[str, dict[str, int]] = {}
     days: dict[str, dict[str, int]] = {}
     for counter in counters:
-        dimension = totals.setdefault(counter.metric, {})
-        dimension[counter.key] = dimension.get(counter.key, 0) + counter.count
-        if counter.metric in ("start", "complete"):
+        scope = totals.setdefault(counter.metric, {})
+        if counter.metric == "doc" or counter.questionnaire == questionnaire:
+            scope[counter.key] = scope.get(counter.key, 0) + counter.count
+        if counter.questionnaire == questionnaire and counter.metric in ("start", "complete"):
             day = days.setdefault(counter.day.isoformat(), {"start": 0, "complete": 0})
             day[counter.metric] += counter.count
 
     starts = sum(totals.get("start", {}).values())
     completes = sum(totals.get("complete", {}).values())
-    deep = sum(totals.get("deep", {}).values())
     since = (date.today() - timedelta(days=29)).isoformat()
     return {
         "k": k,
@@ -61,12 +65,11 @@ async def dashboard(k: int, levels: list[str], profiles: list[str]) -> dict:
             "starts": mask(starts, k),
             "completes": mask(completes, k),
             "completion_rate": round(completes / starts * 100) if starts >= k else None,
-            "deep": mask(deep, k),
+            "optional": mask(sum(totals.get("optional", {}).values()), k),
         },
-        "by_level": mask_dimension(totals.get("level", {}), levels, k),
-        "by_profile": mask_dimension(totals.get("profile", {}), profiles, k),
+        "by_outcome": mask_dimension(totals.get("outcome", {}), outcomes, k),
         "by_lang": mask_dimension(totals.get("lang", {}), LANGS, k),
-        "documents": mask_dimension(totals.get("doc", {}), documents, k),
+        "documents": mask_dimension(totals.get("doc", {}), await document_keys(), k),
         "daily": [
             {"date": day, "start": mask(v["start"], k), "complete": mask(v["complete"], k)}
             for day, v in sorted(days.items())

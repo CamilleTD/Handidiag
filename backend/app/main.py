@@ -6,7 +6,7 @@ from tortoise.contrib.fastapi import RegisterTortoise
 
 from app.config import get_settings
 from app.db import TORTOISE_ORM
-from app.routers import admin, auth, editorial, public
+from app.routers import admin, auth, editorial, library, public, questionnaires
 from app.seed import seed
 
 logging.basicConfig(level=logging.INFO)
@@ -32,6 +32,8 @@ app.include_router(public.router, prefix="/api")
 app.include_router(auth.router, prefix="/api")
 app.include_router(admin.router, prefix="/api")
 app.include_router(editorial.router, prefix="/api")
+app.include_router(library.router, prefix="/api")
+app.include_router(questionnaires.router, prefix="/api")
 
 
 @app.get("/api/health", include_in_schema=False)

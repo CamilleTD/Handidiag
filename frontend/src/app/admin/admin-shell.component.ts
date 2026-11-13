@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AdminApi } from './admin-api.service';
+import { adminT } from './admin-i18n';
 
-/** Mise en page de l'administration : menu latéral fixe et zone de travail. */
+/** Mise en page de l'administration : menu latéral et zone de travail. */
 @Component({
   selector: 'app-admin-shell',
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
@@ -12,26 +13,30 @@ import { AdminApi } from './admin-api.service';
   styleUrl: './admin.scss',
   template: `
     <div class="admin-layout">
-      <nav class="admin-side" aria-label="Administration">
+      <nav class="admin-side" [attr.aria-label]="t('nav.label')">
         <p class="admin-user">
-          Connecté : <strong>{{ api.admin()?.username }}</strong>
+          {{ t('nav.signed_in') }} <strong>{{ api.admin()?.username }}</strong>
         </p>
-        <ul>
-          @for (link of links; track link.path) {
-            <li>
-              <a
-                [routerLink]="link.path"
-                routerLinkActive="active"
-                ariaCurrentWhenActive="page"
-                [routerLinkActiveOptions]="{ exact: link.path === '/admin' }"
-              >
-                {{ link.label }}
-              </a>
-            </li>
+        @for (group of groups; track group.label) {
+          @if (group.label) {
+            <p class="admin-side-group">{{ t(group.label) }}</p>
           }
-        </ul>
+          <ul>
+            @for (link of group.links; track link.path) {
+              <li>
+                <a
+                  [routerLink]="link.path"
+                  routerLinkActive="active"
+                  ariaCurrentWhenActive="page"
+                  [routerLinkActiveOptions]="{ exact: link.path === '/admin' }"
+                  >{{ t(link.label) }}</a
+                >
+              </li>
+            }
+          </ul>
+        }
         <button type="button" class="btn btn-small btn-quiet" (click)="logout()">
-          Se déconnecter
+          {{ t('nav.logout') }}
         </button>
       </nav>
       <div class="admin-content">
@@ -42,15 +47,32 @@ import { AdminApi } from './admin-api.service';
 })
 export class AdminShell {
   protected readonly api = inject(AdminApi);
+  protected readonly t = adminT();
   private readonly router = inject(Router);
-  protected readonly links = [
-    { path: '/admin', label: 'Tableau de bord' },
-    { path: '/admin/questions', label: 'Questions' },
-    { path: '/admin/rules', label: 'Règles' },
-    { path: '/admin/restitution', label: 'Restitution' },
-    { path: '/admin/pages', label: 'Pages « S’informer »' },
-    { path: '/admin/resources', label: 'Ressources' },
-    { path: '/admin/account', label: 'Mon compte' },
+  protected readonly groups = [
+    {
+      label: '',
+      links: [
+        { path: '/admin', label: 'nav.dashboard' },
+        { path: '/admin/questionnaires', label: 'nav.questionnaires' },
+      ],
+    },
+    {
+      label: 'nav.library',
+      links: [
+        { path: '/admin/library/questions', label: 'nav.questions' },
+        { path: '/admin/library/rules', label: 'nav.rules' },
+        { path: '/admin/library/messages', label: 'nav.messages' },
+      ],
+    },
+    {
+      label: 'nav.content',
+      links: [
+        { path: '/admin/pages', label: 'nav.pages' },
+        { path: '/admin/resources', label: 'nav.resources' },
+      ],
+    },
+    { label: '', links: [{ path: '/admin/account', label: 'nav.account' }] },
   ];
 
   protected async logout(): Promise<void> {

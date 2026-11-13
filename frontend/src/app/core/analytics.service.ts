@@ -1,9 +1,9 @@
 import { Injectable, signal } from '@angular/core';
 
 export type StatEvent =
-  | { t: 'start'; lang: string }
-  | { t: 'complete'; profile: string; level: string; lang: string }
-  | { t: 'deep' }
+  | { t: 'start'; questionnaire: string; lang: string }
+  | { t: 'complete'; questionnaire: string; outcome: string }
+  | { t: 'optional'; questionnaire: string }
   | { t: 'doc'; doc: string };
 
 /** Compteurs anonymes : jamais de réponse individuelle, et rien si la personne s'y oppose. */

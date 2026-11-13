@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { ContentService } from '../../core/content.service';
 import { I18nService } from '../../core/i18n.service';
-import type { Contact } from '../../core/models';
-import { RestitutionService } from '../../core/restitution.service';
 import { ReadPart } from '../../core/voice.service';
 import { ContactCardComponent } from '../../shared/contact-card.component';
 import { IconComponent, MedalComponent } from '../../shared/icon.component';
@@ -17,18 +15,20 @@ import { ReadButtonComponent } from '../../shared/read-button.component';
 export class ResourcesPage {
   protected readonly i18n = inject(I18nService);
   protected readonly content = inject(ContentService);
-  private readonly restitution = inject(RestitutionService);
 
   protected readonly sections = [
     { id: 'r-efrei', label: 'resources.tab_efrei' },
     { id: 'r-national', label: 'resources.tab_national' },
     { id: 'r-law', label: 'resources.tab_law' },
   ];
-  protected readonly poleGroups = computed(() => this.restitution.poleGroups(false));
-  protected readonly schoolContacts = computed(() =>
-    ['student_health', 'registrar']
-      .map((key) => this.content.contacts().get(key))
-      .filter((c): c is Contact => !!c),
+  /** Interlocuteurs de l'école, groupés par besoin (études, monde du travail, autres). */
+  protected readonly groups = computed(() =>
+    (['school', 'work', 'other'] as const)
+      .map((group) => ({
+        group,
+        contacts: this.content.content().school_contacts.filter((c) => c.group === group),
+      }))
+      .filter((g) => g.contacts.length),
   );
 
   protected jump(id: string): void {

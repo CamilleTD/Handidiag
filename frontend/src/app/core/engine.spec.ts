@@ -1,60 +1,76 @@
 import { describe, expect, it } from 'vitest';
 import {
   check,
-  coreQuestions,
+  collectContacts,
   evaluate,
-  levelFromScore,
-  orderContacts,
-  poleOutcome,
+  outcomeFromScore,
   prune,
   toggleOption,
-  visibleIn,
+  visibleQuestions,
 } from './engine';
-import type { Condition, Level, Question, Rule } from './models';
+import type {
+  Condition,
+  Contact,
+  Outcome,
+  QuestionnaireQuestion,
+  QuestionnaireSnapshot,
+  Rule,
+} from './models';
 
 const text = (fr: string) => ({ fr, en: '' });
-const question = (key: string, extra: Partial<Question> = {}): Question => ({
+const question = (
+  key: string,
+  extra: Partial<QuestionnaireQuestion> = {},
+): QuestionnaireQuestion => ({
   key,
   kind: 'single',
-  phase: 'core',
-  step: null,
-  required: false,
-  hidden: false,
-  auto_answer: null,
-  show_if: null,
-  stop_if: null,
-  tracks: [],
   text: text(key),
   text_falc: null,
   help: null,
   options: ['yes', 'no'].map((k) => ({ key: k, exclusive: false, label: text(k) })),
+  required: false,
+  show_if: null,
+  auto_answer: null,
   ...extra,
 });
-const level = (key: string, min_score: number | null): Level => ({
+const outcome = (key: string, min_score: number | null, contacts: string[] = []): Outcome => ({
   key,
   min_score,
   icon: 'book',
   title: text(key),
   body: text(key),
   body_falc: null,
+  next: null,
+  contacts,
 });
 const rule = (key: string, extra: Partial<Rule>): Rule => ({
   key,
   condition: { q: 'a', in: ['yes'] },
   points: 0,
-  override_level: null,
-  pole_outcome: null,
+  override: null,
   explanation: null,
   flags: [],
   suggestions: [],
+  contacts: [],
   ...extra,
 });
+const contact = (key: string, is_confidential = false): Contact => ({
+  key,
+  icon: 'user',
+  name: text(key),
+  role: text(key),
+  email: null,
+  link_url: null,
+  link_label: null,
+  is_confidential,
+  group: null,
+});
 
-const LEVELS = [
-  level('explore', 0),
-  level('talk', 3),
-  level('talk_soon', 6),
-  level('already', null),
+const OUTCOMES = [
+  outcome('explore', 0),
+  outcome('talk', 3),
+  outcome('talk_soon', 6),
+  outcome('already', null),
 ];
 
 describe('check', () => {
@@ -67,15 +83,7 @@ describe('check', () => {
     [{ q: 'areas', countAtLeast: 2, among: ['energy', 'other'] }, false],
     [{ q: 'missing', answered: false }, true],
     [{ all: [{ q: 'a', in: ['yes'] }, { not: { q: 'areas', hasAny: ['other'] } }] }, true],
-    [
-      {
-        any: [
-          { q: 'a', in: ['no'] },
-          { q: 'areas', answered: true },
-        ],
-      },
-      true,
-    ],
+    [{ any: [{ q: 'a', in: ['no'] }, { q: 'areas', answered: true }] }, true],
   ] as [Condition, boolean][])('%j → %s', (condition, expected) => {
     expect(check(condition, answers)).toBe(expected);
   });
@@ -87,110 +95,121 @@ describe('evaluate', () => {
       rule('r1', { points: 2 }),
       rule('r2', { points: 2, condition: { q: 'b', answered: true } }),
     ];
-    expect(evaluate({ a: 'yes', b: 'x' }, rules, LEVELS).level).toBe('talk');
-    expect(evaluate({ a: 'yes' }, rules, LEVELS).level).toBe('explore');
+    expect(evaluate({ a: 'yes', b: 'x' }, rules, OUTCOMES).outcome).toBe('talk');
+    expect(evaluate({ a: 'yes' }, rules, OUTCOMES).outcome).toBe('explore');
   });
 
-  it('la première règle qui impose un niveau l’emporte sur le score', () => {
+  it('la première règle qui impose un résultat l’emporte sur le score', () => {
     const rules = [
       rule('big', { points: 10 }),
-      rule('already', { override_level: 'already' }),
-      rule('other', { override_level: 'explore' }),
+      rule('already', { override: 'already' }),
+      rule('other', { override: 'explore' }),
     ];
-    const result = evaluate({ a: 'yes' }, rules, LEVELS);
+    const result = evaluate({ a: 'yes' }, rules, OUTCOMES);
     expect(result.score).toBe(10);
-    expect(result.level).toBe('already');
+    expect(result.outcome).toBe('already');
   });
 
-  it('dédoublonne points d’attention et pistes, « suggest » l’emporte sur « maybe »', () => {
+  it('dédoublonne points d’attention et pistes', () => {
     const rules = [
-      rule('r1', { flags: ['f'], suggestions: ['s'], pole_outcome: 'maybe' }),
-      rule('r2', { flags: ['f'], suggestions: ['s', 't'], pole_outcome: 'suggest' }),
-      rule('r3', { pole_outcome: 'maybe' }),
+      rule('r1', { flags: ['f'], suggestions: ['s'] }),
+      rule('r2', { flags: ['f'], suggestions: ['s', 't'] }),
     ];
-    const result = evaluate({ a: 'yes' }, rules, LEVELS);
+    const result = evaluate({ a: 'yes' }, rules, OUTCOMES);
     expect(result.flags).toEqual(['f']);
     expect(result.suggestions).toEqual(['s', 't']);
-    expect(result.pole).toBe('suggest');
   });
 
-  it('ignore les niveaux sans seuil pour le calcul du score', () => {
-    expect(levelFromScore(100, LEVELS)).toBe('talk_soon');
+  it('ignore les résultats sans seuil pour le calcul du score', () => {
+    expect(outcomeFromScore(100, OUTCOMES)).toBe('talk_soon');
   });
 });
 
 describe('déroulé du questionnaire', () => {
-  const questions = [
-    question('profile', { hidden: true, auto_answer: 'student' }),
-    question('pole', { step: 'pole' }),
-    question('pole_next', {
-      show_if: { q: 'pole', in: ['no'] },
-      stop_if: { q: 'pole_next', in: ['end'] },
-      options: ['rqth', 'end'].map((k) => ({ key: k, exclusive: false, label: text(k) })),
-    }),
-    question('duration'),
-    question('detail', { phase: 'deep', show_if: { q: 'duration', in: ['yes'] } }),
-    question('pole_fear', { phase: 'deep', tracks: ['pole'] }),
-  ];
+  const snapshot: QuestionnaireSnapshot = {
+    key: 'test',
+    title: text('Test'),
+    description: null,
+    sections: [
+      {
+        title: text('Principal'),
+        intro: null,
+        optional: false,
+        questions: [
+          question('profile', { auto_answer: 'student' }),
+          question('pole'),
+          question('pole_check', { show_if: { q: 'pole', in: ['no'] } }),
+        ],
+      },
+      {
+        title: text('Plus'),
+        intro: null,
+        optional: true,
+        questions: [question('detail', { show_if: { q: 'pole_check', in: ['yes'] } })],
+      },
+    ],
+    outcomes: OUTCOMES,
+    rules: [],
+    flags: [],
+    suggestions: [],
+    contacts: [],
+  };
 
-  it('masque les questions conditionnelles et les questions masquées', () => {
-    expect(coreQuestions(questions, { pole: 'yes' }).map((q) => q.key)).toEqual([
+  it('masque les questions conditionnelles et celles à réponse fixée', () => {
+    expect(visibleQuestions(snapshot, { pole: 'yes' }, false).map((q) => q.key)).toEqual(['pole']);
+    expect(visibleQuestions(snapshot, { pole: 'no' }, false).map((q) => q.key)).toEqual([
       'pole',
-      'duration',
+      'pole_check',
     ]);
+    expect(visibleQuestions(snapshot, { pole: 'no', pole_check: 'yes' }, true)).toHaveLength(1);
   });
 
-  it('s’arrête après une question dont la condition d’arrêt est vraie', () => {
-    const answers = { pole: 'no', pole_next: 'end' };
-    expect(coreQuestions(questions, answers).map((q) => q.key)).toEqual(['pole', 'pole_next']);
-    // Seules les questions complémentaires du parcours « pole » restent proposées
-    expect(visibleIn(questions, 'deep', answers).map((q) => q.key)).toEqual(['pole_fear']);
-  });
-
-  it('retire les réponses devenues invisibles et garde les réponses automatiques', () => {
-    const kept = prune(questions, { pole: 'yes', pole_next: 'end', duration: 'no', detail: 'yes' });
-    expect(kept).toEqual({ profile: 'student', pole: 'yes', duration: 'no' });
+  it('retire les réponses devenues invisibles, garde celles des autres questionnaires', () => {
+    const kept = prune(snapshot, { pole: 'yes', pole_check: 'no', duration: 'long' });
+    expect(kept).toEqual({ pole: 'yes', duration: 'long', profile: 'student' });
   });
 
   it('une option exclusive décoche les autres, et inversement', () => {
-    const multi = question('m', {
-      kind: 'multiple',
+    const multi = {
       options: [
-        { key: 'a', exclusive: false, label: text('a') },
-        { key: 'b', exclusive: false, label: text('b') },
-        { key: 'none', exclusive: true, label: text('none') },
+        { key: 'a', exclusive: false },
+        { key: 'b', exclusive: false },
+        { key: 'none', exclusive: true },
       ],
-    });
+    };
     expect(toggleOption(multi, ['a', 'b'], 'none', true)).toEqual(['none']);
     expect(toggleOption(multi, ['none'], 'a', true)).toEqual(['a']);
     expect(toggleOption(multi, ['a', 'b'], 'a', false)).toEqual(['b']);
   });
 });
 
-describe('restitution', () => {
-  const evaluation = evaluate({}, [], LEVELS);
+describe('interlocuteurs', () => {
+  const snapshot: QuestionnaireSnapshot = {
+    key: 'test',
+    title: text('Test'),
+    description: null,
+    sections: [],
+    outcomes: [outcome('talk', 0, ['pole'])],
+    rules: [
+      rule('profile', { contacts: ['mdph', 'doctor', 'pole'] }),
+      rule('fear', { flags: ['stigma'], condition: { q: 'fear', in: ['yes'] } }),
+    ],
+    flags: [{ key: 'stigma', text: text('stigma'), highlight_confidential: true }],
+    suggestions: [],
+    contacts: [contact('pole'), contact('mdph'), contact('doctor', true)],
+  };
 
-  it('choisit le message du pôle d’après les réponses', () => {
-    expect(poleOutcome({ pole: 'yes' }, evaluation)).toBe('followed');
-    expect(poleOutcome({ pole: 'no' }, evaluation)).toBe('declined');
-    expect(poleOutcome({ pole: 'no', pole_check: 'yes' }, evaluation)).toBe('none');
-    expect(poleOutcome({ pole: 'no', pole_check: 'yes' }, { ...evaluation, pole: 'maybe' })).toBe(
-      'maybe',
-    );
-    expect(poleOutcome({}, evaluation)).toBeNull();
+  it('résultat d’abord, puis règles, sans doublon', () => {
+    const evaluation = evaluate({ a: 'yes' }, snapshot.rules, snapshot.outcomes);
+    const { contacts, confidentialFirst } = collectContacts(snapshot, evaluation);
+    expect(contacts.map((c) => c.key)).toEqual(['pole', 'mdph', 'doctor']);
+    expect(confidentialFirst).toBe(false);
   });
 
-  it('ordonne les interlocuteurs : travail d’abord, puis secret médical si la personne craint le regard', () => {
-    const keys = ['pole_social', 'pole_career', 'health', 'mdph'];
-    const options = { confidential: new Set(['health']), work: new Set(['pole_career']) };
-    expect(orderContacts(keys, { ...options, workFocused: true, sensitive: false })).toEqual([
-      'pole_career',
-      'pole_social',
-      'health',
-      'mdph',
-    ]);
-    expect(orderContacts(keys, { ...options, workFocused: false, sensitive: true })[0]).toBe(
-      'health',
-    );
+  it('secret médical en premier quand un point d’attention le demande', () => {
+    const evaluation = evaluate({ a: 'yes', fear: 'yes' }, snapshot.rules, snapshot.outcomes);
+    const { contacts, confidentialFirst } = collectContacts(snapshot, evaluation);
+    expect(confidentialFirst).toBe(true);
+    expect(contacts[0].key).toBe('doctor');
   });
 });

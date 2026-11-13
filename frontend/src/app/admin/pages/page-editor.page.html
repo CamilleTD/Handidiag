@@ -1,12 +1,14 @@
-<p><a routerLink="/admin/pages">← Toutes les pages</a></p>
+<p>
+  <a routerLink="/admin/pages">← {{ t('pages.back') }}</a>
+</p>
 @if (draft(); as d) {
-  <h1>{{ isNew() ? 'Nouvelle page' : d.title.fr }}</h1>
+  <h1>{{ isNew() ? t('pages.new') : text(d.title) }}</h1>
   <form (submit)="$event.preventDefault(); save()" novalidate>
     <section class="form-section" aria-labelledby="s-page">
-      <h2 id="s-page">Page</h2>
+      <h2 id="s-page">{{ t('pages.page') }}</h2>
       <div class="form-grid two">
         <div class="field">
-          <label for="p-slug">Adresse</label>
+          <label for="p-slug">{{ t('pages.slug') }}</label>
           <input
             id="p-slug"
             class="text-input key"
@@ -14,31 +16,29 @@
             [value]="d.slug"
             (input)="patch({ slug: value($event) })"
           />
-          <p id="p-slug-hint" class="hint">
-            Minuscules, chiffres et tirets : la page sera visible à /info/{{ d.slug || '…' }}.
-          </p>
+          <p id="p-slug-hint" class="hint">{{ t('pages.slug_hint', { slug: d.slug || '…' }) }}</p>
         </div>
         <div class="field">
-          <span class="field-label">Publication</span>
+          <span class="field-label">{{ t('pages.publication') }}</span>
           <label class="check">
             <input
               type="checkbox"
               [checked]="d.is_published"
               (change)="patch({ is_published: $any($event.target).checked })"
             />
-            <span>Page publiée (sinon : brouillon invisible du public)</span>
+            <span>{{ t('pages.published_label') }}</span>
           </label>
         </div>
       </div>
       <div class="form-grid">
         <app-localized-field
-          label="Titre"
+          [label]="t('pages.page_title')"
           [required]="true"
           [value]="d.title"
           (valueChange)="patch({ title: $event! })"
         />
         <app-localized-field
-          label="Introduction (facultatif)"
+          [label]="t('pages.intro_field')"
           [multiline]="true"
           [value]="d.intro"
           (valueChange)="patch({ intro: $event })"
@@ -47,17 +47,17 @@
     </section>
 
     <section class="form-section" aria-labelledby="s-blocks">
-      <h2 id="s-blocks">Blocs de contenu ({{ d.blocks.length }})</h2>
-      <p class="hint">Les blocs s'affichent dans cet ordre sous l'introduction.</p>
+      <h2 id="s-blocks">{{ t('pages.blocks', { n: d.blocks.length }) }}</h2>
+      <p class="hint">{{ t('pages.blocks_hint') }}</p>
       @for (block of d.blocks; track $index; let i = $index; let first = $first; let last = $last) {
         <div class="option-row">
           <div class="option-head">
-            <strong>{{ i + 1 }}. {{ labels[block.type] }}</strong>
+            <strong>{{ i + 1 }}. {{ t('pages.block_' + block.type) }}</strong>
             <div class="item-actions">
               <button
                 type="button"
                 class="btn btn-small btn-quiet"
-                [attr.aria-label]="'Monter le bloc ' + (i + 1)"
+                [attr.aria-label]="t('common.move_up') + ' : ' + (i + 1)"
                 [disabled]="first"
                 (click)="moveBlock(i, -1)"
               >
@@ -66,7 +66,7 @@
               <button
                 type="button"
                 class="btn btn-small btn-quiet"
-                [attr.aria-label]="'Descendre le bloc ' + (i + 1)"
+                [attr.aria-label]="t('common.move_down') + ' : ' + (i + 1)"
                 [disabled]="last"
                 (click)="moveBlock(i, 1)"
               >
@@ -75,7 +75,7 @@
               <button
                 type="button"
                 class="btn btn-small btn-quiet"
-                [attr.aria-label]="'Supprimer le bloc ' + (i + 1)"
+                [attr.aria-label]="t('common.delete') + ' : ' + (i + 1)"
                 (click)="removeBlock(i)"
               >
                 <app-icon name="trash" />
@@ -83,14 +83,14 @@
             </div>
           </div>
           <app-localized-field
-            [label]="'Titre du bloc ' + (i + 1)"
+            [label]="t('pages.block_title', { n: i + 1 })"
             [required]="true"
             [value]="block.title"
             (valueChange)="patchBlock(i, { title: $event! })"
           />
           @if (block.type === 'text' || block.type === 'accordion') {
             <app-localized-field
-              [label]="'Texte du bloc ' + (i + 1)"
+              [label]="t('pages.block_text', { n: i + 1 })"
               [required]="true"
               [multiline]="true"
               [value]="block.text"
@@ -98,15 +98,13 @@
             />
           } @else {
             <app-localized-field
-              [label]="'Description du bloc ' + (i + 1) + ' (facultatif)'"
+              [label]="t('pages.block_description', { n: i + 1 })"
               [multiline]="true"
               [value]="block.text"
               (valueChange)="patchBlock(i, $any({ text: $event }))"
             />
             <div class="field">
-              <label [for]="'b-url-' + i">{{
-                block.type === 'document' ? 'Fichier PDF' : 'Adresse du lien'
-              }}</label>
+              <label [for]="'b-url-' + i">{{ t('pages.url_' + block.type) }}</label>
               <input
                 [id]="'b-url-' + i"
                 class="text-input"
@@ -114,13 +112,7 @@
                 [value]="$any(block).url"
                 (input)="patchBlock(i, $any({ url: value($event) }))"
               />
-              <p class="hint" [id]="'b-url-hint-' + i">
-                {{
-                  block.type === 'document'
-                    ? 'Fichier déposé dans frontend/public/docs, ex. /docs/infographie-handicap-2025.pdf'
-                    : 'Doit commencer par https://'
-                }}
-              </p>
+              <p class="hint" [id]="'b-url-hint-' + i">{{ t('pages.url_hint_' + block.type) }}</p>
             </div>
           }
         </div>
@@ -128,7 +120,7 @@
       <div class="actions">
         @for (type of types; track type) {
           <button type="button" class="btn btn-small" (click)="addBlock(type)">
-            <app-icon name="plus" /> {{ labels[type] }}
+            <app-icon name="plus" /> {{ t('pages.block_' + type) }}
           </button>
         }
       </div>
@@ -138,19 +130,25 @@
       <p class="status" [class.is-error]="failed()" role="status">{{ message() }}</p>
     }
     <div class="form-actions">
-      <button type="submit" class="btn btn-primary" [disabled]="saving()">Enregistrer</button>
+      <button type="submit" class="btn btn-primary" [disabled]="saving()">
+        {{ t('common.save') }}
+      </button>
       @if (!isNew() && d.is_published) {
-        <a class="btn" [href]="'/info/' + d.slug" target="_blank" rel="noopener">Voir la page</a>
+        <a class="btn" [href]="'/info/' + d.slug" target="_blank" rel="noopener">{{
+          t('pages.view')
+        }}</a>
       }
       @if (!isNew()) {
         @if (confirmDelete()) {
-          <button type="button" class="btn" (click)="remove()">Confirmer la suppression</button>
+          <button type="button" class="btn" (click)="remove()">
+            {{ t('common.confirm_delete') }}
+          </button>
           <button type="button" class="btn btn-quiet" (click)="confirmDelete.set(false)">
-            Garder la page
+            {{ t('common.keep') }}
           </button>
         } @else {
           <button type="button" class="btn btn-quiet" (click)="confirmDelete.set(true)">
-            <app-icon name="trash" /> Supprimer…
+            <app-icon name="trash" /> {{ t('common.delete') }}…
           </button>
         }
       }
@@ -159,5 +157,5 @@
 } @else if (message()) {
   <p class="status is-error" role="alert">{{ message() }}</p>
 } @else {
-  <p>Chargement…</p>
+  <p>{{ t('common.loading') }}</p>
 }

@@ -1,6 +1,6 @@
 from datetime import UTC, datetime
 
-from fastapi import APIRouter, Cookie, Depends, HTTPException, Request, Response, status
+from fastapi import APIRouter, Cookie, Depends, Request, Response, status
 
 from app.auth import (
     close_session,
@@ -11,6 +11,7 @@ from app.auth import (
     password_problem,
     verify_password,
 )
+from app.errors import Problem
 from app.models import AdminSession, AdminUser
 from app.schemas import AdminOut, LoginIn, PasswordChangeIn
 
@@ -23,7 +24,7 @@ async def login(body: LoginIn, request: Request, response: Response):
     user = await AdminUser.get_or_none(username=body.username.strip().lower())
     if not user or not verify_password(body.password, user.password_hash):
         login_throttle.failed(request)
-        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Identifiant ou mot de passe incorrect.")
+        raise Problem(401, "login_failed", "Identifiant ou mot de passe incorrect.")
     login_throttle.reset(request)
     user.last_login_at = datetime.now(UTC)
     await user.save(update_fields=["last_login_at"])
@@ -51,10 +52,10 @@ async def change_password(
     login_throttle.check(request)
     if not verify_password(body.current, user.password_hash):
         login_throttle.failed(request)
-        raise HTTPException(status.HTTP_403_FORBIDDEN, "Mot de passe actuel incorrect.")
+        raise Problem(403, "password_wrong", "Mot de passe actuel incorrect.")
     problem = password_problem(body.new, user.username)
     if problem:
-        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, problem)
+        raise Problem(422, problem[0], problem[1])
     user.password_hash = hash_password(body.new)
     user.must_change_password = False
     await user.save(update_fields=["password_hash", "must_change_password", "updated_at"])

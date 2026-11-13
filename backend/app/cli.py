@@ -35,7 +35,7 @@ def main() -> None:
     username = sys.argv[2]
     password = getpass.getpass("Mot de passe : ")
     if problem := password_problem(password, username):
-        sys.exit(problem)
+        sys.exit(problem[1])
     asyncio.run(create_admin(username, password))
 
 

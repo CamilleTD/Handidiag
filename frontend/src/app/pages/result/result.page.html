@@ -1,60 +1,35 @@
 @if (restitution.view(); as view) {
   <div class="narrow">
+    @if (quiz.preview()) {
+      <p class="notice" role="status">{{ i18n.t('quiz.preview_notice') }}</p>
+    }
+    <p class="q-meta">{{ i18n.text(view.snapshot.title) }}</p>
     <h1>{{ i18n.t('result.title') }}</h1>
 
-    <ng-template #pole>
-      @if (view.poleMessage; as message) {
-        <section class="pole-result" aria-labelledby="pole-t">
-          <h2 id="pole-t">{{ i18n.t('pole_result.title') }}</h2>
-          <div class="panel level lv-pole pv-{{ view.pole }}">
-            <app-medal [name]="view.pole === 'none' ? 'book' : 'user'" />
-            <div>
-              <h3 id="pole-v">{{ i18n.text(message.title) }}</h3>
-              <p>{{ i18n.text(message.body) }}</p>
-            </div>
-          </div>
-          @for (group of view.poleGroups; track group.group) {
-            <div class="pole-group">
-              <p class="group-label">{{ i18n.t('pole_result.who_' + group.group) }}</p>
-              <ul class="cards">
-                @for (contact of group.contacts; track contact.key) {
-                  <li [appContactCard]="contact"></li>
-                }
-              </ul>
-            </div>
-          }
-          <p class="hint">{{ i18n.t('pole_result.privacy_note') }}</p>
-        </section>
-      }
-    </ng-template>
-
-    @if (view.poleFirst) {
-      <ng-container [ngTemplateOutlet]="pole" />
-    }
-
-    @if (!view.result.poleOnly && view.level; as level) {
-      <section class="panel level lv-{{ level.key }}" aria-labelledby="lvl">
-        <app-medal [name]="level.icon" />
+    @if (view.outcome; as outcome) {
+      <section class="panel level lv-{{ outcome.key }}" aria-labelledby="outcome">
+        <app-medal [name]="outcome.icon" />
         <div>
-          <h2 id="lvl">{{ i18n.text(level.title) }}</h2>
-          <p>{{ i18n.text(level.body, level.body_falc) }}</p>
+          <h2 id="outcome">{{ i18n.text(outcome.title) }}</h2>
+          <p>{{ i18n.text(outcome.body, outcome.body_falc) }}</p>
         </div>
       </section>
     }
     <p class="notice" id="notice">{{ i18n.t('result.notdecision') }}</p>
 
-    @if (view.result.poleOnly) {
-      <section class="panel refine" aria-labelledby="s-rqth">
-        <h2 id="s-rqth">{{ i18n.t('pole_result.continue_title') }}</h2>
-        <p>{{ i18n.t('pole_result.continue_text') }}</p>
-        <button type="button" class="btn btn-primary" (click)="continueToRqth()">
-          {{ i18n.t('pole_result.continue_btn') }} <app-icon name="arrow" />
+    @if (view.next; as next) {
+      <section class="panel refine" aria-labelledby="s-next-q">
+        <h2 id="s-next-q">{{ i18n.text(next.title) }}</h2>
+        <p>{{ i18n.t('result.next_text') }}</p>
+        <button
+          type="button"
+          class="btn btn-primary"
+          [disabled]="quiz.preview()"
+          (click)="continueTo(next.key)"
+        >
+          {{ i18n.t('result.next_btn') }} <app-icon name="arrow" />
         </button>
       </section>
-    }
-
-    @if (!view.poleFirst) {
-      <ng-container [ngTemplateOutlet]="pole" />
     }
 
     <app-read-button
@@ -87,30 +62,32 @@
       </section>
     }
 
-    @if (!quiz.deep() && quiz.deepQuestions().length) {
+    @if (!quiz.optionalOpen() && quiz.optionalQuestions().length) {
       <section class="panel refine" aria-labelledby="s-refine">
         <h2 id="s-refine">{{ i18n.t('result.refine_title') }}</h2>
-        <p>{{ i18n.t('result.refine_text', { n: quiz.deepQuestions().length }) }}</p>
+        <p>{{ i18n.t('result.refine_text', { n: quiz.optionalQuestions().length }) }}</p>
         <button type="button" class="btn btn-primary" (click)="refine()">
           {{ i18n.t('result.refine_btn') }} <app-icon name="arrow" />
         </button>
       </section>
     }
 
-    <section aria-labelledby="s-who">
-      <h2 id="s-who">{{ i18n.t('result.contacts_title') }}</h2>
-      <p>{{ i18n.t('result.contacts_intro') }}</p>
-      @if (view.sensitive) {
-        <p class="hint">{{ i18n.t('result.confidential_tip') }}</p>
-      }
-      <ul class="cards">
-        @for (contact of view.contacts; track contact.key) {
-          <li [id]="'contact-' + contact.key" [appContactCard]="contact"></li>
+    @if (view.contacts.length) {
+      <section aria-labelledby="s-who">
+        <h2 id="s-who">{{ i18n.t('result.contacts_title') }}</h2>
+        <p>{{ i18n.t('result.contacts_intro') }}</p>
+        @if (view.confidentialFirst) {
+          <p class="hint">{{ i18n.t('result.confidential_tip') }}</p>
         }
-      </ul>
-    </section>
+        <ul class="cards">
+          @for (contact of view.contacts; track contact.key) {
+            <li [id]="'contact-' + contact.key" [appContactCard]="contact"></li>
+          }
+        </ul>
+      </section>
+    }
 
-    @if (!view.result.poleOnly) {
+    @if (view.reasons.length) {
       <section aria-labelledby="s-why">
         <h2 id="s-why">{{ i18n.t('result.why_title') }}</h2>
         <p>{{ i18n.t('result.why_intro') }}</p>

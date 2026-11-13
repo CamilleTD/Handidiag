@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { I18nService } from '../../core/i18n.service';
 import { QuizService } from '../../core/quiz.service';
 import { IconComponent, MedalComponent } from '../../shared/icon.component';
 
-/** Fin des questions essentielles : voir le résultat ou répondre aux questions complémentaires. */
+/** Fin des questions principales : voir le résultat ou répondre aux questions facultatives. */
 @Component({
   imports: [IconComponent, MedalComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,26 +36,29 @@ export class MorePage {
   protected readonly i18n = inject(I18nService);
   private readonly quiz = inject(QuizService);
   private readonly router = inject(Router);
-  protected readonly count = computed(() => this.quiz.deepQuestions().length);
+  readonly key = input.required<string>();
+  protected readonly count = computed(() => this.quiz.optionalQuestions().length);
   protected readonly minutes = computed(() => Math.max(1, Math.round((this.count() * 25) / 60)));
 
   constructor() {
-    // Questions essentielles pas encore terminées : retour au questionnaire
-    if (this.quiz.maxIndex() < this.quiz.core().length - 1)
-      void this.router.navigateByUrl('/quiz', { replaceUrl: true });
+    // Questions principales pas encore terminées : retour au questionnaire
+    queueMicrotask(() => {
+      if (this.quiz.maxIndex() < this.quiz.core().length - 1)
+        void this.router.navigate(['/q', this.key(), 1], { replaceUrl: true });
+    });
   }
 
   protected continue(): void {
-    const first = this.quiz.startDeep();
-    void this.router.navigate(['/quiz', first + 1]);
+    const first = this.quiz.openOptional();
+    void this.router.navigate(['/q', this.key(), first + 1]);
   }
 
   protected finish(): void {
     this.quiz.finish();
-    void this.router.navigateByUrl('/result');
+    void this.router.navigate(['/q', this.key(), 'result']);
   }
 
   protected back(): void {
-    void this.router.navigate(['/quiz', this.quiz.core().length]);
+    void this.router.navigate(['/q', this.key(), this.quiz.core().length]);
   }
 }

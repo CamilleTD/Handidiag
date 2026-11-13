@@ -1,20 +1,19 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { AdminApi } from '../admin-api.service';
+import { adminT } from '../admin-i18n';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <h1>Mon compte</h1>
+    <h1>{{ t('account.title') }}</h1>
     @if (api.admin()?.must_change_password) {
-      <p class="status is-error" role="alert">
-        Ce compte utilise un mot de passe provisoire : choisissez-en un nouveau pour continuer.
-      </p>
+      <p class="status is-error" role="alert">{{ t('account.temporary') }}</p>
     }
     <form class="form-section" (submit)="submit($event)" novalidate>
-      <h2>Changer le mot de passe</h2>
+      <h2>{{ t('account.change_password') }}</h2>
       <div class="form-grid">
         <div class="field">
-          <label for="pw-current">Mot de passe actuel</label>
+          <label for="pw-current">{{ t('account.current') }}</label>
           <input
             id="pw-current"
             class="text-input"
@@ -24,7 +23,7 @@ import { AdminApi } from '../admin-api.service';
           />
         </div>
         <div class="field">
-          <label for="pw-new">Nouveau mot de passe</label>
+          <label for="pw-new">{{ t('account.new') }}</label>
           <input
             id="pw-new"
             class="text-input"
@@ -33,10 +32,10 @@ import { AdminApi } from '../admin-api.service';
             aria-describedby="pw-rule"
             (input)="next.set(value($event))"
           />
-          <p id="pw-rule" class="hint">Au moins 12 caractères, avec des lettres et des chiffres.</p>
+          <p id="pw-rule" class="hint">{{ t('account.rule') }}</p>
         </div>
         <div class="field">
-          <label for="pw-confirm">Confirmer le nouveau mot de passe</label>
+          <label for="pw-confirm">{{ t('account.confirm') }}</label>
           <input
             id="pw-confirm"
             class="text-input"
@@ -50,13 +49,14 @@ import { AdminApi } from '../admin-api.service';
         <p class="status" [class.is-error]="failed()" role="status">{{ message() }}</p>
       }
       <div class="actions">
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="submit" class="btn btn-primary">{{ t('common.save') }}</button>
       </div>
     </form>
   `,
 })
 export class AccountPage {
   protected readonly api = inject(AdminApi);
+  protected readonly t = adminT();
   protected readonly current = signal('');
   protected readonly next = signal('');
   protected readonly confirm = signal('');
@@ -71,13 +71,13 @@ export class AccountPage {
     event.preventDefault();
     this.failed.set(true);
     if (this.next() !== this.confirm()) {
-      this.message.set('Les deux nouveaux mots de passe ne sont pas identiques.');
+      this.message.set(this.t('account.mismatch'));
       return;
     }
     try {
       await this.api.changePassword(this.current(), this.next());
       this.failed.set(false);
-      this.message.set('Mot de passe modifié. Les autres sessions de ce compte ont été fermées.');
+      this.message.set(this.t('account.changed'));
     } catch (error) {
       this.message.set((error as Error).message);
     }

@@ -1,6 +1,6 @@
 import pytest
 
-from app.conditions import ConditionError, references, validate_condition
+from app.conditions import ConditionError, questions_in, references, validate_condition
 
 CATALOG = {"duration": {"none", "short", "long"}, "areas": {"energy", "senses", "other"}}
 
@@ -20,20 +20,21 @@ def test_valid_conditions(condition):
 
 
 @pytest.mark.parametrize(
-    ("condition", "message"),
+    ("condition", "code"),
     [
-        ({"q": "unknown", "in": ["x"]}, "question inconnue"),
-        ({"q": "duration", "in": ["maybe"]}, "option « maybe » inconnue"),
-        ({"q": "duration", "in": ["long"], "answered": True}, "exactement un opérateur"),
-        ({"all": []}, "liste de conditions vide"),
-        ({"all": [{"q": "duration", "in": ["long"]}], "any": []}, "un seul opérateur"),
-        ({"q": "areas", "countAtLeast": 0}, "entier supérieur"),
-        ({"q": "duration", "in": ["long"], "extra": 1}, "inattendu"),
+        ({"q": "unknown", "in": ["x"]}, "condition_unknown_question"),
+        ({"q": "duration", "in": ["maybe"]}, "condition_unknown_option"),
+        ({"q": "duration", "in": ["long"], "answered": True}, "condition_operator"),
+        ({"all": []}, "condition_group_empty"),
+        ({"all": [{"q": "duration", "in": ["long"]}], "any": []}, "condition_group_mixed"),
+        ({"q": "areas", "countAtLeast": 0}, "condition_count"),
+        ({"q": "duration", "in": ["long"], "extra": 1}, "condition_unexpected_field"),
     ],
 )
-def test_invalid_conditions(condition, message):
-    with pytest.raises(ConditionError, match=message):
+def test_invalid_conditions(condition, code):
+    with pytest.raises(ConditionError) as error:
         validate_condition(condition, CATALOG)
+    assert error.value.code == code
 
 
 def test_references_walks_nested_groups():
@@ -46,3 +47,4 @@ def test_references_walks_nested_groups():
         ("areas", None),
         ("areas", "energy"),
     }
+    assert questions_in(condition) == {"duration", "areas"}

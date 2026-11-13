@@ -7,9 +7,10 @@ from datetime import UTC, datetime, timedelta
 
 from argon2 import PasswordHasher
 from argon2.exceptions import InvalidHashError, VerifyMismatchError
-from fastapi import Cookie, HTTPException, Request, Response, status
+from fastapi import Cookie, Request, Response
 
 from app.config import get_settings
+from app.errors import Problem
 from app.models import AdminSession, AdminUser
 
 COOKIE = "hd_session"
@@ -27,13 +28,14 @@ def verify_password(password: str, hashed: str) -> bool:
         return False
 
 
-def password_problem(password: str, username: str) -> str | None:
+def password_problem(password: str, username: str) -> tuple[str, str] | None:
+    """(code, message) si le mot de passe est trop faible."""
     if len(password) < 12:
-        return "Au moins 12 caractères."
+        return "password_short", "Au moins 12 caractères."
     if password.lower() == username.lower():
-        return "Le mot de passe ne doit pas être l'identifiant."
+        return "password_username", "Le mot de passe ne doit pas être l'identifiant."
     if not any(c.isalpha() for c in password) or not any(c.isdigit() for c in password):
-        return "Utilisez des lettres et des chiffres."
+        return "password_weak", "Utilisez des lettres et des chiffres."
     return None
 
 
@@ -76,7 +78,7 @@ async def current_admin(hd_session: str | None = Cookie(default=None)) -> AdminU
             session.expires_at = datetime.now(UTC) + timedelta(hours=get_settings().session_hours)
             await session.save(update_fields=["expires_at"])
             return session.user
-    raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Session expirée, reconnectez-vous.")
+    raise Problem(401, "session_expired", "Session expirée, reconnectez-vous.")
 
 
 class LoginThrottle:
@@ -93,9 +95,7 @@ class LoginThrottle:
         now = time.monotonic()
         recent = [t for t in self._failures.get(self._key(request), []) if now - t < self.window]
         if len(recent) >= self.limit:
-            raise HTTPException(
-                status.HTTP_429_TOO_MANY_REQUESTS, "Trop de tentatives. Réessayez dans 5 minutes."
-            )
+            raise Problem(429, "too_many_attempts", "Trop de tentatives. Réessayez dans 5 minutes.")
 
     def failed(self, request: Request) -> None:
         if len(self._failures) > 5000:
