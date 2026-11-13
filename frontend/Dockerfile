@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
 COPY . .
-RUN npx ng build
+RUN node build.mjs
 
 # Étape 2 : fichiers statiques servis par nginx, qui relaie aussi /api vers FastAPI
 FROM nginx:1.27-alpine
